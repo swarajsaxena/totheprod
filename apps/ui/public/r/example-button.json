@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "example-button",
+  "type": "registry:block",
+  "title": "Example Button",
+  "description": "A simple example button component with variants and sizes.",
+  "files": [
+    {
+      "path": "components/ui/example-button.tsx",
+      "content": "'use client'\n\nimport * as React from 'react'\n\ninterface ExampleButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  variant?: 'default' | 'outline' | 'ghost'\n  size?: 'sm' | 'md' | 'lg'\n}\n\nexport const ExampleButton = React.forwardRef<HTMLButtonElement, ExampleButtonProps>(\n  ({ className = '', variant = 'default', size = 'md', children, ...props }, ref) => {\n    const baseStyles =\n      'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'\n\n    const variants = {\n      default: 'bg-primary text-primary-foreground hover:bg-primary/90',\n      outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',\n      ghost: 'hover:bg-accent hover:text-accent-foreground',\n    }\n\n    const sizes = {\n      sm: 'h-9 px-3 text-sm',\n      md: 'h-10 px-4 py-2',\n      lg: 'h-11 px-8 text-lg',\n    }\n\n    const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`\n\n    return (\n      <button ref={ref} className={classes} {...props}>\n        {children}\n      </button>\n    )\n  }\n)\n\nExampleButton.displayName = 'ExampleButton'\n",
+      "type": "registry:component"
+    }
+  ]
+}
