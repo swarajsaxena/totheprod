@@ -8,6 +8,7 @@
     "start": "turbo run start",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
+    "ui:add": "cd apps/ui && bun add",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "shadcn:add": "cd apps/ui && bunx --bun shadcn@latest add",
     "shadcn:build": "cd apps/ui && bun run registry:build"

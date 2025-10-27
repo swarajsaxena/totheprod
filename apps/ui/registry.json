@@ -4,13 +4,37 @@
   "homepage": "https://ui.totheprod.com",
   "items": [
     {
-      "name": "example-button",
+      "name": "rauno-sidebar",
       "type": "registry:block",
-      "title": "Example Button",
-      "description": "A simple example button component with variants and sizes.",
+      "title": "Rauno Sidebar",
+      "description": "A sidebar component with sections.",
       "files": [
         {
-          "path": "components/ui/example-button.tsx",
+          "path": "components/ui/totheprod-ui/rauno-sidebar/rauno-sidebar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "wavy-text",
+      "type": "registry:block",
+      "title": "Wavy Text",
+      "description": "A wavy text component.",
+      "files": [
+        {
+          "path": "components/ui/totheprod-ui/wavy-text/wavy-text.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "horizontal-fade-in",
+      "type": "registry:block",
+      "title": "Horizontal Fade In",
+      "description": "A horizontal fade text component.",
+      "files": [
+        {
+          "path": "components/ui/totheprod-ui/horizontal-fade-in/horizontal-fade-in.tsx",
           "type": "registry:component"
         }
       ]
