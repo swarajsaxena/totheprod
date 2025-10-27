@@ -17,7 +17,6 @@ interface WavyTextProps {
    * The base delay for the animation
    */
   baseDelay?: number
-
   /**
    * Horizontal direction (default: towards-ends)
    */

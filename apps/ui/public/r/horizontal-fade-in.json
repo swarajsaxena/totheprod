@@ -4,6 +4,9 @@
   "type": "registry:block",
   "title": "Horizontal Fade In",
   "description": "A horizontal fade text component.",
+  "dependencies": [
+    "motion"
+  ],
   "files": [
     {
       "path": "components/ui/totheprod-ui/horizontal-fade-in/horizontal-fade-in.tsx",

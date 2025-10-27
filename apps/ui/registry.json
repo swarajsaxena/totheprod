@@ -25,7 +25,8 @@
           "path": "components/ui/totheprod-ui/wavy-text/wavy-text.tsx",
           "type": "registry:component"
         }
-      ]
+      ],
+      "dependencies": ["motion"]
     },
     {
       "name": "horizontal-fade-in",
@@ -37,7 +38,8 @@
           "path": "components/ui/totheprod-ui/horizontal-fade-in/horizontal-fade-in.tsx",
           "type": "registry:component"
         }
-      ]
+      ],
+      "dependencies": ["motion"]
     }
   ]
 }
