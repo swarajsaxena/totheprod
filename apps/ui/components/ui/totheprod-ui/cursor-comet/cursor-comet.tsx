@@ -183,10 +183,10 @@ export const CursorComet = ({
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={cn('absolute top-0 left-0 w-full h-full overflow-hidden', className)}
+      className={cn('absolute top-0 left-0 h-full w-full overflow-hidden', className)}
     >
       {Array.from({ length: rowAndColCount }).map((_, row) => (
-        <div key={row} className="flex flex-row flex-1">
+        <div key={row} className="flex flex-1 flex-row">
           {Array.from({ length: rowAndColCount }).map((_, col) => {
             const key = `${row}-${col}`
             const boxState = boxStates[key]
@@ -194,7 +194,7 @@ export const CursorComet = ({
             return (
               <motion.div
                 key={col}
-                className="flex-1 aspect-square h-[unset] flex items-center justify-center font-mono text-white select-none text-sm"
+                className="flex aspect-square h-[unset] flex-1 items-center justify-center font-mono text-sm text-white select-none"
                 initial={{ opacity: 0, backgroundColor: 'transparent' }}
                 animate={{
                   opacity: boxState?.opacity ?? 0,

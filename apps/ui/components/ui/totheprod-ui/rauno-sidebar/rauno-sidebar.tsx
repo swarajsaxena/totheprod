@@ -90,8 +90,8 @@ const RaunoSidebar = ({
   console.log('RaunoSidebar')
   return (
     <RaunoSidebarContext.Provider value={{ itemDividersLength, sectionDividersLength }}>
-      <div className={cn('flex flex-col min-w-max w-full p-4', className)}>
-        <div className="flex flex-col w-max">{children}</div>
+      <div className={cn('flex w-full min-w-max flex-col p-4', className)}>
+        <div className="flex w-max flex-col">{children}</div>
       </div>
     </RaunoSidebarContext.Provider>
   )
@@ -113,8 +113,8 @@ interface RaunoSidebarSectionDividerProps {
  */
 const RaunoSidebarSectionDivider = ({ className }: RaunoSidebarSectionDividerProps) => {
   return (
-    <div className={cn('h-2 flex items-center', className)}>
-      <div className="w-8 bg-muted-foreground/50 h-px" />
+    <div className={cn('flex h-2 items-center', className)}>
+      <div className="bg-muted-foreground/50 h-px w-8" />
     </div>
   )
 }
@@ -174,11 +174,11 @@ const RaunoSidebarSectionHeader = ({ children, className }: RaunoSidebarSectionH
     <>
       <h3
         className={cn(
-          'text-sm font-medium text-foreground flex items-center gap-3 h-[10px]',
+          'text-foreground flex h-[10px] items-center gap-3 text-sm font-medium',
           className
         )}
       >
-        <div className="w-8 bg-foreground/75 h-px" />
+        <div className="bg-foreground/75 h-px w-8" />
         <span>{children}</span>
       </h3>
       {Array.from({ length: itemDividersLength }).map((_, i) => (
@@ -243,16 +243,16 @@ const RaunoSidebarItem = ({
         initial={{ paddingRight: 16 }}
         animate={{ paddingRight: isHovered || isActive ? 0 : 16 }}
         transition={{ duration: 0.3 }}
-        className={cn('flex items-center h-2', className)}
+        className={cn('flex h-2 items-center', className)}
       >
         <Link
-          className="gap-3 h-6 flex items-center w-max z-1 relative"
+          className="relative z-1 flex h-6 w-max items-center gap-3"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           {...props}
         >
           <motion.div
-            className="h-px bg-muted-foreground/50"
+            className="bg-muted-foreground/50 h-px"
             initial={{ width: 32 }}
             animate={{
               width: isHovered || isActive ? 48 : 32,
@@ -261,7 +261,7 @@ const RaunoSidebarItem = ({
             transition={{ duration: 0.3 }}
           />
           <motion.span
-            className={cn('text-sm font-medium text-muted-foreground w-max', textClassName)}
+            className={cn('text-muted-foreground w-max text-sm font-medium', textClassName)}
             animate={{
               color: isHovered || isActive ? 'var(--primary)' : 'var(--muted-foreground)',
             }}

@@ -5,7 +5,7 @@ import { LayeredNav } from '@/components/ui/totheprod-ui/layered-nav/layered-nav
 
 export const LayeredNavPreview = () => {
   return (
-    <div className="flex flex-col gap-4 items-center justify-center flex-1 w-full">
+    <div className="flex w-full flex-1 flex-col items-center justify-center gap-4">
       <PreviewHeading
         variant="light"
         title="Layered Nav"

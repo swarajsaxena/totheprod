@@ -7,6 +7,7 @@ import {
   LayeredNavPreview,
   CursorCometPreview,
   WordShufflerPreview,
+  RaycastCommandMenuPreview,
 } from './_preview-components'
 
 export enum ComponentId {
@@ -18,9 +19,22 @@ export enum ComponentId {
   PERSPECTIVE_CAROUSEL = 'perspective-carousel',
   CURSOR_COMET = 'cursor-comet',
   WORD_SHUFFLER = 'word-shuffler',
+  RAYCAST_COMMAND_MENU = 'raycast-command-menu',
 }
 
 export const contentMap = [
+  {
+    section: 'Base Components',
+    items: [
+      {
+        id: ComponentId.RAYCAST_COMMAND_MENU,
+        title: 'Raycast Command Menu',
+        description: 'A raycast command menu component.',
+        preview: RaycastCommandMenuPreview,
+        docsPath: 'raycast-command-menu.mdx',
+      },
+    ],
+  },
   {
     section: 'Seamless Navigations',
     items: [

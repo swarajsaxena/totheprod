@@ -96,12 +96,12 @@ export const LayeredNav = ({
             }}
             style={{ backgroundColor }}
             className={cn(
-              'absolute top-0 left-0 w-full h-full flex flex-col overflow-hidden',
+              'absolute top-0 left-0 flex h-full w-full flex-col overflow-hidden',
               containerClassName
             )}
           >
             {showBrandHeader && (
-              <div style={{ color: textColor }} className="p-8 flex justify-between items-center">
+              <div style={{ color: textColor }} className="flex items-center justify-between p-8">
                 <span className="text-2xl font-bold">{brandText}</span>
                 <MenuTrigger
                   setIsOpen={handleSetIsOpen}
@@ -111,13 +111,13 @@ export const LayeredNav = ({
                 />
               </div>
             )}
-            <div className="flex-1 relative">
+            <div className="relative flex-1">
               {menuItems.map((item, index) => (
                 <Link href={item.href || '#'} key={item.text}>
                   <motion.div
                     key={item.text}
                     className={cn(
-                      'shadow-2xl border absolute bottom-0 left-0 cursor-pointer w-full rounded-t-4xl text-[#1C1B19] text-center font-clash font-black text-[10vw] p-[1.4vw] h-screen',
+                      'font-clash absolute bottom-0 left-0 h-screen w-full cursor-pointer rounded-t-4xl border p-[1.4vw] text-center text-[10vw] font-black text-[#1C1B19] shadow-2xl',
                       itemClassName
                     )}
                     onMouseEnter={() => setisMenuItemHover(index)}
@@ -192,7 +192,7 @@ const MenuTrigger = ({
         color: textColor,
       }}
       className={cn(
-        'cursor-pointer border rounded-full px-2.5 py-1 flex items-center gap-1.5',
+        'flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1',
         className
       )}
     >

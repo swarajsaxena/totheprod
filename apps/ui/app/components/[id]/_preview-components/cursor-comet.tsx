@@ -5,7 +5,7 @@ import { CursorComet } from '@/components/ui/totheprod-ui/cursor-comet/cursor-co
 
 export const CursorCometPreview = () => {
   return (
-    <div className="relative flex flex-col gap-4 items-center rounded-xl justify-center border bg-foreground p-8 m-auto max-w-1/2 w-full aspect-square overflow-hidden max-h-[500px]">
+    <div className="bg-foreground relative m-auto flex aspect-square max-h-[500px] w-full max-w-1/2 flex-col items-center justify-center gap-4 overflow-hidden rounded-xl border p-8">
       <PreviewHeading title="Cursor Comet" description="Hover around this box to see the effect." />
       <CursorComet />
     </div>

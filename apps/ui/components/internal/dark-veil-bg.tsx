@@ -168,5 +168,5 @@ export function DarkVeil({
     warpAmount,
     resolutionScale,
   ])
-  return <canvas ref={ref} className="w-full h-full block absolute inset-0 z-0" />
+  return <canvas ref={ref} className="absolute inset-0 z-0 block h-full w-full" />
 }

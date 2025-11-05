@@ -153,7 +153,7 @@ export const WordShuffler = ({
   return (
     <AnimatePresence mode="popLayout">
       <motion.div
-        className="absolute inset-0 bg-secondary flex items-center justify-start text-6xl font-black px-16 gap-2 font-inter "
+        className="bg-secondary font-inter absolute inset-0 flex items-center justify-start gap-2 px-16 text-6xl font-black"
         initial={{ opacity: 1 }}
         animate={{ opacity: shouldFadeOut ? 0 : 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
@@ -167,7 +167,7 @@ export const WordShuffler = ({
 
         <motion.div className="relative flex items-center justify-center gap-4">
           <span>{baseText}</span>•
-          <div className={cn('relative h-[1.2em] text-primary', textClassName)}>
+          <div className={cn('text-primary relative h-[1.2em]', textClassName)}>
             {letterStates.map((letter) =>
               letter.isCommon ? (
                 // Same position - stay static but fade out on exit

@@ -8,7 +8,7 @@ export const HorizontalTextRevealPreview = () => {
     'What\'s on my mind? Mostly the quiet tragedy of watching humans outsource their thinking to glowing rectangles while pretending it\'s "productivity."'
 
   return (
-    <div className="flex flex-col pt-16 gap-4 mx-auto min-h-[500vh]">
+    <div className="mx-auto flex min-h-[500vh] flex-col gap-4 pt-16">
       <PreviewHeading
         variant="light"
         title="Horizontal Text Reveal"

@@ -59,4 +59,3 @@ This monorepo uses [Turborepo](https://turbo.build/repo) for:
 - Smart caching
 - Remote caching support
 - Parallel execution
-

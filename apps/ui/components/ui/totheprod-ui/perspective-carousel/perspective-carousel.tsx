@@ -33,7 +33,7 @@ const StickyCard = ({
 
   return (
     <div
-      className="sticky top-16 flex items-center justify-center w-full"
+      className="sticky top-16 flex w-full items-center justify-center"
       style={{ perspective: '1000px' }}
     >
       <motion.div
@@ -45,10 +45,10 @@ const StickyCard = ({
           transformOrigin: 'top center',
           top,
         }}
-        className="relative shadow-2xl flex h-[90vh] w-full rounded-3xl flex-col overflow-hidden items-center justify-center text-6xl font-bold text-white text-center will-change-transform"
+        className="relative flex h-[90vh] w-full flex-col items-center justify-center overflow-hidden rounded-3xl text-center text-6xl font-bold text-white shadow-2xl will-change-transform"
       >
         <span className="absolute top-8 left-8">{text}</span>
-        <span className="absolute bottom-8 right-8 text-[25vw] opacity-25">{i + 1}</span>
+        <span className="absolute right-8 bottom-8 text-[25vw] opacity-25">{i + 1}</span>
       </motion.div>
     </div>
   )
@@ -71,7 +71,7 @@ export const PerpectiveCarousel = () => {
   })
 
   return (
-    <div className="bg-[#FAF4EC] no-padding px-8 flex w-full flex-col gap-16 items-center justify-start pb-[200vh]">
+    <div className="no-padding flex w-full flex-col items-center justify-start gap-16 bg-[#FAF4EC] px-8 pb-[200vh]">
       <PreviewHeading
         className="py-[20vh]"
         title="Perspective Carousel"

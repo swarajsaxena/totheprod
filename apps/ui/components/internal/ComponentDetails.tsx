@@ -84,9 +84,9 @@ Component documentation will appear here when you select a component with MDX do
     return (
       <div className="flex flex-col gap-2">
         <div className="animate-pulse">
-          <div className="h-6 bg-muted rounded w-1/3 mb-4"></div>
-          <div className="h-4 bg-muted rounded w-full mb-2"></div>
-          <div className="h-4 bg-muted rounded w-2/3"></div>
+          <div className="bg-muted mb-4 h-6 w-1/3 rounded"></div>
+          <div className="bg-muted mb-2 h-4 w-full rounded"></div>
+          <div className="bg-muted h-4 w-2/3 rounded"></div>
         </div>
       </div>
     )
@@ -95,14 +95,14 @@ Component documentation will appear here when you select a component with MDX do
   if (!mdxData || 'error' in mdxData) {
     return (
       <div className="flex flex-col gap-2">
-        <h2 className="text-lg font-bold text-destructive">Error</h2>
-        <p className="text-sm text-muted-foreground">Failed to render MDX content.</p>
+        <h2 className="text-destructive text-lg font-bold">Error</h2>
+        <p className="text-muted-foreground text-sm">Failed to render MDX content.</p>
       </div>
     )
   }
 
   return (
-    <div className="flex flex-col gap-2 overflow-auto h-[unset] prose-invert prose-sm max-w-none prose-headings:font-semibold prose-h1:text-2xl prose-headings:font-clash prose-headings:m-0 prose-h2:text-xl prose-h3:text-lg prose-a:text-primary hover:prose-a:underline prose-strong:text-foreground prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-p:text-muted-foreground">
+    <div className="prose-invert prose-sm prose-headings:font-semibold prose-h1:text-2xl prose-headings:font-clash prose-headings:m-0 prose-h2:text-xl prose-h3:text-lg prose-a:text-primary hover:prose-a:underline prose-strong:text-foreground prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-p:text-muted-foreground flex h-[unset] max-w-none flex-col gap-2 overflow-auto">
       <MDXClient
         {...mdxData}
         components={{

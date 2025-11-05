@@ -37,11 +37,11 @@ export const CodeBlock = ({ children, title, raw, ...props }: CodeBlockProps) =>
   }
 
   return (
-    <div className="relative group ">
+    <div className="group relative">
       {title && (
-        <div className="flex items-center justify-between px-4 py-2 bg-muted border border-border rounded-t-lg border-b-0">
-          <span className="text-xs font-medium text-muted-foreground">{title}</span>
-          <span className="text-xs text-muted-foreground/60">{language}</span>
+        <div className="bg-muted border-border flex items-center justify-between rounded-t-lg border border-b-0 px-4 py-2">
+          <span className="text-muted-foreground text-xs font-medium">{title}</span>
+          <span className="text-muted-foreground/60 text-xs">{language}</span>
         </div>
       )}
 
@@ -49,11 +49,11 @@ export const CodeBlock = ({ children, title, raw, ...props }: CodeBlockProps) =>
         <Button
           variant="ghost"
           size="sm"
-          className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity h-8 w-8 p-0"
+          className="absolute top-2 right-2 h-8 w-8 p-0 opacity-0 transition-opacity group-hover:opacity-100"
           onClick={handleCopy}
           aria-label="Copy code"
         >
-          {copied ? <Check className="h-4 w-4 text-primary" /> : <Copy className="h-4 w-4" />}
+          {copied ? <Check className="text-primary h-4 w-4" /> : <Copy className="h-4 w-4" />}
         </Button>
 
         <pre {...props} className={`${props.className || ''} ${title ? 'rounded-t-none' : ''}`}>
@@ -72,7 +72,7 @@ interface InlineCodeProps {
 
 export const InlineCode = ({ children, ...props }: InlineCodeProps) => {
   return (
-    <code {...props} className="px-1.5 py-0.5 rounded bg-muted text-primary font-fira text-sm">
+    <code {...props} className="bg-muted text-primary font-fira rounded px-1.5 py-0.5 text-sm">
       {children}
     </code>
   )

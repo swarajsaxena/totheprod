@@ -16,14 +16,14 @@ const ComponentPageLayout = ({ children }: { children: ReactNode }) => {
   const [detailsOpen, setDetailsOpen] = useAtom(detailsOpenAtom)
   const currentComponentId = useParams().id
   return (
-    <div className="flex flex-row gap-1 max-h-screen overflow-hidden h-full flex-1 *:rounded *:first:rounded-l-xl *:last:rounded-r-xl">
+    <div className="flex h-full max-h-screen flex-1 flex-row gap-1 overflow-hidden *:rounded *:first:rounded-l-xl *:last:rounded-r-xl">
       <ComponentSidebar />
-      <div className="flex-1 overflow-hidden relative">
-        <div className="absolute top-2 z-50 left-2 p-1 rounded-xl bg-secondary shadow border border-dashed border-border/10 flex gap-1">
+      <div className="relative flex-1 overflow-hidden">
+        <div className="bg-secondary border-border/10 absolute top-2 left-2 z-50 flex gap-1 rounded-xl border border-dashed p-1 shadow">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                className="border border-dashed border-border/50"
+                className="border-border/50 border border-dashed"
                 variant="ghost"
                 size="icon-sm"
                 asChild
@@ -40,7 +40,7 @@ const ComponentPageLayout = ({ children }: { children: ReactNode }) => {
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                className="border border-dashed border-border/50"
+                className="border-border/50 border border-dashed"
                 variant="ghost"
                 size="icon-sm"
                 onClick={() => setDetailsOpen(!detailsOpen)}
@@ -54,7 +54,7 @@ const ComponentPageLayout = ({ children }: { children: ReactNode }) => {
           </Tooltip>
         </div>
         <div
-          className="bg-secondary p-8 overflow-auto max-h-screen h-full relative flex flex-col items-center [&:has(.no-padding)]:p-0"
+          className="bg-secondary relative flex h-full max-h-screen flex-col items-center overflow-auto p-8 [&:has(.no-padding)]:p-0"
           id="preview-scroll-container"
         >
           {/* <Button onClick={() => setDetailsOpen(!detailsOpen)}>Click me</Button> */}
@@ -62,7 +62,7 @@ const ComponentPageLayout = ({ children }: { children: ReactNode }) => {
         </div>
       </div>
       {detailsOpen && (
-        <div className="p-8 flex-1 h-[unset] overflow-auto">
+        <div className="h-[unset] flex-1 overflow-auto p-8">
           <ComponentDetails />
         </div>
       )}

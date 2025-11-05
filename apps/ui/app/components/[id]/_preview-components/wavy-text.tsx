@@ -5,7 +5,7 @@ import { WavyText } from '@/components/ui/totheprod-ui/wavy-text/wavy-text'
 
 export const WavyTextPreview = () => {
   return (
-    <div className="flex flex-col gap-4 items-center justify-center flex-1 w-full">
+    <div className="flex w-full flex-1 flex-col items-center justify-center gap-4">
       <PreviewHeading variant="light" title="Wavy Text" className="-mt-[10%]" />
       <div className="flex flex-col items-center">
         <WavyText

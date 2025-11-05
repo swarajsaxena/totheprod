@@ -17,10 +17,10 @@ const ComponentSidebar = () => {
   const currentId = params?.id as string
 
   return (
-    <div className="bg-secondary h-[unset] overflow-hidden flex fill-card justify-center relative">
-      <div className="absolute top-0 p-4 left-1/2 -translate-x-1/2 w-full text-xs text-muted-foreground flex items-center justify-between">
+    <div className="bg-secondary fill-card relative flex h-[unset] justify-center overflow-hidden">
+      <div className="text-muted-foreground absolute top-0 left-1/2 flex w-full -translate-x-1/2 items-center justify-between p-4 text-xs">
         <Link href="/">
-          <motion.img src="/logo-light.svg" alt="Logo" className="w-6 h-6" layoutId="logo" />
+          <motion.img src="/logo-light.svg" alt="Logo" className="h-6 w-6" layoutId="logo" />
         </Link>
         <span>Components</span>
       </div>

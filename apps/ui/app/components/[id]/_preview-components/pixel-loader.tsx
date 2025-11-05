@@ -5,9 +5,9 @@ import { PixelLoader } from '@/components/ui/totheprod-ui/pixel-loader/pixel-loa
 
 export const PixelLoaderPreview = () => {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-foreground flex-col text-background no-padding relative max-h-full">
+    <div className="bg-foreground text-background no-padding relative flex h-full max-h-full w-full flex-col items-center justify-center">
       <PreviewHeading title="Pixel Loader" />
-      <span className="text-5xl font-semibold font-clash tracking-tight">Your Epic Shit</span>
+      <span className="font-clash text-5xl font-semibold tracking-tight">Your Epic Shit</span>
       <PixelLoader />
     </div>
   )

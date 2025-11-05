@@ -78,7 +78,7 @@ export const WavyText = ({
 
   return (
     <div
-      className={cn('font-bold text-center flex items-center overflow-hidden', className)}
+      className={cn('flex items-center overflow-hidden text-center font-bold', className)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -89,7 +89,7 @@ export const WavyText = ({
         return (
           <motion.div key={index} className={cn('relative leading-none')}>
             <motion.span
-              className={cn('text-4xl inline-block leading-none', textClassName)}
+              className={cn('inline-block text-4xl leading-none', textClassName)}
               initial={{ y: 0 }}
               animate={{ y: isHovered ? '-100%' : 0 }}
               transition={{
@@ -103,7 +103,7 @@ export const WavyText = ({
             </motion.span>
             <motion.span
               className={cn(
-                'text-4xl inline-block absolute top-0 left-0 leading-none',
+                'absolute top-0 left-0 inline-block text-4xl leading-none',
                 textClassName
               )}
               initial={{ y: '95%' }}

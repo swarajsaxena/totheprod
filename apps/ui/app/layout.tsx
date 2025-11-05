@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased bg-background overflow-scroll text-foreground p-3 h-screen max-h-screen flex flex-col [&:has(.no-preview-padding)]:p-0 ${archivo.variable} ${clashDisplay.variable}`}
+        className={`bg-background text-foreground flex h-screen max-h-screen flex-col overflow-scroll p-3 antialiased [&:has(.no-preview-padding)]:p-0 ${archivo.variable} ${clashDisplay.variable}`}
       >
         {children}
       </body>

@@ -22,7 +22,7 @@ const PreviewHeading = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={cn('flex flex-col items-center mb-2 mt-4', className ?? '')}
+      className={cn('mt-4 mb-2 flex flex-col items-center', className ?? '')}
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -41,7 +41,7 @@ const PreviewHeading = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-muted-foreground text-sm text-center font-medium"
+        className="text-muted-foreground text-center text-sm font-medium"
       >
         {title}
       </motion.h1>
@@ -50,7 +50,7 @@ const PreviewHeading = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-sm text-muted-foreground/75 max-w-xs text-center"
+          className="text-muted-foreground/75 max-w-xs text-center text-sm"
         >
           {description}
         </motion.p>

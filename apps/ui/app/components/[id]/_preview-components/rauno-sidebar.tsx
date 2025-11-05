@@ -75,7 +75,7 @@ export const RaunoSidebarPreview = () => {
         ))}
       </RaunoSidebar>
       <PreviewHeading variant="light" title="Simple Sidebar" />
-      <RaunoSidebar className="max-w-xs p-10 bg-muted-foreground/5 shadow-xl rounded-2xl">
+      <RaunoSidebar className="bg-muted-foreground/5 max-w-xs rounded-2xl p-10 shadow-xl">
         {items.map((item, index) => (
           <RaunoSidebarItem
             key={item.label}

@@ -58,13 +58,13 @@ export const PixelLoader = ({
   }
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full pointer-events-none flex flex-col">
+    <div className="pointer-events-none absolute top-0 left-0 flex h-full w-full flex-col">
       {Array.from({ length: rows }).map((_, row) => (
-        <div key={`row-${row}`} className="flex flex-row flex-1">
+        <div key={`row-${row}`} className="flex flex-1 flex-row">
           {Array.from({ length: columns }).map((_, column) => (
             <motion.div
               key={`column-${column}`}
-              className="flex-1 h-[unset] bg-background"
+              className="bg-background h-[unset] flex-1"
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
               transition={{ duration, delay: getDelay(row, column) }}
