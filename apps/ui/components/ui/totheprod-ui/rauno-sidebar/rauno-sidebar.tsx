@@ -87,6 +87,7 @@ const RaunoSidebar = ({
   itemDividersLength = 2,
   sectionDividersLength = 4,
 }: RaunoSidebarProps) => {
+  console.log('RaunoSidebar')
   return (
     <RaunoSidebarContext.Provider value={{ itemDividersLength, sectionDividersLength }}>
       <div className={cn('flex flex-col min-w-max w-full p-4', className)}>

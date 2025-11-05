@@ -1,15 +1,26 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { Geist, Geist_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const archivo = localFont({
+  src: [
+    {
+      path: '../public/fonts/Archivo-Variable.ttf',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Archivo-VariableItalic.ttf',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-archivo',
+  display: 'swap',
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const clashDisplay = localFont({
+  src: '../public/fonts/ClashDisplay-Variable.ttf',
+  variable: '--font-clash-display',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -25,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased bg-background text-foreground p-3 min-h-screen max-h-screen flex flex-col ${geistSans.variable} ${geistMono.variable}`}
+        className={`antialiased bg-background overflow-scroll text-foreground p-3 h-screen max-h-screen flex flex-col [&:has(.no-preview-padding)]:p-0 ${archivo.variable} ${clashDisplay.variable}`}
       >
         {children}
       </body>

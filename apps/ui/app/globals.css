@@ -1,5 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Fira+Code:300,regular,500,600,700);
+@import 'lenis/dist/lenis.css';
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -38,6 +42,7 @@
 }
 
 @theme inline {
+  /* colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -69,12 +74,33 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* fonts */
+  --font-fira: 'Fira Code', monospace;
+  --font-archivo: var(--font-archivo), sans-serif;
+  --font-clash: var(--font-clash-display), sans-serif;
+
+  /* animations */
+  --animate-first: moveVertical 30s ease infinite;
+  --animate-second: moveInCircle 20s reverse infinite;
+  --animate-third: moveInCircle 40s linear infinite;
+  --animate-fourth: moveHorizontal 40s ease infinite;
+  --animate-fifth: moveInCircle 20s ease infinite;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-archivo);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-clash font-medium;
 }
 
 @layer base {
@@ -83,5 +109,125 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  figure {
+    @apply my-0!;
+  }
+
+  /* Rehype Pretty Code Styles */
+  code {
+    /* counter-reset: line; */
+  }
+
+  code[data-theme*=' '],
+  code[data-theme*=' '] span {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    code[data-theme*=' '],
+    code[data-theme*=' '] span {
+      color: var(--shiki-dark);
+      background-color: var(--shiki-dark-bg);
+    }
+  }
+
+  code[data-line-numbers] {
+    counter-reset: line;
+  }
+
+  code[data-line-numbers] > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 1rem;
+    margin-right: 1.5rem;
+    text-align: right;
+    color: oklch(0.5 0 0);
+  }
+
+  code[data-line-numbers-max-digits='2'] > [data-line]::before {
+    width: 1.5rem;
+  }
+
+  code[data-line-numbers-max-digits='3'] > [data-line]::before {
+    width: 2rem;
+  }
+
+  [data-highlighted-line] {
+    background-color: oklch(0.3 0 0 / 50%);
+    border-left: 2px solid var(--primary);
+    padding-left: 0.5rem;
+    margin-left: -0.5rem;
+  }
+
+  [data-highlighted-chars] {
+    background-color: oklch(0.4 0 0);
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  [data-chars-id] {
+    background-color: oklch(0.3 0 0 / 50%);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0 2px oklch(0.4 0 0);
+  }
+
+  pre {
+    @apply rounded-lg border border-border p-4 overflow-x-auto my-0!;
+  }
+
+  pre > code {
+    @apply grid;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  pre [data-line] {
+    padding-right: 1rem;
+  }
+
+  /* Inline code styling */
+  :not(pre) > code {
+    @apply px-1.5 py-0.5 rounded bg-transparent! text-primary font-fira text-sm;
+  }
+}
+
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+}
+
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-50%);
   }
 }

@@ -55,8 +55,8 @@ export const RaunoSidebarPreview = () => {
   const activePath = link ? `${pathname}?link=${link}` : pathname
 
   return (
-    <div className="flex flex-col gap-4 items-center">
-      <PreviewHeading title="Sidebar with Sections" />
+    <div className="flex flex-col gap-4 pt-16">
+      <PreviewHeading variant="light" title="Sidebar with Sections" />
       <RaunoSidebar className="max-w-xs p-10">
         {sections.map((section, sectionIndex) => (
           <RaunoSidebarSection key={section.label} isLast={sectionIndex === sections.length - 1}>
@@ -74,7 +74,7 @@ export const RaunoSidebarPreview = () => {
           </RaunoSidebarSection>
         ))}
       </RaunoSidebar>
-      <PreviewHeading title="Simple Sidebar" />
+      <PreviewHeading variant="light" title="Simple Sidebar" />
       <RaunoSidebar className="max-w-xs p-10 bg-muted-foreground/5 shadow-xl rounded-2xl">
         {items.map((item, index) => (
           <RaunoSidebarItem
