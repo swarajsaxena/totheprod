@@ -1,0 +1,10 @@
+---
+alwaysApply: true
+---
+
+use icons from the hugeicons library like
+
+import { HugeiconsIcon } from '@hugeicons/react'
+import { ArrowRight01Icon, Github01Icon, GithubIcon } from '@hugeicons/core-free-icons'
+
+<HugeiconsIcon icon={GithubIcon} className="size-4" />

@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
-import { motion } from 'framer-motion'
-import { useMemo } from 'react'
+import { motion } from "framer-motion"
+import { useMemo } from "react"
 
 interface PixelLoaderProps {
   /**
@@ -39,7 +39,7 @@ export const PixelLoader = ({
       row: Math.floor(Math.random() * rows),
       col: Math.floor(Math.random() * columns),
     }),
-    [rows, columns]
+    [rows, columns],
   )
 
   // Calculate the maximum possible distance for normalization
@@ -49,7 +49,9 @@ export const PixelLoader = ({
 
   const getDelay = (row: number, col: number) => {
     // Calculate Euclidean distance from the center
-    const distance = Math.sqrt(Math.pow(row - center.row, 2) + Math.pow(col - center.col, 2))
+    const distance = Math.sqrt(
+      Math.pow(row - center.row, 2) + Math.pow(col - center.col, 2),
+    )
     // Normalize and apply delay
     const baseDelay = (distance / maxDistance) * delay
     // Add randomness to make the circumference less perfect
@@ -64,7 +66,7 @@ export const PixelLoader = ({
           {Array.from({ length: columns }).map((_, column) => (
             <motion.div
               key={`column-${column}`}
-              className="bg-background h-[unset] flex-1"
+              className="h-[unset] flex-1 bg-foreground"
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
               transition={{ duration, delay: getDelay(row, column) }}

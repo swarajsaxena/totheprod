@@ -1,10 +1,10 @@
-'use client'
+"use client"
 
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
-import { WavyText } from '../wavy-text/wavy-text'
-import { cn } from '@/lib/utils'
-import Link from 'next/link'
+import { AnimatePresence, motion } from "motion/react"
+import Link from "next/link"
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react"
+import { cn } from "@/lib/utils"
+import { WavyText } from "../wavy-text/wavy-text"
 
 export interface MenuItem {
   color: string
@@ -39,20 +39,20 @@ interface LayeredNavProps {
 
 export const LayeredNav = ({
   menuItems = [
-    { color: '#8E9067', text: 'Home', href: '#' },
-    { color: '#BE5B2A', text: 'About', href: '#' },
-    { color: '#828D94', text: 'Contact', href: '#' },
-    { color: '#D69A3F', text: 'Services', href: '#' },
-    { color: '#B6A897', text: 'Products', href: '#' },
+    { color: "#8E9067", text: "Home", href: "#" },
+    { color: "#BE5B2A", text: "About", href: "#" },
+    { color: "#828D94", text: "Contact", href: "#" },
+    { color: "#D69A3F", text: "Services", href: "#" },
+    { color: "#B6A897", text: "Products", href: "#" },
   ],
-  backgroundColor = '#1C1B19',
-  textColor = '#B6A897',
-  brandText = 'Layered Nav',
+  backgroundColor = "#1C1B19",
+  textColor = "#B6A897",
+  brandText = "Layered Nav",
   defaultOpen = false,
   onOpenChange,
   containerClassName,
-  openTriggerText = 'Menu',
-  closeTriggerText = 'Close',
+  openTriggerText = "Menu",
+  closeTriggerText = "Close",
   showBrandHeader = true,
   itemClassName,
 }: LayeredNavProps) => {
@@ -80,7 +80,11 @@ export const LayeredNav = ({
 
   return (
     <>
-      <MenuTrigger setIsOpen={handleSetIsOpen} text={openTriggerText} textColor={textColor} />
+      <MenuTrigger
+        setIsOpen={handleSetIsOpen}
+        text={openTriggerText}
+        textColor={textColor}
+      />
       <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
@@ -96,13 +100,16 @@ export const LayeredNav = ({
             }}
             style={{ backgroundColor }}
             className={cn(
-              'absolute top-0 left-0 flex h-full w-full flex-col overflow-hidden',
-              containerClassName
+              "absolute top-0 left-0 flex h-full w-full flex-col overflow-hidden",
+              containerClassName,
             )}
           >
             {showBrandHeader && (
-              <div style={{ color: textColor }} className="flex items-center justify-between p-8">
-                <span className="text-2xl font-bold">{brandText}</span>
+              <div
+                style={{ color: textColor }}
+                className="flex items-center justify-between p-8"
+              >
+                <span className="font-bold text-2xl">{brandText}</span>
                 <MenuTrigger
                   setIsOpen={handleSetIsOpen}
                   text={closeTriggerText}
@@ -113,12 +120,12 @@ export const LayeredNav = ({
             )}
             <div className="relative flex-1">
               {menuItems.map((item, index) => (
-                <Link href={item.href || '#'} key={item.text}>
+                <Link href={item.href || "#"} key={item.text}>
                   <motion.div
                     key={item.text}
                     className={cn(
-                      'font-clash absolute bottom-0 left-0 h-screen w-full cursor-pointer rounded-t-4xl border p-[1.4vw] text-center text-[10vw] font-black text-[#1C1B19] shadow-2xl',
-                      itemClassName
+                      "absolute bottom-0 left-0 h-screen w-full cursor-pointer rounded-t-4xl border p-[1.4vw] text-center font-black font-heading text-[#1C1B19] text-[10vw] shadow-2xl",
+                      itemClassName,
                     )}
                     onMouseEnter={() => setisMenuItemHover(index)}
                     onMouseLeave={() => setisMenuItemHover(null)}
@@ -126,7 +133,7 @@ export const LayeredNav = ({
                       backgroundColor: item.color,
                     }}
                     initial={{
-                      top: '100%',
+                      top: "100%",
                       opacity: 0,
                     }}
                     animate={{
@@ -142,20 +149,20 @@ export const LayeredNav = ({
                       opacity: 1,
                     }}
                     exit={{
-                      top: '100%',
+                      top: "100%",
                       opacity: 0,
                       y: 0,
                       transition: {
                         duration: 1,
-                        ease: 'easeIn',
-                        type: 'spring',
+                        ease: "easeIn",
+                        type: "spring",
                         delay: (menuItems.length - 1 - index) * 0.1,
                       },
                     }}
                     transition={{
                       duration: hasAnimated ? 0.5 : 1,
-                      ease: 'easeIn',
-                      type: 'spring',
+                      ease: "easeIn",
+                      type: "spring",
                       delay: hasAnimated ? 0 : index * 0.1,
                     }}
                   >
@@ -181,7 +188,7 @@ interface LayeredNavTriggerProps {
 const MenuTrigger = ({
   setIsOpen,
   text,
-  textColor = '#B6A897',
+  textColor = "#B6A897",
   className,
 }: LayeredNavTriggerProps) => {
   return (
@@ -192,11 +199,15 @@ const MenuTrigger = ({
         color: textColor,
       }}
       className={cn(
-        'flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1',
-        className
+        "flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1",
+        className,
       )}
     >
-      <WavyText text={text} className="flex items-center gap-1 text-sm" textClassName="text-xs" />
+      <WavyText
+        text={text}
+        className="flex items-center gap-1 text-sm"
+        textClassName="text-xs"
+      />
     </button>
   )
 }

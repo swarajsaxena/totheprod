@@ -1,14 +1,14 @@
-'use client'
+"use client"
 
-import PreviewHeading from '@/components/internal/PreviewHeading'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { MotionValue, motion, useScroll, useTransform } from "framer-motion"
+import { useEffect, useRef } from "react"
+import PreviewHeading from "@/components/internal/PreviewHeading"
 
 const items = [
-  { text: 'Content Creation', backgroundColor: '#FCB8FA' },
-  { text: 'Social Media', backgroundColor: '#34C791' },
-  { text: 'Email Marketing', backgroundColor: '#0F8DFF' },
-  { text: 'Analytics', backgroundColor: '#FA5325' },
+  { text: "Content Creation", backgroundColor: "#FCB8FA" },
+  { text: "Social Media", backgroundColor: "#34C791" },
+  { text: "Email Marketing", backgroundColor: "#0F8DFF" },
+  { text: "Analytics", backgroundColor: "#FA5325" },
 ]
 
 const StickyCard = ({
@@ -22,7 +22,7 @@ const StickyCard = ({
   i: number
   text: string
   backgroundColor: string
-  progress: any
+  progress: MotionValue<number>
   range: [number, number]
   targetScale: number
 }) => {
@@ -34,7 +34,7 @@ const StickyCard = ({
   return (
     <div
       className="sticky top-16 flex w-full items-center justify-center"
-      style={{ perspective: '1000px' }}
+      style={{ perspective: "1000px" }}
     >
       <motion.div
         style={{
@@ -42,36 +42,38 @@ const StickyCard = ({
           rotateX,
           rotateY,
           backgroundColor,
-          transformOrigin: 'top center',
+          transformOrigin: "top center",
           top,
         }}
-        className="relative flex h-[90vh] w-full flex-col items-center justify-center overflow-hidden rounded-3xl text-center text-6xl font-bold text-white shadow-2xl will-change-transform"
+        className="relative flex h-[90vh] w-full flex-col items-center justify-center overflow-hidden rounded-3xl text-center font-bold text-6xl text-white shadow-2xl will-change-transform"
       >
         <span className="absolute top-8 left-8">{text}</span>
-        <span className="absolute right-8 bottom-8 text-[25vw] opacity-25">{i + 1}</span>
+        <span className="absolute right-8 bottom-8 text-[25vw] opacity-25">
+          {i + 1}
+        </span>
       </motion.div>
     </div>
   )
 }
 
 export const PerpectiveCarousel = () => {
-  const scrollContainerId = 'preview-scroll-container'
+  const scrollContainerId = "preview-scroll-container"
 
   const scrollContainerRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     const container = document.getElementById(scrollContainerId)
     scrollContainerRef.current = container
-  }, [scrollContainerId])
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: scrollContainerRef,
-    offset: ['start start', 'end end'],
+    offset: ["start start", "end end"],
     container: scrollContainerRef,
   })
 
   return (
-    <div className="no-padding flex w-full flex-col items-center justify-start gap-16 bg-[#FAF4EC] px-8 pb-[200vh]">
+    <div className="no-padding flex w-full flex-col items-center justify-start gap-16 bg-[#FAF4EC] px-8 pb-[200vh] dark:bg-[#100e0f]">
       <PreviewHeading
         className="py-[20vh]"
         title="Perspective Carousel"

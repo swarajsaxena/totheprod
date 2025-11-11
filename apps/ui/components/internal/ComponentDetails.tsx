@@ -1,15 +1,18 @@
-'use client'
+"use client"
 
-import React, { useEffect, useState } from 'react'
-import { serialize, type SerializeResult } from 'next-mdx-remote-client/serialize'
-import { MDXClient } from 'next-mdx-remote-client'
-import { useAtomValue } from 'jotai'
-import { currentComponentMdxAtom } from '@/store/atoms'
-import remarkGfm from 'remark-gfm'
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypePrettyCode from 'rehype-pretty-code'
-import { CodeBlock, InlineCode } from '@/components/ui/code-block'
+import { useAtomValue } from "jotai"
+import { MDXClient } from "next-mdx-remote-client"
+import {
+  type SerializeResult,
+  serialize,
+} from "next-mdx-remote-client/serialize"
+import React, { useEffect, useState } from "react"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypePrettyCode from "rehype-pretty-code"
+import rehypeSlug from "rehype-slug"
+import remarkGfm from "remark-gfm"
+import { CodeBlock, InlineCode } from "@/components/ui/code-block"
+import { currentComponentMdxAtom } from "@/store/atoms"
 
 export const ComponentDetails = () => {
   const mdxSource = useAtomValue(currentComponentMdxAtom)
@@ -57,11 +60,11 @@ Component documentation will appear here when you select a component with MDX do
                   rehypePrettyCode,
                   {
                     theme: {
-                      dark: 'poimandres',
-                      light: 'poimandres',
+                      dark: "poimandres",
+                      light: "poimandres",
                     },
                     keepBackground: false,
-                    defaultLang: 'plaintext',
+                    defaultLang: "plaintext",
                   },
                 ],
                 rehypeAutolinkHeadings,
@@ -71,7 +74,7 @@ Component documentation will appear here when you select a component with MDX do
         })
         setMdxData(result)
       } catch (error) {
-        console.error('Error processing MDX:', error)
+        console.error("Error processing MDX:", error)
       } finally {
         setIsLoading(false)
       }
@@ -84,25 +87,27 @@ Component documentation will appear here when you select a component with MDX do
     return (
       <div className="flex flex-col gap-2">
         <div className="animate-pulse">
-          <div className="bg-muted mb-4 h-6 w-1/3 rounded"></div>
-          <div className="bg-muted mb-2 h-4 w-full rounded"></div>
-          <div className="bg-muted h-4 w-2/3 rounded"></div>
+          <div className="mb-4 h-6 w-1/3 rounded bg-muted"></div>
+          <div className="mb-2 h-4 w-full rounded bg-muted"></div>
+          <div className="h-4 w-2/3 rounded bg-muted"></div>
         </div>
       </div>
     )
   }
 
-  if (!mdxData || 'error' in mdxData) {
+  if (!mdxData || "error" in mdxData) {
     return (
       <div className="flex flex-col gap-2">
-        <h2 className="text-destructive text-lg font-bold">Error</h2>
-        <p className="text-muted-foreground text-sm">Failed to render MDX content.</p>
+        <h2 className="font-bold text-destructive text-lg">Error</h2>
+        <p className="text-muted-foreground text-sm">
+          Failed to render MDX content.
+        </p>
       </div>
     )
   }
 
   return (
-    <div className="prose-invert prose-sm prose-headings:font-semibold prose-h1:text-2xl prose-headings:font-clash prose-headings:m-0 prose-h2:text-xl prose-h3:text-lg prose-a:text-primary hover:prose-a:underline prose-strong:text-foreground prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-p:text-muted-foreground flex h-[unset] max-w-none flex-col gap-2 overflow-auto">
+    <div className="prose-invert prose-sm prose-headings:m-0 flex h-[unset] max-w-none flex-col gap-2 overflow-auto prose-blockquote:border-l-primary prose-headings:font-heading prose-headings:font-semibold prose-a:text-primary prose-blockquote:text-muted-foreground prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-p:text-muted-foreground prose-strong:text-foreground hover:prose-a:underline">
       <MDXClient
         {...mdxData}
         components={{

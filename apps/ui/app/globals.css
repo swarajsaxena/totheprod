@@ -3,18 +3,54 @@
 
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --radius: 0.5rem;
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.1 0.0025 165.08);
+  --card: oklch(0.98 0 0);
+  --card-foreground: oklch(0.1 0.0025 165.08);
+  --popover: oklch(0.98 0 0);
+  --popover-foreground: oklch(0.1 0 0);
+  --primary: oklch(0.765 0.177 163.223);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.95 0 0);
+  --secondary-foreground: oklch(0.1 0.0025 165.08);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.45 0.0025 165.08);
+  --accent: oklch(0.94 0 0);
+  --accent-foreground: oklch(0.1 0 0);
+  --destructive: oklch(0.55 0.191 22.216);
+  --border: oklch(0 0 0 / 20%);
+  --input: oklch(0 0 0 / 15%);
+  --ring: oklch(0.765 0.177 163.223);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.99 0 0);
+  --sidebar-foreground: oklch(0.1 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.96 0 0);
+  --sidebar-accent-foreground: oklch(0.1 0 0);
+  --sidebar-border: oklch(0 0 0 / 10%);
+  --sidebar-ring: oklch(0.6 0 0);
+}
+
+.dark {
+  --radius: 0.5rem;
   --background: oklch(0.1667 0.0026 0);
   --foreground: oklch(0.9863 0.0025 165.08);
   --card: oklch(0.2 0 0);
   --card-foreground: oklch(0.9863 0.0025 165.08);
-  --popover: oklch(0.269 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.7937 0.1964 154.94);
+  --popover: oklch(0.2 0 0);
+  --popover-foreground: oklch(0.9863 0.0025 165.08);
+  --primary: oklch(0.765 0.177 163.223);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.2 0 0);
   --secondary-foreground: oklch(0.9863 0.0025 165.08);
@@ -23,9 +59,9 @@
   --accent: oklch(0.371 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(1 0 0 / 20%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.765 0.177 163.223);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -78,7 +114,7 @@
   /* fonts */
   --font-fira: 'Fira Code', monospace;
   --font-archivo: var(--font-archivo), sans-serif;
-  --font-clash: var(--font-clash-display), sans-serif;
+  --font-heading: var(--font-heading), sans-serif;
 
   /* animations */
   --animate-first: moveVertical 30s ease infinite;
@@ -100,7 +136,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-clash font-medium;
+  @apply font-heading font-medium;
 }
 
 @layer base {
@@ -177,7 +213,7 @@ h6 {
   }
 
   pre {
-    @apply rounded-lg border border-border p-4 overflow-x-auto my-0!;
+    @apply border-border my-0! overflow-x-auto rounded-lg border p-4;
   }
 
   pre > code {
@@ -192,7 +228,7 @@ h6 {
 
   /* Inline code styling */
   :not(pre) > code {
-    @apply px-1.5 py-0.5 rounded bg-transparent! text-primary font-fira text-sm;
+    @apply text-primary font-fira rounded bg-transparent! px-1.5 py-0.5 text-sm;
   }
 }
 

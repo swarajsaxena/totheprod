@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
-import { ReactNode, useEffect, useRef } from 'react'
-import Lenis from 'lenis'
+import Lenis from "lenis"
+import { ReactNode, useEffect, useRef } from "react"
 
 type LenisProviderProps = {
   children: ReactNode
@@ -21,8 +21,8 @@ export const LenisProvider = ({ children, wrapperId }: LenisProviderProps) => {
       content: wrapper as HTMLElement | undefined,
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
+      orientation: "vertical",
+      gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,

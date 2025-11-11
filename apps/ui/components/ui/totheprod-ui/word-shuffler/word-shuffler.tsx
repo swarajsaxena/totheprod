@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import { cn } from '@/lib/utils'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { AnimatePresence, motion } from "framer-motion"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { cn } from "@/lib/utils"
 
 interface WordShufflerProps {
   baseText?: string
@@ -23,14 +23,13 @@ interface LetterState {
 }
 
 export const WordShuffler = ({
-  baseText = 'ToTheProd',
-  words = ['Marketing', 'SEO', 'Analytics', 'Content'],
+  baseText = "ToTheProd",
+  words = ["Marketing", "SEO", "Analytics", "Content"],
   interval = 1000,
   letterSpacing = 10,
   textClassName,
 }: WordShufflerProps) => {
-  // Create stable reference for words array to prevent infinite loops
-  const stableWords = useMemo(() => words, [JSON.stringify(words)])
+  const stableWords = JSON.stringify(words)
 
   const [currentWord, setCurrentWord] = useState(0)
   const [letterStates, setLetterStates] = useState<LetterState[]>([])
@@ -43,7 +42,7 @@ export const WordShuffler = ({
       measureRef.current.textContent = char
       return measureRef.current.offsetWidth + letterSpacing
     },
-    [letterSpacing]
+    [letterSpacing],
   )
 
   const calculatePositions = useCallback(
@@ -51,20 +50,22 @@ export const WordShuffler = ({
       const positions: number[] = []
       let cumulativeWidth = 0
 
-      text.split('').forEach((char) => {
+      text.split("").forEach((char) => {
         positions.push(cumulativeWidth)
         cumulativeWidth += measureLetterWidth(char)
       })
 
       return positions
     },
-    [measureLetterWidth]
+    [measureLetterWidth],
   )
 
   useEffect(() => {
     const currentText = stableWords[currentWord].toUpperCase()
     const prevText =
-      stableWords[(currentWord - 1 + stableWords.length) % stableWords.length].toUpperCase()
+      stableWords[
+        (currentWord - 1 + stableWords.length) % stableWords.length
+      ].toUpperCase()
 
     const currentPositions = calculatePositions(currentText)
     const prevPositions = calculatePositions(prevText)
@@ -84,12 +85,11 @@ export const WordShuffler = ({
     const newLetterStates: LetterState[] = []
 
     // Map current word letters
-    currentText.split('').forEach((char, index) => {
+    currentText.split("").forEach((char, index) => {
       const currentOccurrence = getOccurrenceCount(currentText, index)
 
       // First check if letter at same position
       if (prevText[index] === char) {
-        const prevOccurrence = getOccurrenceCount(prevText, index)
         prevLettersUsed[index] = true
         newLetterStates.push({
           char,
@@ -103,12 +103,13 @@ export const WordShuffler = ({
       } else {
         // Find matching letter in previous word that hasn't been used yet
         const prevIndex = prevText
-          .split('')
-          .findIndex((prevChar, pIdx) => prevChar === char && !prevLettersUsed[pIdx])
+          .split("")
+          .findIndex(
+            (prevChar, pIdx) => prevChar === char && !prevLettersUsed[pIdx],
+          )
 
         if (prevIndex !== -1) {
           // Letter exists in different position - slide horizontally
-          const prevOccurrence = getOccurrenceCount(prevText, prevIndex)
           prevLettersUsed[prevIndex] = true
           newLetterStates.push({
             char,
@@ -153,27 +154,27 @@ export const WordShuffler = ({
   return (
     <AnimatePresence mode="popLayout">
       <motion.div
-        className="bg-secondary font-inter absolute inset-0 flex items-center justify-start gap-2 px-16 text-6xl font-black"
+        className="absolute inset-0 flex items-center justify-start gap-2 bg-secondary px-16 font-black font-inter text-6xl"
         initial={{ opacity: 1 }}
         animate={{ opacity: shouldFadeOut ? 0 : 1 }}
-        transition={{ duration: 1, ease: 'easeOut' }}
+        transition={{ duration: 1, ease: "easeOut" }}
       >
         {/* Hidden span for measuring letter widths */}
         <span
           ref={measureRef}
-          className="invisible absolute text-5xl font-black uppercase"
+          className="invisible absolute font-black text-5xl uppercase"
           aria-hidden="true"
         />
 
         <motion.div className="relative flex items-center justify-center gap-4">
           <span>{baseText}</span>•
-          <div className={cn('text-primary relative h-[1.2em]', textClassName)}>
+          <div className={cn("relative h-[1.2em] text-primary", textClassName)}>
             {letterStates.map((letter) =>
               letter.isCommon ? (
                 // Same position - stay static but fade out on exit
                 <motion.span
                   key={letter.id}
-                  className="absolute top-1/2 -translate-y-1/2 uppercase"
+                  className="-translate-y-1/2 absolute top-1/2 uppercase"
                   style={{ left: letter.position }}
                   initial={{ opacity: 1 }}
                   animate={{ opacity: 1 }}
@@ -185,7 +186,7 @@ export const WordShuffler = ({
               ) : (
                 <motion.span
                   key={letter.id}
-                  className="absolute top-1/2 -translate-y-1/2 uppercase"
+                  className="-translate-y-1/2 absolute top-1/2 uppercase"
                   initial={
                     letter.prevPosition !== undefined
                       ? {
@@ -213,7 +214,7 @@ export const WordShuffler = ({
                 >
                   {letter.char}
                 </motion.span>
-              )
+              ),
             )}
           </div>
         </motion.div>

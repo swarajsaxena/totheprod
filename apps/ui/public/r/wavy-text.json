@@ -4,9 +4,7 @@
   "type": "registry:block",
   "title": "Wavy Text",
   "description": "A wavy text component.",
-  "dependencies": [
-    "motion"
-  ],
+  "dependencies": ["motion"],
   "files": [
     {
       "path": "components/ui/totheprod-ui/wavy-text/wavy-text.tsx",

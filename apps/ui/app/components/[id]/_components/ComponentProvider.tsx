@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import { currentComponentMdxAtom } from '@/store/atoms'
-import { useSetAtom } from 'jotai'
-import { ReactNode, useEffect } from 'react'
+import { useSetAtom } from "jotai"
+import { ReactNode, useEffect } from "react"
+import { currentComponentMdxAtom } from "@/store/atoms"
 
 type Props = {
   mdxDocs?: string

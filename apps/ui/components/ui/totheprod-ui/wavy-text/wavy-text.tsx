@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import { cn } from '@/lib/utils'
-import { motion } from 'motion/react'
-import { useState } from 'react'
+import { motion } from "motion/react"
+import { useEffect, useState } from "react"
+import { cn } from "@/lib/utils"
 
 interface WavyTextProps {
   /**
@@ -24,11 +24,19 @@ interface WavyTextProps {
   /**
    * Horizontal direction (default: towards-ends)
    */
-  horizontalDirection?: 'towards-ends' | 'towards-center'
+  horizontalDirection?: "towards-ends" | "towards-center"
   /**
    * The duration of the animation
    */
   duration?: number
+  /**
+   * Whether the text is hovered
+   */
+  isHovered?: boolean
+  /**
+   * Set the hover state
+   */
+  setIsHovered?: (isHovered: boolean) => void
 }
 
 /**
@@ -46,17 +54,20 @@ export const WavyText = ({
   className,
   textClassName,
   baseDelay = 0.05,
-  horizontalDirection = 'towards-ends',
+  horizontalDirection = "towards-ends",
   duration = 0.4,
+  isHovered: _isHovered,
+  setIsHovered: _setIsHovered,
 }: WavyTextProps) => {
   const [isHovered, setIsHovered] = useState(false)
+
   const textLength = text.length
 
   const getEnterDelay = (index: number) => {
     const distanceFromCenter = Math.abs(index - (textLength - 1) / 2)
     const maxDistance = (textLength - 1) / 2
 
-    if (horizontalDirection === 'towards-center') {
+    if (horizontalDirection === "towards-center") {
       return (maxDistance - distanceFromCenter) * baseDelay
     }
 
@@ -67,7 +78,7 @@ export const WavyText = ({
     const distanceFromCenter = Math.abs(index - (textLength - 1) / 2)
     const maxDistance = (textLength - 1) / 2
 
-    if (horizontalDirection === 'towards-center') {
+    if (horizontalDirection === "towards-center") {
       // Exit from center to ends
       return distanceFromCenter * baseDelay
     }
@@ -78,41 +89,51 @@ export const WavyText = ({
 
   return (
     <div
-      className={cn('flex items-center overflow-hidden text-center font-bold', className)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={cn(
+        "flex items-center overflow-hidden text-center font-bold",
+        className,
+      )}
+      onMouseEnter={() =>
+        _setIsHovered ? _setIsHovered(true) : setIsHovered(true)
+      }
+      onMouseLeave={() =>
+        _setIsHovered ? _setIsHovered(false) : setIsHovered(false)
+      }
     >
-      {text.split('').map((char, index) => {
+      {text.split("").map((char, index) => {
         const enterDelay = getEnterDelay(index)
         const exitDelay = getExitDelay(index)
 
         return (
-          <motion.div key={index} className={cn('relative leading-none')}>
+          <motion.div key={index} className={cn("relative leading-none")}>
             <motion.span
-              className={cn('inline-block text-4xl leading-none', textClassName)}
+              className={cn(
+                "inline-block text-4xl leading-none",
+                textClassName,
+              )}
               initial={{ y: 0 }}
-              animate={{ y: isHovered ? '-100%' : 0 }}
+              animate={{ y: _isHovered || isHovered ? "-100%" : 0 }}
               transition={{
                 duration,
-                delay: isHovered ? enterDelay : exitDelay,
-                ease: 'backOut',
-                type: 'tween',
+                delay: _isHovered || isHovered ? enterDelay : exitDelay,
+                ease: "backOut",
+                type: "tween",
               }}
             >
-              {char}
+              {char === " " ? "\u00A0" : char}
             </motion.span>
             <motion.span
               className={cn(
-                'absolute top-0 left-0 inline-block text-4xl leading-none',
-                textClassName
+                "absolute top-0 left-0 inline-block text-4xl leading-none",
+                textClassName,
               )}
-              initial={{ y: '95%' }}
-              animate={{ y: isHovered ? 0 : '95%' }}
+              initial={{ y: "95%" }}
+              animate={{ y: _isHovered || isHovered ? 0 : "95%" }}
               transition={{
                 duration,
-                delay: isHovered ? enterDelay : exitDelay,
-                ease: 'backOut',
-                type: 'tween',
+                delay: _isHovered || isHovered ? enterDelay : exitDelay,
+                ease: "backOut",
+                type: "tween",
               }}
             >
               {char}

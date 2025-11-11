@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import { cn } from '@/lib/utils'
-import { useState, useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import { cn } from "@/lib/utils"
 
 interface CursorCometProps {
   className?: string
@@ -29,7 +29,7 @@ export const CursorComet = ({
   cometRadius = 4,
   trailFadeSpeed = 0.03,
   radialOpacityFade = 0,
-  symbols = ['!', '@', '#', '$', '%', '^', '&', '*', '-', '+', ';', '{', '}'],
+  symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "-", "+", ";", "{", "}"],
 }: CursorCometProps) => {
   const [boxStates, setBoxStates] = useState<Record<string, BoxState>>({})
   const containerRef = useRef<HTMLDivElement>(null)
@@ -47,13 +47,14 @@ export const CursorComet = ({
         const newStates: Record<string, BoxState> = {}
 
         Object.entries(prevStates).forEach(([key, state]) => {
-          const [rowStr, colStr] = key.split('-')
+          const [rowStr, colStr] = key.split("-")
           const row = parseInt(rowStr)
           const col = parseInt(colStr)
 
           // Calculate current distance from the original center
           const currentDistance = Math.sqrt(
-            Math.pow(col - state.centerCol, 2) + Math.pow(row - state.centerRow, 2)
+            Math.pow(col - state.centerCol, 2) +
+              Math.pow(row - state.centerRow, 2),
           )
 
           // Reduce opacity
@@ -142,14 +143,18 @@ export const CursorComet = ({
       for (let row = 0; row < rowAndColCount; row++) {
         for (let col = 0; col < rowAndColCount; col++) {
           // Calculate distance from hovered box center to current box center
-          const distance = Math.sqrt(Math.pow(col - hoveredCol, 2) + Math.pow(row - hoveredRow, 2))
+          const distance = Math.sqrt(
+            Math.pow(col - hoveredCol, 2) + Math.pow(row - hoveredRow, 2),
+          )
 
           // If within radius, calculate opacity based on distance
           if (distance <= cometRadius) {
             // Calculate opacity: if radialOpacityFade is 0, all boxes get full opacity
             // Otherwise, opacity decreases from 1 (center) to 0 (edge)
             const opacity =
-              radialOpacityFade === 0 ? 1 : 1 - (distance / cometRadius) * radialOpacityFade
+              radialOpacityFade === 0
+                ? 1
+                : 1 - (distance / cometRadius) * radialOpacityFade
             const key = `${row}-${col}`
 
             // Update box state, keeping the higher opacity if it already exists
@@ -183,7 +188,10 @@ export const CursorComet = ({
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={cn('absolute top-0 left-0 h-full w-full overflow-hidden', className)}
+      className={cn(
+        "absolute top-0 left-0 h-full w-full overflow-hidden",
+        className,
+      )}
     >
       {Array.from({ length: rowAndColCount }).map((_, row) => (
         <div key={row} className="flex flex-1 flex-row">
@@ -194,15 +202,17 @@ export const CursorComet = ({
             return (
               <motion.div
                 key={col}
-                className="flex aspect-square h-[unset] flex-1 items-center justify-center font-mono text-sm text-white select-none"
-                initial={{ opacity: 0, backgroundColor: 'transparent' }}
+                className="flex aspect-square h-[unset] flex-1 select-none items-center justify-center font-mono text-foreground text-sm"
+                initial={{ opacity: 0, backgroundColor: "transparent" }}
                 animate={{
                   opacity: boxState?.opacity ?? 0,
-                  backgroundColor: boxState ? '#100e0f' : 'transparent',
+                  backgroundColor: boxState
+                    ? "var(--background)"
+                    : "transparent",
                 }}
                 transition={{
-                  opacity: { duration: 0, ease: 'easeOut' },
-                  backgroundColor: { duration: 0, ease: 'easeOut' },
+                  opacity: { duration: 0, ease: "easeOut" },
+                  backgroundColor: { duration: 0, ease: "easeOut" },
                 }}
               >
                 {boxState?.symbol}
