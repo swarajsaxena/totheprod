@@ -1,5 +1,6 @@
 "use client"
 
+import { CornerPlus } from "@/components/internal/CornerPlus"
 import {
   RaycastCommandMenuContent,
   RaycastCommandMenuDialog,
@@ -51,19 +52,23 @@ const RaycastCommandMenuTrigger = () => {
   }
 
   return (
-    <div
-      onClick={handleOpen}
-      className="relative z-10 cursor-pointer text-muted-foreground"
-    >
-      <div className="relative flex items-center gap-3 rounded-xl border border-border border-dashed bg-background/20 p-8 py-4 text-white backdrop-blur-sm">
+    <div className="w-full border-y border-dashed">
+      <div
+        onClick={handleOpen}
+        className="relative z-10 mx-auto flex w-max cursor-pointer items-center gap-3 border-x border-dashed bg-background p-8 text-muted-foreground dark:bg-secondary"
+      >
+        <CornerPlus />
+        <CornerPlus variant="leftBottom" />
+        <CornerPlus variant="rightTop" />
+        <CornerPlus variant="leftTop" />
         <Sparkles className="size-4" />
         <span className="font-medium text-sm">Open Command Menu</span>
         <div>
-          <span className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-foreground/20 p-1 px-2 font-medium font-mono text-xs dark:bg-muted/10">
+          <span className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-secondary p-1 px-2 font-medium font-mono text-xs dark:bg-muted/10">
             Ctrl
           </span>
           <span className="mx-1 text-muted-foreground text-xs">+</span>
-          <kbd className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-foreground/20 p-1 px-2 font-medium font-mono text-xs dark:bg-muted/10">
+          <kbd className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-secondary p-1 px-2 font-medium font-mono text-xs dark:bg-muted/10">
             j
           </kbd>
         </div>
@@ -453,13 +458,6 @@ const RaycastCommandMenuPreviewDialog = () => {
 const RaycastCommandMenuPreviewContent = () => {
   return (
     <div className="no-padding relative flex h-full w-full flex-1 items-center justify-center">
-      {/* Background Image */}
-      <img
-        src="/wallpapers/bike-1.jpg"
-        alt="bike"
-        className="absolute inset-0 z-0 h-full w-full object-cover"
-      />
-
       <RaycastCommandMenuTrigger />
       <RaycastCommandMenuPreviewDialog />
     </div>

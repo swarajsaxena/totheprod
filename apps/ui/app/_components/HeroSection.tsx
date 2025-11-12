@@ -11,7 +11,7 @@ import Link from "next/link"
 
 export const HeroSection = () => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center px-4">
       <div className="sticky top-8 flex w-full max-w-6xl flex-1 flex-col items-center justify-between gap-1 border-x border-dashed">
         <div className="-translate-x-1/2 absolute top-[calc(50vh-10rem)] left-1/2 w-full border-y border-dashed p-6">
           <CornerPlus variant="leftTop" />

@@ -10,7 +10,7 @@ import { ThemeLogo } from "@/components/internal/ThemeLogo"
 export const Footer = () => {
   const componentsUrl = `/components/${contentMap[0].items[0].id}`
   return (
-    <div className="relative flex w-full flex-col gap-4 border-b border-dashed bg-secondary/20 dark:bg-background/20">
+    <div className="relative flex w-full flex-col gap-4 border-b border-dashed bg-secondary/20 px-4 dark:bg-background/20">
       <div className="relative mx-auto flex h-96 w-full max-w-6xl flex-col items-center justify-center gap-2 border-x border-dashed font-heading text-xl">
         <CornerPlus variant="leftTop" />
         <CornerPlus variant="rightTop" />

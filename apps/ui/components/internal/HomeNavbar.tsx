@@ -8,9 +8,6 @@ import {
   Search01FreeIcons,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { motion } from "framer-motion"
-import { useTheme } from "next-themes"
 import Link from "next/link"
 import { CornerPlus } from "./CornerPlus"
 import { ThemeLogo } from "./ThemeLogo"
@@ -27,7 +24,7 @@ export const HomeNavbar = ({ componentsUrl }: HomeNavbarProps) => {
   }
 
   return (
-    <div className="-top-2 sticky z-10 w-full rounded-t-xl border-b border-dashed bg-background/70 backdrop-blur-md dark:bg-secondary/70">
+    <div className="-top-2 sticky z-10 w-full rounded-t-xl border-b border-dashed bg-background/70 px-4 backdrop-blur-md dark:bg-secondary/70">
       <div className="relative mx-auto flex w-full max-w-6xl items-center gap-2 border-x border-dashed p-4">
         <div className="flex items-center gap-2">
           <ThemeLogo alt="Logo" className="h-6 w-6" layoutId="logo" />
@@ -37,6 +34,7 @@ export const HomeNavbar = ({ componentsUrl }: HomeNavbarProps) => {
         </div>
         <div className="ml-auto flex items-center gap-4 font-archivo text-muted-foreground text-sm *:transition-all *:hover:text-foreground">
           <Link href={componentsUrl}>Components</Link>
+          <Link href={componentsUrl}>Changelog</Link>
           <Link href="https://x.com/totheprod" target="_blank">
             <HugeiconsIcon icon={NewTwitterIcon} className="size-4" />
           </Link>
