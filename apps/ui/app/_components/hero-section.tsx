@@ -1,13 +1,13 @@
 "use client"
 
-import { CornerPlus } from "@/components/internal/CornerPlus"
-import CtaCopyButton from "@/components/internal/CtaCopyButton"
-import PreviewHeading from "@/components/internal/PreviewHeading"
+import { ArrowRightIcon } from "@hugeicons/core-free-icons"
+import Link from "next/link"
+import { CornerPlus } from "@/components/internal/corner-plus"
+import CtaCopyButton from "@/components/internal/cta-copy-button"
+import PreviewHeading from "@/components/internal/preview-heading"
 import { HorizontalTextReveal } from "@/components/ui/totheprod-ui/horizontal-text-reveal/horizontal-text-reveal"
 import { WavyButton } from "@/components/ui/totheprod-ui/wavy-button/wavy-button"
-import { ArrowRightIcon } from "@hugeicons/core-free-icons"
 import { contentMap } from "../components/[id]/constants"
-import Link from "next/link"
 
 export const HeroSection = () => {
   return (
@@ -19,16 +19,16 @@ export const HeroSection = () => {
           <CornerPlus variant="rightBottom" />
           <CornerPlus variant="leftBottom" />
           <PreviewHeading
-            title="Scroll down!"
             description="Where design meets functionality ~ By @ToTheProd for the PROD"
+            title="Scroll down!"
           />
         </div>
         <HorizontalTextReveal
-          scrollContainerId="body-scroll-container"
-          text="Components that Ship and not just look good."
           className="sticky top-[calc(50vh-15rem)] flex h-max flex-wrap gap-3 pb-4 font-semibold! text-9xl leading-none"
           containerClassName="font-heading text-foreground mx-auto flex max-w-full flex-wrap px-4 text-9xl leading-none min-h-[500vh] font-black!"
+          scrollContainerId="body-scroll-container"
           scrollOffset={["start 0", "end 0.9"]}
+          text="Components that Ship and not just look good."
         />
         <div className="mb-[25vh] flex w-full gap-2 p-4">
           <CtaCopyButton text="npx shadcn add ui.totheprod.dev/raycast-command-menu" />
@@ -38,10 +38,10 @@ export const HeroSection = () => {
           >
             <WavyButton
               className="w-full"
-              textClassName="text-xs uppercase"
-              text="Components"
-              variant="outline"
               icon={ArrowRightIcon}
+              text="Components"
+              textClassName="text-xs uppercase"
+              variant="outline"
             />
           </Link>
           <CornerPlus variant="leftBottom" />

@@ -1,8 +1,13 @@
 "use client"
 
-import { MotionValue, motion, useScroll, useTransform } from "framer-motion"
+import {
+  type MotionValue,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion"
 import { useEffect, useRef } from "react"
-import PreviewHeading from "@/components/internal/PreviewHeading"
+import PreviewHeading from "@/components/internal/preview-heading"
 
 const items = [
   { text: "Content Creation", backgroundColor: "#FCB8FA" },
@@ -37,6 +42,7 @@ const StickyCard = ({
       style={{ perspective: "1000px" }}
     >
       <motion.div
+        className="relative flex h-[90vh] w-full flex-col items-center justify-center overflow-hidden rounded-3xl text-center font-bold text-6xl text-white shadow-2xl will-change-transform"
         style={{
           scale,
           rotateX,
@@ -45,7 +51,6 @@ const StickyCard = ({
           transformOrigin: "top center",
           top,
         }}
-        className="relative flex h-[90vh] w-full flex-col items-center justify-center overflow-hidden rounded-3xl text-center font-bold text-6xl text-white shadow-2xl will-change-transform"
       >
         <span className="absolute top-8 left-8">{text}</span>
         <span className="absolute right-8 bottom-8 text-[25vw] opacity-25">
@@ -76,15 +81,15 @@ export const PerpectiveCarousel = () => {
     <div className="no-padding flex w-full flex-col items-center justify-start gap-16 bg-[#FAF4EC] px-8 pb-[200vh] dark:bg-[#100e0f]">
       <PreviewHeading
         className="py-[20vh]"
-        title="Perspective Carousel"
         description="Scroll down to see the effect."
+        title="Perspective Carousel"
       />
       {items.map((item, i) => {
         const targetScale = 0.3
         return (
           <StickyCard
-            key={`item_${i}`}
             i={i}
+            key={`item_${i}`}
             {...item}
             progress={scrollYProgress}
             range={[i * 0.25, 1]}

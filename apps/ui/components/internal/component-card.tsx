@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
-import { CornerPlus } from "./CornerPlus"
+import { useEffect, useState } from "react"
+import { CornerPlus } from "./corner-plus"
 
 type ComponentCardProps = {
   id: string
@@ -25,25 +25,25 @@ export const ComponentCard = ({
 
   return (
     <Link
-      href={`/components/${id}`}
       className="group relative flex-col gap-2 border-l border-dashed last:border-r"
+      href={`/components/${id}`}
     >
-      <CornerPlus variant="leftTop" className="z-10" />
-      <CornerPlus variant="leftBottom" className="" />
+      <CornerPlus className="z-10" variant="leftTop" />
+      <CornerPlus className="" variant="leftBottom" />
       <CornerPlus
-        variant="rightBottom"
         className="z-10 hidden group-last:block"
+        variant="rightBottom"
       />
-      <CornerPlus variant="rightTop" className="z-10 hidden group-last:block" />
+      <CornerPlus className="z-10 hidden group-last:block" variant="rightTop" />
       {/* <CornerPlus variant="rightTop" /> */}
       <div className="relative flex aspect-[1.54/1] overflow-hidden">
         <video
-          src={`/component-videos/${id}${mounted && theme === "dark" ? "-dark" : ""}.mov`}
           autoPlay
-          muted
-          loop
-          controls={false}
           className="h-full w-full scale-105 overflow-hidden object-cover"
+          controls={false}
+          loop
+          muted
+          src={`/component-videos/${id}${mounted && theme === "dark" ? "-dark" : ""}.mov`}
         />
       </div>
       <div className="absolute inset-0 flex flex-col items-start justify-end bg-linear-to-bl from-transparent via-background/75 to-background p-6 font-medium transition-all group-hover:opacity-50">

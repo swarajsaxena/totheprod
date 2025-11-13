@@ -1,11 +1,9 @@
-import { cn } from "@/lib/utils"
 import { GithubIcon, NewTwitterIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { useTheme } from "next-themes"
 import Link from "next/link"
+import { CornerPlus } from "@/components/internal/corner-plus"
+import { ThemeLogo } from "@/components/internal/theme-logo"
 import { contentMap } from "../components/[id]/constants"
-import { CornerPlus } from "@/components/internal/CornerPlus"
-import { ThemeLogo } from "@/components/internal/ThemeLogo"
 
 export const Footer = () => {
   const componentsUrl = `/components/${contentMap[0].items[0].id}`
@@ -21,10 +19,10 @@ export const Footer = () => {
         <div className="z-1 flex items-center gap-4 font-archivo text-muted-foreground text-sm *:transition-all *:hover:text-foreground">
           <Link href={componentsUrl}>Components</Link>
           <Link href="https://x.com/totheprod" target="_blank">
-            <HugeiconsIcon icon={NewTwitterIcon} className="size-4" />
+            <HugeiconsIcon className="size-4" icon={NewTwitterIcon} />
           </Link>
           <Link href="https://github.com/ToTheProd/ui" target="_blank">
-            <HugeiconsIcon icon={GithubIcon} className="size-4" />
+            <HugeiconsIcon className="size-4" icon={GithubIcon} />
           </Link>
         </div>
         <div className="font-bold text-4xl">ToTheProd</div>

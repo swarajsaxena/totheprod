@@ -1,7 +1,7 @@
 "use client"
 
 import { useSetAtom } from "jotai"
-import { ReactNode, useEffect } from "react"
+import { type ReactNode, useEffect } from "react"
 import { currentComponentMdxAtom } from "@/store/atoms"
 
 type Props = {

@@ -1,11 +1,11 @@
 "use client"
 
-import { ComponentsGrid } from "@/components/internal/ComponentsGrid"
-import { HomeNavbar } from "@/components/internal/HomeNavbar"
-import { LenisProvider } from "@/components/providers/LenisProvider"
+import { ComponentsGrid } from "@/components/internal/components-grid"
+import { HomeNavbar } from "@/components/internal/home-navbar"
+import { LenisProvider } from "@/components/providers/lenis-provider"
+import { Footer } from "./_components/footer-section"
+import { HeroSection } from "./_components/hero-section"
 import { contentMap } from "./components/[id]/constants"
-import { HeroSection } from "./_components/HeroSection"
-import { Footer } from "./_components/Footer"
 
 export default function Home() {
   return (

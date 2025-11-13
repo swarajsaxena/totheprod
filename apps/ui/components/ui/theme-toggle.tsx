@@ -1,10 +1,9 @@
 "use client"
 
-import { MoonIcon, Sun02Icon, SunIcon } from "@hugeicons/core-free-icons"
+import { MoonIcon, Sun02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { Moon, Sun } from "lucide-react"
+import type { VariantProps } from "class-variance-authority"
 import { useTheme } from "next-themes"
-import * as React from "react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -13,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
-import { VariantProps } from "class-variance-authority"
 
 export function ThemeToggle({
   className,
@@ -26,18 +24,18 @@ export function ThemeToggle({
 
   return (
     <Button
-      variant={variant}
-      size="icon-sm"
       className={cn("cursor-pointer", className)}
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      size="icon-sm"
+      variant={variant}
     >
       <HugeiconsIcon
-        icon={Sun02Icon}
         className="dark:-rotate-90 size-4 rotate-0 scale-100 transition-all dark:scale-0"
+        icon={Sun02Icon}
       />
       <HugeiconsIcon
-        icon={MoonIcon}
         className="absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+        icon={MoonIcon}
       />
       <span className="sr-only">Toggle theme</span>
     </Button>
@@ -47,17 +45,17 @@ export function ThemeToggle({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant={variant}
-          size="icon-sm"
           className={cn("cursor-pointer", className)}
+          size="icon-sm"
+          variant={variant}
         >
           <HugeiconsIcon
-            icon={Sun02Icon}
             className="dark:-rotate-90 size-4 rotate-0 scale-100 transition-all dark:scale-0"
+            icon={Sun02Icon}
           />
           <HugeiconsIcon
-            icon={MoonIcon}
             className="absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+            icon={MoonIcon}
           />
           <span className="sr-only">Toggle theme</span>
         </Button>

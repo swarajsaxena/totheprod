@@ -1,18 +1,18 @@
 "use client"
 
+import { HugeiconsIcon } from "@hugeicons/react"
+import type { VariantProps } from "class-variance-authority"
+import type * as React from "react"
+import { useState } from "react"
 import { buttonVariants } from "@/components/ui/button"
 import { WavyText } from "@/components/ui/totheprod-ui/wavy-text/wavy-text"
 import { cn } from "@/lib/utils"
-import { ArrowRightIcon } from "@hugeicons/core-free-icons"
-import { HugeiconsIcon } from "@hugeicons/react"
-import { type VariantProps } from "class-variance-authority"
-import * as React from "react"
-import { useState } from "react"
 
 interface WavyButtonProps
   extends React.ComponentProps<"button">,
     VariantProps<typeof buttonVariants>,
     React.ComponentProps<typeof WavyText> {
+  // biome-ignore lint/suspicious/noExplicitAny: Icon can be any React element or component
   icon?: any
 }
 
@@ -41,30 +41,30 @@ export const WavyButton = ({
   const [isHovered, setIsHovered] = useState(false)
   return (
     <button
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      data-slot="button"
       className={cn(
         buttonVariants({ variant, size }),
         "overflow-hidden",
-        className,
+        className
       )}
+      data-slot="button"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       {...props}
     >
       <WavyText
+        baseDelay={baseDelay}
+        className="justify-center font-heading"
+        duration={duration}
+        horizontalDirection={horizontalDirection}
         isHovered={isHovered}
         setIsHovered={setIsHovered}
         text={text}
         textClassName={cn("font-medium text-sm", textClassName)}
-        baseDelay={baseDelay}
-        horizontalDirection={horizontalDirection}
-        duration={duration}
-        className="justify-center font-heading"
       />
       {icon && (
         <HugeiconsIcon
-          icon={icon}
           className={cn("size-4 transition-all hover:translate-x-1")}
+          icon={icon}
         />
       )}
     </button>

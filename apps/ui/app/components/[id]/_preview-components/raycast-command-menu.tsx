@@ -1,16 +1,5 @@
 "use client"
 
-import { CornerPlus } from "@/components/internal/CornerPlus"
-import {
-  RaycastCommandMenuContent,
-  RaycastCommandMenuDialog,
-  RaycastCommandMenuFooter,
-  RaycastCommandMenuInput,
-  RaycastCommandMenuItem,
-  RaycastCommandMenuProvider,
-  RaycastCommandMenuSection,
-  useRaycastCommandMenuState,
-} from "@/components/ui/totheprod-ui/raycast-command-menu/raycast-command-menu"
 import {
   Calendar,
   ClipboardList,
@@ -43,6 +32,17 @@ import {
   Zap,
 } from "lucide-react"
 import { toast } from "sonner"
+import { CornerPlus } from "@/components/internal/corner-plus"
+import {
+  RaycastCommandMenuContent,
+  RaycastCommandMenuDialog,
+  RaycastCommandMenuFooter,
+  RaycastCommandMenuInput,
+  RaycastCommandMenuItem,
+  RaycastCommandMenuProvider,
+  RaycastCommandMenuSection,
+  useRaycastCommandMenuState,
+} from "@/components/ui/totheprod-ui/raycast-command-menu/raycast-command-menu"
 
 const RaycastCommandMenuTrigger = () => {
   const { setOpen } = useRaycastCommandMenuState()
@@ -53,9 +53,11 @@ const RaycastCommandMenuTrigger = () => {
 
   return (
     <div className="w-full border-y border-dashed">
-      <div
-        onClick={handleOpen}
+      <button
+        aria-label="Open command menu"
         className="relative z-10 mx-auto flex w-max cursor-pointer items-center gap-3 border-x border-dashed bg-background p-8 text-muted-foreground dark:bg-secondary"
+        onClick={handleOpen}
+        type="button"
       >
         <CornerPlus />
         <CornerPlus variant="leftBottom" />
@@ -72,7 +74,7 @@ const RaycastCommandMenuTrigger = () => {
             j
           </kbd>
         </div>
-      </div>
+      </button>
     </div>
   )
 }
@@ -85,11 +87,6 @@ const RaycastCommandMenuPreviewDialog = () => {
         {/* Favorites Section */}
         <RaycastCommandMenuSection title="Favorites">
           <RaycastCommandMenuItem
-            id="recent-projects"
-            icon={<FolderOpen className="size-4" />}
-            title="Search Recent Projects"
-            description="Cursor"
-            type="Command"
             actions={[
               {
                 id: "open",
@@ -113,13 +110,13 @@ const RaycastCommandMenuPreviewDialog = () => {
                 onAction: () => toast("Added to favorites"),
               },
             ]}
+            description="Cursor"
+            icon={<FolderOpen className="size-4" />}
+            id="recent-projects"
+            title="Search Recent Projects"
+            type="Command"
           />
           <RaycastCommandMenuItem
-            id="clipboard-history"
-            icon={<ClipboardList className="size-4" />}
-            title="Clipboard History"
-            description="Clipboard Manager"
-            type="Command"
             actions={[
               {
                 id: "paste",
@@ -136,13 +133,13 @@ const RaycastCommandMenuPreviewDialog = () => {
                 onAction: () => toast("Clearing history"),
               },
             ]}
+            description="Clipboard Manager"
+            icon={<ClipboardList className="size-4" />}
+            id="clipboard-history"
+            title="Clipboard History"
+            type="Command"
           />
           <RaycastCommandMenuItem
-            id="snippets"
-            icon={<Zap className="size-4" />}
-            title="Create Snippet"
-            description="Snippets"
-            type="Command"
             actions={[
               {
                 id: "create",
@@ -159,36 +156,41 @@ const RaycastCommandMenuPreviewDialog = () => {
                 onAction: () => toast("Browsing snippets"),
               },
             ]}
+            description="Snippets"
+            icon={<Zap className="size-4" />}
+            id="snippets"
+            title="Create Snippet"
+            type="Command"
           />
         </RaycastCommandMenuSection>
 
         {/* System Section */}
         <RaycastCommandMenuSection title="System">
           <RaycastCommandMenuItem
-            id="system-settings"
             icon={<Settings className="size-4" />}
+            id="system-settings"
             title="System Settings"
             type="Command"
           />
           <RaycastCommandMenuItem
-            id="empty-trash"
+            description="System"
             icon={<XCircle className="size-4" />}
+            id="empty-trash"
             title="Empty Trash"
-            description="System"
             type="Command"
           />
           <RaycastCommandMenuItem
-            id="lock-screen"
+            description="System"
             icon={<Terminal className="size-4" />}
+            id="lock-screen"
             title="Lock Screen"
-            description="System"
             type="Command"
           />
           <RaycastCommandMenuItem
-            id="restart"
-            icon={<RotateCcw className="size-4" />}
-            title="Restart"
             description="System"
+            icon={<RotateCcw className="size-4" />}
+            id="restart"
+            title="Restart"
             type="Command"
           />
         </RaycastCommandMenuSection>
@@ -196,10 +198,6 @@ const RaycastCommandMenuPreviewDialog = () => {
         {/* Applications Section */}
         <RaycastCommandMenuSection title="Applications">
           <RaycastCommandMenuItem
-            id="vscode"
-            icon={<Code className="size-4" />}
-            title="Visual Studio Code"
-            type="Application"
             actions={[
               {
                 id: "open",
@@ -223,12 +221,12 @@ const RaycastCommandMenuPreviewDialog = () => {
                 onAction: () => toast("Revealing in Finder"),
               },
             ]}
+            icon={<Code className="size-4" />}
+            id="vscode"
+            title="Visual Studio Code"
+            type="Application"
           />
           <RaycastCommandMenuItem
-            id="chrome"
-            icon={<Globe className="size-4" />}
-            title="Google Chrome"
-            type="Application"
             actions={[
               {
                 id: "open",
@@ -245,28 +243,32 @@ const RaycastCommandMenuPreviewDialog = () => {
                 onAction: () => toast("Opening incognito"),
               },
             ]}
+            icon={<Globe className="size-4" />}
+            id="chrome"
+            title="Google Chrome"
+            type="Application"
           />
           <RaycastCommandMenuItem
-            id="terminal"
             icon={<Terminal className="size-4" />}
+            id="terminal"
             title="Terminal"
             type="Application"
           />
           <RaycastCommandMenuItem
-            id="mail"
             icon={<Mail className="size-4" />}
+            id="mail"
             title="Mail"
             type="Application"
           />
           <RaycastCommandMenuItem
-            id="calendar"
             icon={<Calendar className="size-4" />}
+            id="calendar"
             title="Calendar"
             type="Application"
           />
           <RaycastCommandMenuItem
-            id="music"
             icon={<Music className="size-4" />}
+            id="music"
             title="Music"
             type="Application"
           />
@@ -275,11 +277,6 @@ const RaycastCommandMenuPreviewDialog = () => {
         {/* Productivity Section */}
         <RaycastCommandMenuSection title="Productivity">
           <RaycastCommandMenuItem
-            id="notion"
-            icon={<FileText className="size-4" />}
-            title="Notion"
-            description="Open workspace"
-            type="Application"
             actions={[
               {
                 id: "open",
@@ -310,13 +307,13 @@ const RaycastCommandMenuPreviewDialog = () => {
                 onAction: () => toast("Sharing workspace"),
               },
             ]}
+            description="Open workspace"
+            icon={<FileText className="size-4" />}
+            id="notion"
+            title="Notion"
+            type="Application"
           />
           <RaycastCommandMenuItem
-            id="linear"
-            icon={<Layers className="size-4" />}
-            title="Linear"
-            description="Manage issues"
-            type="Application"
             actions={[
               {
                 id: "open",
@@ -340,18 +337,23 @@ const RaycastCommandMenuPreviewDialog = () => {
                 onAction: () => toast("Viewing my issues"),
               },
             ]}
+            description="Manage issues"
+            icon={<Layers className="size-4" />}
+            id="linear"
+            title="Linear"
+            type="Application"
           />
           <RaycastCommandMenuItem
-            id="whatsapp"
             icon={<MessageSquare className="size-4" />}
+            id="whatsapp"
             title="WhatsApp"
             type="Application"
           />
           <RaycastCommandMenuItem
-            id="slack"
-            icon={<Hash className="size-4" />}
-            title="Slack"
             description="Team communication"
+            icon={<Hash className="size-4" />}
+            id="slack"
+            title="Slack"
             type="Application"
           />
         </RaycastCommandMenuSection>
@@ -359,71 +361,66 @@ const RaycastCommandMenuPreviewDialog = () => {
         {/* Tools Section */}
         <RaycastCommandMenuSection title="Tools">
           <RaycastCommandMenuItem
-            id="convert-color"
-            icon={<Palette className="size-4" />}
-            title="Convert Color"
             description="Color Picker"
+            icon={<Palette className="size-4" />}
+            id="convert-color"
+            title="Convert Color"
             type="Command"
           />
           <RaycastCommandMenuItem
-            id="search-files"
-            icon={<Search className="size-4" />}
-            title="Search Files"
             description="File Search"
+            icon={<Search className="size-4" />}
+            id="search-files"
+            title="Search Files"
             type="Command"
           />
           <RaycastCommandMenuItem
-            id="world-clock"
-            icon={<Clock className="size-4" />}
-            title="World Clock"
             description="Time zones"
+            icon={<Clock className="size-4" />}
+            id="world-clock"
+            title="World Clock"
             type="Command"
           />
           <RaycastCommandMenuItem
-            id="image-optimizer"
-            icon={<Image className="size-4" />}
-            title="Optimize Image"
             description="Image Tools"
+            icon={<Image className="size-4" />}
+            id="image-optimizer"
+            title="Optimize Image"
             type="Command"
           />
           <RaycastCommandMenuItem
-            id="screen-record"
-            icon={<Video className="size-4" />}
-            title="Record Screen"
             description="Screen Recording"
+            icon={<Video className="size-4" />}
+            id="screen-record"
+            title="Record Screen"
             type="Command"
           />
         </RaycastCommandMenuSection>
 
         {/* AI Commands Section */}
-        <RaycastCommandMenuSection title="AI Commands" isLast>
+        <RaycastCommandMenuSection isLast title="AI Commands">
           <RaycastCommandMenuItem
-            id="ask-webpage"
+            description="Raycast AI"
             icon={<MessageCircle className="size-4" />}
+            id="ask-webpage"
             title="Ask About Webpage"
-            description="Raycast AI"
             type="AI Command"
           />
           <RaycastCommandMenuItem
+            description="Raycast AI"
+            icon={<Sparkles className="size-4" />}
             id="summarize"
-            icon={<Sparkles className="size-4" />}
             title="Summarize Text"
-            description="Raycast AI"
             type="AI Command"
           />
           <RaycastCommandMenuItem
-            id="improve-writing"
+            description="Raycast AI"
             icon={<Sparkles className="size-4" />}
+            id="improve-writing"
             title="Improve Writing"
-            description="Raycast AI"
             type="AI Command"
           />
           <RaycastCommandMenuItem
-            id="explain-code"
-            icon={<Code className="size-4" />}
-            title="Explain Code"
-            description="Raycast AI"
-            type="AI Command"
             actions={[
               {
                 id: "explain",
@@ -447,6 +444,11 @@ const RaycastCommandMenuPreviewDialog = () => {
                 onAction: () => toast("Refactoring code"),
               },
             ]}
+            description="Raycast AI"
+            icon={<Code className="size-4" />}
+            id="explain-code"
+            title="Explain Code"
+            type="AI Command"
           />
         </RaycastCommandMenuSection>
       </RaycastCommandMenuContent>
@@ -466,7 +468,7 @@ const RaycastCommandMenuPreviewContent = () => {
 
 export const RaycastCommandMenuPreview = () => {
   return (
-    <RaycastCommandMenuProvider shortcut="mod+j" actionsShortcut="alt+j">
+    <RaycastCommandMenuProvider actionsShortcut="alt+j" shortcut="mod+j">
       <RaycastCommandMenuPreviewContent />
     </RaycastCommandMenuProvider>
   )

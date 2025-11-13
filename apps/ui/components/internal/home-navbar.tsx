@@ -1,7 +1,5 @@
 "use client"
 
-import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { useRaycastCommandMenuState } from "@/components/ui/totheprod-ui/raycast-command-menu/raycast-command-menu"
 import {
   GithubIcon,
   NewTwitterIcon,
@@ -9,8 +7,10 @@ import {
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
-import { CornerPlus } from "./CornerPlus"
-import { ThemeLogo } from "./ThemeLogo"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
+import { useRaycastCommandMenuState } from "@/components/ui/totheprod-ui/raycast-command-menu/raycast-command-menu"
+import { CornerPlus } from "./corner-plus"
+import { ThemeLogo } from "./theme-logo"
 
 type HomeNavbarProps = {
   componentsUrl: string
@@ -36,25 +36,26 @@ export const HomeNavbar = ({ componentsUrl }: HomeNavbarProps) => {
           <Link href={componentsUrl}>Components</Link>
           <Link href={componentsUrl}>Changelog</Link>
           <Link href="https://x.com/totheprod" target="_blank">
-            <HugeiconsIcon icon={NewTwitterIcon} className="size-4" />
+            <HugeiconsIcon className="size-4" icon={NewTwitterIcon} />
           </Link>
           <Link href="https://github.com/ToTheProd/ui" target="_blank">
-            <HugeiconsIcon icon={GithubIcon} className="size-4" />
+            <HugeiconsIcon className="size-4" icon={GithubIcon} />
           </Link>
           <ThemeToggle className="size-max bg-transparent! p-0" />
           <button
-            onClick={handleToggleCommandMenu}
-            className="transition-all hover:text-foreground"
             aria-label="Open command menu"
-            tabIndex={0}
+            className="transition-all hover:text-foreground"
+            onClick={handleToggleCommandMenu}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault()
                 handleToggleCommandMenu()
               }
             }}
+            tabIndex={0}
+            type="button"
           >
-            <HugeiconsIcon icon={Search01FreeIcons} className="size-4" />
+            <HugeiconsIcon className="size-4" icon={Search01FreeIcons} />
           </button>
         </div>
         <CornerPlus />

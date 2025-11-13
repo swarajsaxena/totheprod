@@ -1,4 +1,4 @@
-import PreviewHeading from "@/components/internal/PreviewHeading"
+import PreviewHeading from "@/components/internal/preview-heading"
 import { WordShuffler } from "@/components/ui/totheprod-ui/word-shuffler/word-shuffler"
 
 export const WordShufflerPreview = () => {

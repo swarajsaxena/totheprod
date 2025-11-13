@@ -15,14 +15,15 @@ export const TextScramblePreview = () => {
     <div className="relative flex h-full w-full items-center justify-center bg-secondary">
       <div className="flex flex-col items-center gap-8">
         <TextScramble
-          text="ToTheProd Components"
           className="font-bold font-heading text-5xl text-foreground"
+          text="ToTheProd Components"
           trigger={trigger}
         />
 
         <button
-          onClick={handleReplay}
           className="rounded-lg bg-primary px-6 py-2 font-medium text-primary-foreground text-sm transition-colors hover:bg-primary/90"
+          onClick={handleReplay}
+          type="button"
         >
           Replay Animation
         </button>

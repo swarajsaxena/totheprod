@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import "./globals.css"
 import localFont from "next/font/local"
-import { CommandMenuProvider } from "@/providers/command-menu-provider"
 import { Toaster } from "@/components/ui/sonner"
+import { CommandMenuProvider } from "@/providers/command-menu-provider"
 import { ThemeProvider } from "@/providers/theme-provider"
 
 const archivo = localFont({
@@ -43,8 +43,8 @@ export default function RootLayout({
           <Toaster />
           <CommandMenuProvider>
             <div
-              id="body-scroll-container"
               className={`relative flex h-screen max-h-screen flex-col overflow-scroll bg-secondary p-2! text-foreground antialiased dark:bg-background [&:has(.no-preview-padding)]:p-0! ${archivo.variable} ${clashDisplay.variable}`}
+              id="body-scroll-container"
             >
               {children}
             </div>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
-interface CursorCometProps {
+type CursorCometProps = {
   className?: string
   rowAndColCount?: number
   cometRadius?: number
@@ -13,7 +13,7 @@ interface CursorCometProps {
   symbols?: string[]
 }
 
-interface BoxState {
+type BoxState = {
   opacity: number
   timestamp: number
   distance: number
@@ -46,15 +46,15 @@ export const CursorComet = ({
       setBoxStates((prevStates) => {
         const newStates: Record<string, BoxState> = {}
 
+        // biome-ignore lint/complexity/noForEach: Animation state updates require forEach for clarity
         Object.entries(prevStates).forEach(([key, state]) => {
           const [rowStr, colStr] = key.split("-")
-          const row = parseInt(rowStr)
-          const col = parseInt(colStr)
+          const row = Number.parseInt(rowStr, 10)
+          const col = Number.parseInt(colStr, 10)
 
           // Calculate current distance from the original center
           const currentDistance = Math.sqrt(
-            Math.pow(col - state.centerCol, 2) +
-              Math.pow(row - state.centerRow, 2),
+            (col - state.centerCol) ** 2 + (row - state.centerRow) ** 2
           )
 
           // Reduce opacity
@@ -94,7 +94,9 @@ export const CursorComet = ({
   }, [trailFadeSpeed, cometRadius])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return
+    if (!containerRef.current) {
+      return
+    }
 
     const rect = containerRef.current.getBoundingClientRect()
     const x = e.clientX - rect.left
@@ -130,10 +132,12 @@ export const CursorComet = ({
     }
 
     // Calculate which boxes fall within the radius and merge with existing trail
+    // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Complex animation logic required for cursor comet effect
     setBoxStates((prevStates) => {
       const newBoxStates: Record<string, BoxState> = { ...prevStates }
 
       // First, mark all existing boxes as inactive (trailing)
+      // biome-ignore lint/complexity/noForEach: State mutation pattern requires forEach
       Object.keys(newBoxStates).forEach((key) => {
         if (newBoxStates[key]) {
           newBoxStates[key] = { ...newBoxStates[key], isActive: false }
@@ -144,7 +148,7 @@ export const CursorComet = ({
         for (let col = 0; col < rowAndColCount; col++) {
           // Calculate distance from hovered box center to current box center
           const distance = Math.sqrt(
-            Math.pow(col - hoveredCol, 2) + Math.pow(row - hoveredRow, 2),
+            (col - hoveredCol) ** 2 + (row - hoveredRow) ** 2
           )
 
           // If within radius, calculate opacity based on distance
@@ -184,32 +188,34 @@ export const CursorComet = ({
   }
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: Mouse tracking is for decorative animation effect
+    // biome-ignore lint/a11y/noNoninteractiveElementInteractions: Decorative cursor comet effect
     <div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className={cn(
         "absolute top-0 left-0 h-full w-full overflow-hidden",
-        className,
+        className
       )}
+      onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
+      ref={containerRef}
     >
       {Array.from({ length: rowAndColCount }).map((_, row) => (
-        <div key={row} className="flex flex-1 flex-row">
+        <div className="flex flex-1 flex-row" key={row}>
           {Array.from({ length: rowAndColCount }).map((_, col) => {
             const key = `${row}-${col}`
             const boxState = boxStates[key]
 
             return (
               <motion.div
-                key={col}
-                className="flex aspect-square h-[unset] flex-1 select-none items-center justify-center font-mono text-foreground text-sm"
-                initial={{ opacity: 0, backgroundColor: "transparent" }}
                 animate={{
                   opacity: boxState?.opacity ?? 0,
                   backgroundColor: boxState
                     ? "var(--background)"
                     : "transparent",
                 }}
+                className="flex aspect-square h-[unset] flex-1 select-none items-center justify-center font-mono text-foreground text-sm"
+                initial={{ opacity: 0, backgroundColor: "transparent" }}
+                key={col}
                 transition={{
                   opacity: { duration: 0, ease: "easeOut" },
                   backgroundColor: { duration: 0, ease: "easeOut" },

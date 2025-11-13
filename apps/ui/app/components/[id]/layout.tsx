@@ -1,17 +1,14 @@
 "use client"
 
-import {
-  SidebarLeft01FreeIcons,
-  SourceCodeIcon,
-  ViewIcon,
-} from "@hugeicons/core-free-icons"
+import { SourceCodeIcon, ViewIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { useAtom, useAtomValue } from "jotai"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import { ReactNode } from "react"
-import { ComponentDetails } from "@/components/internal/ComponentDetails"
-import ComponentSidebar from "@/components/internal/ComponentSidebar"
+import type { ReactNode } from "react"
+import { ComponentDetails } from "@/components/internal/component-details"
+import ComponentSidebar from "@/components/internal/component-sidebar"
+import { ThemeLogo } from "@/components/internal/theme-logo"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import {
@@ -19,9 +16,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { detailsOpenAtom, sidebarOpenAtom } from "@/store/atoms"
 import { cn } from "@/lib/utils"
-import { ThemeLogo } from "@/components/internal/ThemeLogo"
+import { detailsOpenAtom, sidebarOpenAtom } from "@/store/atoms"
 
 const ComponentPageLayout = ({ children }: { children: ReactNode }) => {
   const [detailsOpen, setDetailsOpen] = useAtom(detailsOpenAtom)
@@ -35,7 +31,7 @@ const ComponentPageLayout = ({ children }: { children: ReactNode }) => {
           <div
             className={cn(
               "flex items-center justify-between gap-2 border-r border-dashed p-2 pl-6",
-              sidebarOpen && "pl-2",
+              sidebarOpen && "pl-2"
             )}
           >
             {!sidebarOpen && (
@@ -45,9 +41,9 @@ const ComponentPageLayout = ({ children }: { children: ReactNode }) => {
             )}
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="outline" size="icon-sm" asChild>
+                <Button asChild size="icon-sm" variant="outline">
                   <Link href={`/preview/${currentComponentId}`}>
-                    <HugeiconsIcon icon={ViewIcon} className="size-4" />
+                    <HugeiconsIcon className="size-4" icon={ViewIcon} />
                   </Link>
                 </Button>
               </TooltipTrigger>
@@ -58,11 +54,11 @@ const ComponentPageLayout = ({ children }: { children: ReactNode }) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
-                  variant="outline"
-                  size="icon-sm"
                   onClick={() => setDetailsOpen(!detailsOpen)}
+                  size="icon-sm"
+                  variant="outline"
                 >
-                  <HugeiconsIcon icon={SourceCodeIcon} className="size-4" />
+                  <HugeiconsIcon className="size-4" icon={SourceCodeIcon} />
                 </Button>
               </TooltipTrigger>
               <TooltipContent align="start">

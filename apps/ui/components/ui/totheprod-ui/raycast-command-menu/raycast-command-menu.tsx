@@ -26,6 +26,7 @@
 
 "use client"
 
+// biome-ignore lint/performance/noNamespaceImport: React namespace needed for complex component patterns
 import * as React from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import {
@@ -133,7 +134,7 @@ export const useRaycastCommandMenu = () => {
 
   if (!context) {
     throw new Error(
-      "useRaycastCommandMenu must be used within RaycastCommandMenu",
+      "useRaycastCommandMenu must be used within RaycastCommandMenu"
     )
   }
 
@@ -149,7 +150,7 @@ export const useRaycastCommandMenuState = () => {
 
   if (!context) {
     throw new Error(
-      "useRaycastCommandMenuState must be used within RaycastCommandMenu",
+      "useRaycastCommandMenuState must be used within RaycastCommandMenu"
     )
   }
 
@@ -196,7 +197,7 @@ export const RaycastCommandMenuProvider = ({
         setInternalOpen(newValue)
       }
     },
-    [isControlled, onOpenChange, open],
+    [isControlled, onOpenChange, open]
   )
 
   // Main menu toggle shortcut
@@ -212,7 +213,7 @@ export const RaycastCommandMenuProvider = ({
       enabled: true,
       preventDefault: true,
     },
-    [setOpen],
+    [setOpen]
   )
 
   useHotkeys(
@@ -227,7 +228,7 @@ export const RaycastCommandMenuProvider = ({
       enabled: open,
       preventDefault: true,
     },
-    [open],
+    [open]
   )
 
   // Actions popover toggle shortcut
@@ -246,7 +247,7 @@ export const RaycastCommandMenuProvider = ({
         open && !!selectedItem?.actions && selectedItem.actions.length > 0,
       preventDefault: true,
     },
-    [open, selectedItem, setShowActions],
+    [open, selectedItem, setShowActions]
   )
 
   React.useEffect(() => {
@@ -308,7 +309,7 @@ export const RaycastCommandMenuDialog = ({
         setSelectedItem(item)
       }
     },
-    [itemsRegistry, setSelectedItem],
+    [itemsRegistry, setSelectedItem]
   )
 
   // Reset command value when dialog closes
@@ -320,18 +321,18 @@ export const RaycastCommandMenuDialog = ({
 
   return (
     <CommandDialog
-      open={open}
-      onOpenChange={setOpen}
-      title={title}
-      description={description}
       className={cn(
         "w-full rounded-2xl bg-muted/75 backdrop-blur-md *:bg-transparent sm:max-w-3xl dark:bg-muted/50",
-        className,
+        className
       )}
+      description={description}
+      onOpenChange={setOpen}
+      onValueChange={handleValueChange}
+      open={open}
       showCloseButton={showCloseButton}
       showOverlay={showOverlay}
+      title={title}
       value={commandValue}
-      onValueChange={handleValueChange}
     >
       {children}
     </CommandDialog>
@@ -341,7 +342,7 @@ export const RaycastCommandMenuDialog = ({
 /**
  * Main Component with built-in provider
  */
-interface RaycastCommandMenuProps {
+type RaycastCommandMenuProps = {
   open?: boolean
   onOpenChange?: (open: boolean) => void
   children: React.ReactNode
@@ -368,17 +369,17 @@ export const RaycastCommandMenu = ({
 }: RaycastCommandMenuProps) => {
   return (
     <RaycastCommandMenuProvider
-      shortcut={shortcut}
       actionsShortcut={actionsShortcut}
-      open={open}
       onOpenChange={onOpenChange}
+      open={open}
+      shortcut={shortcut}
     >
       <RaycastCommandMenuDialog
         className={className}
+        description={description}
         showCloseButton={showCloseButton}
         showOverlay={showOverlay}
         title={title}
-        description={description}
       >
         {children}
       </RaycastCommandMenuDialog>
@@ -389,7 +390,7 @@ export const RaycastCommandMenu = ({
 /**
  * Input Component
  */
-interface RaycastCommandMenuInputProps {
+type RaycastCommandMenuInputProps = {
   placeholder?: string
   askAiLabel?: string | false
   className?: string
@@ -407,14 +408,17 @@ export const RaycastCommandMenuInput = ({
       className={cn("relative flex items-center border-b px-4 py-1", className)}
     >
       <CommandInput
+        className="h-14 w-full flex-1 border-0 text-base"
+        onValueChange={setSearch}
         placeholder={placeholder}
         value={search}
-        onValueChange={setSearch}
-        className="h-14 w-full flex-1 border-0 text-base"
       />
       {askAiLabel && (
         <div className="flex items-center gap-2">
-          <button className="text-muted-foreground text-sm hover:text-foreground">
+          <button
+            className="text-muted-foreground text-sm hover:text-foreground"
+            type="button"
+          >
             {askAiLabel}
           </button>
           <kbd className="pointer-events-none inline-flex h-6 select-none items-center gap-1 rounded-lg border bg-background px-1.5 font-fira font-medium text-[8px] text-muted-foreground opacity-100">
@@ -429,7 +433,7 @@ export const RaycastCommandMenuInput = ({
 /**
  * Banner Component
  */
-interface RaycastCommandMenuBannerProps {
+type RaycastCommandMenuBannerProps = {
   icon: React.ReactNode
   title: string
   version?: string
@@ -448,7 +452,7 @@ export const RaycastCommandMenuBanner = ({
     <div
       className={cn(
         "flex items-center justify-between border-b px-4 py-3",
-        className,
+        className
       )}
     >
       <div className="flex items-center gap-3">
@@ -461,8 +465,9 @@ export const RaycastCommandMenuBanner = ({
         )}
       </div>
       <button
-        onClick={action.onClick}
         className="rounded-md px-3 py-1 text-muted-foreground text-sm transition-colors hover:text-foreground"
+        onClick={action.onClick}
+        type="button"
       >
         {action.label}
       </button>
@@ -473,7 +478,7 @@ export const RaycastCommandMenuBanner = ({
 /**
  * Content Component
  */
-interface RaycastCommandMenuContentProps {
+type RaycastCommandMenuContentProps = {
   children: React.ReactNode
   emptyText?: string
   className?: string
@@ -497,7 +502,7 @@ export const RaycastCommandMenuContent = ({
 /**
  * Section Component
  */
-interface RaycastCommandMenuSectionProps {
+type RaycastCommandMenuSectionProps = {
   title: string
   children: React.ReactNode
   isLast?: boolean
@@ -507,12 +512,12 @@ interface RaycastCommandMenuSectionProps {
 export const RaycastCommandMenuSection = ({
   title,
   children,
-  isLast = false,
+  isLast: _isLast = false,
   className,
 }: RaycastCommandMenuSectionProps) => {
   return (
     <div className="group">
-      <CommandGroup heading={title} className={cn("has-[]: p-0!", className)}>
+      <CommandGroup className={cn("has-[]: p-0!", className)} heading={title}>
         {children}
       </CommandGroup>
       <CommandSeparator className="mt-2" />
@@ -523,7 +528,7 @@ export const RaycastCommandMenuSection = ({
 /**
  * Item Component
  */
-interface RaycastCommandMenuItemProps {
+type RaycastCommandMenuItemProps = {
   id: string
   icon: React.ReactNode
   title: string
@@ -551,10 +556,11 @@ export const RaycastCommandMenuItem = ({
 
   const itemData = React.useMemo(
     () => ({ id, icon, title, description, type, onSelect, actions }),
-    [id, icon, title, description, type, onSelect, actions],
+    [id, icon, title, description, type, onSelect, actions]
   )
 
   useHotkeys(
+    // biome-ignore lint/style/noNonNullAssertion: Shortcut is validated before this point
     shortcut!,
     (e) => {
       e.preventDefault()
@@ -566,14 +572,18 @@ export const RaycastCommandMenuItem = ({
       enabled: !!shortcut,
       preventDefault: true,
     },
-    [onSelect],
+    [onSelect]
   )
 
   // Create searchable keywords from id, title, description, and type
   const keywords = React.useMemo(() => {
     const terms = [id, title]
-    if (description) terms.push(description)
-    if (type) terms.push(type)
+    if (description) {
+      terms.push(description)
+    }
+    if (type) {
+      terms.push(type)
+    }
     return terms.join(" ")
   }, [id, title, description, type])
 
@@ -601,15 +611,15 @@ export const RaycastCommandMenuItem = ({
 
   return (
     <CommandItem
-      key={id}
-      value={id}
-      keywords={[keywords]}
-      onSelect={handleSelect}
-      onMouseEnter={handleMouseEnter}
       className={cn(
         "group mx-2 flex items-center justify-between gap-3 rounded-xl p-2! pl-2.5! text-foreground/70 data-[selected=true]:bg-muted-foreground/10! dark:data-[selected=true]:bg-background/40! [&_svg]:text-foreground/50! data-[selected=true]:[&_svg]:text-foreground!",
-        className,
+        className
       )}
+      key={id}
+      keywords={[keywords]}
+      onMouseEnter={handleMouseEnter}
+      onSelect={handleSelect}
+      value={id}
     >
       <div className="flex min-w-0 flex-1 items-center gap-3">
         <div className="flex size-4! shrink-0 items-center justify-center rounded-md">
@@ -631,8 +641,8 @@ export const RaycastCommandMenuItem = ({
         <DropdownMenuShortcut className="flex items-center gap-1">
           {shortcut.split("+").map((key, keyIndex) => (
             <kbd
-              key={keyIndex}
               className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground dark:bg-muted"
+              key={keyIndex}
             >
               {key}
             </kbd>
@@ -646,7 +656,7 @@ export const RaycastCommandMenuItem = ({
 /**
  * Actions Dropdown Component (used internally by Footer)
  */
-interface RaycastCommandMenuActionsDropdownProps {
+type RaycastCommandMenuActionsDropdownProps = {
   className?: string
   itemClassName?: string
 }
@@ -664,18 +674,20 @@ export const RaycastCommandMenuActionsDropdown = ({
     // Keep dialog open as per requirements
   }, [])
 
-  if (!selectedItem || actions.length === 0) return null
+  if (!selectedItem || actions.length === 0) {
+    return null
+  }
 
   return (
     <DropdownMenuContent
+      align="end"
+      alignOffset={-8}
       className={cn(
         "w-80 rounded-2xl bg-muted/10 backdrop-blur-sm dark:bg-background/30",
-        className,
+        className
       )}
-      align="end"
       side="top"
       sideOffset={17}
-      alignOffset={-8}
     >
       {/* Header */}
       <div className="px-2 py-1 text-muted-foreground text-xs">Actions</div>
@@ -685,12 +697,12 @@ export const RaycastCommandMenuActionsDropdown = ({
       {/* Actions List */}
       {actions.map((action) => (
         <DropdownMenuItem
-          key={action.id}
-          onClick={() => handleActionExecute(action)}
           className={cn(
             "group mx-0 flex cursor-pointer items-center justify-between gap-3 rounded-xl p-2! pl-2.5! text-foreground/70 hover:bg-muted-foreground/10! focus:bg-muted-foreground/10! dark:focus:bg-background/40! dark:hover:bg-background/40! [&_svg]:text-foreground/50! hover:[&_svg]:text-foreground!",
-            itemClassName,
+            itemClassName
           )}
+          key={action.id}
+          onClick={() => handleActionExecute(action)}
         >
           <div className="flex min-w-0 flex-1 items-center gap-3">
             {action.icon && (
@@ -702,8 +714,8 @@ export const RaycastCommandMenuActionsDropdown = ({
             <DropdownMenuShortcut className="flex items-center gap-1">
               {action.shortcut.map((key, keyIndex) => (
                 <kbd
-                  key={keyIndex}
                   className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground dark:bg-muted"
+                  key={keyIndex}
                 >
                   {key}
                 </kbd>
@@ -719,7 +731,7 @@ export const RaycastCommandMenuActionsDropdown = ({
 /**
  * Footer Component
  */
-interface RaycastCommandMenuFooterProps {
+type RaycastCommandMenuFooterProps = {
   onBack?: () => void
   secondaryActionLabel?: string
   className?: string
@@ -742,7 +754,7 @@ export const RaycastCommandMenuFooter = ({
 
   const displayShortcut = React.useMemo(
     () => parseShortcutToDisplay(actionsShortcut),
-    [actionsShortcut],
+    [actionsShortcut]
   )
 
   const handleBack = React.useCallback(() => {
@@ -755,29 +767,31 @@ export const RaycastCommandMenuFooter = ({
     <div className={cn("border-t bg-muted/20 p-3", className)}>
       <div className="flex items-center justify-between">
         <button
-          onClick={handleBack}
           className="flex items-center gap-2 text-muted-foreground text-sm"
+          onClick={handleBack}
+          type="button"
         >
           Back
         </button>
 
         {hasActions && (
-          <DropdownMenu open={showActions} onOpenChange={setShowActions}>
+          <DropdownMenu onOpenChange={setShowActions} open={showActions}>
             <DropdownMenuTrigger asChild>
               <button
                 className={cn(
                   "flex items-center gap-2 text-sm transition-colors",
                   showActions
                     ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground",
+                    : "text-muted-foreground hover:text-foreground"
                 )}
+                type="button"
               >
                 <span className="font-medium">{secondaryActionLabel}</span>
                 <div className="flex items-center gap-1">
                   {displayShortcut.map((key, index) => (
                     <kbd
-                      key={index}
                       className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground dark:bg-muted"
+                      key={index}
                     >
                       {key}
                     </kbd>

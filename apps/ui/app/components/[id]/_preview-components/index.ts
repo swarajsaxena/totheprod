@@ -1,3 +1,4 @@
+// biome-ignore lint/performance/noBarrelFile: Barrel file is intentional for cleaner imports
 export * from "./cursor-comet"
 export * from "./horizontal-text-reveal"
 export * from "./layered-nav"

@@ -1,6 +1,6 @@
 "use client"
 
-import PreviewHeading from "@/components/internal/PreviewHeading"
+import PreviewHeading from "@/components/internal/preview-heading"
 import { PixelLoader } from "@/components/ui/totheprod-ui/pixel-loader/pixel-loader"
 
 export const PixelLoaderPreview = () => {

@@ -1,6 +1,10 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.4/schema.json",
-  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
   "css": {
     "parser": {
       "tailwindDirectives": true
@@ -29,8 +33,12 @@
     "enabled": true,
     "rules": {
       "recommended": false,
-      "complexity": { "noUselessTypeConstraint": "error" },
-      "correctness": { "noUnusedVariables": "error" },
+      "complexity": {
+        "noUselessTypeConstraint": "error"
+      },
+      "correctness": {
+        "noUnusedVariables": "error"
+      },
       "style": {
         "noCommonJs": "error",
         "noNamespace": "error",
@@ -245,7 +253,9 @@
             "useHookAtTopLevel": "error",
             "useJsxKeyInIterable": "error"
           },
-          "security": { "noDangerouslySetInnerHtmlWithChildren": "error" },
+          "security": {
+            "noDangerouslySetInnerHtmlWithChildren": "error"
+          },
           "suspicious": {
             "noCommentText": "error",
             "noDuplicateJsxProps": "error"
@@ -253,12 +263,19 @@
         }
       }
     },
-    { "includes": ["**/*.ts", "**/*.tsx"], "javascript": { "globals": [] } },
+    {
+      "includes": ["**/*.ts", "**/*.tsx"],
+      "javascript": {
+        "globals": []
+      }
+    },
     {
       "includes": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
       "linter": {
         "rules": {
-          "complexity": { "noArguments": "error" },
+          "complexity": {
+            "noArguments": "error"
+          },
           "correctness": {
             "noConstAssign": "off",
             "noGlobalObjectCalls": "off",
@@ -269,7 +286,9 @@
             "noUnreachable": "off",
             "noUnreachableSuper": "off"
           },
-          "style": { "useConst": "error" },
+          "style": {
+            "useConst": "error"
+          },
           "suspicious": {
             "noClassAssign": "off",
             "noDuplicateClassMembers": "off",
@@ -434,7 +453,9 @@
             "useHookAtTopLevel": "error",
             "useJsxKeyInIterable": "error"
           },
-          "security": { "noDangerouslySetInnerHtmlWithChildren": "error" },
+          "security": {
+            "noDangerouslySetInnerHtmlWithChildren": "error"
+          },
           "suspicious": {
             "noCommentText": "error",
             "noDuplicateJsxProps": "error"
@@ -442,12 +463,19 @@
         }
       }
     },
-    { "includes": ["**/*.ts", "**/*.tsx"], "javascript": { "globals": [] } },
+    {
+      "includes": ["**/*.ts", "**/*.tsx"],
+      "javascript": {
+        "globals": []
+      }
+    },
     {
       "includes": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
       "linter": {
         "rules": {
-          "complexity": { "noArguments": "error" },
+          "complexity": {
+            "noArguments": "error"
+          },
           "correctness": {
             "noConstAssign": "off",
             "noGlobalObjectCalls": "off",
@@ -458,7 +486,9 @@
             "noUnreachable": "off",
             "noUnreachableSuper": "off"
           },
-          "style": { "useConst": "error" },
+          "style": {
+            "useConst": "error"
+          },
           "suspicious": {
             "noClassAssign": "off",
             "noDuplicateClassMembers": "off",
@@ -478,6 +508,11 @@
   ],
   "assist": {
     "enabled": null,
-    "actions": { "source": { "organizeImports": "on" } }
-  }
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "extends": ["ultracite/core", "ultracite/next"]
 }

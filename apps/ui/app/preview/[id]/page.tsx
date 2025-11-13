@@ -1,5 +1,5 @@
 import { contentMap } from "@/app/components/[id]/constants"
-import { ComponentData } from "@/app/components/[id]/page"
+import type { ComponentData } from "@/app/components/[id]/page"
 
 const NotFoundComponent = () => <div>Component not found</div>
 
@@ -12,7 +12,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     preview: NotFoundComponent,
     title: "404 - Not Found",
     description: "The component you are looking for does not exist.",
-    id: id,
+    id,
   }
   const PreviewComponent = component.preview
   return (

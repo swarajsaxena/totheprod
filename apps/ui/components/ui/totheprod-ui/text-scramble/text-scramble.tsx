@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
-interface TextScrambleProps {
+type TextScrambleProps = {
   text: string
   className?: string
   charClassName?: string
@@ -17,14 +17,16 @@ const RANDOM_CHARS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*"
 const UPPERCASE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const LOWERCASE_CHARS = "abcdefghijklmnopqrstuvwxyz"
+const UPPERCASE_REGEX = /[A-Z]/
+const LOWERCASE_REGEX = /[a-z]/
 
 const getRandomChar = (originalChar: string) => {
   // If original is uppercase letter, return uppercase random char
-  if (/[A-Z]/.test(originalChar)) {
+  if (UPPERCASE_REGEX.test(originalChar)) {
     return UPPERCASE_CHARS[Math.floor(Math.random() * UPPERCASE_CHARS.length)]
   }
   // If original is lowercase letter, return lowercase random char
-  if (/[a-z]/.test(originalChar)) {
+  if (LOWERCASE_REGEX.test(originalChar)) {
     return LOWERCASE_CHARS[Math.floor(Math.random() * LOWERCASE_CHARS.length)]
   }
   // For numbers and special chars, use full set
@@ -41,7 +43,7 @@ export const TextScramble = ({
   onComplete,
 }: TextScrambleProps) => {
   const [displayText, setDisplayText] = useState(
-    text.split("").map((char) => (char === " " ? " " : getRandomChar(char))),
+    text.split("").map((char) => (char === " " ? " " : getRandomChar(char)))
   )
   const revealedIndicesRef = useRef<Set<number>>(new Set())
 
@@ -57,7 +59,7 @@ export const TextScramble = ({
 
     // Initialize with random characters
     setDisplayText(
-      chars.map((char) => (char === " " ? " " : getRandomChar(char))),
+      chars.map((char) => (char === " " ? " " : getRandomChar(char)))
     )
     revealedIndicesRef.current = new Set()
 
@@ -69,7 +71,7 @@ export const TextScramble = ({
             return char // Keep revealed characters
           }
           return chars[index] === " " ? " " : getRandomChar(chars[index])
-        }),
+        })
       )
     }, scrambleSpeed)
 
@@ -97,6 +99,8 @@ export const TextScramble = ({
 
     return () => {
       clearInterval(scrambleInterval)
+      // biome-ignore lint/complexity/noForEach: Cleanup pattern requires forEach
+      // biome-ignore lint/suspicious/useIterableCallbackReturn: clearTimeout has no meaningful return value
       timeouts.forEach((timeout) => clearTimeout(timeout))
     }
   }, [text, duration, scrambleSpeed, trigger, onComplete])
@@ -130,11 +134,11 @@ export const TextScramble = ({
   return (
     <div className={cn("flex flex-wrap", className)}>
       {words.map((word, wordIndex) => (
-        <div key={wordIndex} className="inline-flex whitespace-nowrap">
+        <div className="inline-flex whitespace-nowrap" key={wordIndex}>
           {word.chars.map((char, charIndex) => (
             <div
-              key={word.indices[charIndex]}
               className={cn("inline-block", charClassName)}
+              key={word.indices[charIndex]}
               style={{
                 minWidth: char === " " ? "0.25em" : undefined,
               }}

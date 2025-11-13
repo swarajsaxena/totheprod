@@ -1,16 +1,7 @@
-import { CodeIcon, SourceCodeIcon, ViewIcon } from "@hugeicons/core-free-icons"
-import { HugeiconsIcon } from "@hugeicons/react"
-import { readFile } from "fs/promises"
-import Link from "next/link"
-import path from "path"
-import React from "react"
-import { Button } from "@/components/ui/button"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { ComponentProvider } from "./_components/ComponentProvider"
+import { readFile } from "node:fs/promises"
+import path from "node:path"
+import type React from "react"
+import { ComponentProvider } from "./_components/component-provider"
 import { contentMap } from "./constants"
 
 export type ComponentData = {
@@ -22,9 +13,11 @@ export type ComponentData = {
 }
 
 const getMdxContent = async (
-  docsPath?: string,
+  docsPath?: string
 ): Promise<string | undefined> => {
-  if (!docsPath) return undefined
+  if (!docsPath) {
+    return
+  }
 
   try {
     const filePath = path.join(process.cwd(), "docs", "components", docsPath)
@@ -32,7 +25,7 @@ const getMdxContent = async (
     return content
   } catch (error) {
     console.error(`Failed to read MDX file: ${docsPath}`, error)
-    return undefined
+    return
   }
 }
 
@@ -51,19 +44,17 @@ const ComponentPage = async ({
     preview: NotFoundComponent,
     title: "404 - Not Found",
     description: "The component you are looking for does not exist.",
-    id: id,
+    id,
   }
 
-  const mdxContent = await getMdxContent(component.id + ".mdx")
+  const mdxContent = await getMdxContent(`${component.id}.mdx`)
 
   const PreviewComponent = component.preview
 
   return (
-    <>
-      <ComponentProvider mdxDocs={mdxContent}>
-        {PreviewComponent ? <PreviewComponent /> : null}
-      </ComponentProvider>
-    </>
+    <ComponentProvider mdxDocs={mdxContent}>
+      {PreviewComponent ? <PreviewComponent /> : null}
+    </ComponentProvider>
   )
 }
 

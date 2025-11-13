@@ -1,10 +1,10 @@
 "use client"
 
 import { motion } from "motion/react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { cn } from "@/lib/utils"
 
-interface WavyTextProps {
+type WavyTextProps = {
   /**
    * The text to display
    */
@@ -88,10 +88,12 @@ export const WavyText = ({
   }
 
   return (
+    // biome-ignore lint/a11y/noNoninteractiveElementInteractions: Hover effect for text animation
+    // biome-ignore lint/a11y/noStaticElementInteractions: Decorative hover animation
     <div
       className={cn(
         "flex items-center overflow-hidden text-center font-bold",
-        className,
+        className
       )}
       onMouseEnter={() =>
         _setIsHovered ? _setIsHovered(true) : setIsHovered(true)
@@ -105,14 +107,14 @@ export const WavyText = ({
         const exitDelay = getExitDelay(index)
 
         return (
-          <motion.div key={index} className={cn("relative leading-none")}>
+          <motion.div className={cn("relative leading-none")} key={index}>
             <motion.span
+              animate={{ y: _isHovered || isHovered ? "-100%" : 0 }}
               className={cn(
                 "inline-block text-4xl leading-none",
-                textClassName,
+                textClassName
               )}
               initial={{ y: 0 }}
-              animate={{ y: _isHovered || isHovered ? "-100%" : 0 }}
               transition={{
                 duration,
                 delay: _isHovered || isHovered ? enterDelay : exitDelay,
@@ -123,12 +125,12 @@ export const WavyText = ({
               {char === " " ? "\u00A0" : char}
             </motion.span>
             <motion.span
+              animate={{ y: _isHovered || isHovered ? 0 : "95%" }}
               className={cn(
                 "absolute top-0 left-0 inline-block text-4xl leading-none",
-                textClassName,
+                textClassName
               )}
               initial={{ y: "95%" }}
-              animate={{ y: _isHovered || isHovered ? 0 : "95%" }}
               transition={{
                 duration,
                 delay: _isHovered || isHovered ? enterDelay : exitDelay,

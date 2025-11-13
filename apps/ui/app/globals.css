@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Fira+Code:300,regular,500,600,700);
-@import 'lenis/dist/lenis.css';
+@import "lenis/dist/lenis.css";
 
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
@@ -112,7 +112,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   /* fonts */
-  --font-fira: 'Fira Code', monospace;
+  --font-fira: "Fira Code", monospace;
   --font-archivo: var(--font-archivo), sans-serif;
   --font-heading: var(--font-heading), sans-serif;
 
@@ -156,15 +156,15 @@ h6 {
     /* counter-reset: line; */
   }
 
-  code[data-theme*=' '],
-  code[data-theme*=' '] span {
+  code[data-theme*=" "],
+  code[data-theme*=" "] span {
     color: var(--shiki-light);
     background-color: var(--shiki-light-bg);
   }
 
   @media (prefers-color-scheme: dark) {
-    code[data-theme*=' '],
-    code[data-theme*=' '] span {
+    code[data-theme*=" "],
+    code[data-theme*=" "] span {
       color: var(--shiki-dark);
       background-color: var(--shiki-dark-bg);
     }
@@ -184,11 +184,11 @@ h6 {
     color: oklch(0.5 0 0);
   }
 
-  code[data-line-numbers-max-digits='2'] > [data-line]::before {
+  code[data-line-numbers-max-digits="2"] > [data-line]::before {
     width: 1.5rem;
   }
 
-  code[data-line-numbers-max-digits='3'] > [data-line]::before {
+  code[data-line-numbers-max-digits="3"] > [data-line]::before {
     width: 2rem;
   }
 

@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils"
-import { cva, VariantProps } from "class-variance-authority"
+import { cva, type VariantProps } from "class-variance-authority"
 import { motion } from "motion/react"
+import { cn } from "@/lib/utils"
 
 const cornerPlusVariants = cva("absolute w-4 scale-75 opacity-50", {
   variants: {
@@ -33,9 +33,9 @@ export const CornerPlus = ({
 }) => {
   return (
     <motion.div
-      initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       className={cn(cornerPlusVariants({ variant }), className)}
+      initial={{ scale: 0 }}
     >
       <div className="h-0.5 w-4 bg-foreground dark:bg-primary" />
       <div className="absolute bottom-0 left-0 h-0.5 w-4 rotate-90 bg-foreground dark:bg-primary" />

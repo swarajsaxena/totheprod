@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import { type MotionValue, motion, useScroll, useTransform } from "motion/react"
+import { useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 /**
@@ -17,7 +17,7 @@ type Intersection = `${Edge} ${Edge}`
 type ProgressIntersection = [number, number]
 type ScrollOffset = Array<Edge | Intersection | ProgressIntersection>
 
-interface HorizontalFadeInProps {
+type HorizontalFadeInProps = {
   /**
    * The text to display
    */
@@ -53,7 +53,7 @@ interface HorizontalFadeInProps {
   scrollOffset?: ScrollOffset
 }
 
-interface WordProps {
+type WordProps = {
   word: string
   index: number
   scrollYProgress: MotionValue<number>
@@ -67,8 +67,8 @@ const Word = ({ word, index, scrollYProgress, start, end }: WordProps) => {
 
   return (
     <motion.span
-      key={index}
       className="inline-block pl-2"
+      key={index}
       style={{
         opacity,
         translateX,
@@ -106,7 +106,7 @@ export const HorizontalTextReveal = ({
   const words = text.split(" ")
 
   return (
-    <div ref={targetRef} className={cn("w-full", containerClassName)}>
+    <div className={cn("w-full", containerClassName)} ref={targetRef}>
       <div className={cn("w-full font-medium text-5xl", className)}>
         {words.map((word, index) => {
           const start = (index / words.length) * (1 - overlap)
@@ -114,12 +114,12 @@ export const HorizontalTextReveal = ({
 
           return (
             <Word
-              key={index}
-              word={word}
+              end={end}
               index={index}
+              key={index}
               scrollYProgress={scrollYProgress}
               start={start}
-              end={end}
+              word={word}
             />
           )
         })}

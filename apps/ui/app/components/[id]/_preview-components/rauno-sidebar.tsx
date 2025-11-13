@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname, useSearchParams } from "next/navigation"
-import PreviewHeading from "@/components/internal/PreviewHeading"
+import PreviewHeading from "@/components/internal/preview-heading"
 import {
   RaunoSidebar,
   RaunoSidebarItem,
@@ -60,18 +60,18 @@ export const RaunoSidebarPreview = () => {
       <RaunoSidebar className="max-w-xs p-10">
         {sections.map((section, sectionIndex) => (
           <RaunoSidebarSection
-            key={section.label}
             isLast={sectionIndex === sections.length - 1}
+            key={section.label}
           >
             <RaunoSidebarSectionHeader>
               {section.label}
             </RaunoSidebarSectionHeader>
             {section.items.map((item, itemIndex) => (
               <RaunoSidebarItem
-                key={item.label}
                 href={item.href}
                 isActive={activePath.endsWith(item.href)}
                 isLast={itemIndex === section.items.length - 1}
+                key={item.label}
               >
                 {item.label}
               </RaunoSidebarItem>
@@ -83,10 +83,10 @@ export const RaunoSidebarPreview = () => {
       <RaunoSidebar className="max-w-xs rounded-2xl bg-muted-foreground/5 p-10 shadow-xl">
         {items.map((item, index) => (
           <RaunoSidebarItem
-            key={item.label}
             href={item.href}
             isActive={activePath.endsWith(item.href)}
             isLast={index === items.length - 1}
+            key={item.label}
           >
             {item.label}
           </RaunoSidebarItem>

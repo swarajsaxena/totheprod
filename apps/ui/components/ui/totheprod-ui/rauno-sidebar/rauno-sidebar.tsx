@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils"
 /**
  * Context value for RaunoSidebar configuration
  */
-interface RaunoSidebarContextValue {
+type RaunoSidebarContextValue = {
   /** Number of dividers to render between items within a section */
   itemDividersLength: number
   /** Number of dividers to render between sections */
@@ -54,7 +54,7 @@ const useRaunoSidebarContext = () => useContext(RaunoSidebarContext)
 /**
  * Props for the RaunoSidebar component
  */
-interface RaunoSidebarProps {
+type RaunoSidebarProps = {
   /** The sidebar content (sections, headers, items) */
   children: React.ReactNode
   /** Additional CSS classes to apply to the sidebar container */
@@ -102,7 +102,7 @@ const RaunoSidebar = ({
 /**
  * Props for the RaunoSidebarSectionDivider component
  */
-interface RaunoSidebarSectionDividerProps {
+type RaunoSidebarSectionDividerProps = {
   /** Additional CSS classes to apply to the divider */
   className?: string
 }
@@ -126,7 +126,7 @@ const RaunoSidebarSectionDivider = ({
 /**
  * Props for the RaunoSidebarSection component
  */
-interface RaunoSidebarSectionProps {
+type RaunoSidebarSectionProps = {
   /** The section content (headers and items) */
   children: React.ReactNode
   /** Additional CSS classes to apply to the section container */
@@ -162,7 +162,7 @@ const RaunoSidebarSection = ({
 /**
  * Props for the RaunoSidebarSectionHeader component
  */
-interface RaunoSidebarSectionHeaderProps {
+type RaunoSidebarSectionHeaderProps = {
   /** The header text/content */
   children: React.ReactNode
   /** Additional CSS classes to apply to the header */
@@ -186,7 +186,7 @@ const RaunoSidebarSectionHeader = ({
       <h3
         className={cn(
           "flex h-[10px] items-center gap-3 font-medium text-foreground text-sm",
-          className,
+          className
         )}
       >
         <div className="h-px w-8 bg-foreground/75" />
@@ -252,10 +252,10 @@ const RaunoSidebarItem = ({
   return (
     <>
       <motion.div
-        initial={{ paddingRight: 16 }}
         animate={{ paddingRight: isHovered || isActive ? 0 : 16 }}
-        transition={{ duration: 0.3 }}
         className={cn("flex h-2 items-center", className)}
+        initial={{ paddingRight: 16 }}
+        transition={{ duration: 0.3 }}
       >
         <Link
           className="relative z-1 flex h-6 w-max items-center gap-3"
@@ -264,26 +264,26 @@ const RaunoSidebarItem = ({
           {...props}
         >
           <motion.div
-            className="h-px bg-muted-foreground/50"
-            initial={{ width: 32 }}
             animate={{
               width: isHovered || isActive ? 48 : 32,
               backgroundColor:
                 isHovered || isActive ? "var(--primary)" : undefined,
             }}
+            className="h-px bg-muted-foreground/50"
+            initial={{ width: 32 }}
             transition={{ duration: 0.3 }}
           />
           <motion.span
-            className={cn(
-              "w-max font-medium text-muted-foreground text-sm",
-              textClassName,
-            )}
             animate={{
               color:
                 isHovered || isActive
                   ? "var(--primary)"
                   : "var(--muted-foreground)",
             }}
+            className={cn(
+              "w-max font-medium text-muted-foreground text-sm",
+              textClassName
+            )}
             transition={{ duration: 0.3 }}
           >
             {children}

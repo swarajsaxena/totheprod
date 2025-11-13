@@ -6,7 +6,7 @@ import {
   type SerializeResult,
   serialize,
 } from "next-mdx-remote-client/serialize"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
@@ -87,9 +87,9 @@ Component documentation will appear here when you select a component with MDX do
     return (
       <div className="flex flex-col gap-2">
         <div className="animate-pulse">
-          <div className="mb-4 h-6 w-1/3 rounded bg-muted"></div>
-          <div className="mb-2 h-4 w-full rounded bg-muted"></div>
-          <div className="h-4 w-2/3 rounded bg-muted"></div>
+          <div className="mb-4 h-6 w-1/3 rounded bg-muted" />
+          <div className="mb-2 h-4 w-full rounded bg-muted" />
+          <div className="h-4 w-2/3 rounded bg-muted" />
         </div>
       </div>
     )

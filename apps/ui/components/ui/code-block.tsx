@@ -4,7 +4,7 @@ import { Check, Copy } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 
-interface CodeBlockProps {
+type CodeBlockProps = {
   children?: React.ReactNode
   "data-language"?: string
   "data-theme"?: string
@@ -27,14 +27,14 @@ export const CodeBlock = ({
   const handleCopy = async () => {
     const code = raw || (typeof children === "string" ? children : "")
 
-    if (!code) {
+    if (code) {
+      await navigator.clipboard.writeText(code)
+    } else {
       // Try to extract text from children if it's a React element
       const pre = document.querySelector(`pre[data-language="${language}"]`)
       if (pre) {
         await navigator.clipboard.writeText(pre.textContent || "")
       }
-    } else {
-      await navigator.clipboard.writeText(code)
     }
 
     setCopied(true)
@@ -54,11 +54,11 @@ export const CodeBlock = ({
 
       <div className="relative">
         <Button
-          variant="ghost"
-          size="sm"
+          aria-label="Copy code"
           className="absolute top-2 right-2 h-8 w-8 p-0 opacity-0 transition-opacity group-hover:opacity-100"
           onClick={handleCopy}
-          aria-label="Copy code"
+          size="sm"
+          variant="ghost"
         >
           {copied ? (
             <Check className="h-4 w-4 text-primary" />
@@ -78,7 +78,7 @@ export const CodeBlock = ({
   )
 }
 
-interface InlineCodeProps {
+type InlineCodeProps = {
   children?: React.ReactNode
   className?: string
   [key: string]: unknown

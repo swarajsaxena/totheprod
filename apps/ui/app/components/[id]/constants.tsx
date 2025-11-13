@@ -19,23 +19,25 @@ import {
   WordShufflerPreview,
 } from "./_preview-components"
 
-export enum ComponentId {
-  RAUNO_SIDEBAR = "rauno-sidebar",
-  LAYERED_NAV = "layered-nav",
-  PIXEL_LOADER = "pixel-loader",
-  WAVY_TEXT = "wavy-text",
-  HORIZONTAL_TEXT_REVEAL = "horizontal-text-reveal",
-  PERSPECTIVE_CAROUSEL = "perspective-carousel",
-  CURSOR_COMET = "cursor-comet",
-  WORD_SHUFFLER = "word-shuffler",
-  RAYCAST_COMMAND_MENU = "raycast-command-menu",
-  TEXT_SCRAMBLE = "text-scramble",
-}
+export const ComponentId = {
+  RAUNO_SIDEBAR: "rauno-sidebar",
+  LAYERED_NAV: "layered-nav",
+  PIXEL_LOADER: "pixel-loader",
+  WAVY_TEXT: "wavy-text",
+  HORIZONTAL_TEXT_REVEAL: "horizontal-text-reveal",
+  PERSPECTIVE_CAROUSEL: "perspective-carousel",
+  CURSOR_COMET: "cursor-comet",
+  WORD_SHUFFLER: "word-shuffler",
+  RAYCAST_COMMAND_MENU: "raycast-command-menu",
+  TEXT_SCRAMBLE: "text-scramble",
+} as const
+
+export type ComponentIdType = (typeof ComponentId)[keyof typeof ComponentId]
 
 export const contentMap = [
   {
     section: "Base Components",
-    icon: <HugeiconsIcon icon={BlockGameIcon} className="size-4" />,
+    icon: <HugeiconsIcon className="size-4" icon={BlockGameIcon} />,
     items: [
       {
         id: ComponentId.RAYCAST_COMMAND_MENU,
@@ -49,7 +51,7 @@ export const contentMap = [
   },
   {
     section: "Seamless Navigations",
-    icon: <HugeiconsIcon icon={Navigation04Icon} className="size-4" />,
+    icon: <HugeiconsIcon className="size-4" icon={Navigation04Icon} />,
     items: [
       {
         id: ComponentId.RAUNO_SIDEBAR,
@@ -69,7 +71,7 @@ export const contentMap = [
   },
   {
     section: "Unreal Page Entrances",
-    icon: <HugeiconsIcon icon={File02Icon} className="size-4" />,
+    icon: <HugeiconsIcon className="size-4" icon={File02Icon} />,
     items: [
       {
         id: ComponentId.PIXEL_LOADER,
@@ -98,7 +100,7 @@ export const contentMap = [
   {
     section: "Hover Like A Pro",
     icon: (
-      <HugeiconsIcon icon={CursorMagicSelection02Icon} className="size-4" />
+      <HugeiconsIcon className="size-4" icon={CursorMagicSelection02Icon} />
     ),
     items: [
       {
@@ -119,7 +121,7 @@ export const contentMap = [
   },
   {
     section: "Magic Scrolling",
-    icon: <HugeiconsIcon icon={VerticalScrollPointIcon} className="size-4" />,
+    icon: <HugeiconsIcon className="size-4" icon={VerticalScrollPointIcon} />,
     items: [
       {
         id: ComponentId.HORIZONTAL_TEXT_REVEAL,

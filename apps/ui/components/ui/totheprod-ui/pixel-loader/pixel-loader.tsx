@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { useMemo } from "react"
 
-interface PixelLoaderProps {
+type PixelLoaderProps = {
   /**
    * The number of rows to display (default is 25)
    */
@@ -39,18 +39,18 @@ export const PixelLoader = ({
       row: Math.floor(Math.random() * rows),
       col: Math.floor(Math.random() * columns),
     }),
-    [rows, columns],
+    [rows, columns]
   )
 
   // Calculate the maximum possible distance for normalization
   const maxDistance = useMemo(() => {
-    return Math.sqrt(Math.pow(rows, 2) + Math.pow(columns, 2))
+    return Math.sqrt(rows ** 2 + columns ** 2)
   }, [rows, columns])
 
   const getDelay = (row: number, col: number) => {
     // Calculate Euclidean distance from the center
     const distance = Math.sqrt(
-      Math.pow(row - center.row, 2) + Math.pow(col - center.col, 2),
+      (row - center.row) ** 2 + (col - center.col) ** 2
     )
     // Normalize and apply delay
     const baseDelay = (distance / maxDistance) * delay
@@ -62,13 +62,13 @@ export const PixelLoader = ({
   return (
     <div className="pointer-events-none absolute top-0 left-0 flex h-full w-full flex-col">
       {Array.from({ length: rows }).map((_, row) => (
-        <div key={`row-${row}`} className="flex flex-1 flex-row">
+        <div className="flex flex-1 flex-row" key={`row-${row}`}>
           {Array.from({ length: columns }).map((_, column) => (
             <motion.div
-              key={`column-${column}`}
+              animate={{ opacity: 0 }}
               className="h-[unset] flex-1 bg-foreground"
               initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
+              key={`column-${column}`}
               transition={{ duration, delay: getDelay(row, column) }}
             />
           ))}

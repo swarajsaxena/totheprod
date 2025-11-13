@@ -1,13 +1,5 @@
 "use client"
 
-import { contentMap } from "@/app/components/[id]/constants"
-import {
-  RaycastCommandMenuContent,
-  RaycastCommandMenuDialog,
-  RaycastCommandMenuInput,
-  RaycastCommandMenuItem,
-  RaycastCommandMenuSection,
-} from "@/components/ui/totheprod-ui/raycast-command-menu/raycast-command-menu"
 import {
   BlockGameIcon,
   ComputerIcon,
@@ -17,8 +9,17 @@ import {
   Sun02Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { useTheme } from "next-themes"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { useTheme } from "next-themes"
+import { contentMap } from "@/app/components/[id]/constants"
+import {
+  RaycastCommandMenuContent,
+  RaycastCommandMenuDialog,
+  RaycastCommandMenuInput,
+  RaycastCommandMenuItem,
+  RaycastCommandMenuSection,
+} from "@/components/ui/totheprod-ui/raycast-command-menu/raycast-command-menu"
 
 export const GlobalCommandMenu = () => {
   const router = useRouter()
@@ -50,22 +51,22 @@ export const GlobalCommandMenu = () => {
   const themeItems = (() => {
     if (theme === "system") {
       return [toggleThemeItem]
-    } else if (theme === "dark") {
-      return [toggleThemeItem, systemThemeItem]
-    } else {
+    }
+    if (theme === "dark") {
       return [toggleThemeItem, systemThemeItem]
     }
+    return [toggleThemeItem, systemThemeItem]
   })()
 
   return (
     <RaycastCommandMenuDialog
       className="backdrop-blur-xl dark:bg-muted/75"
-      title="Command Menu"
       description="Search for apps, commands, and actions"
+      title="Command Menu"
     >
       <RaycastCommandMenuInput
-        placeholder="Search for commands..."
         askAiLabel={false}
+        placeholder="Search for commands..."
       />
       <RaycastCommandMenuContent emptyText="No commands found.">
         <RaycastCommandMenuSection title="Theme">
@@ -75,18 +76,18 @@ export const GlobalCommandMenu = () => {
         </RaycastCommandMenuSection>
         <RaycastCommandMenuSection title="Socials">
           <RaycastCommandMenuItem
-            id="twitter"
             icon={<HugeiconsIcon icon={NewTwitterIcon} />}
-            title="Twitter"
+            id="twitter"
             onSelect={() => window.open("https://x.com/totheprod", "_blank")}
+            title="Twitter"
           />
           <RaycastCommandMenuItem
-            id="github"
             icon={<HugeiconsIcon icon={GithubIcon} />}
-            title="GitHub"
+            id="github"
             onSelect={() =>
               window.open("https://github.com/totheprod", "_blank")
             }
+            title="GitHub"
           />
         </RaycastCommandMenuSection>
 
@@ -97,25 +98,27 @@ export const GlobalCommandMenu = () => {
           >
             {section.items.map((item) => (
               <RaycastCommandMenuItem
-                key={item.id}
-                id={item.id}
-                icon={
-                  "logo" in item && item.logo ? (
-                    <img
-                      src={item.logo}
-                      alt={item.title}
-                      width={16}
-                      height={16}
-                    />
-                  ) : section.icon ? (
-                    section.icon
-                  ) : (
-                    <HugeiconsIcon icon={BlockGameIcon} />
-                  )
-                }
-                title={item.title}
                 description={item.description}
+                icon={(() => {
+                  if ("logo" in item && item.logo) {
+                    return (
+                      <Image
+                        alt={item.title}
+                        height={16}
+                        src={item.logo}
+                        width={16}
+                      />
+                    )
+                  }
+                  if (section.icon) {
+                    return section.icon
+                  }
+                  return <HugeiconsIcon icon={BlockGameIcon} />
+                })()}
+                id={item.id}
+                key={item.id}
                 onSelect={() => router.push(`/components/${item.id}`)}
+                title={item.title}
               />
             ))}
           </RaycastCommandMenuSection>

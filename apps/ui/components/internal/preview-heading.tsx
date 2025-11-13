@@ -1,10 +1,10 @@
 "use client"
 
-import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
-import { ThemeLogo } from "./ThemeLogo"
+import { cn } from "@/lib/utils"
+import { ThemeLogo } from "./theme-logo"
 
-interface PreviewHeadingProps {
+type PreviewHeadingProps = {
   title: string
   description?: string
   className?: string
@@ -16,32 +16,32 @@ const PreviewHeading = ({
   className,
 }: PreviewHeadingProps) => (
   <motion.div
-    initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ duration: 0.5 }}
     className={cn("mt-4 mb-2 flex flex-col items-center", className ?? "")}
+    initial={{ opacity: 0 }}
+    transition={{ duration: 0.5 }}
   >
     <motion.div
-      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
     >
-      <ThemeLogo className="mb-3" alt="logo" width={30} height={30} />
+      <ThemeLogo alt="logo" className="mb-3" height={30} width={30} />
     </motion.div>
     <motion.h1
-      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
       className="text-center font-heading font-medium text-muted-foreground text-sm"
+      initial={{ opacity: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
     >
       {title}
     </motion.h1>
     {description && (
       <motion.p
-        initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
         className="max-w-xs text-center text-muted-foreground/75 text-sm"
+        initial={{ opacity: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
       >
         {description}
       </motion.p>

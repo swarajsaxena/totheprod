@@ -1,8 +1,8 @@
 "use client"
 
-import { GlobalCommandMenu } from "@/components/internal/GlobalCommandMenu"
+import type * as React from "react"
+import { GlobalCommandMenu } from "@/components/internal/global-command-menu"
 import { RaycastCommandMenuProvider } from "@/components/ui/totheprod-ui/raycast-command-menu/raycast-command-menu"
-import * as React from "react"
 
 export const CommandMenuProvider = ({
   children,
@@ -10,7 +10,7 @@ export const CommandMenuProvider = ({
   children: React.ReactNode
 }) => {
   return (
-    <RaycastCommandMenuProvider shortcut="mod+k" actionsShortcut="alt+k">
+    <RaycastCommandMenuProvider actionsShortcut="alt+k" shortcut="mod+k">
       <GlobalCommandMenu />
       {children}
     </RaycastCommandMenuProvider>
