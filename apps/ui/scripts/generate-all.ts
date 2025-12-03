@@ -10,8 +10,11 @@
 import { execSync } from "node:child_process"
 import { existsSync } from "node:fs"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 
-const ROOT_DIR = path.join(import.meta.dir, "..")
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const ROOT_DIR = path.join(__dirname, "..")
 
 const runScript = (scriptName: string, description: string) => {
   console.log(`\n📦 ${description}...`)
