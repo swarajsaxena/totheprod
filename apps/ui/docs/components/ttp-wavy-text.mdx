@@ -1,0 +1,66 @@
+# Wavy Text
+
+An animated text component that creates a smooth wave effect, perfect for attention-grabbing headings and callouts.
+
+## Features
+
+- 🌊 **Wave Animation** - Smooth, fluid wave motion
+- ⚡ **Performance** - GPU-accelerated animations
+- 🎨 **Customizable** - Control speed, amplitude, and more
+- ♿ **Accessible** - Respects prefers-reduced-motion
+
+## Installation
+
+```bash
+npm install motion
+```
+
+## Usage
+
+```tsx
+import { WavyText } from '@/components/ui/totheprod-ui/ttp-wavy-text'
+
+export const Hero = () => {
+  return (
+    <h1>
+      <WavyText text="Welcome to our site!" />
+    </h1>
+  )
+}
+```
+
+## Props
+
+| Prop     | Type   | Default | Description                   |
+| -------- | ------ | ------- | ----------------------------- |
+| text     | string | -       | Text to animate               |
+| duration | number | 1       | Animation duration in seconds |
+| delay    | number | 0       | Delay between each letter     |
+
+## Examples
+
+### Basic Usage
+
+```tsx
+<WavyText text="Hello World!" />
+```
+
+### Custom Speed
+
+```tsx
+<WavyText text="Fast Wave" duration={0.5} />
+```
+
+### With Delay
+
+```tsx
+<WavyText text="Delayed Animation" delay={0.05} />
+```
+
+## Accessibility
+
+The component automatically respects user preferences:
+
+- Reduces animation for users with `prefers-reduced-motion`
+- Maintains text readability throughout animation
+- Preserves semantic HTML structure

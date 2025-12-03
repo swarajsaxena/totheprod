@@ -2,7 +2,7 @@
 
 import type * as React from "react"
 import { GlobalCommandMenu } from "@/components/internal/global-command-menu"
-import { RaycastCommandMenuProvider } from "@/components/ui/totheprod-ui/raycast-command-menu/raycast-command-menu"
+import { RaycastCommandMenuProvider } from "@/components/ui/totheprod-ui/ttp-raycast-command-menu"
 
 export const CommandMenuProvider = ({
   children,

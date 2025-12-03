@@ -1,0 +1,90 @@
+# Text Scramble
+
+An animated text component that creates a scrambling effect where characters cycle through random characters before revealing the original text, perfect for attention-grabbing headings and dynamic text reveals.
+
+## Features
+
+- 🔀 **Character Scramble** - Cycles through random characters before revealing
+- ⚡ **Sequential Reveal** - Characters reveal one after another
+- 🎨 **Customizable** - Control duration, speed, and character set
+- 🎯 **Trigger Control** - Start animation on mount or via trigger prop
+
+## Installation
+
+No additional dependencies required - uses React hooks.
+
+## Usage
+
+```tsx
+import { TextScramble } from '@/components/ui/totheprod-ui/ttp-text-scramble'
+
+export const Hero = () => {
+  return (
+    <h1>
+      <TextScramble text="Welcome to ToTheProd" />
+    </h1>
+  )
+}
+```
+
+## Props
+
+| Prop          | Type       | Default | Description                                |
+| ------------- | ---------- | ------- | ------------------------------------------ |
+| text          | string     | -       | Text to scramble and reveal                |
+| className     | string     | -       | CSS class for the container                |
+| charClassName | string     | -       | CSS class for individual characters        |
+| duration      | number     | 2000    | Total animation duration in milliseconds   |
+| scrambleSpeed | number     | 50      | Speed of character changes in milliseconds |
+| trigger       | boolean    | true    | Whether to trigger the animation           |
+| onComplete    | () => void | -       | Callback when animation completes          |
+
+## Examples
+
+### Basic Usage
+
+```tsx
+<TextScramble text="Hello World!" />
+```
+
+### Custom Duration
+
+```tsx
+<TextScramble text="Fast Scramble" duration={1000} />
+```
+
+### With Trigger Control
+
+```tsx
+const [trigger, setTrigger] = useState(false)
+
+return (
+  <>
+    <TextScramble
+      text="Click to reveal"
+      trigger={trigger}
+      onComplete={() => console.log('Done!')}
+    />
+    <button onClick={() => setTrigger(true)}>Start Animation</button>
+  </>
+)
+```
+
+### Custom Styling
+
+```tsx
+<TextScramble text="Styled Text" className="text-4xl font-bold" charClassName="text-blue-500" />
+```
+
+## How It Works
+
+1. Each character starts hidden
+2. Characters reveal sequentially from left to right
+3. Each character cycles through random characters before settling on the final character
+4. The scrambling creates a decryption-like effect
+
+## Accessibility
+
+- Maintains semantic HTML structure
+- Text remains readable by screen readers
+- No motion interference with assistive technologies

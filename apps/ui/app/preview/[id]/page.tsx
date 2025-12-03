@@ -17,7 +17,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const PreviewComponent = component.preview
   return (
     <div
-      className="no-preview-padding relative flex h-full min-h-screen flex-col items-center overflow-auto bg-secondary *:flex-1"
+      className="relative flex h-full min-h-screen flex-col items-center overflow-auto bg-secondary *:flex-1"
       id="preview-scroll-container"
     >
       {PreviewComponent ? <PreviewComponent /> : null}

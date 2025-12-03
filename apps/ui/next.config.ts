@@ -4,6 +4,9 @@ import type { NextConfig } from "next"
 const nextConfig: NextConfig = {
   // Configure `pageExtensions` to include MDX files
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  experimental: {
+    mcpServer: true,
+  },
   // Optionally, add any other Next.js config below
 }
 

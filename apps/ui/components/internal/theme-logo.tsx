@@ -1,8 +1,13 @@
 import { motion } from "motion/react"
-import { type ComponentProps, useEffect, useState } from "react"
+import { type ComponentPropsWithoutRef, useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
-export const ThemeLogo = (props: ComponentProps<typeof motion.img>) => {
+type ThemeLogoProps = ComponentPropsWithoutRef<typeof motion.svg> & {
+  alt?: string
+  layoutId?: string
+}
+
+export const ThemeLogo = (props: ThemeLogoProps) => {
   const [_mounted, setMounted] = useState(false)
 
   useEffect(() => {

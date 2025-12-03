@@ -6,11 +6,13 @@ import {
   GithubIcon,
   MoonIcon,
   NewTwitterIcon,
+  SidebarLeft01FreeIcons,
   Sun02Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { useAtom } from "jotai"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 import { contentMap } from "@/app/components/[id]/constants"
 import {
@@ -19,11 +21,15 @@ import {
   RaycastCommandMenuInput,
   RaycastCommandMenuItem,
   RaycastCommandMenuSection,
-} from "@/components/ui/totheprod-ui/raycast-command-menu/raycast-command-menu"
+} from "@/components/ui/totheprod-ui/ttp-raycast-command-menu"
+import { sidebarOpenAtom } from "@/store/atoms"
 
 export const GlobalCommandMenu = () => {
   const router = useRouter()
   const { setTheme, theme } = useTheme()
+  const pathname = usePathname()
+  const [sidebarOpen, setSidebarOpen] = useAtom(sidebarOpenAtom)
+  const isComponentPage = pathname.startsWith("/components/")
 
   const handleSystemTheme = () => {
     setTheme("system")
@@ -69,6 +75,18 @@ export const GlobalCommandMenu = () => {
         placeholder="Search for commands..."
       />
       <RaycastCommandMenuContent emptyText="No commands found.">
+        {isComponentPage && (
+          <RaycastCommandMenuSection title="Navigation">
+            <RaycastCommandMenuItem
+              description={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
+              icon={<HugeiconsIcon icon={SidebarLeft01FreeIcons} />}
+              id="toggle-sidebar"
+              onSelect={() => setSidebarOpen(!sidebarOpen)}
+              shortcut="mod+b"
+              title={sidebarOpen ? "Hide Sidebar" : "Show Sidebar"}
+            />
+          </RaycastCommandMenuSection>
+        )}
         <RaycastCommandMenuSection title="Theme">
           {themeItems.map((item) => (
             <RaycastCommandMenuItem key={item.id} {...item} />

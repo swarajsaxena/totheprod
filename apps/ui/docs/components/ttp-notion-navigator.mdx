@@ -1,0 +1,155 @@
+# Notion Navigator
+
+A beautiful, hierarchical navigation component inspired by Notion's sidebar navigation.
+
+## Features
+
+- 🎨 **Smooth Animations** - Fluid expand/collapse transitions for sections and nested pages
+- 📁 **Hierarchical Structure** - Support for nested pages with unlimited depth
+- 🎯 **Active State** - Visual indication of the currently active page
+- ⚡ **Collapsible Sections** - Organize pages into collapsible sections
+- 🎨 **Customizable** - Fully customizable with Tailwind classes and props
+- ♿ **Accessible** - Keyboard navigable and ARIA-compliant
+
+## Installation
+
+```bash
+npm install motion @hugeicons/react @hugeicons/core-free-icons
+```
+
+## Usage
+
+```tsx
+import { TtpNotionNavigator } from '@/components/ui/totheprod-ui/ttp-notion-navigator'
+import type { NotionSection } from '@/components/ui/totheprod-ui/ttp-notion-navigator'
+
+const sections: NotionSection[] = [
+  {
+    id: "workspace",
+    title: "Workspace",
+    isCollapsible: true,
+    defaultCollapsed: false,
+    pages: [
+      {
+        id: "page-1",
+        title: "Getting Started",
+        href: "/getting-started",
+        isActive: true,
+      },
+      {
+        id: "page-2",
+        title: "Project Planning",
+        href: "/project-planning",
+        children: [
+          {
+            id: "page-2-1",
+            title: "Sprint 1",
+            href: "/sprint-1",
+          },
+        ],
+      },
+    ],
+  },
+]
+
+export const App = () => {
+  return <TtpNotionNavigator sections={sections} />
+}
+```
+
+## Props
+
+### TtpNotionNavigator
+
+| Prop              | Type            | Default | Description                                    |
+| ----------------- | --------------- | ------- | ---------------------------------------------- |
+| sections          | NotionSection[] | -       | Array of sections to display                   |
+| className         | string          | -       | Additional CSS classes for the container       |
+| width             | string          | "240px" | Width of the navigator sidebar                 |
+| backgroundColor   | string          | -       | Background color override                      |
+| textColor         | string          | -       | Text color override                            |
+| showSectionTitles | boolean         | true    | Whether to show section titles                 |
+
+### NotionSection
+
+| Prop            | Type         | Default | Description                                    |
+| --------------- | ------------ | ------- | ---------------------------------------------- |
+| id              | string       | -       | Unique identifier for the section              |
+| title           | string       | -       | Section title (optional)                       |
+| pages           | NotionPage[] | -       | Array of pages in this section                |
+| isCollapsible   | boolean      | -       | Whether the section can be collapsed           |
+| defaultCollapsed| boolean      | false   | Whether the section starts collapsed           |
+
+### NotionPage
+
+| Prop     | Type         | Default | Description                                    |
+| -------- | ------------ | ------- | ---------------------------------------------- |
+| id       | string       | -       | Unique identifier for the page                 |
+| title    | string       | -       | Page title                                     |
+| href     | string       | -       | Link destination (optional)                    |
+| icon     | ReactNode    | -       | Custom icon (optional)                         |
+| children | NotionPage[] | -       | Nested child pages (optional)                  |
+| isActive | boolean      | false   | Whether this page is currently active          |
+
+## Examples
+
+### Basic Usage
+
+```tsx
+<TtpNotionNavigator
+  sections={[
+    {
+      id: "main",
+      pages: [
+        { id: "1", title: "Home", href: "/" },
+        { id: "2", title: "About", href: "/about" },
+      ],
+    },
+  ]}
+/>
+```
+
+### With Nested Pages
+
+```tsx
+<TtpNotionNavigator
+  sections={[
+    {
+      id: "workspace",
+      title: "Workspace",
+      pages: [
+        {
+          id: "project",
+          title: "Project",
+          children: [
+            { id: "sprint-1", title: "Sprint 1", href: "/sprint-1" },
+            { id: "sprint-2", title: "Sprint 2", href: "/sprint-2" },
+          ],
+        },
+      ],
+    },
+  ]}
+/>
+```
+
+### Custom Styling
+
+```tsx
+<TtpNotionNavigator
+  sections={sections}
+  width="280px"
+  className="border-r-2 border-primary"
+  showSectionTitles={false}
+/>
+```
+
+## Best Practices
+
+> **Tip**: Use meaningful IDs and titles for better organization and accessibility.
+
+- Keep section titles concise
+- Limit nesting depth to 3-4 levels for better UX
+- Use `isActive` prop to indicate the current page
+- Consider using custom icons for important pages
+- Use collapsible sections for better organization of large navigation structures
+

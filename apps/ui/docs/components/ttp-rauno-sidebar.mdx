@@ -1,0 +1,55 @@
+# Rauno Sidebar
+
+A beautiful, collapsible sidebar component inspired by Rauno's design principles.
+
+## Features
+
+- 🎨 **Smooth Animations** - Fluid expand/collapse transitions
+- 📱 **Responsive** - Works on all screen sizes
+- ⚡ **Performance** - Optimized for smooth interactions
+- 🎯 **Accessible** - ARIA-compliant and keyboard navigable
+
+## Installation
+
+```bash
+npm install motion
+```
+
+## Usage
+
+```tsx
+import { RaunoSidebar } from '@/components/ui/totheprod-ui/ttp-rauno-sidebar'
+
+export const App = () => {
+  return <RaunoSidebar />
+}
+```
+
+## Props
+
+| Prop     | Type     | Default | Description            |
+| -------- | -------- | ------- | ---------------------- |
+| open     | boolean  | false   | Controls sidebar state |
+| onToggle | function | -       | Callback when toggled  |
+
+## Customization
+
+You can customize the sidebar using Tailwind classes or by modifying the component directly.
+
+### Example with Custom Styling
+
+```tsx
+<RaunoSidebar
+  className="bg-primary text-primary-foreground"
+  open={isOpen}
+  onToggle={(state) => setIsOpen(state)}
+/>
+```
+
+## Best Practices
+
+> **Tip**: Keep the sidebar content minimal for better mobile experience.
+
+- Use clear labels for navigation items
+- Implement keyboard shortcuts for power users
+- Consider adding tooltips for collapsed state

@@ -4,7 +4,7 @@
   "homepage": "https://ui.totheprod.com",
   "items": [
     {
-      "name": "rauno-sidebar",
+      "name": "ttp-rauno-sidebar",
       "type": "registry:block",
       "title": "Rauno Sidebar",
       "description": "A sidebar component with sections.",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "name": "wavy-text",
+      "name": "ttp-wavy-text",
       "type": "registry:block",
       "title": "Wavy Text",
       "description": "A wavy text component.",
@@ -29,7 +29,7 @@
       "dependencies": ["motion"]
     },
     {
-      "name": "horizontal-fade-in",
+      "name": "ttp-horizontal-fade-in",
       "type": "registry:block",
       "title": "Horizontal Fade In",
       "description": "A horizontal fade text component.",
@@ -40,6 +40,18 @@
         }
       ],
       "dependencies": ["motion"]
+    },
+    {
+      "name": "ttp-lando-norris-table",
+      "type": "registry:block",
+      "title": "Lando Norris Table",
+      "description": "A beautiful table component with hover effects and clickable rows.",
+      "files": [
+        {
+          "path": "components/ui/totheprod-ui/lando-norris-table/lando-norris-table.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,88 @@
+# Perspective Carousel
+
+A stunning 3D carousel component with perspective effects that creates an immersive browsing experience.
+
+## Features
+
+- 🎭 **3D Perspective** - Dynamic depth and dimension
+- 🎨 **Smooth Transitions** - Fluid card movements
+- 👆 **Touch Support** - Swipe gestures on mobile
+- ⌨️ **Keyboard Nav** - Arrow key navigation
+
+## Installation
+
+```bash
+npm install motion embla-carousel-react
+```
+
+## Usage
+
+```tsx
+import { PerspectiveCarousel } from '@/components/ui/totheprod-ui/ttp-perspective-carousel'
+
+const items = [
+  { id: 1, title: 'Item 1', image: '/image1.jpg' },
+  { id: 2, title: 'Item 2', image: '/image2.jpg' },
+  { id: 3, title: 'Item 3', image: '/image3.jpg' },
+]
+
+export const Gallery = () => {
+  return <PerspectiveCarousel items={items} />
+}
+```
+
+## Props
+
+| Prop        | Type    | Default | Description               |
+| ----------- | ------- | ------- | ------------------------- |
+| items       | array   | []      | Array of items to display |
+| autoplay    | boolean | false   | Enable autoplay           |
+| interval    | number  | 3000    | Autoplay interval in ms   |
+| perspective | number  | 1000    | Perspective depth value   |
+
+## Examples
+
+### Basic Carousel
+
+```tsx
+<PerspectiveCarousel items={galleryItems} />
+```
+
+### With Autoplay
+
+```tsx
+<PerspectiveCarousel items={galleryItems} autoplay={true} interval={5000} />
+```
+
+### Custom Perspective
+
+```tsx
+<PerspectiveCarousel items={galleryItems} perspective={1500} />
+```
+
+## Styling
+
+The carousel uses CSS transforms for the 3D effect:
+
+```css
+.carousel-item {
+  transform: perspective(1000px) rotateY(var(--rotation));
+}
+```
+
+## Keyboard Controls
+
+- **←** Previous item
+- **→** Next item
+- **Space** Pause/Resume autoplay
+- **Home** First item
+- **End** Last item
+
+## Best Practices
+
+> **Performance Tip**: Optimize images before using them in the carousel to ensure smooth animations.
+
+- Use images with consistent aspect ratios
+- Implement lazy loading for large galleries
+- Consider using WebP format for better performance
+- Limit the number of visible items on mobile

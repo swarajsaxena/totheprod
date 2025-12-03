@@ -1,0 +1,130 @@
+# Lando Norris Table
+
+A beautiful, accessible table component with smooth hover effects and interactive rows.
+
+## Features
+
+- 🎨 **Beautiful Design** - Clean, modern table styling
+- 📱 **Responsive** - Works on all screen sizes
+- ⚡ **Interactive** - Clickable rows with hover effects
+- 🎯 **Accessible** - ARIA-compliant and keyboard navigable
+- 🎭 **Customizable** - Easy to style with Tailwind classes
+
+## Installation
+
+No additional dependencies required. Uses Tailwind CSS for styling.
+
+## Usage
+
+```tsx
+import {
+  LandoNorrisTable,
+  LandoNorrisTableHeader,
+  LandoNorrisTableBody,
+  LandoNorrisTableRow,
+  LandoNorrisTableCell,
+} from '@/components/ui/totheprod-ui/ttp-lando-norris-table'
+
+export const App = () => {
+  return (
+    <LandoNorrisTable>
+      <LandoNorrisTableHeader>
+        <LandoNorrisTableRow>
+          <LandoNorrisTableCell header>Name</LandoNorrisTableCell>
+          <LandoNorrisTableCell header>Email</LandoNorrisTableCell>
+          <LandoNorrisTableCell header>Role</LandoNorrisTableCell>
+        </LandoNorrisTableRow>
+      </LandoNorrisTableHeader>
+      <LandoNorrisTableBody>
+        <LandoNorrisTableRow>
+          <LandoNorrisTableCell>John Doe</LandoNorrisTableCell>
+          <LandoNorrisTableCell>john@example.com</LandoNorrisTableCell>
+          <LandoNorrisTableCell>Developer</LandoNorrisTableCell>
+        </LandoNorrisTableRow>
+      </LandoNorrisTableBody>
+    </LandoNorrisTable>
+  )
+}
+```
+
+## Components
+
+### LandoNorrisTable
+
+The main table container component.
+
+| Prop      | Type        | Default | Description              |
+| --------- | ----------- | ------- | ------------------------ |
+| className | string      | -       | Additional CSS classes   |
+| children  | ReactNode   | -       | Table content            |
+
+### LandoNorrisTableHeader
+
+The table header section.
+
+| Prop      | Type        | Default | Description              |
+| --------- | ----------- | ------- | ------------------------ |
+| className | string      | -       | Additional CSS classes   |
+| children  | ReactNode   | -       | Header rows              |
+
+### LandoNorrisTableBody
+
+The table body section.
+
+| Prop      | Type        | Default | Description              |
+| --------- | ----------- | ------- | ------------------------ |
+| className | string      | -       | Additional CSS classes   |
+| children  | ReactNode   | -       | Body rows                |
+
+### LandoNorrisTableRow
+
+A table row component.
+
+| Prop      | Type        | Default | Description              |
+| --------- | ----------- | ------- | ------------------------ |
+| className | string      | -       | Additional CSS classes   |
+| children  | ReactNode   | -       | Row cells                |
+| onClick   | function    | -       | Click handler (optional) |
+
+### LandoNorrisTableCell
+
+A table cell component.
+
+| Prop      | Type        | Default | Description              |
+| --------- | ----------- | ------- | ------------------------ |
+| className | string      | -       | Additional CSS classes   |
+| children  | ReactNode   | -       | Cell content             |
+| header    | boolean     | false   | Whether it's a header cell |
+
+## Examples
+
+### Clickable Rows
+
+```tsx
+<LandoNorrisTableRow
+  onClick={() => handleRowClick(data.id)}
+>
+  <LandoNorrisTableCell>{data.name}</LandoNorrisTableCell>
+  <LandoNorrisTableCell>{data.email}</LandoNorrisTableCell>
+</LandoNorrisTableRow>
+```
+
+### Custom Styling
+
+```tsx
+<LandoNorrisTable className="max-w-4xl">
+  <LandoNorrisTableHeader className="bg-primary/10">
+    {/* Header content */}
+  </LandoNorrisTableHeader>
+</LandoNorrisTable>
+```
+
+## Best Practices
+
+> **Tip**: Use clickable rows for interactive data tables where users need to select or navigate to details.
+
+- Keep table headers clear and descriptive
+- Use consistent cell alignment for better readability
+- Consider adding loading states for data-heavy tables
+- Implement keyboard navigation for accessibility
+

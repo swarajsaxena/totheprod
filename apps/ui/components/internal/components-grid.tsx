@@ -27,7 +27,7 @@ export const ComponentsGrid = ({ contentMap }: ComponentsGridProps) => {
     <div className="mx-auto flex w-full flex-col">
       {contentMap.map((item) => (
         <div
-          className="group mx-auto flex w-full flex-col border-t border-dashed last:border-b"
+          className="mx-auto flex w-full flex-col border-t border-dashed last:border-b"
           key={item.section}
         >
           <div className="relative flex w-full flex-col gap-4 border-b border-dashed bg-secondary/20 px-4 dark:bg-background/20">

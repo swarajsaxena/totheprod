@@ -1,0 +1,128 @@
+# Home Blurred Nav
+
+A beautiful navigation bar with blurred background effect, perfect for home pages and modern web applications.
+
+## Features
+
+- 🎨 **Blurred Background** - Elegant backdrop blur effect
+- ✨ **Smooth Animations** - Fluid hover transitions
+- 📱 **Responsive** - Works on all screen sizes
+- 🎯 **Customizable** - Control blur intensity and opacity
+- 📌 **Sticky Support** - Optional sticky positioning
+
+## Installation
+
+```bash
+npm install motion
+```
+
+## Usage
+
+```tsx
+import { TtpHomeBlurredNav } from '@/components/ui/totheprod-ui/ttp-home-blurred-nav'
+
+export const HomePage = () => {
+  return (
+    <TtpHomeBlurredNav
+      brand='My Brand'
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'About', href: '/about' },
+        { label: 'Services', href: '/services' },
+        { label: 'Contact', href: '/contact' },
+      ]}
+    />
+  )
+}
+```
+
+## Props
+
+| Prop                | Type              | Default | Description                 |
+| ------------------- | ----------------- | ------- | --------------------------- |
+| `items`             | `NavItem[]`       | -       | Array of navigation items   |
+| `brand`             | `React.ReactNode` | -       | Brand/logo text or element  |
+| `className`         | `string`          | -       | Additional CSS classes      |
+| `itemClassName`     | `string`          | -       | CSS classes for nav items   |
+| `showBlur`          | `boolean`         | `true`  | Whether to show blur effect |
+| `blurIntensity`     | `number`          | `12`    | Blur intensity in pixels    |
+| `backgroundOpacity` | `number`          | `0.8`   | Background opacity (0-1)    |
+| `sticky`            | `boolean`         | `true`  | Whether nav is sticky       |
+
+### NavItem Type
+
+```ts
+type NavItem = {
+  label: string
+  href: string
+}
+```
+
+## Examples
+
+### Basic Usage
+
+```tsx
+<TtpHomeBlurredNav
+  brand='My Brand'
+  items={[
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+  ]}
+/>
+```
+
+### Custom Brand Element
+
+```tsx
+<TtpHomeBlurredNav
+  brand={
+    <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+      Brand
+    </span>
+  }
+  items={[...]}
+/>
+```
+
+### Without Blur
+
+```tsx
+<TtpHomeBlurredNav
+  brand="My Brand"
+  items={[...]}
+  showBlur={false}
+/>
+```
+
+### Custom Blur Intensity
+
+```tsx
+<TtpHomeBlurredNav
+  brand="My Brand"
+  items={[...]}
+  blurIntensity={20}
+  backgroundOpacity={0.9}
+/>
+```
+
+### Non-Sticky Nav
+
+```tsx
+<TtpHomeBlurredNav
+  brand="My Brand"
+  items={[...]}
+  sticky={false}
+/>
+```
+
+## Styling
+
+The component uses Tailwind CSS and respects your theme configuration. The blur effect uses CSS `backdrop-filter` for optimal performance.
+
+## Best Practices
+
+- Use the blur effect for modern, glassmorphic designs
+- Adjust `backgroundOpacity` based on your content contrast needs
+- Consider using `sticky={false}` for full-page layouts
+- Customize the brand element to match your design system

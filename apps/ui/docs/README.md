@@ -7,11 +7,11 @@ This directory contains MDX documentation files for all UI components.
 ```
 docs/
 └── components/
-    ├── rauno-sidebar.mdx
-    ├── pixel-loader.mdx
-    ├── wavy-text.mdx
-    ├── horizontal-fade-in.mdx
-    └── perspective-carousel.mdx
+    ├── ttp-rauno-sidebar.mdx
+    ├── ttp-pixel-loader.mdx
+    ├── ttp-wavy-text.mdx
+    ├── ttp-horizontal-fade-in.mdx
+    └── ttp-perspective-carousel.mdx
 ```
 
 ## Adding New Documentation

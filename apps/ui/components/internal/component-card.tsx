@@ -43,7 +43,7 @@ export const ComponentCard = ({
           controls={false}
           loop
           muted
-          src={`/component-videos/${id}${mounted && theme === "dark" ? "-dark" : ""}.mov`}
+          src={`/component-videos/${id.startsWith("ttp-") ? id.slice(4) : id}${mounted && theme === "dark" ? "-dark" : ""}.mov`}
         />
       </div>
       <div className="absolute inset-0 flex flex-col items-start justify-end bg-linear-to-bl from-transparent via-background/75 to-background p-6 font-medium transition-all group-hover:opacity-50">

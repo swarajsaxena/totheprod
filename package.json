@@ -6,7 +6,7 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "start": "turbo run start",
-    "lint": "bunx ultracite@latest check",
+    "lint": "bun run biome:lint && bunx ultracite@latest check",
     "clean": "turbo run clean",
     "ui:add": "cd apps/ui && bun add",
     "biome:check": "biome check .",
