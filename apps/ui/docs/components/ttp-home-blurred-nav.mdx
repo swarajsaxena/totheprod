@@ -38,7 +38,15 @@ export const HomePage = () => {
 
 ## Props
 
-| Prop                | Type              | Default | Description                 |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `children` | `React.ReactNode` | - | ✅ | Navigation items as children |
+| `className` | `string | undefined` | - | ❌ | - |
+| `label` | `string` | - | ✅ | - |
+| `href` | `string` | - | ✅ | - |
+| `id` | `string` | - | ✅ | - |
+| `image` | `string` | - | ✅ | - |
+ Type              | Default | Description                 |
 | ------------------- | ----------------- | ------- | --------------------------- |
 | `items`             | `NavItem[]`       | -       | Array of navigation items   |
 | `brand`             | `React.ReactNode` | -       | Brand/logo text or element  |

@@ -1,9 +1,9 @@
-import { ComponentDetails } from "@/components/internal/component-details"
+import { ComponentDetailsTabs } from "@/components/internal/component-details-tabs"
 
 export const ComponentDetailsPanel = () => {
   return (
-    <div className="h-[unset] flex-1 overflow-auto p-8">
-      <ComponentDetails />
+    <div className="flex h-[unset] flex-1 flex-col overflow-hidden">
+      <ComponentDetailsTabs />
     </div>
   )
 }

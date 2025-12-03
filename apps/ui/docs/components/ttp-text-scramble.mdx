@@ -29,7 +29,16 @@ export const Hero = () => {
 
 ## Props
 
-| Prop          | Type       | Default | Description                                |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `text` | `string` | - | ✅ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `charClassName` | `string | undefined` | - | ❌ | - |
+| `duration` | `number | undefined` | - | ❌ | - |
+| `scrambleSpeed` | `number | undefined` | - | ❌ | - |
+| `trigger` | `boolean | undefined` | - | ❌ | - |
+| `onComplete` | `(() => void) | undefined` | - | ❌ | - |
+ Type       | Default | Description                                |
 | ------------- | ---------- | ------- | ------------------------------------------ |
 | text          | string     | -       | Text to scramble and reveal                |
 | className     | string     | -       | CSS class for the container                |

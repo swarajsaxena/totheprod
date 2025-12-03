@@ -59,9 +59,11 @@ export const App = () => {
 
 ## Props
 
-### TtpNotionNavigator
-
-| Prop              | Type            | Default | Description                                    |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `className` | `string | undefined` | - | ❌ | Additional CSS classes to apply to the container |
+| `scrollContainerId` | `string | undefined` | - | ❌ | The ID of the scroll container to use, defaults to "body" |
+ Type            | Default | Description                                    |
 | ----------------- | --------------- | ------- | ---------------------------------------------- |
 | sections          | NotionSection[] | -       | Array of sections to display                   |
 | className         | string          | -       | Additional CSS classes for the container       |

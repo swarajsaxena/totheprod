@@ -73,7 +73,24 @@ export const HeroSection = () => {
 
 ## Props
 
-| Prop              | Type   | Default | Description                                       |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `text` | `string` | - | ✅ | The text to display |
+| `className` | `string | undefined` | - | ❌ | Additional CSS classes to apply to the component |
+| `containerClassName` | `string | undefined` | - | ❌ | Additional CSS classes to apply to the container wrapper |
+| `scrollContainerId` | `string | undefined` | - | ❌ | The scroll container id to use |
+| `overlap` | `number | undefined` | - | ❌ | The overlap percentage between word animations |
+| `scrollOffset` | `ScrollOffset | undefined` | - | ❌ | Scroll offset configuration [start, end]
+- "start end" = element top hits viewport bottom
+- "start start" = element top hits viewport top
+- "start 0.5" = element top hits viewport center
+- Custom values like ["start 100px", "end start"] for pixel offsets |
+| `word` | `string` | - | ✅ | - |
+| `index` | `number` | - | ✅ | - |
+| `scrollYProgress` | `import("/Users/swarajsaxena/github/totheprod/www/node_modules/motion-dom/dist/index").MotionValue<number>` | - | ✅ | - |
+| `start` | `number` | - | ✅ | - |
+| `end` | `number` | - | ✅ | - |
+ Type   | Default | Description                                       |
 | ----------------- | ------ | ------- | ------------------------------------------------- |
 | text              | string | -       | The text content to animate (required)            |
 | scrollContainerId | string | -       | The ID of the scroll container element (required) |

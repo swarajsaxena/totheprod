@@ -52,7 +52,7 @@ const ComponentPage = async ({
   const PreviewComponent = component.preview
 
   return (
-    <ComponentProvider mdxDocs={mdxContent}>
+    <ComponentProvider componentData={component} mdxDocs={mdxContent}>
       {PreviewComponent ? <PreviewComponent /> : null}
     </ComponentProvider>
   )
