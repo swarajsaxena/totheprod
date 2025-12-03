@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises"
 import path from "node:path"
+import type { Metadata } from "next"
 import type React from "react"
+import { generateComponentMetadata } from "@/lib/seo/metadata"
 import { ComponentProvider } from "./_components/component-provider"
 import { contentMap } from "./constants"
 
@@ -10,6 +12,27 @@ export type ComponentData = {
   title: string
   description: string
   docsPath?: string
+}
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> => {
+  const { id } = await params
+
+  const component = contentMap
+    .find((item) => item.items.some((item) => item.id === id))
+    ?.items.find((item) => item.id === id)
+
+  if (!component) {
+    return {
+      title: "Component Not Found",
+      description: "The requested component does not exist.",
+    }
+  }
+
+  return generateComponentMetadata(component)
 }
 
 const getMdxContent = async (
