@@ -10,8 +10,11 @@
 import { execSync } from "node:child_process"
 import { watch } from "node:fs"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 
-const ROOT_DIR = path.join(import.meta.dir, "..")
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const ROOT_DIR = path.join(__dirname, "..")
 
 const WATCH_PATTERNS = [
   path.join(ROOT_DIR, "lib", "component-metadata"),
@@ -21,7 +24,7 @@ const WATCH_PATTERNS = [
 ]
 
 let isGenerating = false
-let debounceTimer: Timer | null = null
+let debounceTimer: NodeJS.Timeout | null = null
 
 const generate = () => {
   if (isGenerating) {
