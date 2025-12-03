@@ -1,18 +1,16 @@
-import {
-  TtpCursorCometPreview,
-  TtpHomeBlurredNavPreview,
-  TtpHorizontalTextRevealPreview,
-  TtpLandoNorrisTablePreview,
-  TtpLayeredNavPreview,
-  TtpNotionNavigatorPreview,
-  TtpPerspectiveCarousel,
-  TtpPixelLoaderPreview,
-  TtpRaunoSidebarPreview,
-  TtpRaycastCommandMenuPreview,
-  TtpTextScramblePreview,
-  TtpWordShufflerPreview,
-} from "@/app/components/[id]/_preview-components"
+import { TtpCursorCometPreview } from "@/components/previews/ttp-cursor-comet/preview"
+import { TtpHomeBlurredNavPreview } from "@/components/previews/ttp-home-blurred-nav/preview"
+import { TtpHorizontalTextRevealPreview } from "@/components/previews/ttp-horizontal-text-reveal/preview"
+import { TtpLandoNorrisTablePreview } from "@/components/previews/ttp-lando-norris-table/preview"
+import { TtpLayeredNavPreview } from "@/components/previews/ttp-layered-nav/preview"
+import { TtpNotionNavigatorPreview } from "@/components/previews/ttp-notion-navigator/preview"
+import { TtpPerspectiveCarousel } from "@/components/previews/ttp-perspective-carousel/preview"
+import { TtpPixelLoaderPreview } from "@/components/previews/ttp-pixel-loader/preview"
+import { TtpRaunoSidebarPreview } from "@/components/previews/ttp-rauno-sidebar/preview"
+import { TtpRaycastCommandMenuPreview } from "@/components/previews/ttp-raycast-command-menu/preview"
+import { TtpTextScramblePreview } from "@/components/previews/ttp-text-scramble/preview"
 import { TtpWavyTextPreview } from "@/components/previews/ttp-wavy-text/preview"
+import { TtpWordShufflerPreview } from "@/components/previews/ttp-word-shuffler/preview"
 import { categories } from "./categories"
 import type { ComponentMetadata } from "./types"
 
