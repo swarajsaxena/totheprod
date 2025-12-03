@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ttp-horizontal-text-reveal",
+  "type": "registry:block",
+  "title": "Horizontal Text Reveal",
+  "description": "Text gradually reveals as you scroll horizontally",
+  "dependencies": ["motion"],
+  "files": [
+    {
+      "path": "components/ui/totheprod-ui/ttp-horizontal-text-reveal.tsx",
+      "content": "\"use client\"\n\nimport { type MotionValue, motion, useScroll, useTransform } from \"motion/react\"\nimport { useEffect, useRef } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Scroll offset types from Framer Motion\n * Based on: https://www.framer.com/motion/scroll-animations/##scroll-offsets\n */\ntype SupportedEdgeUnit = \"px\" | \"vw\" | \"vh\" | \"%\"\ntype EdgeUnit = `${number}${SupportedEdgeUnit}`\ntype NamedEdges = \"start\" | \"end\" | \"center\"\ntype EdgeString = NamedEdges | EdgeUnit | `${number}`\ntype Edge = EdgeString | number\ntype Intersection = `${Edge} ${Edge}`\ntype ProgressIntersection = [number, number]\ntype ScrollOffset = Array<Edge | Intersection | ProgressIntersection>\n\ntype HorizontalFadeInProps = {\n  /**\n   * The text to display\n   */\n  text: string\n  /**\n   * Additional CSS classes to apply to the component\n   */\n  className?: string\n\n  /**\n   * Additional CSS classes to apply to the container wrapper\n   */\n  containerClassName?: string\n\n  /**\n   * The scroll container id to use\n   */\n  scrollContainerId?: string\n\n  /**\n   * The overlap percentage between word animations\n   */\n  overlap?: number\n\n  /**\n   * Scroll offset configuration [start, end]\n   * - \"start end\" = element top hits viewport bottom\n   * - \"start start\" = element top hits viewport top\n   * - \"start 0.5\" = element top hits viewport center\n   * - Custom values like [\"start 100px\", \"end start\"] for pixel offsets\n   * @default [\"start end\", \"end start\"]\n   */\n  scrollOffset?: ScrollOffset\n}\n\ntype WordProps = {\n  word: string\n  index: number\n  scrollYProgress: MotionValue<number>\n  start: number\n  end: number\n}\n\nconst Word = ({ word, index, scrollYProgress, start, end }: WordProps) => {\n  const opacity = useTransform(scrollYProgress, [start, end], [0, 1])\n  const translateX = useTransform(scrollYProgress, [start, end], [1000, 0])\n\n  return (\n    <motion.span\n      className=\"inline-block pl-2\"\n      key={index}\n      style={{\n        opacity,\n        translateX,\n      }}\n    >\n      {word}\n    </motion.span>\n  )\n}\n\nexport const HorizontalTextReveal = ({\n  text,\n  className,\n  containerClassName,\n  scrollContainerId,\n  overlap = 0.3,\n  scrollOffset = [\"start end\", \"end start\"],\n}: HorizontalFadeInProps) => {\n  const targetRef = useRef<HTMLDivElement>(null)\n  const scrollContainerRef = useRef<HTMLElement | null>(null)\n\n  useEffect(() => {\n    if (scrollContainerId) {\n      const container = document.getElementById(scrollContainerId)\n      scrollContainerRef.current = container\n    }\n  }, [scrollContainerId])\n\n  const { scrollYProgress } = useScroll({\n    target: targetRef,\n    container: scrollContainerRef,\n    offset: scrollOffset,\n  })\n\n  const words = text.split(\" \")\n\n  return (\n    <div className={cn(\"w-full\", containerClassName)} ref={targetRef}>\n      <div className={cn(\"w-full font-medium text-5xl\", className)}>\n        {words.map((word, index) => {\n          const start = (index / words.length) * (1 - overlap)\n          const end = ((index + 1) / words.length) * (1 - overlap) + overlap\n\n          return (\n            <Word\n              end={end}\n              index={index}\n              key={index}\n              scrollYProgress={scrollYProgress}\n              start={start}\n              word={word}\n            />\n          )\n        })}\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "category": "magic-scrolling",
+    "tags": ["scroll", "text", "reveal", "horizontal"],
+    "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-horizontal-text-reveal.json"
+  }
+}

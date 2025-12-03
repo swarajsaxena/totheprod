@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ttp-pixel-loader",
+  "type": "registry:block",
+  "title": "Pixel Loader",
+  "description": "Cinematic pixelated transition for page load effects",
+  "dependencies": ["motion", "framer-motion"],
+  "files": [
+    {
+      "path": "components/ui/totheprod-ui/ttp-pixel-loader.tsx",
+      "content": "\"use client\"\n\nimport { motion } from \"framer-motion\"\nimport { useMemo } from \"react\"\n\ntype PixelLoaderProps = {\n  /**\n   * The number of rows to display (default is 25)\n   */\n  rows?: number\n  /**\n   * The number of columns to display (default is 25)\n   */\n  columns?: number\n  /**\n   * The duration of the animation (default is 0.1 seconds)\n   */\n  duration?: number\n  /**\n   * The delay of the animation (default is 0.5 seconds)\n   */\n  delay?: number\n  /**\n   * The amount of randomness to apply to the circumference (default is 0.3, which is ±15%)\n   */\n  randomness?: number\n}\n\nexport const PixelLoader = ({\n  rows = 25,\n  columns = 25,\n  duration = 0,\n  delay = 1,\n  randomness = 0.3,\n}: PixelLoaderProps) => {\n  // Pick a random center point once\n  const center = useMemo(\n    () => ({\n      row: Math.floor(Math.random() * rows),\n      col: Math.floor(Math.random() * columns),\n    }),\n    [rows, columns]\n  )\n\n  // Calculate the maximum possible distance for normalization\n  const maxDistance = useMemo(() => {\n    return Math.sqrt(rows ** 2 + columns ** 2)\n  }, [rows, columns])\n\n  const getDelay = (row: number, col: number) => {\n    // Calculate Euclidean distance from the center\n    const distance = Math.sqrt(\n      (row - center.row) ** 2 + (col - center.col) ** 2\n    )\n    // Normalize and apply delay\n    const baseDelay = (distance / maxDistance) * delay\n    // Add randomness to make the circumference less perfect\n    const variation = (Math.random() - 0.5) * randomness\n    return baseDelay * (1 + variation)\n  }\n\n  return (\n    <div className=\"pointer-events-none absolute top-0 left-0 flex h-full w-full flex-col\">\n      {Array.from({ length: rows }).map((_, row) => (\n        <div className=\"flex flex-1 flex-row\" key={`row-${row}`}>\n          {Array.from({ length: columns }).map((_, column) => (\n            <motion.div\n              animate={{ opacity: 0 }}\n              className=\"h-[unset] flex-1 bg-foreground\"\n              initial={{ opacity: 1 }}\n              key={`column-${column}`}\n              transition={{ duration, delay: getDelay(row, column) }}\n            />\n          ))}\n        </div>\n      ))}\n    </div>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "category": "unreal-page-entrances",
+    "tags": ["loader", "transition", "pixel", "animation"],
+    "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-pixel-loader.json"
+  }
+}
