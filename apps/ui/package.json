@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "biome lint .",
     "lint:fix": "biome check --write .",
+    "registry:generate": "bun run scripts/generate-registry.ts",
     "registry:build": "shadcn build"
   },
   "dependencies": {
