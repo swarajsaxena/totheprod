@@ -10,9 +10,9 @@ import {
   TtpRaunoSidebarPreview,
   TtpRaycastCommandMenuPreview,
   TtpTextScramblePreview,
-  TtpWavyTextPreview,
   TtpWordShufflerPreview,
 } from "@/app/components/[id]/_preview-components"
+import { TtpWavyTextPreview } from "@/components/previews/ttp-wavy-text/preview"
 import { categories } from "./categories"
 import type { ComponentMetadata } from "./types"
 
