@@ -2,7 +2,7 @@
 
 import { Link02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import type { ReactNode } from "react"
+import { createElement, type ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
 type HeadingProps = {
@@ -28,7 +28,7 @@ export const Heading = ({
   const textContent = typeof children === "string" ? children : String(children)
   const slug = id || createSlug(textContent)
 
-  const Tag = `h${level}` as keyof JSX.IntrinsicElements
+  const tagName = `h${level}`
 
   const sizeClasses = {
     1: "text-4xl font-bold",
@@ -48,27 +48,30 @@ export const Heading = ({
     6: "mt-2 mb-1",
   }
 
-  return (
-    <Tag
-      className={cn(
+  return createElement(
+    tagName,
+    {
+      className: cn(
         "group relative scroll-mt-20",
         sizeClasses[level],
         marginClasses[level],
         className
-      )}
-      id={slug}
-    >
-      <a
-        className="inline-flex items-center gap-2 no-underline"
-        href={`#${slug}`}
-      >
-        {children}
-        <HugeiconsIcon
-          className="size-4 opacity-0 transition-opacity group-hover:opacity-100"
-          icon={Link02Icon}
-        />
-      </a>
-    </Tag>
+      ),
+      id: slug,
+    },
+    createElement(
+      "a",
+      {
+        className: "inline-flex items-center gap-2 no-underline",
+        href: `#${slug}`,
+      },
+      children,
+      createElement(HugeiconsIcon, {
+        className:
+          "size-4 opacity-0 transition-opacity group-hover:opacity-100",
+        icon: Link02Icon,
+      })
+    )
   )
 }
 

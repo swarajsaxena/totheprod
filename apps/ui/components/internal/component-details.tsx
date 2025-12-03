@@ -11,6 +11,25 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
+import {
+  Callout,
+  FileTree,
+  FileTreeItem,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  LinkCard,
+  Step,
+  Steps,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+  Video,
+} from "@/components/mdx/mdx-components"
 import { CodeBlock, InlineCode } from "@/components/ui/code-block"
 import { currentComponentMdxAtom } from "@/store/atoms"
 

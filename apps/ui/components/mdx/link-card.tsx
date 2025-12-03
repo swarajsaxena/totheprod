@@ -1,5 +1,5 @@
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons"
-import { HugeiconsIcon } from "@hugeicons/react"
+import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
@@ -7,7 +7,7 @@ type LinkCardProps = {
   href: string
   title: string
   description?: string
-  icon?: React.ComponentType
+  icon?: IconSvgElement
   className?: string
 }
 
