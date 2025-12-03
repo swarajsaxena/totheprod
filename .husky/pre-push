@@ -1,0 +1,36 @@
+#!/bin/sh
+# Exit on any error
+set -e
+
+echo "🔍 Checking if registry/docs generation is needed..."
+
+cd apps/ui
+
+# Check if generation is needed (exit code 1 means needed, 0 means not needed)
+if bun run scripts/check-generation-needed.ts > /dev/null 2>&1; then
+  # Exit code 0 = not needed
+  echo "✅ Registry and docs are up to date"
+  exit 0
+fi
+
+# Exit code 1 = needed
+echo "⚠️  Registry or docs need regeneration"
+echo ""
+echo "Running generation scripts..."
+
+# Run generation
+bun run generate:all
+
+# Check if files changed
+if [ -n "$(git status --porcelain apps/ui/registry.json apps/ui/public/registry.json apps/ui/public/r/ apps/ui/docs/components/ 2>/dev/null)" ]; then
+  echo ""
+  echo "❌ Generated files have changed. Please commit them before pushing:"
+  echo ""
+  git status --short apps/ui/registry.json apps/ui/public/registry.json apps/ui/public/r/ apps/ui/docs/components/ 2>/dev/null || true
+  echo ""
+  echo "Run: git add apps/ui/registry.json apps/ui/public/registry.json apps/ui/public/r/ apps/ui/docs/components/ && git commit -m 'chore: regenerate registry and docs'"
+  exit 1
+fi
+
+echo "✅ Generation complete and files are up to date"
+

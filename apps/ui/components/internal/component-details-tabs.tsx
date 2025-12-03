@@ -2,6 +2,9 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ComponentDetails } from "./component-details"
+import { ComponentInstallation } from "./component-installation"
+import { ComponentPropsTable } from "./component-props-table"
+import { ComponentSourceCode } from "./component-source-code"
 
 export const ComponentDetailsTabs = () => {
   return (

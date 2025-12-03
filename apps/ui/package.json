@@ -4,10 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "bun run generate:all",
     "build": "next build",
     "start": "next start",
     "lint": "biome lint .",
     "lint:fix": "biome check --write .",
+    "generate:all": "bun run scripts/generate-all.ts",
+    "generate:registry": "bun run scripts/generate-registry.ts && bun run registry:build",
+    "generate:docs": "bun run scripts/generate-docs.ts",
+    "generate:watch": "bun run scripts/watch-generation.ts",
+    "generate:check": "bun run scripts/check-generation-needed.ts",
     "registry:generate": "bun run scripts/generate-registry.ts",
     "registry:build": "shadcn build",
     "docs:generate": "bun run scripts/generate-docs.ts"
