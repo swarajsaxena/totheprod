@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import localFont from "next/font/local"
+import { StructuredData } from "@/components/internal/structured-data"
 import { Toaster } from "@/components/ui/sonner"
 import { generateSiteMetadata } from "@/lib/seo/metadata"
+import { generateHomePageSchema } from "@/lib/seo/structured-data"
 import { CommandMenuProvider } from "@/providers/command-menu-provider"
 import { ThemeProvider } from "@/providers/theme-provider"
 import "./globals.css"
@@ -34,8 +36,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const schemas = generateHomePageSchema()
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <StructuredData data={schemas} />
+      </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Toaster />

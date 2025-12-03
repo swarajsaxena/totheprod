@@ -2,7 +2,9 @@ import { readFile } from "node:fs/promises"
 import path from "node:path"
 import type { Metadata } from "next"
 import type React from "react"
+import { StructuredData } from "@/components/internal/structured-data"
 import { generateComponentMetadata } from "@/lib/seo/metadata"
+import { generateComponentPageSchema } from "@/lib/seo/structured-data"
 import { ComponentProvider } from "./_components/component-provider"
 import { contentMap } from "./constants"
 
@@ -61,23 +63,27 @@ const ComponentPage = async ({
 }) => {
   const { id } = await params
 
-  const component: ComponentData = contentMap
+  const component = contentMap
     .find((item) => item.items.some((item) => item.id === id))
-    ?.items.find((item) => item.id === id) ?? {
-    preview: NotFoundComponent,
-    title: "404 - Not Found",
-    description: "The component you are looking for does not exist.",
-    id,
+    ?.items.find((item) => item.id === id)
+
+  if (!component) {
+    const NotFoundComp = NotFoundComponent
+    return <NotFoundComp />
   }
 
   const mdxContent = await getMdxContent(`${component.id}.mdx`)
 
   const PreviewComponent = component.preview
+  const schemas = generateComponentPageSchema(component)
 
   return (
-    <ComponentProvider componentData={component} mdxDocs={mdxContent}>
-      {PreviewComponent ? <PreviewComponent /> : null}
-    </ComponentProvider>
+    <>
+      <StructuredData data={schemas} />
+      <ComponentProvider componentData={component} mdxDocs={mdxContent}>
+        {PreviewComponent ? <PreviewComponent /> : null}
+      </ComponentProvider>
+    </>
   )
 }
 
