@@ -44,7 +44,7 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.NOTION_NAVIGATOR,
     title: "Notion Navigator",
     description: "Hierarchical navigation sidebar with collapsible sections",
-    category: categories.BASE_COMPONENTS.id,
+    category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["navigation", "sidebar", "hierarchy", "collapsible"],
     dependencies: ["motion"],
     files: [
@@ -65,7 +65,7 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.RAYCAST_COMMAND_MENU,
     title: "Raycast Command Menu",
     description: "Command palette with beautiful keyboard-first navigation",
-    category: categories.BASE_COMPONENTS.id,
+    category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["command", "menu", "keyboard", "search", "palette"],
     dependencies: ["motion", "cmdk"],
     files: [
@@ -92,7 +92,7 @@ export const components: ComponentMetadata[] = [
     title: "Lando Norris Table",
     description:
       "Beautiful table component with hover effects and clickable rows",
-    category: categories.BASE_COMPONENTS.id,
+    category: categories.DATA_DISPLAY.id,
     tags: ["table", "data", "hover", "interactive"],
     dependencies: ["motion"],
     files: [
@@ -110,12 +110,12 @@ export const components: ComponentMetadata[] = [
     registryType: "registry:block",
   },
 
-  // Seamless Navigations
+  // Navigation & Menus
   {
     id: ComponentId.RAUNO_SIDEBAR,
     title: "Rauno Sidebar",
     description: "Smooth expandable sidebar with fluid section transitions",
-    category: categories.SEAMLESS_NAVIGATIONS.id,
+    category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["sidebar", "navigation", "expandable", "smooth"],
     dependencies: ["motion"],
     files: [
@@ -141,7 +141,7 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.LAYERED_NAV,
     title: "Layered Nav",
     description: "Multi-depth navigation with stacked drawer animations",
-    category: categories.SEAMLESS_NAVIGATIONS.id,
+    category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["navigation", "drawer", "layered", "multi-level"],
     dependencies: ["motion", "vaul"],
     files: [
@@ -162,7 +162,7 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.HOME_BLURRED_NAV,
     title: "Home Blurred Nav",
     description: "Beautiful navigation bar with blurred background effect",
-    category: categories.SEAMLESS_NAVIGATIONS.id,
+    category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["navigation", "navbar", "blur", "glassmorphism"],
     dependencies: ["motion"],
     files: [
@@ -180,12 +180,12 @@ export const components: ComponentMetadata[] = [
     registryType: "registry:block",
   },
 
-  // Unreal Page Entrances
+  // Page Transitions & Loaders
   {
     id: ComponentId.PIXEL_LOADER,
     title: "Pixel Loader",
     description: "Cinematic pixelated transition for page load effects",
-    category: categories.UNREAL_PAGE_ENTRANCES.id,
+    category: categories.PAGE_TRANSITIONS_AND_LOADERS.id,
     tags: ["loader", "transition", "pixel", "animation"],
     dependencies: ["motion"],
     files: [
@@ -206,7 +206,7 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.WORD_SHUFFLER,
     title: "Word Shuffler",
     description: "Dynamic text shuffle animation on component mount",
-    category: categories.UNREAL_PAGE_ENTRANCES.id,
+    category: categories.TEXT_ANIMATIONS.id,
     tags: ["text", "animation", "shuffle", "entrance"],
     dependencies: ["motion"],
     files: [
@@ -227,7 +227,7 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.TEXT_SCRAMBLE,
     title: "Text Scramble",
     description: "Scrambled text effect that reveals characters sequentially",
-    category: categories.UNREAL_PAGE_ENTRANCES.id,
+    category: categories.TEXT_ANIMATIONS.id,
     tags: ["text", "animation", "scramble", "reveal"],
     dependencies: [],
     files: [
@@ -245,12 +245,12 @@ export const components: ComponentMetadata[] = [
     registryType: "registry:block",
   },
 
-  // Hover Like A Pro
+  // Text Animations
   {
     id: ComponentId.WAVY_TEXT,
     title: "Wavy Text",
     description: "Playful wave animation triggered on text hover",
-    category: categories.HOVER_LIKE_A_PRO.id,
+    category: categories.TEXT_ANIMATIONS.id,
     tags: ["text", "hover", "animation", "wave"],
     dependencies: ["motion"],
     files: [
@@ -267,11 +267,12 @@ export const components: ComponentMetadata[] = [
     docsPath: "ttp-wavy-text.mdx",
     registryType: "registry:block",
   },
+  // Cursor & Hover Effects
   {
     id: ComponentId.CURSOR_COMET,
     title: "Cursor Comet",
     description: "Trailing comet effect that follows cursor movement",
-    category: categories.HOVER_LIKE_A_PRO.id,
+    category: categories.CURSOR_AND_HOVER_EFFECTS.id,
     tags: ["cursor", "trail", "comet", "effect"],
     dependencies: ["motion"],
     files: [
@@ -289,12 +290,12 @@ export const components: ComponentMetadata[] = [
     registryType: "registry:block",
   },
 
-  // Magic Scrolling
+  // Scroll Interactions
   {
     id: ComponentId.HORIZONTAL_TEXT_REVEAL,
     title: "Horizontal Text Reveal",
     description: "Text gradually reveals as you scroll horizontally",
-    category: categories.MAGIC_SCROLLING.id,
+    category: categories.TEXT_ANIMATIONS.id,
     tags: ["scroll", "text", "reveal", "horizontal"],
     dependencies: ["motion"],
     files: [
@@ -315,7 +316,7 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.PERSPECTIVE_CAROUSEL,
     title: "Perspective Carousel",
     description: "3D carousel with depth and perspective transforms",
-    category: categories.MAGIC_SCROLLING.id,
+    category: categories.SCROLL_INTERACTIONS.id,
     tags: ["carousel", "3d", "perspective", "scroll"],
     dependencies: ["embla-carousel-react"],
     files: [

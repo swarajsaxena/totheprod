@@ -3,6 +3,7 @@ import {
   CursorMagicSelection02Icon,
   File02Icon,
   Navigation04Icon,
+  TextFontIcon,
   VerticalScrollPointIcon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
@@ -11,37 +12,43 @@ import { HugeiconsIcon } from "@hugeicons/react"
  * Component categories with icons and descriptions
  */
 const categoriesData = {
-  BASE_COMPONENTS: {
-    id: "base-components",
-    section: "Base Components",
-    icon: <HugeiconsIcon className="size-4" icon={BlockGameIcon} />,
-    description: "Essential UI components for building interfaces",
-  },
-  SEAMLESS_NAVIGATIONS: {
-    id: "seamless-navigations",
-    section: "Seamless Navigations",
+  NAVIGATION_AND_MENUS: {
+    id: "navigation-and-menus",
+    section: "Navigation & Menus",
     icon: <HugeiconsIcon className="size-4" icon={Navigation04Icon} />,
-    description: "Smooth and fluid navigation components",
+    description: "Navigation systems, sidebars, and command menus",
   },
-  UNREAL_PAGE_ENTRANCES: {
-    id: "unreal-page-entrances",
-    section: "Unreal Page Entrances",
+  DATA_DISPLAY: {
+    id: "data-display",
+    section: "Data Display",
+    icon: <HugeiconsIcon className="size-4" icon={BlockGameIcon} />,
+    description: "Tables, lists, and data presentation components",
+  },
+  TEXT_ANIMATIONS: {
+    id: "text-animations",
+    section: "Text Animations",
+    icon: <HugeiconsIcon className="size-4" icon={TextFontIcon} />,
+    description: "Dynamic text effects and typography animations",
+  },
+  PAGE_TRANSITIONS_AND_LOADERS: {
+    id: "page-transitions-and-loaders",
+    section: "Page Transitions & Loaders",
     icon: <HugeiconsIcon className="size-4" icon={File02Icon} />,
-    description: "Cinematic page load and transition effects",
+    description: "Page load effects and transition animations",
   },
-  HOVER_LIKE_A_PRO: {
-    id: "hover-like-a-pro",
-    section: "Hover Like A Pro",
+  CURSOR_AND_HOVER_EFFECTS: {
+    id: "cursor-and-hover-effects",
+    section: "Cursor & Hover Effects",
     icon: (
       <HugeiconsIcon className="size-4" icon={CursorMagicSelection02Icon} />
     ),
-    description: "Interactive hover effects and animations",
+    description: "Interactive cursor trails and hover animations",
   },
-  MAGIC_SCROLLING: {
-    id: "magic-scrolling",
-    section: "Magic Scrolling",
+  SCROLL_INTERACTIONS: {
+    id: "scroll-interactions",
+    section: "Scroll Interactions",
     icon: <HugeiconsIcon className="size-4" icon={VerticalScrollPointIcon} />,
-    description: "Scroll-based animations and effects",
+    description: "Scroll-triggered effects and parallax components",
   },
 } as const
 
