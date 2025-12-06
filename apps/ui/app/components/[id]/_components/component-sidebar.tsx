@@ -21,13 +21,13 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { useTtpCommandPaletteState } from "@/components/ui/totheprod-ui/ttp-command-palette"
 import {
-  TtpRaunoSidebar,
-  TtpRaunoSidebarItem,
-  TtpRaunoSidebarSection,
-  TtpRaunoSidebarSectionHeader,
-} from "@/components/ui/totheprod-ui/ttp-rauno-sidebar"
-import { useTtpRaycastCommandMenuState } from "@/components/ui/totheprod-ui/ttp-raycast-command-menu"
+  TtpTickerSidebar,
+  TtpTickerSidebarItem,
+  TtpTickerSidebarSection,
+  TtpTickerSidebarSectionHeader,
+} from "@/components/ui/totheprod-ui/ttp-ticker-sidebar"
 import { cn } from "@/lib/utils"
 import { detailsOpenAtom, sidebarOpenAtom } from "@/store/atoms"
 import { CornerPlus } from "../../../../components/internal/corner-plus"
@@ -118,9 +118,12 @@ export const ComponentSidebar = () => {
             </div>
           )}
         </div>
-        <TtpRaunoSidebar className="my-auto p-0 py-2" sectionDividersLength={0}>
+        <TtpTickerSidebar
+          className="my-auto p-0 py-2"
+          sectionDividersLength={0}
+        >
           {contentMap.map((section, sectionIndex) => (
-            <TtpRaunoSidebarSection
+            <TtpTickerSidebarSection
               className="group relative border-t border-dashed px-4 py-4 last:border-b"
               isLast={sectionIndex === contentMap.length - 1}
               key={section.section}
@@ -130,22 +133,22 @@ export const ComponentSidebar = () => {
                 className="hidden group-last:block"
                 variant="rightBottom"
               /> */}
-              <TtpRaunoSidebarSectionHeader>
+              <TtpTickerSidebarSectionHeader>
                 {section.section}
-              </TtpRaunoSidebarSectionHeader>
+              </TtpTickerSidebarSectionHeader>
               {section.items.map((item, itemIndex) => (
-                <TtpRaunoSidebarItem
+                <TtpTickerSidebarItem
                   href={`/components/${item.id}`}
                   isActive={currentId === item.id}
                   isLast={itemIndex === section.items.length - 1}
                   key={item.id}
                 >
                   {item.title}
-                </TtpRaunoSidebarItem>
+                </TtpTickerSidebarItem>
               ))}
-            </TtpRaunoSidebarSection>
+            </TtpTickerSidebarSection>
           ))}
-        </TtpRaunoSidebar>
+        </TtpTickerSidebar>
       </div>
     </motion.div>
   )
@@ -160,7 +163,7 @@ const SidebarTools = ({ currentId, className }: SidebarToolsProps) => {
   const [sidebarOpen, setSidebarOpen] = useAtom(sidebarOpenAtom)
   const [detailsOpen, setDetailsOpen] = useAtom(detailsOpenAtom)
   const [isHovered, setIsHovered] = useState(false)
-  const { open, setOpen } = useTtpRaycastCommandMenuState()
+  const { open, setOpen } = useTtpCommandPaletteState()
   const handleToggleCommandMenu = () => {
     setOpen(!open)
   }

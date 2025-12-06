@@ -1,6 +1,6 @@
-# Notion Navigator
+# Document Navigator
 
-A beautiful, hierarchical navigation component inspired by Notion's sidebar navigation.
+A beautiful, hierarchical navigation component inspired by Notion-style table of contents.
 
 ## Features
 
@@ -11,6 +11,12 @@ A beautiful, hierarchical navigation component inspired by Notion's sidebar navi
 - 🎨 **Customizable** - Fully customizable with Tailwind classes and props
 - ♿ **Accessible** - Keyboard navigable and ARIA-compliant
 
+## Inspiration
+
+This component was inspired by:
+
+- [Notion](https://notion.so)
+
 ## Installation
 
 ```bash
@@ -20,10 +26,10 @@ npm install motion @hugeicons/react @hugeicons/core-free-icons
 ## Usage
 
 ```tsx
-import { TtpNotionNavigator } from '@/components/ui/totheprod-ui/ttp-notion-navigator'
-import type { NotionSection } from '@/components/ui/totheprod-ui/ttp-notion-navigator'
+import { TtpDocumentNavigator } from '@/components/ui/totheprod-ui/ttp-document-navigator'
+import type { DocumentSection } from '@/components/ui/totheprod-ui/ttp-document-navigator'
 
-const sections: NotionSection[] = [
+const sections: DocumentSection[] = [
   {
     id: "workspace",
     title: "Workspace",
@@ -53,7 +59,7 @@ const sections: NotionSection[] = [
 ]
 
 export const App = () => {
-  return <TtpNotionNavigator sections={sections} />
+  return <TtpDocumentNavigator sections={sections} />
 }
 ```
 
@@ -63,16 +69,24 @@ export const App = () => {
 |------|------|---------|----------|-------------|
 | `className` | `string | undefined` | - | ❌ | Additional CSS classes to apply to the container |
 | `scrollContainerId` | `string | undefined` | - | ❌ | The ID of the scroll container to use, defaults to "body" |
+ Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `className` | `string | undefined` | - | ❌ | Additional CSS classes to apply to the container |
+| `scrollContainerId` | `string | undefined` | - | ❌ | The ID of the scroll container to use, defaults to "body" |
+ Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `className` | `string | undefined` | - | ❌ | Additional CSS classes to apply to the container |
+| `scrollContainerId` | `string | undefined` | - | ❌ | The ID of the scroll container to use, defaults to "body" |
  Type            | Default | Description                                    |
 | ----------------- | --------------- | ------- | ---------------------------------------------- |
-| sections          | NotionSection[] | -       | Array of sections to display                   |
+| sections          | DocumentSection[] | -       | Array of sections to display                   |
 | className         | string          | -       | Additional CSS classes for the container       |
 | width             | string          | "240px" | Width of the navigator sidebar                 |
 | backgroundColor   | string          | -       | Background color override                      |
 | textColor         | string          | -       | Text color override                            |
 | showSectionTitles | boolean         | true    | Whether to show section titles                 |
 
-### NotionSection
+### DocumentSection
 
 | Prop            | Type         | Default | Description                                    |
 | --------------- | ------------ | ------- | ---------------------------------------------- |
@@ -98,7 +112,7 @@ export const App = () => {
 ### Basic Usage
 
 ```tsx
-<TtpNotionNavigator
+<TtpDocumentNavigator
   sections={[
     {
       id: "main",
@@ -114,7 +128,7 @@ export const App = () => {
 ### With Nested Pages
 
 ```tsx
-<TtpNotionNavigator
+<TtpDocumentNavigator
   sections={[
     {
       id: "workspace",
@@ -137,7 +151,7 @@ export const App = () => {
 ### Custom Styling
 
 ```tsx
-<TtpNotionNavigator
+<TtpDocumentNavigator
   sections={sections}
   width="280px"
   className="border-r-2 border-primary"

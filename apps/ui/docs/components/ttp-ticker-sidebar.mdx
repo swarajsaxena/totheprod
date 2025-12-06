@@ -1,0 +1,116 @@
+# Ticker Sidebar
+
+A beautiful, collapsible sidebar component inspired by Rauno's design principles.
+
+## Features
+
+- 🎨 **Smooth Animations** - Fluid expand/collapse transitions
+- 📱 **Responsive** - Works on all screen sizes
+- ⚡ **Performance** - Optimized for smooth interactions
+- 🎯 **Accessible** - ARIA-compliant and keyboard navigable
+
+## Inspiration
+
+This component was inspired by:
+
+- [Rauno Freiberg](https://rauno.me)
+- [@raunofreiberg](https://twitter.com/raunofreiberg)
+
+## Installation
+
+```bash
+npm install motion
+```
+
+## Usage
+
+```tsx
+import { RaunoSidebar } from '@/components/ui/totheprod-ui/ttp-ticker-sidebar'
+
+export const App = () => {
+  return <RaunoSidebar />
+}
+```
+
+## Props
+
+| Prop                    | Type              | Default     | Required               | Description                                    |
+| ----------------------- | ----------------- | ----------- | ---------------------- | ---------------------------------------------- | ------------------------------------------------------------------------ |
+| `children`              | `React.ReactNode` | -           | ✅                     | The sidebar content (sections, headers, items) |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the sidebar container                 |
+| `itemDividersLength`    | `number           | undefined`  | -                      | ❌                                             | Number of dividers to render between items within a section (default: 2) |
+| `sectionDividersLength` | `number           | undefined`  | -                      | ❌                                             | Number of dividers to render between sections (default: 4)               |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the divider                           |
+| `children`              | `React.ReactNode` | -           | ✅                     | The section content (headers and items)        |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the section container                 |
+| `isLast`                | `boolean          | undefined`  | -                      | ❌                                             | Whether this is the last section (prevents rendering trailing dividers)  |
+| `children`              | `React.ReactNode` | -           | ✅                     | The header text/content                        |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the header                            |
+| `children`              | `React.ReactNode` | -           | ✅                     | The item label/text                            |
+| `href`                  | `string`          | -           | ✅                     | The link destination                           |
+| `isActive`              | `boolean          | undefined`  | -                      | ❌                                             | Whether this item is currently active/selected                           |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the item container                    |
+| `textClassName`         | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the text/label                        |
+| `isLast`                | `boolean          | undefined`  | -                      | ❌                                             | Whether this is the last item (prevents rendering trailing dividers)     |
+| Type                    | Default           | Required    | Description            |
+| ------                  | ------            | ---------   | ----------             | -------------                                  |
+| `children`              | `React.ReactNode` | -           | ✅                     | The sidebar content (sections, headers, items) |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the sidebar container                 |
+| `itemDividersLength`    | `number           | undefined`  | -                      | ❌                                             | Number of dividers to render between items within a section (default: 2) |
+| `sectionDividersLength` | `number           | undefined`  | -                      | ❌                                             | Number of dividers to render between sections (default: 4)               |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the divider                           |
+| `children`              | `React.ReactNode` | -           | ✅                     | The section content (headers and items)        |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the section container                 |
+| `isLast`                | `boolean          | undefined`  | -                      | ❌                                             | Whether this is the last section (prevents rendering trailing dividers)  |
+| `children`              | `React.ReactNode` | -           | ✅                     | The header text/content                        |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the header                            |
+| `children`              | `React.ReactNode` | -           | ✅                     | The item label/text                            |
+| `href`                  | `string`          | -           | ✅                     | The link destination                           |
+| `isActive`              | `boolean          | undefined`  | -                      | ❌                                             | Whether this item is currently active/selected                           |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the item container                    |
+| `textClassName`         | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the text/label                        |
+| `isLast`                | `boolean          | undefined`  | -                      | ❌                                             | Whether this is the last item (prevents rendering trailing dividers)     |
+| Type                    | Default           | Required    | Description            |
+| ------                  | ------            | ---------   | ----------             | -------------                                  |
+| `children`              | `React.ReactNode` | -           | ✅                     | The sidebar content (sections, headers, items) |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the sidebar container                 |
+| `itemDividersLength`    | `number           | undefined`  | -                      | ❌                                             | Number of dividers to render between items within a section (default: 2) |
+| `sectionDividersLength` | `number           | undefined`  | -                      | ❌                                             | Number of dividers to render between sections (default: 4)               |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the divider                           |
+| `children`              | `React.ReactNode` | -           | ✅                     | The section content (headers and items)        |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the section container                 |
+| `isLast`                | `boolean          | undefined`  | -                      | ❌                                             | Whether this is the last section (prevents rendering trailing dividers)  |
+| `children`              | `React.ReactNode` | -           | ✅                     | The header text/content                        |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the header                            |
+| `children`              | `React.ReactNode` | -           | ✅                     | The item label/text                            |
+| `href`                  | `string`          | -           | ✅                     | The link destination                           |
+| `isActive`              | `boolean          | undefined`  | -                      | ❌                                             | Whether this item is currently active/selected                           |
+| `className`             | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the item container                    |
+| `textClassName`         | `string           | undefined`  | -                      | ❌                                             | Additional CSS classes to apply to the text/label                        |
+| `isLast`                | `boolean          | undefined`  | -                      | ❌                                             | Whether this is the last item (prevents rendering trailing dividers)     |
+| Type                    | Default           | Description |
+| --------                | --------          | -------     | ---------------------- |
+| open                    | boolean           | false       | Controls sidebar state |
+| onToggle                | function          | -           | Callback when toggled  |
+
+## Customization
+
+You can customize the sidebar using Tailwind classes or by modifying the component directly.
+
+### Example with Custom Styling
+
+```tsx
+<RaunoSidebar
+  className='bg-primary text-primary-foreground'
+  open={isOpen}
+  onToggle={(state) => setIsOpen(state)}
+/>
+```
+
+## Best Practices
+
+> **Tip**: Keep the sidebar content minimal for better mobile experience.
+
+- Use clear labels for navigation items
+- Implement keyboard shortcuts for power users
+- Consider adding tooltips for collapsed state

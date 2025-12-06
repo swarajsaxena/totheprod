@@ -27,15 +27,18 @@ const cornerPlusVariants = cva("absolute w-4 scale-75 opacity-50", {
 export const CornerPlus = ({
   variant = "rightBottom",
   className,
+  delay = 0,
 }: {
   className?: string
   variant?: VariantProps<typeof cornerPlusVariants>["variant"]
+  delay?: number
 }) => {
   return (
     <motion.div
       animate={{ scale: 1 }}
       className={cn(cornerPlusVariants({ variant }), className)}
       initial={{ scale: 0 }}
+      transition={{ delay }}
     >
       <div className="h-0.5 w-4 bg-foreground dark:bg-primary" />
       <div className="absolute bottom-0 left-0 h-0.5 w-4 rotate-90 bg-foreground dark:bg-primary" />

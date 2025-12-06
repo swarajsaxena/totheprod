@@ -1,4 +1,4 @@
-# Home Blurred Nav
+# Blur Focus Navigation
 
 A beautiful navigation bar with blurred background effect, perfect for home pages and modern web applications.
 
@@ -19,11 +19,11 @@ npm install motion
 ## Usage
 
 ```tsx
-import { TtpHomeBlurredNav } from '@/components/ui/totheprod-ui/ttp-home-blurred-nav'
+import { TtpBlurFocusNavigation } from '@/components/ui/totheprod-ui/ttp-blur-focus-navigation'
 
 export const HomePage = () => {
   return (
-    <TtpHomeBlurredNav
+    <TtpBlurFocusNavigation
       brand='My Brand'
       items={[
         { label: 'Home', href: '/' },
@@ -39,6 +39,22 @@ export const HomePage = () => {
 ## Props
 
 | Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `children` | `React.ReactNode` | - | ✅ | Navigation items as children |
+| `className` | `string | undefined` | - | ❌ | - |
+| `label` | `string` | - | ✅ | - |
+| `href` | `string` | - | ✅ | - |
+| `id` | `string` | - | ✅ | - |
+| `image` | `string` | - | ✅ | - |
+ Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `children` | `React.ReactNode` | - | ✅ | Navigation items as children |
+| `className` | `string | undefined` | - | ❌ | - |
+| `label` | `string` | - | ✅ | - |
+| `href` | `string` | - | ✅ | - |
+| `id` | `string` | - | ✅ | - |
+| `image` | `string` | - | ✅ | - |
+ Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `children` | `React.ReactNode` | - | ✅ | Navigation items as children |
 | `className` | `string | undefined` | - | ❌ | - |
@@ -71,7 +87,7 @@ type NavItem = {
 ### Basic Usage
 
 ```tsx
-<TtpHomeBlurredNav
+<TtpBlurFocusNavigation
   brand='My Brand'
   items={[
     { label: 'Home', href: '/' },
@@ -83,7 +99,7 @@ type NavItem = {
 ### Custom Brand Element
 
 ```tsx
-<TtpHomeBlurredNav
+<TtpBlurFocusNavigation
   brand={
     <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
       Brand
@@ -96,7 +112,7 @@ type NavItem = {
 ### Without Blur
 
 ```tsx
-<TtpHomeBlurredNav
+<TtpBlurFocusNavigation
   brand="My Brand"
   items={[...]}
   showBlur={false}
@@ -106,7 +122,7 @@ type NavItem = {
 ### Custom Blur Intensity
 
 ```tsx
-<TtpHomeBlurredNav
+<TtpBlurFocusNavigation
   brand="My Brand"
   items={[...]}
   blurIntensity={20}
@@ -117,7 +133,7 @@ type NavItem = {
 ### Non-Sticky Nav
 
 ```tsx
-<TtpHomeBlurredNav
+<TtpBlurFocusNavigation
   brand="My Brand"
   items={[...]}
   sticky={false}

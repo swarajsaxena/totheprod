@@ -2,9 +2,9 @@
 
 import CornerPlusContainer from "@/components/internal/corner-plus-container"
 import PreviewHeading from "@/components/internal/preview-heading"
-import { TtpNotionNavigator } from "@/components/ui/totheprod-ui/ttp-notion-navigator"
+import { TtpDocumentNavigator } from "@/components/ui/totheprod-ui/ttp-document-navigator"
 
-export const TtpNotionNavigatorPreview = () => {
+export const TtpDocumentNavigatorPreview = () => {
   return (
     <div
       className="no-preview-padding flex w-full flex-col items-center gap-8 py-8"
@@ -13,18 +13,19 @@ export const TtpNotionNavigatorPreview = () => {
       <CornerPlusContainer>
         <PreviewHeading
           className="m-0 p-4"
-          description="A beautiful, hierarchical navigation component inspired by Notion's sidebar navigation."
-          title="Notion Navigator"
+          description="Notion-style table of contents with collapsible sections and scroll tracking."
+          title="Document Navigator"
         />
       </CornerPlusContainer>
 
       <div className="prose dark:prose-invert pt-20 pb-[100vh]">
-        <h1>How to Use the Notion Navigator Component</h1>
+        <h1>How to Use the Document Navigator Component</h1>
 
         <h2>Getting Started</h2>
         <p>
-          Learn how to use the Notion Navigator component for organizing complex
-          interfaces with hierarchical structures.
+          Learn how to use the Document Navigator component for creating table
+          of contents with automatic scroll tracking and hierarchical
+          navigation.
         </p>
 
         <h3>Installation</h3>
@@ -37,14 +38,14 @@ export const TtpNotionNavigatorPreview = () => {
         <p>
           Simply drop{" "}
           <code className="rounded bg-muted px-1">
-            {"<TtpNotionNavigator />"}
+            {"<TtpDocumentNavigator />"}
           </code>{" "}
           into your layout.
         </p>
 
         <h2>Features</h2>
         <p>
-          The Notion Navigator is designed for flexibility and intuitive
+          The Document Navigator is designed for flexibility and intuitive
           navigation. Explore the rich set of features available:
         </p>
 
@@ -120,7 +121,7 @@ export const TtpNotionNavigatorPreview = () => {
         </p>
       </div>
 
-      <TtpNotionNavigator scrollContainerId="preview-scroll-container" />
+      <TtpDocumentNavigator scrollContainerId="preview-scroll-container" />
     </div>
   )
 }

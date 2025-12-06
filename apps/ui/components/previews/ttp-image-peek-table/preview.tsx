@@ -9,7 +9,7 @@ import {
   LandoNorrisTableHead,
   LandoNorrisTableHeader,
   LandoNorrisTableRow,
-} from "@/components/ui/totheprod-ui/ttp-lando-norris-table"
+} from "@/components/ui/totheprod-ui/ttp-image-peek-table"
 import { cn } from "@/lib/utils"
 
 type RaceEvent = {
@@ -32,7 +32,7 @@ const raceEvents: RaceEvent[] = [
     result: "3RD",
     time: "1:35.728 s",
     isFirst: false,
-    image: "/components/ttp-lando-norris-table/1.jpeg",
+    image: "/components/ttp-image-peek-table/1.jpeg",
   },
   {
     eventNumber: "05",
@@ -42,7 +42,7 @@ const raceEvents: RaceEvent[] = [
     result: "4TH",
     time: "1:31.778 s",
     isFirst: false,
-    image: "/components/ttp-lando-norris-table/2.jpeg",
+    image: "/components/ttp-image-peek-table/2.jpeg",
   },
   {
     eventNumber: "06",
@@ -52,7 +52,7 @@ const raceEvents: RaceEvent[] = [
     result: "2ND",
     time: "1:29.746 s",
     isFirst: false,
-    image: "/components/ttp-lando-norris-table/3.jpeg",
+    image: "/components/ttp-image-peek-table/3.jpeg",
   },
   {
     eventNumber: "07",
@@ -62,7 +62,7 @@ const raceEvents: RaceEvent[] = [
     result: "2ND",
     time: "1:18.311 s",
     isFirst: false,
-    image: "/components/ttp-lando-norris-table/4.jpeg",
+    image: "/components/ttp-image-peek-table/4.jpeg",
   },
   {
     eventNumber: "08",
@@ -72,7 +72,7 @@ const raceEvents: RaceEvent[] = [
     result: "1ST",
     time: "1:13.221 s",
     isFirst: true,
-    image: "/components/ttp-lando-norris-table/5.jpeg",
+    image: "/components/ttp-image-peek-table/5.jpeg",
   },
   {
     eventNumber: "09",
@@ -82,7 +82,7 @@ const raceEvents: RaceEvent[] = [
     result: "2ND",
     time: "1:16.187 s",
     isFirst: false,
-    image: "/components/ttp-lando-norris-table/6.jpeg",
+    image: "/components/ttp-image-peek-table/6.jpeg",
   },
   {
     eventNumber: "10",
@@ -92,7 +92,7 @@ const raceEvents: RaceEvent[] = [
     result: "DNF",
     time: "1:14.229 s",
     isFirst: false,
-    image: "/components/ttp-lando-norris-table/7.jpeg",
+    image: "/components/ttp-image-peek-table/7.jpeg",
   },
   {
     eventNumber: "11",
@@ -102,7 +102,7 @@ const raceEvents: RaceEvent[] = [
     result: "1ST",
     time: "1:08.272 s",
     isFirst: true,
-    image: "/components/ttp-lando-norris-table/8.jpeg",
+    image: "/components/ttp-image-peek-table/8.jpeg",
   },
   {
     eventNumber: "12",
@@ -112,7 +112,7 @@ const raceEvents: RaceEvent[] = [
     result: "1ST",
     time: "1:29.734 s",
     isFirst: true,
-    image: "/components/ttp-lando-norris-table/10.jpeg",
+    image: "/components/ttp-image-peek-table/10.jpeg",
   },
   {
     eventNumber: "13",
@@ -122,11 +122,11 @@ const raceEvents: RaceEvent[] = [
     result: "2ND",
     time: "1:45.257 s",
     isFirst: false,
-    image: "/components/ttp-lando-norris-table/9.jpeg",
+    image: "/components/ttp-image-peek-table/9.jpeg",
   },
 ]
 
-export const TtpLandoNorrisTablePreview = () => {
+export const TtpImagePeekTablePreview = () => {
   const handleRowClick = (event: RaceEvent) => {
     // eslint-disable-next-line no-console
     console.log(`Clicked on ${event.location}`)

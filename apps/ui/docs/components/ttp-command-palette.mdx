@@ -1,4 +1,4 @@
-# Raycast Command Menu
+# Command Palette
 
 A beautiful, reusable command menu component inspired by Raycast's design. Built with Radix UI primitives and fully customizable.
 
@@ -11,6 +11,12 @@ A beautiful, reusable command menu component inspired by Raycast's design. Built
 - 🎯 **Actions system** - Context-aware actions for each item
 - 🎪 **Banner support** - Display announcements or updates
 - 🔧 **Fully customizable** - Type-safe props and styling options
+
+## Inspiration
+
+This component was inspired by:
+
+- [Raycast](https://raycast.com)
 
 ## Installation
 
@@ -29,14 +35,14 @@ bun add @radix-ui/react-dialog cmdk lucide-react
 
 import { useState } from 'react'
 import {
-  RaycastCommandMenu,
-  useRaycastCommandMenu,
+  CommandPalette,
+  useCommandPalette,
   type RaycastSection,
-} from '@/components/ui/totheprod-ui/ttp-raycast-command-menu'
+} from '@/components/ui/totheprod-ui/ttp-command-palette'
 import { FolderOpen, Menu, MessageCircle } from 'lucide-react'
 
 export const Example = () => {
-  const { open, setOpen } = useRaycastCommandMenu()
+  const { open, setOpen } = useCommandPalette()
 
   const sections: RaycastSection[] = [
     {
@@ -58,7 +64,7 @@ export const Example = () => {
   return (
     <>
       <button onClick={() => setOpen(true)}>Open Menu</button>
-      <RaycastCommandMenu open={open} onOpenChange={setOpen} sections={sections} />
+      <CommandPalette open={open} onOpenChange={setOpen} sections={sections} />
     </>
   )
 }
@@ -104,7 +110,7 @@ const sections: RaycastSection[] = [
 Display announcements or updates at the top:
 
 ```tsx
-<RaycastCommandMenu
+<CommandPalette
   open={open}
   onOpenChange={setOpen}
   sections={sections}
@@ -122,7 +128,7 @@ Display announcements or updates at the top:
 
 ## API Reference
 
-### RaycastCommandMenuProps
+### CommandPaletteProps
 
 | Prop            | Type                      | Default                             | Description                     |
 | --------------- | ------------------------- | ----------------------------------- | ------------------------------- |
@@ -172,12 +178,12 @@ type RaycastAction = {
 }
 ```
 
-## Hook: useRaycastCommandMenu
+## Hook: useCommandPalette
 
 A convenient hook that sets up keyboard shortcuts (⌘K / Ctrl+K):
 
 ```tsx
-const { open, setOpen } = useRaycastCommandMenu()
+const { open, setOpen } = useCommandPalette()
 ```
 
 ## Keyboard Shortcuts
@@ -236,7 +242,89 @@ The component uses Tailwind CSS and respects your theme configuration. Customize
 | `description` | `string | undefined` | - | ❌ | - |
 | `type` | `string | undefined` | - | ❌ | - |
 | `onSelect` | `(() => void) | undefined` | - | ❌ | - |
-| `actions` | `import("/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-raycast-command-menu").RaycastAction[] | undefined` | - | ❌ | - |
+| `actions` | `import("/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-command-palette").RaycastAction[] | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `shortcut` | `string | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `itemClassName` | `string | undefined` | - | ❌ | - |
+| `onBack` | `(() => void) | undefined` | - | ❌ | - |
+| `secondaryActionLabel` | `string | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+ Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `open` | `boolean | undefined` | - | ❌ | - |
+| `onOpenChange` | `((open: boolean) => void) | undefined` | - | ❌ | - |
+| `children` | `React.ReactNode` | - | ✅ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `showCloseButton` | `boolean | undefined` | - | ❌ | - |
+| `showOverlay` | `boolean | undefined` | - | ❌ | - |
+| `shortcut` | `string | undefined` | - | ❌ | - |
+| `actionsShortcut` | `string | undefined` | - | ❌ | - |
+| `title` | `string | undefined` | - | ❌ | - |
+| `description` | `string | undefined` | - | ❌ | - |
+| `placeholder` | `string | undefined` | - | ❌ | - |
+| `askAiLabel` | `string | false | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `icon` | `React.ReactNode` | - | ✅ | - |
+| `title` | `string` | - | ✅ | - |
+| `version` | `string | undefined` | - | ❌ | - |
+| `action` | `{ label: string; onClick: () => void; }` | - | ✅ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `children` | `React.ReactNode` | - | ✅ | - |
+| `emptyText` | `string | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `title` | `string` | - | ✅ | - |
+| `children` | `React.ReactNode` | - | ✅ | - |
+| `isLast` | `boolean | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `id` | `string` | - | ✅ | - |
+| `icon` | `React.ReactNode` | - | ✅ | - |
+| `title` | `string` | - | ✅ | - |
+| `description` | `string | undefined` | - | ❌ | - |
+| `type` | `string | undefined` | - | ❌ | - |
+| `onSelect` | `(() => void) | undefined` | - | ❌ | - |
+| `actions` | `import("/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-command-palette").RaycastAction[] | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `shortcut` | `string | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `itemClassName` | `string | undefined` | - | ❌ | - |
+| `onBack` | `(() => void) | undefined` | - | ❌ | - |
+| `secondaryActionLabel` | `string | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+ Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `open` | `boolean | undefined` | - | ❌ | - |
+| `onOpenChange` | `((open: boolean) => void) | undefined` | - | ❌ | - |
+| `children` | `React.ReactNode` | - | ✅ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `showCloseButton` | `boolean | undefined` | - | ❌ | - |
+| `showOverlay` | `boolean | undefined` | - | ❌ | - |
+| `shortcut` | `string | undefined` | - | ❌ | - |
+| `actionsShortcut` | `string | undefined` | - | ❌ | - |
+| `title` | `string | undefined` | - | ❌ | - |
+| `description` | `string | undefined` | - | ❌ | - |
+| `placeholder` | `string | undefined` | - | ❌ | - |
+| `askAiLabel` | `string | false | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `icon` | `React.ReactNode` | - | ✅ | - |
+| `title` | `string` | - | ✅ | - |
+| `version` | `string | undefined` | - | ❌ | - |
+| `action` | `{ label: string; onClick: () => void; }` | - | ✅ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `children` | `React.ReactNode` | - | ✅ | - |
+| `emptyText` | `string | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `title` | `string` | - | ✅ | - |
+| `children` | `React.ReactNode` | - | ✅ | - |
+| `isLast` | `boolean | undefined` | - | ❌ | - |
+| `className` | `string | undefined` | - | ❌ | - |
+| `id` | `string` | - | ✅ | - |
+| `icon` | `React.ReactNode` | - | ✅ | - |
+| `title` | `string` | - | ✅ | - |
+| `description` | `string | undefined` | - | ❌ | - |
+| `type` | `string | undefined` | - | ❌ | - |
+| `onSelect` | `(() => void) | undefined` | - | ❌ | - |
+| `actions` | `import("/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-command-palette").RaycastAction[] | undefined` | - | ❌ | - |
 | `className` | `string | undefined` | - | ❌ | - |
 | `shortcut` | `string | undefined` | - | ❌ | - |
 | `className` | `string | undefined` | - | ❌ | - |

@@ -2,7 +2,7 @@
 
 import type * as React from "react"
 import { GlobalCommandMenu } from "@/components/internal/global-command-menu"
-import { RaycastCommandMenuProvider } from "@/components/ui/totheprod-ui/ttp-raycast-command-menu"
+import { CommandPaletteProvider } from "@/components/ui/totheprod-ui/ttp-command-palette"
 
 export const CommandMenuProvider = ({
   children,
@@ -10,9 +10,9 @@ export const CommandMenuProvider = ({
   children: React.ReactNode
 }) => {
   return (
-    <RaycastCommandMenuProvider actionsShortcut="alt+k" shortcut="mod+k">
+    <CommandPaletteProvider actionsShortcut="alt+k" shortcut="mod+k">
       <GlobalCommandMenu />
       {children}
-    </RaycastCommandMenuProvider>
+    </CommandPaletteProvider>
   )
 }

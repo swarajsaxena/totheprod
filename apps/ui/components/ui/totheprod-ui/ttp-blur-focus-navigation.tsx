@@ -29,13 +29,13 @@ const useNavContext = () => {
   const context = useContext(NavContext)
   if (!context) {
     throw new Error(
-      "TtpHomeBlurredNavItem must be used within TtpHomeBlurredNav"
+      "TtpBlurFocusNavigationItem must be used within TtpBlurFocusNavigation"
     )
   }
   return context
 }
 
-type TtpHomeBlurredNavProps = {
+type TtpBlurFocusNavigationProps = {
   /**
    * Navigation items as children
    */
@@ -49,13 +49,15 @@ type TtpHomeBlurredNavProps = {
  *
  * @example
  * ```tsx
- * <TtpHomeBlurredNav>
- *   <TtpHomeBlurredNavItem href="/" id="home" label="Home" />
- *   <TtpHomeBlurredNavItem href="/about" id="about" label="About" />
- * </TtpHomeBlurredNav>
+ * <TtpBlurFocusNavigation>
+ *   <TtpBlurFocusNavigationItem href="/" id="home" label="Home" />
+ *   <TtpBlurFocusNavigationItem href="/about" id="about" label="About" />
+ * </TtpBlurFocusNavigation>
  * ```
  */
-export const TtpHomeBlurredNav = ({ children }: TtpHomeBlurredNavProps) => {
+export const TtpBlurFocusNavigation = ({
+  children,
+}: TtpBlurFocusNavigationProps) => {
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const [images, setImages] = useState<Map<string, string>>(new Map())
 
@@ -115,7 +117,7 @@ export const TtpHomeBlurredNav = ({ children }: TtpHomeBlurredNavProps) => {
   )
 }
 
-export type TtpHomeBlurredNavItemProps = {
+export type TtpBlurFocusNavigationItemProps = {
   className?: string
   label: string
   href: string
@@ -130,16 +132,16 @@ export type TtpHomeBlurredNavItemProps = {
  *
  * @example
  * ```tsx
- * <TtpHomeBlurredNavItem href="/" id="home" label="Home" />
+ * <TtpBlurFocusNavigationItem href="/" id="home" label="Home" />
  * ```
  */
-export const TtpHomeBlurredNavItem = ({
+export const TtpBlurFocusNavigationItem = ({
   label,
   href,
   id,
   className,
   image,
-}: TtpHomeBlurredNavItemProps) => {
+}: TtpBlurFocusNavigationItemProps) => {
   const { hoveredId, setHoveredId, registerImage } = useNavContext()
   const isHovered = hoveredId === id
 

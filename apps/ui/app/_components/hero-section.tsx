@@ -31,7 +31,7 @@ export const HeroSection = () => {
           text="Components that Ship and not just look good."
         />
         <div className="mb-[25vh] flex w-full gap-2 p-4">
-          <CtaCopyButton text="npx shadcn add ui.totheprod.dev/ttp-raycast-command-menu" />
+          <CtaCopyButton text="npx shadcn add ui.totheprod.dev/ttp-command-palette" />
           <Link
             className="flex-1"
             href={`/components/${contentMap[0].items[0].id}`}

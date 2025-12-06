@@ -3,11 +3,11 @@
 import { usePathname, useSearchParams } from "next/navigation"
 import PreviewHeading from "@/components/internal/preview-heading"
 import {
-  TtpRaunoSidebar,
-  TtpRaunoSidebarItem,
-  TtpRaunoSidebarSection,
-  TtpRaunoSidebarSectionHeader,
-} from "@/components/ui/totheprod-ui/ttp-rauno-sidebar"
+  TtpTickerSidebar,
+  TtpTickerSidebarItem,
+  TtpTickerSidebarSection,
+  TtpTickerSidebarSectionHeader,
+} from "@/components/ui/totheprod-ui/ttp-ticker-sidebar"
 
 const sections = [
   {
@@ -48,7 +48,7 @@ const items = [
   { label: "Help", href: "?link=help" },
 ]
 
-export const TtpRaunoSidebarPreview = () => {
+export const TtpTickerSidebarPreview = () => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const link = searchParams.get("link")
@@ -57,41 +57,41 @@ export const TtpRaunoSidebarPreview = () => {
   return (
     <div className="flex flex-col gap-4 pt-16">
       <PreviewHeading title="Sidebar with Sections" />
-      <TtpRaunoSidebar className="max-w-xs p-10">
+      <TtpTickerSidebar className="max-w-xs p-10">
         {sections.map((section, sectionIndex) => (
-          <TtpRaunoSidebarSection
+          <TtpTickerSidebarSection
             isLast={sectionIndex === sections.length - 1}
             key={section.label}
           >
-            <TtpRaunoSidebarSectionHeader>
+            <TtpTickerSidebarSectionHeader>
               {section.label}
-            </TtpRaunoSidebarSectionHeader>
+            </TtpTickerSidebarSectionHeader>
             {section.items.map((item, itemIndex) => (
-              <TtpRaunoSidebarItem
+              <TtpTickerSidebarItem
                 href={item.href}
                 isActive={activePath.endsWith(item.href)}
                 isLast={itemIndex === section.items.length - 1}
                 key={item.label}
               >
                 {item.label}
-              </TtpRaunoSidebarItem>
+              </TtpTickerSidebarItem>
             ))}
-          </TtpRaunoSidebarSection>
+          </TtpTickerSidebarSection>
         ))}
-      </TtpRaunoSidebar>
+      </TtpTickerSidebar>
       <PreviewHeading title="Simple Sidebar" />
-      <TtpRaunoSidebar className="max-w-xs rounded-2xl bg-muted-foreground/5 p-10 shadow-xl">
+      <TtpTickerSidebar className="max-w-xs rounded-2xl bg-muted-foreground/5 p-10 shadow-xl">
         {items.map((item, index) => (
-          <TtpRaunoSidebarItem
+          <TtpTickerSidebarItem
             href={item.href}
             isActive={activePath.endsWith(item.href)}
             isLast={index === items.length - 1}
             key={item.label}
           >
             {item.label}
-          </TtpRaunoSidebarItem>
+          </TtpTickerSidebarItem>
         ))}
-      </TtpRaunoSidebar>
+      </TtpTickerSidebar>
     </div>
   )
 }

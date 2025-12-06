@@ -8,7 +8,7 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { useTtpRaycastCommandMenuState } from "@/components/ui/totheprod-ui/ttp-raycast-command-menu"
+import { useTtpCommandPaletteState } from "@/components/ui/totheprod-ui/ttp-command-palette"
 import { CornerPlus } from "./corner-plus"
 import { ThemeLogo } from "./theme-logo"
 
@@ -17,7 +17,7 @@ type HomeNavbarProps = {
 }
 
 export const HomeNavbar = ({ componentsUrl }: HomeNavbarProps) => {
-  const { open, setOpen } = useTtpRaycastCommandMenuState()
+  const { open, setOpen } = useTtpCommandPaletteState()
 
   const handleToggleCommandMenu = () => {
     setOpen(!open)

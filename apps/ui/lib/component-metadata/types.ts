@@ -33,9 +33,8 @@ export type ComponentFile = {
  * Component inspiration/credit
  */
 export type ComponentInspiration = {
-  author: string
-  url?: string
-  twitter?: string
+  label: string
+  href?: string
 }
 
 /**
@@ -80,7 +79,7 @@ export type ComponentMetadata = {
   logo?: string
 
   // Credits
-  inspiration?: ComponentInspiration
+  inspirations?: ComponentInspiration[]
 
   // Registry
   registryType?: "registry:block" | "registry:component"

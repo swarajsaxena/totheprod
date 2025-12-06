@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils"
 /**
  * Context value for RaunoSidebar configuration
  */
-type TtpRaunoSidebarContextValue = {
+type TtpTickerSidebarContextValue = {
   /** Number of dividers to render between items within a section */
   itemDividersLength: number
   /** Number of dividers to render between sections */
@@ -40,7 +40,7 @@ type TtpRaunoSidebarContextValue = {
 /**
  * Context for sharing divider configuration across sidebar components
  */
-const TtpRaunoSidebarContext = createContext<TtpRaunoSidebarContextValue>({
+const TtpTickerSidebarContext = createContext<TtpTickerSidebarContextValue>({
   itemDividersLength: 2,
   sectionDividersLength: 4,
 })
@@ -49,12 +49,12 @@ const TtpRaunoSidebarContext = createContext<TtpRaunoSidebarContextValue>({
  * Hook to access the RaunoSidebar context
  * @returns The current sidebar context value
  */
-const useTtpRaunoSidebarContext = () => useContext(TtpRaunoSidebarContext)
+const useTtpTickerSidebarContext = () => useContext(TtpTickerSidebarContext)
 
 /**
  * Props for the RaunoSidebar component
  */
-type TtpRaunoSidebarProps = {
+type TtpTickerSidebarProps = {
   /** The sidebar content (sections, headers, items) */
   children: React.ReactNode
   /** Additional CSS classes to apply to the sidebar container */
@@ -81,27 +81,27 @@ type TtpRaunoSidebarProps = {
  * </RaunoSidebar>
  * ```
  */
-const TtpRaunoSidebar = ({
+const TtpTickerSidebar = ({
   children,
   className,
   itemDividersLength = 2,
   sectionDividersLength = 4,
-}: TtpRaunoSidebarProps) => {
+}: TtpTickerSidebarProps) => {
   return (
-    <TtpRaunoSidebarContext.Provider
+    <TtpTickerSidebarContext.Provider
       value={{ itemDividersLength, sectionDividersLength }}
     >
       <div className={cn("flex w-full min-w-max flex-col p-4", className)}>
         <div className="flex w-max flex-col">{children}</div>
       </div>
-    </TtpRaunoSidebarContext.Provider>
+    </TtpTickerSidebarContext.Provider>
   )
 }
 
 /**
  * Props for the RaunoSidebarSectionDivider component
  */
-type TtpRaunoSidebarSectionDividerProps = {
+type TtpTickerSidebarSectionDividerProps = {
   /** Additional CSS classes to apply to the divider */
   className?: string
 }
@@ -112,9 +112,9 @@ type TtpRaunoSidebarSectionDividerProps = {
  * A subtle horizontal line used for spacing between items and sections.
  * Automatically rendered by headers, items, and sections based on context.
  */
-const TtpRaunoSidebarSectionDivider = ({
+const TtpTickerSidebarSectionDivider = ({
   className,
-}: TtpRaunoSidebarSectionDividerProps) => {
+}: TtpTickerSidebarSectionDividerProps) => {
   return (
     <div className={cn("flex h-2 items-center", className)}>
       <div className="h-px w-8 bg-muted-foreground/50" />
@@ -125,7 +125,7 @@ const TtpRaunoSidebarSectionDivider = ({
 /**
  * Props for the RaunoSidebarSection component
  */
-type TtpRaunoSidebarSectionProps = {
+type TtpTickerSidebarSectionProps = {
   /** The section content (headers and items) */
   children: React.ReactNode
   /** Additional CSS classes to apply to the section container */
@@ -140,19 +140,19 @@ type TtpRaunoSidebarSectionProps = {
  * Groups related sidebar items together and automatically adds section dividers
  * after the section (unless it's the last one).
  */
-const TtpRaunoSidebarSection = ({
+const TtpTickerSidebarSection = ({
   children,
   className,
   isLast = false,
-}: TtpRaunoSidebarSectionProps) => {
-  const { sectionDividersLength } = useTtpRaunoSidebarContext()
+}: TtpTickerSidebarSectionProps) => {
+  const { sectionDividersLength } = useTtpTickerSidebarContext()
 
   return (
     <div className={cn("flex flex-col", className)}>
       {children}
       {!isLast &&
         Array.from({ length: sectionDividersLength }).map((_, i) => (
-          <TtpRaunoSidebarSectionDivider key={`section-divider-${i}`} />
+          <TtpTickerSidebarSectionDivider key={`section-divider-${i}`} />
         ))}
     </div>
   )
@@ -161,7 +161,7 @@ const TtpRaunoSidebarSection = ({
 /**
  * Props for the RaunoSidebarSectionHeader component
  */
-type TtpRaunoSidebarSectionHeaderProps = {
+type TtpTickerSidebarSectionHeaderProps = {
   /** The header text/content */
   children: React.ReactNode
   /** Additional CSS classes to apply to the header */
@@ -174,11 +174,11 @@ type TtpRaunoSidebarSectionHeaderProps = {
  * Displays a section title with a decorative line prefix.
  * Automatically adds item dividers below the header for spacing.
  */
-const TtpRaunoSidebarSectionHeader = ({
+const TtpTickerSidebarSectionHeader = ({
   children,
   className,
-}: TtpRaunoSidebarSectionHeaderProps) => {
-  const { itemDividersLength } = useTtpRaunoSidebarContext()
+}: TtpTickerSidebarSectionHeaderProps) => {
+  const { itemDividersLength } = useTtpTickerSidebarContext()
 
   return (
     <>
@@ -192,7 +192,7 @@ const TtpRaunoSidebarSectionHeader = ({
         <span>{children}</span>
       </div>
       {Array.from({ length: itemDividersLength }).map((_, i) => (
-        <TtpRaunoSidebarSectionDivider key={`header-divider-${i}`} />
+        <TtpTickerSidebarSectionDivider key={`header-divider-${i}`} />
       ))}
     </>
   )
@@ -203,7 +203,7 @@ const TtpRaunoSidebarSectionHeader = ({
  *
  * A clickable sidebar item with smooth hover and active state animations.
  */
-interface TtpRaunoSidebarItemProps
+interface TtpTickerSidebarItemProps
   extends React.HTMLAttributes<HTMLAnchorElement> {
   /** The item label/text */
   children: React.ReactNode
@@ -237,16 +237,16 @@ interface TtpRaunoSidebarItemProps
  * </RaunoSidebarItem>
  * ```
  */
-const TtpRaunoSidebarItem = ({
+const TtpTickerSidebarItem = ({
   children,
   isActive = false,
   className,
   textClassName,
   isLast = false,
   ...props
-}: TtpRaunoSidebarItemProps) => {
+}: TtpTickerSidebarItemProps) => {
   const [isHovered, setIsHovered] = useState(false)
-  const { itemDividersLength } = useTtpRaunoSidebarContext()
+  const { itemDividersLength } = useTtpTickerSidebarContext()
 
   return (
     <>
@@ -291,16 +291,16 @@ const TtpRaunoSidebarItem = ({
       </motion.div>
       {!isLast &&
         Array.from({ length: itemDividersLength }).map((_, i) => (
-          <TtpRaunoSidebarSectionDivider key={`item-divider-${i}`} />
+          <TtpTickerSidebarSectionDivider key={`item-divider-${i}`} />
         ))}
     </>
   )
 }
 
 export {
-  TtpRaunoSidebar,
-  TtpRaunoSidebarSection,
-  TtpRaunoSidebarSectionHeader,
-  TtpRaunoSidebarSectionDivider,
-  TtpRaunoSidebarItem,
+  TtpTickerSidebar,
+  TtpTickerSidebarSection,
+  TtpTickerSidebarSectionHeader,
+  TtpTickerSidebarSectionDivider,
+  TtpTickerSidebarItem,
 }

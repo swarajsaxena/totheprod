@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
-type TtpNotionNavigatorProps = {
+type TtpDocumentNavigatorProps = {
   /** Additional CSS classes to apply to the container */
   className?: string
   /** The ID of the scroll container to use, defaults to "body" */
@@ -43,10 +43,10 @@ const getStyle = (heading: keyof typeof StyleMap) => {
   return StyleMap[heading]
 }
 
-export const TtpNotionNavigator = ({
+export const TtpDocumentNavigator = ({
   className,
   scrollContainerId,
-}: TtpNotionNavigatorProps) => {
+}: TtpDocumentNavigatorProps) => {
   const [headings, setHeadings] = useState<HTMLHeadingElement[]>([])
   const [isHovering, setisHovering] = useState(true)
   const [activeHeadingId, setActiveHeadingId] = useState<string | null>(null)

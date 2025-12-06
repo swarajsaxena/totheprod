@@ -11,16 +11,16 @@
  *
  * @example
  * ```tsx
- * <RaycastCommandMenuProvider shortcut="mod+k">
+ * <CommandPaletteProvider shortcut="mod+k">
  *   <RaycastCommandMenu>
- *     <RaycastCommandMenuInput placeholder="Search..." />
- *     <RaycastCommandMenuContent>
- *       <RaycastCommandMenuSection title="Navigation">
- *         <RaycastCommandMenuItem icon={<Icon />} title="Home" onSelect={() => {}} />
- *       </RaycastCommandMenuSection>
- *     </RaycastCommandMenuContent>
+ *     <CommandPaletteInput placeholder="Search..." />
+ *     <CommandPaletteContent>
+ *       <CommandPaletteSection title="Navigation">
+ *         <CommandPaletteItem icon={<Icon />} title="Home" onSelect={() => {}} />
+ *       </CommandPaletteSection>
+ *     </CommandPaletteContent>
  *   </RaycastCommandMenu>
- * </RaycastCommandMenuProvider>
+ * </CommandPaletteProvider>
  * ```
  */
 
@@ -145,12 +145,12 @@ export const useRaycastCommandMenu = () => {
  * Hook to access command menu open state
  * Useful for controlling the menu from external components
  */
-export const useTtpRaycastCommandMenuState = () => {
+export const useTtpCommandPaletteState = () => {
   const context = React.useContext(RaycastCommandMenuContext)
 
   if (!context) {
     throw new Error(
-      "useTtpRaycastCommandMenuState must be used within TtpRaycastCommandMenu"
+      "useTtpCommandPaletteState must be used within TtpCommandPalette"
     )
   }
 
@@ -163,7 +163,7 @@ export const useTtpRaycastCommandMenuState = () => {
 /**
  * Provider Component (can be used standalone)
  */
-export const RaycastCommandMenuProvider = ({
+export const CommandPaletteProvider = ({
   children,
   shortcut = "mod+k",
   actionsShortcut = "mod+k",
@@ -282,7 +282,7 @@ export const RaycastCommandMenuProvider = ({
 /**
  * Dialog Component (can be used standalone with provider)
  */
-export const RaycastCommandMenuDialog = ({
+export const CommandPaletteDialog = ({
   children,
   className,
   showCloseButton = false,
@@ -368,13 +368,13 @@ export const RaycastCommandMenu = ({
   description = "Search for apps, commands, and actions",
 }: RaycastCommandMenuProps) => {
   return (
-    <RaycastCommandMenuProvider
+    <CommandPaletteProvider
       actionsShortcut={actionsShortcut}
       onOpenChange={onOpenChange}
       open={open}
       shortcut={shortcut}
     >
-      <RaycastCommandMenuDialog
+      <CommandPaletteDialog
         className={className}
         description={description}
         showCloseButton={showCloseButton}
@@ -382,25 +382,25 @@ export const RaycastCommandMenu = ({
         title={title}
       >
         {children}
-      </RaycastCommandMenuDialog>
-    </RaycastCommandMenuProvider>
+      </CommandPaletteDialog>
+    </CommandPaletteProvider>
   )
 }
 
 /**
  * Input Component
  */
-type RaycastCommandMenuInputProps = {
+type CommandPaletteInputProps = {
   placeholder?: string
   askAiLabel?: string | false
   className?: string
 }
 
-export const RaycastCommandMenuInput = ({
+export const CommandPaletteInput = ({
   placeholder = "Search for apps and commands...",
   askAiLabel = "Ask AI",
   className,
-}: RaycastCommandMenuInputProps) => {
+}: CommandPaletteInputProps) => {
   const { search, setSearch } = useRaycastCommandMenu()
 
   return (
@@ -478,17 +478,17 @@ export const RaycastCommandMenuBanner = ({
 /**
  * Content Component
  */
-type RaycastCommandMenuContentProps = {
+type CommandPaletteContentProps = {
   children: React.ReactNode
   emptyText?: string
   className?: string
 }
 
-export const RaycastCommandMenuContent = ({
+export const CommandPaletteContent = ({
   children,
   emptyText = "No results found.",
   className,
-}: RaycastCommandMenuContentProps) => {
+}: CommandPaletteContentProps) => {
   return (
     <CommandList
       className={cn("max-h-[400px] overflow-y-auto py-2!", className)}
@@ -502,19 +502,19 @@ export const RaycastCommandMenuContent = ({
 /**
  * Section Component
  */
-type RaycastCommandMenuSectionProps = {
+type CommandPaletteSectionProps = {
   title: string
   children: React.ReactNode
   isLast?: boolean
   className?: string
 }
 
-export const RaycastCommandMenuSection = ({
+export const CommandPaletteSection = ({
   title,
   children,
   isLast: _isLast = false,
   className,
-}: RaycastCommandMenuSectionProps) => {
+}: CommandPaletteSectionProps) => {
   return (
     <div className="group">
       <CommandGroup className={cn("has-[]: p-0!", className)} heading={title}>
@@ -528,7 +528,7 @@ export const RaycastCommandMenuSection = ({
 /**
  * Item Component
  */
-type RaycastCommandMenuItemProps = {
+type CommandPaletteItemProps = {
   id: string
   icon: React.ReactNode
   title: string
@@ -540,7 +540,7 @@ type RaycastCommandMenuItemProps = {
   shortcut?: string
 }
 
-export const RaycastCommandMenuItem = ({
+export const CommandPaletteItem = ({
   id,
   icon,
   title,
@@ -550,7 +550,7 @@ export const RaycastCommandMenuItem = ({
   actions,
   className,
   shortcut,
-}: RaycastCommandMenuItemProps) => {
+}: CommandPaletteItemProps) => {
   const { setOpen, setSelectedItem, setShowActions, itemsRegistry } =
     useRaycastCommandMenu()
 
@@ -731,17 +731,17 @@ export const RaycastCommandMenuActionsDropdown = ({
 /**
  * Footer Component
  */
-type RaycastCommandMenuFooterProps = {
+type CommandPaletteFooterProps = {
   onBack?: () => void
   secondaryActionLabel?: string
   className?: string
 }
 
-export const RaycastCommandMenuFooter = ({
+export const CommandPaletteFooter = ({
   onBack,
   secondaryActionLabel = "Actions",
   className,
-}: RaycastCommandMenuFooterProps) => {
+}: CommandPaletteFooterProps) => {
   const {
     selectedItem,
     showActions,

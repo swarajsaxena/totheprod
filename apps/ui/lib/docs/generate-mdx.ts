@@ -1,5 +1,6 @@
 import fs from "node:fs"
 import path from "node:path"
+import type { ComponentInspiration } from "../component-metadata/types"
 import type { ComponentPropsInfo } from "./extract-types"
 import {
   generateInstallCommand,
@@ -14,6 +15,7 @@ export type MDXGenerationOptions = {
   componentId: string
   componentTitle: string
   description?: string
+  inspirations?: ComponentInspiration[]
   overwrite?: boolean
 }
 
@@ -29,6 +31,7 @@ export const generateMDXFile = (
     componentId,
     componentTitle,
     description,
+    inspirations,
     overwrite = false,
   } = options
 
@@ -44,6 +47,7 @@ export const generateMDXFile = (
     componentId,
     componentTitle,
     description,
+    inspirations,
   })
 
   // Ensure output directory exists
@@ -64,10 +68,11 @@ const generateMDXContent = (
     componentId: string
     componentTitle: string
     description?: string
+    inspirations?: ComponentInspiration[]
   }
 ): string => {
   const { componentName, props } = propsInfo
-  const { componentId, componentTitle, description } = metadata
+  const { componentId, componentTitle, description, inspirations } = metadata
 
   const sections: string[] = []
 
@@ -77,6 +82,22 @@ const generateMDXContent = (
 
   if (description) {
     sections.push(description)
+    sections.push("")
+  }
+
+  // Inspirations
+  if (inspirations && inspirations.length > 0) {
+    sections.push("## Inspiration")
+    sections.push("")
+    sections.push("This component was inspired by:")
+    sections.push("")
+    for (const inspiration of inspirations) {
+      if (inspiration.href) {
+        sections.push(`- [${inspiration.label}](${inspiration.href})`)
+      } else {
+        sections.push(`- ${inspiration.label}`)
+      }
+    }
     sections.push("")
   }
 
@@ -160,4 +181,98 @@ export const updateMDXWithPropsTable = (
     fs.writeFileSync(mdxFilePath, updatedContent, "utf-8")
     console.log(`✅ Added props table to ${path.basename(mdxFilePath)}`)
   }
+}
+const inspirationRegex = /##\s+Inspiration[\s\S]*?(?=\n##|\n$)/
+
+/**
+ * Update existing MDX file with inspirations section
+ */
+export const updateMDXWithInspirations = (
+  mdxFilePath: string,
+  inspirations: ComponentInspiration[]
+  // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: needed
+): void => {
+  if (!fs.existsSync(mdxFilePath)) {
+    console.warn(`⚠️  MDX file not found: ${mdxFilePath}`)
+    return
+  }
+
+  const content = fs.readFileSync(mdxFilePath, "utf-8")
+
+  // Generate inspiration section
+  const inspirationSection = generateInspirationsSection(inspirations)
+
+  // Check if inspiration section already exists
+
+  if (inspirationRegex.test(content)) {
+    // Replace existing inspiration section
+    const updatedContent = content.replace(inspirationRegex, inspirationSection)
+    fs.writeFileSync(mdxFilePath, updatedContent, "utf-8")
+    console.log(`✅ Updated inspirations in ${path.basename(mdxFilePath)}`)
+  } else {
+    // Add inspiration section after description, before Installation
+    const installationIndex = content.indexOf("## Installation")
+    let updatedContent: string
+
+    if (installationIndex !== -1) {
+      // Insert before Installation
+      updatedContent =
+        content.slice(0, installationIndex) +
+        inspirationSection +
+        "\n" +
+        content.slice(installationIndex)
+    } else {
+      // Try to insert after first paragraph
+      const lines = content.split("\n")
+      let insertIndex = 0
+      let emptyLineCount = 0
+
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].trim() === "") {
+          emptyLineCount += 1
+          if (emptyLineCount === 2) {
+            insertIndex = i + 1
+            break
+          }
+        }
+      }
+
+      if (insertIndex > 0) {
+        lines.splice(insertIndex, 0, inspirationSection)
+        updatedContent = lines.join("\n")
+      } else {
+        // Append after title and description
+        updatedContent = `${content}\n${inspirationSection}`
+      }
+    }
+
+    fs.writeFileSync(mdxFilePath, updatedContent, "utf-8")
+    console.log(`✅ Added inspirations to ${path.basename(mdxFilePath)}`)
+  }
+}
+
+/**
+ * Generate inspirations section content
+ */
+const generateInspirationsSection = (
+  inspirations: ComponentInspiration[]
+): string => {
+  const lines: string[] = []
+
+  lines.push("## Inspiration")
+  lines.push("")
+  lines.push("This component was inspired by:")
+  lines.push("")
+
+  for (const inspiration of inspirations) {
+    if (inspiration.href) {
+      lines.push(`- [${inspiration.label}](${inspiration.href})`)
+    } else {
+      lines.push(`- ${inspiration.label}`)
+    }
+  }
+
+  lines.push("")
+
+  return lines.join("\n")
 }

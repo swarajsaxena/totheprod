@@ -16,12 +16,12 @@ import { usePathname, useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 import { contentMap } from "@/app/components/[id]/constants"
 import {
-  RaycastCommandMenuContent,
-  RaycastCommandMenuDialog,
-  RaycastCommandMenuInput,
-  RaycastCommandMenuItem,
-  RaycastCommandMenuSection,
-} from "@/components/ui/totheprod-ui/ttp-raycast-command-menu"
+  CommandPaletteContent,
+  CommandPaletteDialog,
+  CommandPaletteInput,
+  CommandPaletteItem,
+  CommandPaletteSection,
+} from "@/components/ui/totheprod-ui/ttp-command-palette"
 import { sidebarOpenAtom } from "@/store/atoms"
 
 export const GlobalCommandMenu = () => {
@@ -65,19 +65,19 @@ export const GlobalCommandMenu = () => {
   })()
 
   return (
-    <RaycastCommandMenuDialog
+    <CommandPaletteDialog
       className="backdrop-blur-xl dark:bg-muted/75"
       description="Search for apps, commands, and actions"
       title="Command Menu"
     >
-      <RaycastCommandMenuInput
+      <CommandPaletteInput
         askAiLabel={false}
         placeholder="Search for commands..."
       />
-      <RaycastCommandMenuContent emptyText="No commands found.">
+      <CommandPaletteContent emptyText="No commands found.">
         {isComponentPage && (
-          <RaycastCommandMenuSection title="Navigation">
-            <RaycastCommandMenuItem
+          <CommandPaletteSection title="Navigation">
+            <CommandPaletteItem
               description={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
               icon={<HugeiconsIcon icon={SidebarLeft01FreeIcons} />}
               id="toggle-sidebar"
@@ -85,21 +85,21 @@ export const GlobalCommandMenu = () => {
               shortcut="mod+b"
               title={sidebarOpen ? "Hide Sidebar" : "Show Sidebar"}
             />
-          </RaycastCommandMenuSection>
+          </CommandPaletteSection>
         )}
-        <RaycastCommandMenuSection title="Theme">
+        <CommandPaletteSection title="Theme">
           {themeItems.map((item) => (
-            <RaycastCommandMenuItem key={item.id} {...item} />
+            <CommandPaletteItem key={item.id} {...item} />
           ))}
-        </RaycastCommandMenuSection>
-        <RaycastCommandMenuSection title="Socials">
-          <RaycastCommandMenuItem
+        </CommandPaletteSection>
+        <CommandPaletteSection title="Socials">
+          <CommandPaletteItem
             icon={<HugeiconsIcon icon={NewTwitterIcon} />}
             id="twitter"
             onSelect={() => window.open("https://x.com/totheprod", "_blank")}
             title="Twitter"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             icon={<HugeiconsIcon icon={GithubIcon} />}
             id="github"
             onSelect={() =>
@@ -107,15 +107,12 @@ export const GlobalCommandMenu = () => {
             }
             title="GitHub"
           />
-        </RaycastCommandMenuSection>
+        </CommandPaletteSection>
 
         {contentMap.map((section) => (
-          <RaycastCommandMenuSection
-            key={section.section}
-            title={section.section}
-          >
+          <CommandPaletteSection key={section.section} title={section.section}>
             {section.items.map((item) => (
-              <RaycastCommandMenuItem
+              <CommandPaletteItem
                 description={item.description}
                 icon={(() => {
                   if ("logo" in item && item.logo) {
@@ -139,9 +136,9 @@ export const GlobalCommandMenu = () => {
                 title={item.title}
               />
             ))}
-          </RaycastCommandMenuSection>
+          </CommandPaletteSection>
         ))}
-      </RaycastCommandMenuContent>
-    </RaycastCommandMenuDialog>
+      </CommandPaletteContent>
+    </CommandPaletteDialog>
   )
 }

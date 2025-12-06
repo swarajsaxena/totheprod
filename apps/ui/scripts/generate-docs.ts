@@ -10,10 +10,14 @@ import fs from "node:fs"
 import path from "node:path"
 import { components } from "@/lib/component-metadata"
 import { extractPropsFromFile } from "@/lib/docs/extract-types"
-import { updateMDXWithPropsTable } from "@/lib/docs/generate-mdx"
+import {
+  updateMDXWithInspirations,
+  updateMDXWithPropsTable,
+} from "@/lib/docs/generate-mdx"
 
 const DOCS_DIR = path.join(process.cwd(), "docs", "components")
 
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: needed
 const main = () => {
   console.log("🚀 ToTheProd Documentation Generator\n")
   console.log("📝 Extracting props from component files...\n")
@@ -64,6 +68,12 @@ const main = () => {
 
       // Update MDX file with props table
       updateMDXWithPropsTable(mdxPath, propsInfo)
+
+      // Update MDX file with inspirations if available
+      if (component.inspirations && component.inspirations.length > 0) {
+        updateMDXWithInspirations(mdxPath, component.inspirations)
+      }
+
       successCount += 1
     } catch (error) {
       console.error(`❌ Failed to process ${component.id}:`, error)

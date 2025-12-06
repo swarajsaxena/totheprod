@@ -34,18 +34,18 @@ import {
 import { toast } from "sonner"
 import CornerPlusContainer from "@/components/internal/corner-plus-container"
 import {
-  RaycastCommandMenuContent,
-  RaycastCommandMenuDialog,
-  RaycastCommandMenuFooter,
-  RaycastCommandMenuInput,
-  RaycastCommandMenuItem,
-  RaycastCommandMenuProvider,
-  RaycastCommandMenuSection,
-  useTtpRaycastCommandMenuState,
-} from "@/components/ui/totheprod-ui/ttp-raycast-command-menu"
+  CommandPaletteContent,
+  CommandPaletteDialog,
+  CommandPaletteFooter,
+  CommandPaletteInput,
+  CommandPaletteItem,
+  CommandPaletteProvider,
+  CommandPaletteSection,
+  useTtpCommandPaletteState,
+} from "@/components/ui/totheprod-ui/ttp-command-palette"
 
-const RaycastCommandMenuTrigger = () => {
-  const { setOpen } = useTtpRaycastCommandMenuState()
+const CommandPaletteTrigger = () => {
+  const { setOpen } = useTtpCommandPaletteState()
 
   const handleOpen = () => {
     setOpen(true)
@@ -77,14 +77,14 @@ const RaycastCommandMenuTrigger = () => {
   )
 }
 
-const RaycastCommandMenuPreviewDialog = () => {
+const CommandPalettePreviewDialog = () => {
   return (
-    <RaycastCommandMenuDialog>
-      <RaycastCommandMenuInput placeholder="Search for apps and commands..." />
-      <RaycastCommandMenuContent>
+    <CommandPaletteDialog>
+      <CommandPaletteInput placeholder="Search for apps and commands..." />
+      <CommandPaletteContent>
         {/* Favorites Section */}
-        <RaycastCommandMenuSection title="Favorites">
-          <RaycastCommandMenuItem
+        <CommandPaletteSection title="Favorites">
+          <CommandPaletteItem
             actions={[
               {
                 id: "open",
@@ -114,7 +114,7 @@ const RaycastCommandMenuPreviewDialog = () => {
             title="Search Recent Projects"
             type="Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             actions={[
               {
                 id: "paste",
@@ -137,7 +137,7 @@ const RaycastCommandMenuPreviewDialog = () => {
             title="Clipboard History"
             type="Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             actions={[
               {
                 id: "create",
@@ -160,42 +160,42 @@ const RaycastCommandMenuPreviewDialog = () => {
             title="Create Snippet"
             type="Command"
           />
-        </RaycastCommandMenuSection>
+        </CommandPaletteSection>
 
         {/* System Section */}
-        <RaycastCommandMenuSection title="System">
-          <RaycastCommandMenuItem
+        <CommandPaletteSection title="System">
+          <CommandPaletteItem
             icon={<Settings className="size-4" />}
             id="system-settings"
             title="System Settings"
             type="Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             description="System"
             icon={<XCircle className="size-4" />}
             id="empty-trash"
             title="Empty Trash"
             type="Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             description="System"
             icon={<Terminal className="size-4" />}
             id="lock-screen"
             title="Lock Screen"
             type="Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             description="System"
             icon={<RotateCcw className="size-4" />}
             id="restart"
             title="Restart"
             type="Command"
           />
-        </RaycastCommandMenuSection>
+        </CommandPaletteSection>
 
         {/* Applications Section */}
-        <RaycastCommandMenuSection title="Applications">
-          <RaycastCommandMenuItem
+        <CommandPaletteSection title="Applications">
+          <CommandPaletteItem
             actions={[
               {
                 id: "open",
@@ -224,7 +224,7 @@ const RaycastCommandMenuPreviewDialog = () => {
             title="Visual Studio Code"
             type="Application"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             actions={[
               {
                 id: "open",
@@ -246,35 +246,35 @@ const RaycastCommandMenuPreviewDialog = () => {
             title="Google Chrome"
             type="Application"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             icon={<Terminal className="size-4" />}
             id="terminal"
             title="Terminal"
             type="Application"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             icon={<Mail className="size-4" />}
             id="mail"
             title="Mail"
             type="Application"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             icon={<Calendar className="size-4" />}
             id="calendar"
             title="Calendar"
             type="Application"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             icon={<Music className="size-4" />}
             id="music"
             title="Music"
             type="Application"
           />
-        </RaycastCommandMenuSection>
+        </CommandPaletteSection>
 
         {/* Productivity Section */}
-        <RaycastCommandMenuSection title="Productivity">
-          <RaycastCommandMenuItem
+        <CommandPaletteSection title="Productivity">
+          <CommandPaletteItem
             actions={[
               {
                 id: "open",
@@ -311,7 +311,7 @@ const RaycastCommandMenuPreviewDialog = () => {
             title="Notion"
             type="Application"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             actions={[
               {
                 id: "open",
@@ -341,84 +341,84 @@ const RaycastCommandMenuPreviewDialog = () => {
             title="Linear"
             type="Application"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             icon={<MessageSquare className="size-4" />}
             id="whatsapp"
             title="WhatsApp"
             type="Application"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             description="Team communication"
             icon={<Hash className="size-4" />}
             id="slack"
             title="Slack"
             type="Application"
           />
-        </RaycastCommandMenuSection>
+        </CommandPaletteSection>
 
         {/* Tools Section */}
-        <RaycastCommandMenuSection title="Tools">
-          <RaycastCommandMenuItem
+        <CommandPaletteSection title="Tools">
+          <CommandPaletteItem
             description="Color Picker"
             icon={<Palette className="size-4" />}
             id="convert-color"
             title="Convert Color"
             type="Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             description="File Search"
             icon={<Search className="size-4" />}
             id="search-files"
             title="Search Files"
             type="Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             description="Time zones"
             icon={<Clock className="size-4" />}
             id="world-clock"
             title="World Clock"
             type="Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             description="Image Tools"
             icon={<Image className="size-4" />}
             id="image-optimizer"
             title="Optimize Image"
             type="Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             description="Screen Recording"
             icon={<Video className="size-4" />}
             id="screen-record"
             title="Record Screen"
             type="Command"
           />
-        </RaycastCommandMenuSection>
+        </CommandPaletteSection>
 
         {/* AI Commands Section */}
-        <RaycastCommandMenuSection isLast title="AI Commands">
-          <RaycastCommandMenuItem
+        <CommandPaletteSection isLast title="AI Commands">
+          <CommandPaletteItem
             description="Raycast AI"
             icon={<MessageCircle className="size-4" />}
             id="ask-webpage"
             title="Ask About Webpage"
             type="AI Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             description="Raycast AI"
             icon={<Sparkles className="size-4" />}
             id="summarize"
             title="Summarize Text"
             type="AI Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             description="Raycast AI"
             icon={<Sparkles className="size-4" />}
             id="improve-writing"
             title="Improve Writing"
             type="AI Command"
           />
-          <RaycastCommandMenuItem
+          <CommandPaletteItem
             actions={[
               {
                 id: "explain",
@@ -448,29 +448,29 @@ const RaycastCommandMenuPreviewDialog = () => {
             title="Explain Code"
             type="AI Command"
           />
-        </RaycastCommandMenuSection>
-      </RaycastCommandMenuContent>
-      <RaycastCommandMenuFooter />
-    </RaycastCommandMenuDialog>
+        </CommandPaletteSection>
+      </CommandPaletteContent>
+      <CommandPaletteFooter />
+    </CommandPaletteDialog>
   )
 }
 
-const RaycastCommandMenuPreviewContent = () => {
+const CommandPalettePreviewContent = () => {
   return (
     <div
       className="relative flex h-full w-full flex-1 items-center justify-center"
       data-preview-padding="false"
     >
-      <RaycastCommandMenuTrigger />
-      <RaycastCommandMenuPreviewDialog />
+      <CommandPaletteTrigger />
+      <CommandPalettePreviewDialog />
     </div>
   )
 }
 
-export const TtpRaycastCommandMenuPreview = () => {
+export const TtpCommandPalettePreview = () => {
   return (
-    <RaycastCommandMenuProvider actionsShortcut="alt+j" shortcut="mod+j">
-      <RaycastCommandMenuPreviewContent />
-    </RaycastCommandMenuProvider>
+    <CommandPaletteProvider actionsShortcut="alt+j" shortcut="mod+j">
+      <CommandPalettePreviewContent />
+    </CommandPaletteProvider>
   )
 }

@@ -1,14 +1,14 @@
+import { TtpBlurFocusNavigationPreview } from "@/components/previews/ttp-blur-focus-navigation/preview"
+import { TtpCommandPalettePreview } from "@/components/previews/ttp-command-palette/preview"
 import { TtpCursorCometPreview } from "@/components/previews/ttp-cursor-comet/preview"
-import { TtpHomeBlurredNavPreview } from "@/components/previews/ttp-home-blurred-nav/preview"
+import { TtpDocumentNavigatorPreview } from "@/components/previews/ttp-document-navigator/preview"
 import { TtpHorizontalTextRevealPreview } from "@/components/previews/ttp-horizontal-text-reveal/preview"
-import { TtpLandoNorrisTablePreview } from "@/components/previews/ttp-lando-norris-table/preview"
+import { TtpImagePeekTablePreview } from "@/components/previews/ttp-image-peek-table/preview"
 import { TtpLayeredNavPreview } from "@/components/previews/ttp-layered-nav/preview"
-import { TtpNotionNavigatorPreview } from "@/components/previews/ttp-notion-navigator/preview"
 import { TtpPerspectiveCarousel } from "@/components/previews/ttp-perspective-carousel/preview"
 import { TtpPixelLoaderPreview } from "@/components/previews/ttp-pixel-loader/preview"
-import { TtpRaunoSidebarPreview } from "@/components/previews/ttp-rauno-sidebar/preview"
-import { TtpRaycastCommandMenuPreview } from "@/components/previews/ttp-raycast-command-menu/preview"
 import { TtpTextScramblePreview } from "@/components/previews/ttp-text-scramble/preview"
+import { TtpTickerSidebarPreview } from "@/components/previews/ttp-ticker-sidebar/preview"
 import { TtpWavyTextPreview } from "@/components/previews/ttp-wavy-text/preview"
 import { TtpWordShufflerPreview } from "@/components/previews/ttp-word-shuffler/preview"
 import { categories } from "./categories"
@@ -18,19 +18,19 @@ import type { ComponentMetadata } from "./types"
  * Component IDs - centralized constants
  */
 export const ComponentId = {
-  RAUNO_SIDEBAR: "ttp-rauno-sidebar",
+  TICKER_SIDEBAR: "ttp-ticker-sidebar",
   LAYERED_NAV: "ttp-layered-nav",
-  NOTION_NAVIGATOR: "ttp-notion-navigator",
+  DOCUMENT_NAVIGATOR: "ttp-document-navigator",
   PIXEL_LOADER: "ttp-pixel-loader",
   WAVY_TEXT: "ttp-wavy-text",
   HORIZONTAL_TEXT_REVEAL: "ttp-horizontal-text-reveal",
   PERSPECTIVE_CAROUSEL: "ttp-perspective-carousel",
   CURSOR_COMET: "ttp-cursor-comet",
   WORD_SHUFFLER: "ttp-word-shuffler",
-  RAYCAST_COMMAND_MENU: "ttp-raycast-command-menu",
+  COMMAND_PALETTE: "ttp-command-palette",
   TEXT_SCRAMBLE: "ttp-text-scramble",
-  LANDO_NORRIS_TABLE: "ttp-lando-norris-table",
-  HOME_BLURRED_NAV: "ttp-home-blurred-nav",
+  IMAGE_PEEK_TABLE: "ttp-image-peek-table",
+  BLUR_FOCUS_NAVIGATION: "ttp-blur-focus-navigation",
 } as const
 
 export type ComponentIdType = (typeof ComponentId)[keyof typeof ComponentId]
@@ -41,101 +41,123 @@ export type ComponentIdType = (typeof ComponentId)[keyof typeof ComponentId]
 export const components: ComponentMetadata[] = [
   // Base Components
   {
-    id: ComponentId.NOTION_NAVIGATOR,
-    title: "Notion Navigator",
-    description: "Hierarchical navigation sidebar with collapsible sections",
+    id: ComponentId.DOCUMENT_NAVIGATOR,
+    title: "Document Navigator",
+    description:
+      "Notion-style table of contents with collapsible sections and scroll tracking",
     category: categories.NAVIGATION_AND_MENUS.id,
-    tags: ["navigation", "sidebar", "hierarchy", "collapsible"],
+    tags: [
+      "navigation",
+      "toc",
+      "table-of-contents",
+      "hierarchy",
+      "collapsible",
+    ],
     dependencies: ["motion"],
     files: [
       {
-        path: "components/ui/totheprod-ui/ttp-notion-navigator.tsx",
+        path: "components/ui/totheprod-ui/ttp-document-navigator.tsx",
         type: "registry:component",
       },
     ],
     installCommand:
-      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-notion-navigator.json",
+      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-document-navigator.json",
     complexity: "moderate",
     status: "stable",
-    preview: TtpNotionNavigatorPreview,
-    docsPath: "ttp-notion-navigator.mdx",
+    preview: TtpDocumentNavigatorPreview,
+    docsPath: "ttp-document-navigator.mdx",
     registryType: "registry:block",
+    inspirations: [
+      {
+        label: "Notion",
+        href: "https://notion.so",
+      },
+    ],
   },
   {
-    id: ComponentId.RAYCAST_COMMAND_MENU,
-    title: "Raycast Command Menu",
-    description: "Command palette with beautiful keyboard-first navigation",
+    id: ComponentId.COMMAND_PALETTE,
+    title: "Command Palette",
+    description:
+      "Command palette with beautiful keyboard-first navigation inspired by Raycast",
     category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["command", "menu", "keyboard", "search", "palette"],
     dependencies: ["motion", "cmdk"],
     files: [
       {
-        path: "components/ui/totheprod-ui/ttp-raycast-command-menu.tsx",
+        path: "components/ui/totheprod-ui/ttp-command-palette.tsx",
         type: "registry:component",
       },
     ],
     installCommand:
-      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-raycast-command-menu.json",
+      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-command-palette.json",
     complexity: "advanced",
     status: "stable",
-    preview: TtpRaycastCommandMenuPreview,
-    docsPath: "ttp-raycast-command-menu.mdx",
+    preview: TtpCommandPalettePreview,
+    docsPath: "ttp-command-palette.mdx",
     logo: "/logos/raycast.png",
     registryType: "registry:block",
-    inspiration: {
-      author: "Raycast",
-      url: "https://raycast.com",
-    },
+    inspirations: [
+      {
+        label: "Raycast",
+        href: "https://raycast.com",
+      },
+    ],
   },
   {
-    id: ComponentId.LANDO_NORRIS_TABLE,
-    title: "Lando Norris Table",
+    id: ComponentId.IMAGE_PEEK_TABLE,
+    title: "Image Peek Table",
     description:
-      "Beautiful table component with hover effects and clickable rows",
+      "Interactive table with image preview on hover and clickable rows",
     category: categories.DATA_DISPLAY.id,
-    tags: ["table", "data", "hover", "interactive"],
+    tags: ["table", "data", "hover", "interactive", "image-preview"],
     dependencies: ["motion"],
     files: [
       {
-        path: "components/ui/totheprod-ui/ttp-lando-norris-table.tsx",
+        path: "components/ui/totheprod-ui/ttp-image-peek-table.tsx",
         type: "registry:component",
       },
     ],
     installCommand:
-      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-lando-norris-table.json",
+      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-image-peek-table.json",
     complexity: "moderate",
     status: "stable",
-    preview: TtpLandoNorrisTablePreview,
-    docsPath: "ttp-lando-norris-table.mdx",
+    preview: TtpImagePeekTablePreview,
+    docsPath: "ttp-image-peek-table.mdx",
     registryType: "registry:block",
   },
 
   // Navigation & Menus
   {
-    id: ComponentId.RAUNO_SIDEBAR,
-    title: "Rauno Sidebar",
-    description: "Smooth expandable sidebar with fluid section transitions",
+    id: ComponentId.TICKER_SIDEBAR,
+    title: "Ticker Sidebar",
+    description:
+      "Smooth expandable sidebar with fluid section transitions inspired by Rauno Freiberg",
     category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["sidebar", "navigation", "expandable", "smooth"],
     dependencies: ["motion"],
     files: [
       {
-        path: "components/ui/totheprod-ui/ttp-rauno-sidebar.tsx",
+        path: "components/ui/totheprod-ui/ttp-ticker-sidebar.tsx",
         type: "registry:component",
       },
     ],
     installCommand:
-      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-rauno-sidebar.json",
+      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-ticker-sidebar.json",
     complexity: "moderate",
     status: "stable",
-    preview: TtpRaunoSidebarPreview,
-    docsPath: "ttp-rauno-sidebar.mdx",
+    preview: TtpTickerSidebarPreview,
+    docsPath: "ttp-ticker-sidebar.mdx",
     registryType: "registry:block",
-    inspiration: {
-      author: "Rauno Freiberg",
-      url: "https://rauno.me",
-      twitter: "@raunofreiberg",
-    },
+    inspirations: [
+      {
+        label: "Rauno Freiberg",
+        href: "https://rauno.me",
+      },
+      {
+        label: "@raunofreiberg",
+        href: "https://twitter.com/raunofreiberg",
+      },
+    ],
   },
   {
     id: ComponentId.LAYERED_NAV,
@@ -159,24 +181,25 @@ export const components: ComponentMetadata[] = [
     registryType: "registry:block",
   },
   {
-    id: ComponentId.HOME_BLURRED_NAV,
-    title: "Home Blurred Nav",
-    description: "Beautiful navigation bar with blurred background effect",
+    id: ComponentId.BLUR_FOCUS_NAVIGATION,
+    title: "Blur Focus Navigation",
+    description:
+      "Navigation bar with dynamic blur effect that highlights active sections",
     category: categories.NAVIGATION_AND_MENUS.id,
-    tags: ["navigation", "navbar", "blur", "glassmorphism"],
+    tags: ["navigation", "navbar", "blur", "glassmorphism", "focus"],
     dependencies: ["motion"],
     files: [
       {
-        path: "components/ui/totheprod-ui/ttp-home-blurred-nav.tsx",
+        path: "components/ui/totheprod-ui/ttp-blur-focus-navigation.tsx",
         type: "registry:component",
       },
     ],
     installCommand:
-      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-home-blurred-nav.json",
+      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-blur-focus-navigation.json",
     complexity: "simple",
     status: "stable",
-    preview: TtpHomeBlurredNavPreview,
-    docsPath: "ttp-home-blurred-nav.mdx",
+    preview: TtpBlurFocusNavigationPreview,
+    docsPath: "ttp-blur-focus-navigation.mdx",
     registryType: "registry:block",
   },
 
