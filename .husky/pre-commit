@@ -65,4 +65,24 @@ if [ "$STAGED_HASH" != "$NEW_STAGED_HASH" ]; then
   echo "✨ Files formatted by Ultracite"
 fi
 
+# Generate documentation if component files changed
+COMPONENT_FILES=$(echo "$STAGED_FILES" | grep -E "(components/|lib/component-metadata/|scripts/)" || true)
+if [ -n "$COMPONENT_FILES" ]; then
+  echo ""
+  echo "📚 Component files changed, generating documentation..."
+  cd apps/ui
+  if bun run generate:docs; then
+    cd ../..
+    # Stage generated docs if they exist
+    if [ -n "$(git status --porcelain apps/ui/docs/ 2>/dev/null)" ]; then
+      git add apps/ui/docs/
+      echo "✅ Documentation generated and staged"
+    fi
+  else
+    cd ../..
+    echo "❌ Documentation generation failed"
+    exit 1
+  fi
+fi
+
 exit $FORMAT_EXIT_CODE
