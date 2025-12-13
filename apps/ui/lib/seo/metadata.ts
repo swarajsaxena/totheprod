@@ -8,6 +8,7 @@ export const SITE_CONFIG = {
     "Premium React components and animations. Production-ready, customizable UI components with beautiful hover effects, seamless navigations, and magical scrolling.",
   url: "https://ui.totheprod.com",
   ogImage: "https://ui.totheprod.com/opengraph-image",
+  twitterImage: "https://ui.totheprod.com/twitter-image",
   author: {
     name: "Swaraj Saxena",
     url: "https://totheprod.com",
@@ -64,7 +65,7 @@ export const generateSiteMetadata = (): Metadata => {
       card: "summary_large_image",
       title: SITE_CONFIG.title,
       description: SITE_CONFIG.description,
-      images: [SITE_CONFIG.ogImage],
+      images: [SITE_CONFIG.twitterImage],
       creator: SITE_CONFIG.author.twitter,
     },
     robots: {
