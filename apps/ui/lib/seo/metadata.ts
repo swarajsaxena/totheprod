@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   description:
     "Premium React components and animations. Production-ready, customizable UI components with beautiful hover effects, seamless navigations, and magical scrolling.",
   url: "https://ui.totheprod.com",
-  ogImage: "https://ui.totheprod.com/og.png",
+  ogImage: "https://ui.totheprod.com/opengraph-image",
   author: {
     name: "Swaraj Saxena",
     url: "https://totheprod.com",
