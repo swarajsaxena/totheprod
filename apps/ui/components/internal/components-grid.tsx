@@ -8,7 +8,6 @@ type ComponentItem = {
   title: string
   description?: string
   preview?: React.ComponentType
-  docsPath?: string
   logo?: string
 }
 

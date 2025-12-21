@@ -13,7 +13,7 @@
     }
   ],
   "meta": {
-    "category": "magic-scrolling",
+    "category": "scroll-interactions",
     "tags": ["carousel", "3d", "perspective", "scroll"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-perspective-carousel.json"
   }

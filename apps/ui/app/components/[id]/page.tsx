@@ -1,5 +1,3 @@
-import { readFile } from "node:fs/promises"
-import path from "node:path"
 import type { Metadata } from "next"
 import type React from "react"
 import { StructuredData } from "@/components/internal/structured-data"
@@ -13,7 +11,6 @@ export type ComponentData = {
   preview?: React.ComponentType
   title: string
   description: string
-  docsPath?: string
 }
 
 export const generateMetadata = async ({
@@ -37,23 +34,6 @@ export const generateMetadata = async ({
   return generateComponentMetadata(component)
 }
 
-const getMdxContent = async (
-  docsPath?: string
-): Promise<string | undefined> => {
-  if (!docsPath) {
-    return
-  }
-
-  try {
-    const filePath = path.join(process.cwd(), "docs", "components", docsPath)
-    const content = await readFile(filePath, "utf-8")
-    return content
-  } catch (error) {
-    console.error(`Failed to read MDX file: ${docsPath}`, error)
-    return
-  }
-}
-
 const NotFoundComponent = () => <div>Component not found</div>
 
 const ComponentPage = async ({
@@ -72,15 +52,13 @@ const ComponentPage = async ({
     return <NotFoundComp />
   }
 
-  const mdxContent = await getMdxContent(`${component.id}.mdx`)
-
   const PreviewComponent = component.preview
   const schemas = generateComponentPageSchema(component)
 
   return (
     <>
       <StructuredData data={schemas} />
-      <ComponentProvider componentData={component} mdxDocs={mdxContent}>
+      <ComponentProvider componentData={component}>
         {PreviewComponent ? <PreviewComponent /> : null}
       </ComponentProvider>
     </>

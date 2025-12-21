@@ -13,7 +13,7 @@
     }
   ],
   "meta": {
-    "category": "unreal-page-entrances",
+    "category": "page-transitions-and-loaders",
     "tags": ["loader", "transition", "pixel", "animation"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-pixel-loader.json"
   }

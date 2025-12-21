@@ -13,7 +13,7 @@
     }
   ],
   "meta": {
-    "category": "unreal-page-entrances",
+    "category": "text-animations",
     "tags": ["text", "animation", "shuffle", "entrance"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-word-shuffler.json"
   }

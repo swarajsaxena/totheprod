@@ -13,8 +13,14 @@
     }
   ],
   "meta": {
-    "category": "base-components",
-    "tags": ["navigation", "sidebar", "hierarchy", "collapsible"],
+    "category": "navigation-and-menus",
+    "tags": [
+      "navigation",
+      "toc",
+      "table-of-contents",
+      "hierarchy",
+      "collapsible"
+    ],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-document-navigator.json"
   }
 }

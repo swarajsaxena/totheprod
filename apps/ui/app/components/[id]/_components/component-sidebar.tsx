@@ -118,13 +118,10 @@ export const ComponentSidebar = () => {
             </div>
           )}
         </div>
-        <TtpTickerSidebar
-          className="my-auto p-0 py-2"
-          sectionDividersLength={0}
-        >
+        <TtpTickerSidebar className="mb-auto p-0" sectionDividersLength={0}>
           {contentMap.map((section, sectionIndex) => (
             <TtpTickerSidebarSection
-              className="group relative border-t border-dashed px-4 py-4 last:border-b"
+              className="group relative border-t border-dashed px-4 py-4 first:border-t-0 last:border-b"
               isLast={sectionIndex === contentMap.length - 1}
               key={section.section}
             >
@@ -136,16 +133,18 @@ export const ComponentSidebar = () => {
               <TtpTickerSidebarSectionHeader>
                 {section.section}
               </TtpTickerSidebarSectionHeader>
-              {section.items.map((item, itemIndex) => (
-                <TtpTickerSidebarItem
-                  href={`/components/${item.id}`}
-                  isActive={currentId === item.id}
-                  isLast={itemIndex === section.items.length - 1}
-                  key={item.id}
-                >
-                  {item.title}
-                </TtpTickerSidebarItem>
-              ))}
+              {section.items
+                .sort((a, b) => a.title.localeCompare(b.title))
+                .map((item, itemIndex) => (
+                  <TtpTickerSidebarItem
+                    href={`/components/${item.id}`}
+                    isActive={currentId === item.id}
+                    isLast={itemIndex === section.items.length - 1}
+                    key={item.id}
+                  >
+                    {item.title}
+                  </TtpTickerSidebarItem>
+                ))}
             </TtpTickerSidebarSection>
           ))}
         </TtpTickerSidebar>

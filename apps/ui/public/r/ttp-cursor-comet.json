@@ -13,7 +13,7 @@
     }
   ],
   "meta": {
-    "category": "hover-like-a-pro",
+    "category": "cursor-and-hover-effects",
     "tags": ["cursor", "trail", "comet", "effect"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-cursor-comet.json"
   }

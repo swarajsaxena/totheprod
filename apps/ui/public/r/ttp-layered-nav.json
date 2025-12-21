@@ -13,7 +13,7 @@
     }
   ],
   "meta": {
-    "category": "seamless-navigations",
+    "category": "navigation-and-menus",
     "tags": ["navigation", "drawer", "layered", "multi-level"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-layered-nav.json"
   }

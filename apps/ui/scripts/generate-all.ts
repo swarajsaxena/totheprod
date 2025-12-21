@@ -1,10 +1,9 @@
 #!/usr/bin/env bun
 
 /**
- * Generate all: Registry + Documentation
+ * Generate all: Registry
  *
- * This script generates both the registry.json and documentation
- * from component metadata and TypeScript types.
+ * This script generates the registry.json from component metadata.
  */
 
 import { execSync } from "node:child_process"
@@ -37,7 +36,7 @@ const runScript = (scriptName: string, description: string) => {
   }
 }
 
-console.log("🚀 Generating Registry and Documentation\n")
+console.log("🚀 Generating Registry\n")
 
 // Generate registry
 runScript("generate-registry.ts", "Generating registry.json")
@@ -54,8 +53,5 @@ try {
   console.error("❌ Shadcn registry build failed:", error)
   process.exit(1)
 }
-
-// Generate documentation
-runScript("generate-docs.ts", "Generating documentation")
 
 console.log("\n✨ All generation completed successfully!")

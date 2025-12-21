@@ -13,7 +13,7 @@
     }
   ],
   "meta": {
-    "category": "hover-like-a-pro",
+    "category": "text-animations",
     "tags": ["text", "hover", "animation", "wave"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-wavy-text.json"
   }

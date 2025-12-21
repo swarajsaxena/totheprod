@@ -4,6 +4,7 @@ import { TtpCursorCometPreview } from "@/components/previews/ttp-cursor-comet/pr
 import { TtpDocumentNavigatorPreview } from "@/components/previews/ttp-document-navigator/preview"
 import { TtpHorizontalTextRevealPreview } from "@/components/previews/ttp-horizontal-text-reveal/preview"
 import { TtpImagePeekTablePreview } from "@/components/previews/ttp-image-peek-table/preview"
+import { TtpInlineDropdownPreview } from "@/components/previews/ttp-inline-dropdown/preview"
 import { TtpLayeredNavPreview } from "@/components/previews/ttp-layered-nav/preview"
 import { TtpPerspectiveCarousel } from "@/components/previews/ttp-perspective-carousel/preview"
 import { TtpPixelLoaderPreview } from "@/components/previews/ttp-pixel-loader/preview"
@@ -31,6 +32,7 @@ export const ComponentId = {
   TEXT_SCRAMBLE: "ttp-text-scramble",
   IMAGE_PEEK_TABLE: "ttp-image-peek-table",
   BLUR_FOCUS_NAVIGATION: "ttp-blur-focus-navigation",
+  INLINE_DROPDOWN: "ttp-inline-dropdown",
 } as const
 
 export type ComponentIdType = (typeof ComponentId)[keyof typeof ComponentId]
@@ -65,7 +67,6 @@ export const components: ComponentMetadata[] = [
     complexity: "moderate",
     status: "stable",
     preview: TtpDocumentNavigatorPreview,
-    docsPath: "ttp-document-navigator.mdx",
     registryType: "registry:block",
     inspirations: [
       {
@@ -93,7 +94,6 @@ export const components: ComponentMetadata[] = [
     complexity: "advanced",
     status: "stable",
     preview: TtpCommandPalettePreview,
-    docsPath: "ttp-command-palette.mdx",
     logo: "/logos/raycast.png",
     registryType: "registry:block",
     inspirations: [
@@ -122,7 +122,6 @@ export const components: ComponentMetadata[] = [
     complexity: "moderate",
     status: "stable",
     preview: TtpImagePeekTablePreview,
-    docsPath: "ttp-image-peek-table.mdx",
     registryType: "registry:block",
   },
 
@@ -146,7 +145,6 @@ export const components: ComponentMetadata[] = [
     complexity: "moderate",
     status: "stable",
     preview: TtpTickerSidebarPreview,
-    docsPath: "ttp-ticker-sidebar.mdx",
     registryType: "registry:block",
     inspirations: [
       {
@@ -177,7 +175,6 @@ export const components: ComponentMetadata[] = [
     complexity: "advanced",
     status: "stable",
     preview: TtpLayeredNavPreview,
-    docsPath: "ttp-layered-nav.mdx",
     registryType: "registry:block",
   },
   {
@@ -199,7 +196,26 @@ export const components: ComponentMetadata[] = [
     complexity: "simple",
     status: "stable",
     preview: TtpBlurFocusNavigationPreview,
-    docsPath: "ttp-blur-focus-navigation.mdx",
+    registryType: "registry:block",
+  },
+  {
+    id: ComponentId.INLINE_DROPDOWN,
+    title: "Inline Dropdown",
+    description: "A dropdown which opens right then and there",
+    category: categories.NAVIGATION_AND_MENUS.id,
+    tags: ["navigation", "dropdowns"],
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "components/ui/totheprod-ui/ttp-inline-dropdown.tsx",
+        type: "registry:component",
+      },
+    ],
+    installCommand:
+      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-inline-dropdown.json",
+    complexity: "moderate",
+    status: "stable",
+    preview: TtpInlineDropdownPreview,
     registryType: "registry:block",
   },
 
@@ -222,7 +238,6 @@ export const components: ComponentMetadata[] = [
     complexity: "advanced",
     status: "stable",
     preview: TtpPixelLoaderPreview,
-    docsPath: "ttp-pixel-loader.mdx",
     registryType: "registry:block",
   },
   {
@@ -243,7 +258,6 @@ export const components: ComponentMetadata[] = [
     complexity: "moderate",
     status: "stable",
     preview: TtpWordShufflerPreview,
-    docsPath: "ttp-word-shuffler.mdx",
     registryType: "registry:block",
   },
   {
@@ -264,7 +278,6 @@ export const components: ComponentMetadata[] = [
     complexity: "moderate",
     status: "stable",
     preview: TtpTextScramblePreview,
-    docsPath: "ttp-text-scramble.mdx",
     registryType: "registry:block",
   },
 
@@ -287,7 +300,6 @@ export const components: ComponentMetadata[] = [
     complexity: "simple",
     status: "stable",
     preview: TtpWavyTextPreview,
-    docsPath: "ttp-wavy-text.mdx",
     registryType: "registry:block",
   },
   // Cursor & Hover Effects
@@ -309,7 +321,6 @@ export const components: ComponentMetadata[] = [
     complexity: "advanced",
     status: "stable",
     preview: TtpCursorCometPreview,
-    docsPath: "ttp-cursor-comet.mdx",
     registryType: "registry:block",
   },
 
@@ -332,7 +343,6 @@ export const components: ComponentMetadata[] = [
     complexity: "advanced",
     status: "stable",
     preview: TtpHorizontalTextRevealPreview,
-    docsPath: "ttp-horizontal-text-reveal.mdx",
     registryType: "registry:block",
   },
   {
@@ -353,7 +363,6 @@ export const components: ComponentMetadata[] = [
     complexity: "advanced",
     status: "stable",
     preview: TtpPerspectiveCarousel,
-    docsPath: "ttp-perspective-carousel.mdx",
     registryType: "registry:block",
   },
 ]

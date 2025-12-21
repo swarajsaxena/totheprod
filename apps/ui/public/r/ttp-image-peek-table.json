@@ -13,8 +13,8 @@
     }
   ],
   "meta": {
-    "category": "base-components",
-    "tags": ["table", "data", "hover", "interactive"],
+    "category": "data-display",
+    "tags": ["table", "data", "hover", "interactive", "image-preview"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-image-peek-table.json"
   }
 }

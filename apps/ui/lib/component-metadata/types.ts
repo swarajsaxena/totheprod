@@ -69,7 +69,6 @@ export type ComponentMetadata = {
   version?: string
 
   // Documentation
-  docsPath?: string
   props?: Record<string, PropDefinition>
   examples?: ComponentExample[]
 

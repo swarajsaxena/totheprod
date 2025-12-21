@@ -13,7 +13,7 @@
     }
   ],
   "meta": {
-    "category": "seamless-navigations",
+    "category": "navigation-and-menus",
     "tags": ["sidebar", "navigation", "expandable", "smooth"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-ticker-sidebar.json"
   }
