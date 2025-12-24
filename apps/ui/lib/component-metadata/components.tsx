@@ -46,7 +46,9 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.DOCUMENT_NAVIGATOR,
     title: "Document Navigator",
     description:
-      "Notion-style table of contents with collapsible sections and scroll tracking",
+      "A hierarchical table of contents with smooth scroll tracking, expandable/collapsible sections, and automatic active state detection",
+    instructions:
+      "Pass an array of sections with headings and subheadings. Click items to scroll to sections. Nested items auto-expand when their parent is active.",
     category: categories.NAVIGATION_AND_MENUS.id,
     tags: [
       "navigation",
@@ -79,7 +81,9 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.COMMAND_PALETTE,
     title: "Command Palette",
     description:
-      "Command palette with beautiful keyboard-first navigation inspired by Raycast",
+      "A keyboard-first command menu with fuzzy search, grouped actions, keyboard shortcuts display, and smooth transitions between command lists",
+    instructions:
+      "Trigger with Cmd+K. Type to search commands. Use arrow keys to navigate. Press Enter to execute. Supports nested command groups and breadcrumb navigation.",
     category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["command", "menu", "keyboard", "search", "palette"],
     dependencies: ["motion", "cmdk"],
@@ -107,7 +111,9 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.IMAGE_PEEK_TABLE,
     title: "Image Peek Table",
     description:
-      "Interactive table with image preview on hover and clickable rows",
+      "A data table with smooth image preview popover that follows cursor on hover, featuring clickable rows and elegant transitions",
+    instructions:
+      "Pass data array with image URLs. Hover over rows to see image preview following your cursor. Click rows to trigger actions. Customize columns as needed.",
     category: categories.DATA_DISPLAY.id,
     tags: ["table", "data", "hover", "interactive", "image-preview"],
     dependencies: ["motion"],
@@ -130,7 +136,9 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.TICKER_SIDEBAR,
     title: "Ticker Sidebar",
     description:
-      "Smooth expandable sidebar with fluid section transitions inspired by Rauno Freiberg",
+      "An expandable sidebar with animated section transitions, ticker-style content updates, and smooth width animations for collapsed/expanded states",
+    instructions:
+      "Hover to expand sidebar. Click sections to navigate. Content animates in ticker style when switching sections. Collapsed state shows icons only, expanded reveals full labels.",
     category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["sidebar", "navigation", "expandable", "smooth"],
     dependencies: ["motion"],
@@ -160,7 +168,10 @@ export const components: ComponentMetadata[] = [
   {
     id: ComponentId.LAYERED_NAV,
     title: "Layered Nav",
-    description: "Multi-depth navigation with stacked drawer animations",
+    description:
+      "A multi-level navigation system with stacked drawer layers that scale and transform to show depth, creating a card-stack effect when drilling down",
+    instructions:
+      "Click menu items to open nested layers. Each layer stacks with scale and position transforms. Use back button or swipe to return to previous layers.",
     category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["navigation", "drawer", "layered", "multi-level"],
     dependencies: ["motion", "vaul"],
@@ -181,7 +192,9 @@ export const components: ComponentMetadata[] = [
     id: ComponentId.BLUR_FOCUS_NAVIGATION,
     title: "Blur Focus Navigation",
     description:
-      "Navigation bar with dynamic blur effect that highlights active sections",
+      "A navigation bar with animated blur spotlight that follows the active item, creating a glassmorphic focus effect with smooth transitions between sections",
+    instructions:
+      "Click navigation items to change active state. The blur spotlight smoothly animates to highlight the selected item. Customize blur intensity and colors via CSS variables.",
     category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["navigation", "navbar", "blur", "glassmorphism", "focus"],
     dependencies: ["motion"],
@@ -201,7 +214,10 @@ export const components: ComponentMetadata[] = [
   {
     id: ComponentId.INLINE_DROPDOWN,
     title: "Inline Dropdown",
-    description: "A dropdown which opens right then and there",
+    description:
+      "A dropdown that expands inline within the text flow, pushing content down smoothly instead of overlaying, perfect for inline selections without breaking layout",
+    instructions:
+      "Click trigger to expand dropdown inline. Select an option to update value and collapse. Use keyboard navigation (arrow keys, Enter, Escape) for accessibility.",
     category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["navigation", "dropdowns"],
     dependencies: ["motion"],
@@ -223,7 +239,10 @@ export const components: ComponentMetadata[] = [
   {
     id: ComponentId.PIXEL_LOADER,
     title: "Pixel Loader",
-    description: "Cinematic pixelated transition for page load effects",
+    description:
+      "A cinematic page transition that pixelates and dissolves in a grid pattern, revealing content with staggered timing for a retro-futuristic effect",
+    instructions:
+      "Wrap your page content with the loader. Trigger loading state to animate pixels out. Set pixelSize and animationDuration to customize the effect timing and appearance.",
     category: categories.PAGE_TRANSITIONS_AND_LOADERS.id,
     tags: ["loader", "transition", "pixel", "animation"],
     dependencies: ["motion"],
@@ -243,7 +262,10 @@ export const components: ComponentMetadata[] = [
   {
     id: ComponentId.WORD_SHUFFLER,
     title: "Word Shuffler",
-    description: "Dynamic text shuffle animation on component mount",
+    description:
+      "A text animation that randomly shuffles characters before settling into the final text, creating a decoding effect perfect for headlines and hero text",
+    instructions:
+      "Pass text prop to animate. Component auto-plays on mount. Adjust shuffleDuration and characterSet to customize the shuffle effect speed and character pool.",
     category: categories.TEXT_ANIMATIONS.id,
     tags: ["text", "animation", "shuffle", "entrance"],
     dependencies: ["motion"],
@@ -263,7 +285,10 @@ export const components: ComponentMetadata[] = [
   {
     id: ComponentId.TEXT_SCRAMBLE,
     title: "Text Scramble",
-    description: "Scrambled text effect that reveals characters sequentially",
+    description:
+      "A text reveal effect that scrambles characters with random symbols before sequentially resolving to the target text from left to right",
+    instructions:
+      "Pass text to reveal. Scramble triggers on mount or prop change. Customize speed with revealSpeed prop. Perfect for creating glitch or hacker-style text reveals.",
     category: categories.TEXT_ANIMATIONS.id,
     tags: ["text", "animation", "scramble", "reveal"],
     dependencies: [],
@@ -285,7 +310,10 @@ export const components: ComponentMetadata[] = [
   {
     id: ComponentId.WAVY_TEXT,
     title: "Wavy Text",
-    description: "Playful wave animation triggered on text hover",
+    description:
+      "A playful hover effect that animates each character in a wave pattern with staggered timing, creating a bouncing wave motion across the text",
+    instructions:
+      "Wrap text content inside component. Hover to trigger wave animation. Each character animates independently with staggered delay. Customize wave height and speed via props.",
     category: categories.TEXT_ANIMATIONS.id,
     tags: ["text", "hover", "animation", "wave"],
     dependencies: ["motion"],
@@ -306,7 +334,10 @@ export const components: ComponentMetadata[] = [
   {
     id: ComponentId.CURSOR_COMET,
     title: "Cursor Comet",
-    description: "Trailing comet effect that follows cursor movement",
+    description:
+      "A smooth trailing comet effect with gradient tail that follows cursor movement, using spring physics for natural motion and fading particles",
+    instructions:
+      "Wrap interactive areas with component. Cursor automatically spawns trailing particles with gradient fade. Customize comet color, length, and spring physics through props.",
     category: categories.CURSOR_AND_HOVER_EFFECTS.id,
     tags: ["cursor", "trail", "comet", "effect"],
     dependencies: ["motion"],
@@ -328,7 +359,10 @@ export const components: ComponentMetadata[] = [
   {
     id: ComponentId.HORIZONTAL_TEXT_REVEAL,
     title: "Horizontal Text Reveal",
-    description: "Text gradually reveals as you scroll horizontally",
+    description:
+      "A scroll-triggered text reveal that gradually unveils content as users scroll horizontally, with character-by-character fade and blur transitions",
+    instructions:
+      "Place text inside component within horizontal scroll container. Text reveals progressively based on scroll position. Characters fade from blur to sharp as they enter viewport center.",
     category: categories.TEXT_ANIMATIONS.id,
     tags: ["scroll", "text", "reveal", "horizontal"],
     dependencies: ["motion"],
@@ -348,7 +382,10 @@ export const components: ComponentMetadata[] = [
   {
     id: ComponentId.PERSPECTIVE_CAROUSEL,
     title: "Perspective Carousel",
-    description: "3D carousel with depth and perspective transforms",
+    description:
+      "A 3D carousel with perspective transforms that scales and rotates slides based on their position, creating depth with center-focused layout",
+    instructions:
+      "Pass array of slides. Navigation arrows or drag to scroll. Center slide scales up and has full opacity, while side slides scale down with reduced opacity.",
     category: categories.SCROLL_INTERACTIONS.id,
     tags: ["carousel", "3d", "perspective", "scroll"],
     dependencies: ["embla-carousel-react"],

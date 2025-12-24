@@ -4,10 +4,7 @@
   "type": "registry:block",
   "title": "Document Navigator",
   "description": "Notion-style table of contents with collapsible sections and scroll tracking",
-  "dependencies": [
-    "motion",
-    "framer-motion"
-  ],
+  "dependencies": ["motion", "framer-motion"],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-document-navigator.tsx",

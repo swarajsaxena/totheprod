@@ -68,6 +68,7 @@ export type ComponentMetadata = {
   id: string
   title: string
   description: string
+  instructions?: string
 
   // Categorization
   category: string

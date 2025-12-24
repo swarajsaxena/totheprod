@@ -153,6 +153,16 @@ export const ComponentDetailsSheet = () => {
             <ComponentDetailContainer />
           </>
         )}
+        <ComponentPropsTable />
+        {component?.instructions && (
+          <>
+            <ComponentHeading>How to Use</ComponentHeading>
+            <ComponentParagraph className="text-base text-muted-foreground">
+              {component.instructions}
+            </ComponentParagraph>
+            <ComponentDetailContainer />
+          </>
+        )}
         {component?.inspirations && component.inspirations.length > 0 && (
           <>
             <ComponentHeading>Inspiration</ComponentHeading>
@@ -194,7 +204,6 @@ export const ComponentDetailsSheet = () => {
             <ComponentDetailContainer className="border-b!" />
           </>
         )}
-        <ComponentPropsTable />
       </SheetContent>
     </Sheet>
   )

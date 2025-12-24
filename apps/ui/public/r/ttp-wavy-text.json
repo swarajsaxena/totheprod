@@ -4,9 +4,7 @@
   "type": "registry:block",
   "title": "Wavy Text",
   "description": "Playful wave animation triggered on text hover",
-  "dependencies": [
-    "motion"
-  ],
+  "dependencies": ["motion"],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-wavy-text.tsx",
@@ -16,12 +14,7 @@
   ],
   "meta": {
     "category": "text-animations",
-    "tags": [
-      "text",
-      "hover",
-      "animation",
-      "wave"
-    ],
+    "tags": ["text", "hover", "animation", "wave"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-wavy-text.json"
   }
 }

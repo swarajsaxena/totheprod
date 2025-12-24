@@ -4,11 +4,7 @@
   "type": "registry:block",
   "title": "Layered Nav",
   "description": "Multi-depth navigation with stacked drawer animations",
-  "dependencies": [
-    "motion",
-    "vaul",
-    "next"
-  ],
+  "dependencies": ["motion", "vaul", "next"],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-layered-nav.tsx",
@@ -18,12 +14,7 @@
   ],
   "meta": {
     "category": "navigation-and-menus",
-    "tags": [
-      "navigation",
-      "drawer",
-      "layered",
-      "multi-level"
-    ],
+    "tags": ["navigation", "drawer", "layered", "multi-level"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-layered-nav.json"
   }
 }
