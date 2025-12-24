@@ -3,8 +3,11 @@
   "name": "ttp-ticker-sidebar",
   "type": "registry:block",
   "title": "Ticker Sidebar",
-  "description": "Smooth expandable sidebar with fluid section transitions inspired by Rauno Freiberg",
-  "dependencies": ["motion", "next"],
+  "description": "An expandable sidebar with animated section transitions, ticker-style content updates, and smooth width animations for collapsed/expanded states",
+  "dependencies": [
+    "motion",
+    "next"
+  ],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-ticker-sidebar.tsx",
@@ -14,7 +17,12 @@
   ],
   "meta": {
     "category": "navigation-and-menus",
-    "tags": ["sidebar", "navigation", "expandable", "smooth"],
+    "tags": [
+      "sidebar",
+      "navigation",
+      "expandable",
+      "smooth"
+    ],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-ticker-sidebar.json"
   }
 }

@@ -3,8 +3,11 @@
   "name": "ttp-blur-focus-navigation",
   "type": "registry:block",
   "title": "Blur Focus Navigation",
-  "description": "Navigation bar with dynamic blur effect that highlights active sections",
-  "dependencies": ["motion", "next"],
+  "description": "A navigation bar with animated blur spotlight that follows the active item, creating a glassmorphic focus effect with smooth transitions between sections",
+  "dependencies": [
+    "motion",
+    "next"
+  ],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-blur-focus-navigation.tsx",
@@ -14,7 +17,13 @@
   ],
   "meta": {
     "category": "navigation-and-menus",
-    "tags": ["navigation", "navbar", "blur", "glassmorphism", "focus"],
+    "tags": [
+      "navigation",
+      "navbar",
+      "blur",
+      "glassmorphism",
+      "focus"
+    ],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-blur-focus-navigation.json"
   }
 }
