@@ -4,7 +4,9 @@
   "type": "registry:block",
   "title": "Horizontal Text Reveal",
   "description": "Text gradually reveals as you scroll horizontally",
-  "dependencies": ["motion"],
+  "dependencies": [
+    "motion"
+  ],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-horizontal-text-reveal.tsx",
@@ -14,7 +16,12 @@
   ],
   "meta": {
     "category": "text-animations",
-    "tags": ["scroll", "text", "reveal", "horizontal"],
+    "tags": [
+      "scroll",
+      "text",
+      "reveal",
+      "horizontal"
+    ],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-horizontal-text-reveal.json"
   }
 }
