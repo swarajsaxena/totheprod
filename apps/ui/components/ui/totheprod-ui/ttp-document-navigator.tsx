@@ -188,30 +188,37 @@ export const TtpDocumentNavigator = ({
         return (
           <button
             aria-label={`Scroll to ${heading.textContent}`}
-            className="group flex w-full cursor-pointer items-stretch justify-between"
+            className={cn(
+              "group flex w-full cursor-default items-stretch justify-between outline-none!",
+              isHovering && "pointer-events-auto cursor-pointer"
+            )}
             key={heading.id}
             onClick={() => handleScrollToHeading(heading)}
             onKeyDown={(e) => {
+              if (!isHovering) {
+                return
+              }
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault()
                 handleScrollToHeading(heading)
               }
             }}
+            tabIndex={0}
             type="button"
           >
             <motion.div
               animate={
                 isHovering
-                  ? { opacity: 1, x: 0, height: "auto" }
-                  : { opacity: 0, x: -10, height: 0 }
+                  ? { opacity: 1, height: "auto", width: "auto" }
+                  : { opacity: 0, height: 0, width: 0 }
               }
               className={cn(
-                "mb-0.5 line-clamp-1 w-full max-w-[200px] flex-1 text-left font-medium text-xs",
+                "pointer-events-none mb-0.5 line-clamp-1 w-full max-w-[200px] flex-1 pl-2 text-left font-medium text-xs",
                 isActive
                   ? "text-foreground/75 dark:text-foreground"
                   : "text-muted-foreground/50 dark:text-muted-foreground",
                 isHovering &&
-                  "group-hover:text-foreground/75 dark:group-hover:text-foreground",
+                  "pointer-events-auto group-hover:text-foreground/75 dark:group-hover:text-foreground",
                 getStyle(heading.tagName as keyof typeof StyleMap).text
               )}
               initial={{ opacity: 0, x: -10, height: 0 }}

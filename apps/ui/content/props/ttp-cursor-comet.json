@@ -1,0 +1,36 @@
+[
+  {
+    "componentName": "TtpCursorComet",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "rowAndColCount": {
+        "type": "number",
+        "default": "30",
+        "required": false
+      },
+      "cometRadius": {
+        "type": "number",
+        "default": "4",
+        "required": false
+      },
+      "trailFadeSpeed": {
+        "type": "number",
+        "default": "0.03",
+        "required": false
+      },
+      "radialOpacityFade": {
+        "type": "number",
+        "default": "0",
+        "required": false
+      },
+      "symbols": {
+        "type": "string[]",
+        "default": "[\"!\", \"@\", \"#\", \"$\", \"%\", \"^\", \"&\", \"*\", \"-\", \"+\", \";\", \"{\", \"}\"]",
+        "required": false
+      }
+    }
+  }
+]

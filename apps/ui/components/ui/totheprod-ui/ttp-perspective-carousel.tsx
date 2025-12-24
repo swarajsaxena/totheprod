@@ -7,7 +7,6 @@ import {
   useTransform,
 } from "framer-motion"
 import { useEffect, useRef } from "react"
-import PreviewHeading from "@/components/internal/preview-heading"
 
 const items = [
   { text: "Content Creation", backgroundColor: "#FCB8FA" },
@@ -79,14 +78,9 @@ export const TtpPerspectiveCarousel = () => {
 
   return (
     <div
-      className="flex w-full flex-col items-center justify-start gap-16 bg-[#FAF4EC] px-8 pb-[200vh] dark:bg-[#100e0f]"
+      className="flex w-full flex-col items-center justify-start gap-16 px-8 pb-[200vh]"
       data-preview-padding="false"
     >
-      <PreviewHeading
-        className="py-[20vh]"
-        description="Scroll down to see the effect."
-        title="Perspective Carousel"
-      />
       {items.map((item, i) => {
         const targetScale = 0.3
         return (

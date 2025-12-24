@@ -31,6 +31,7 @@ import {
   XCircle,
   Zap,
 } from "lucide-react"
+import { useState } from "react"
 import { toast } from "sonner"
 import CornerPlusContainer from "@/components/internal/corner-plus-container"
 import {
@@ -80,7 +81,7 @@ const RaycastCommandMenuTrigger = () => {
 const RaycastCommandMenuPreviewDialog = () => {
   return (
     <CommandPaletteDialog>
-      <CommandPaletteInput placeholder="Search for apps and commands..." />
+      <CommandPaletteInput placeholder="Preview: Search for apps and commands..." />
       <CommandPaletteContent>
         {/* Favorites Section */}
         <CommandPaletteSection title="Favorites">
@@ -468,8 +469,14 @@ const RaycastCommandMenuPreviewContent = () => {
 }
 
 export const TtpCommandPalettePreview = () => {
+  const [open, setOpen] = useState(true)
   return (
-    <CommandPaletteProvider actionsShortcut="alt+j" shortcut="mod+j">
+    <CommandPaletteProvider
+      actionsShortcut="alt+j"
+      onOpenChange={setOpen}
+      open={open}
+      shortcut="mod+j"
+    >
       <RaycastCommandMenuPreviewContent />
     </CommandPaletteProvider>
   )

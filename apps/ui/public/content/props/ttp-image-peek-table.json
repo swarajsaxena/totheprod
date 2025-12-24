@@ -1,0 +1,114 @@
+[
+  {
+    "componentName": "LandoNorrisTable",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      }
+    }
+  },
+  {
+    "componentName": "LandoNorrisTableHeader",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      }
+    }
+  },
+  {
+    "componentName": "LandoNorrisTableBody",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      }
+    }
+  },
+  {
+    "componentName": "LandoNorrisTableRow",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      },
+      "onClick": {
+        "type": "() => void",
+        "required": false
+      },
+      "imageUrl": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  {
+    "componentName": "LandoNorrisTableCell",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      }
+    }
+  },
+  {
+    "componentName": "LandoNorrisTableHead",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      }
+    }
+  },
+  {
+    "componentName": "LandoNorrisTableFooter",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      }
+    }
+  },
+  {
+    "componentName": "LandoNorrisTableCaption",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      }
+    }
+  }
+]

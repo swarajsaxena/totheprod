@@ -1,12 +1,10 @@
 "use client"
 
-import PreviewHeading from "@/components/internal/preview-heading"
 import { TtpWavyText } from "@/components/ui/totheprod-ui/ttp-wavy-text"
 
 export const TtpWavyTextPreview = () => {
   return (
     <div className="flex w-full flex-1 flex-col items-center justify-center gap-4">
-      <PreviewHeading className="-mt-[10%]" title="Wavy Text" />
       <div className="flex flex-col items-center">
         <TtpWavyText
           horizontalDirection="towards-center"

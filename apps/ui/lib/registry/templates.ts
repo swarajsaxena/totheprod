@@ -72,6 +72,8 @@ export const createRegistry = (
     $schema: "https://ui.shadcn.com/schema/registry.json",
     name: registryName,
     homepage,
-    items: components.map(createRegistryItem),
+    items: components
+      .filter((component) => component.status !== "disabled")
+      .map(createRegistryItem),
   }
 }

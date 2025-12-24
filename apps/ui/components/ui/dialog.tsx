@@ -1,8 +1,8 @@
 "use client"
 
-// biome-ignore lint/performance/noNamespaceImport: Radix UI requires namespace import
-import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { XIcon } from "lucide-react"
+// biome-ignore lint/performance/noNamespaceImport: Radix UI requires namespace import
+import { Dialog as DialogPrimitive } from "radix-ui"
 import type * as React from "react"
 
 import { cn } from "@/lib/utils"

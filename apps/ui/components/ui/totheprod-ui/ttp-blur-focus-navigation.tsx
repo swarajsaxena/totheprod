@@ -84,7 +84,7 @@ export const TtpBlurFocusNavigation = ({
   return (
     <NavContext.Provider value={contextValue}>
       <motion.nav
-        className="relative z-50 flex w-full flex-col items-center justify-between gap-2 border-border/40 border-b bg-background/80 py-2 backdrop-blur-md transition-colors dark:border-border/20"
+        className="relative flex w-full flex-col items-center justify-between gap-2 border-border/40 border-b bg-background/80 py-2 backdrop-blur-md transition-colors dark:border-border/20"
         style={{
           backgroundColor: "hsl(var(--background) / 0.8)",
           backdropFilter: "blur(12px)",

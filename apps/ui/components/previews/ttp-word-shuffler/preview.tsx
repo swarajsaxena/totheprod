@@ -1,4 +1,3 @@
-import PreviewHeading from "@/components/internal/preview-heading"
 import { WordShuffler } from "@/components/ui/totheprod-ui/ttp-word-shuffler"
 
 export const TtpWordShufflerPreview = () => {
@@ -7,7 +6,6 @@ export const TtpWordShufflerPreview = () => {
       className="flex h-full w-full flex-col items-center justify-center"
       data-preview-padding="false"
     >
-      <PreviewHeading title="Word Shuffler" />
       <span className="font-heading font-semibold text-5xl tracking-tight">
         Your Epic Shit
       </span>

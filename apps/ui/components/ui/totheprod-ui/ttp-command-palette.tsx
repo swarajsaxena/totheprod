@@ -322,7 +322,7 @@ export const CommandPaletteDialog = ({
   return (
     <CommandDialog
       className={cn(
-        "w-full rounded-2xl bg-muted/75 backdrop-blur-md *:bg-transparent sm:max-w-3xl dark:bg-muted/50",
+        "w-full rounded-2xl bg-background/50 backdrop-blur-md *:bg-transparent sm:max-w-3xl dark:bg-background/50",
         className
       )}
       description={description}
@@ -771,7 +771,9 @@ export const CommandPaletteFooter = ({
           onClick={handleBack}
           type="button"
         >
-          Back
+          <kbd className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground dark:bg-muted">
+            Esc
+          </kbd>
         </button>
 
         {hasActions && (

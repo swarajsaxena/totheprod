@@ -8,7 +8,12 @@ export type ComponentComplexity = "simple" | "moderate" | "advanced"
 /**
  * Component status
  */
-export type ComponentStatus = "stable" | "beta" | "experimental" | "deprecated"
+export type ComponentStatus =
+  | "stable"
+  | "beta"
+  | "experimental"
+  | "deprecated"
+  | "disabled"
 
 /**
  * Prop definition for documentation
@@ -18,6 +23,14 @@ export type PropDefinition = {
   description?: string
   default?: string
   required?: boolean
+}
+
+/**
+ * Component props group for multi-component files
+ */
+export type ComponentPropsGroup = {
+  componentName: string
+  props: Record<string, PropDefinition>
 }
 
 /**
@@ -69,7 +82,7 @@ export type ComponentMetadata = {
   version?: string
 
   // Documentation
-  props?: Record<string, PropDefinition>
+  props?: Record<string, PropDefinition> | ComponentPropsGroup[]
   examples?: ComponentExample[]
 
   // Preview & Assets

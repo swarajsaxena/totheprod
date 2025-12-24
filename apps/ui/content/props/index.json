@@ -1,0 +1,888 @@
+{
+  "ttp-wavy-text": [
+    {
+      "componentName": "TtpWavyText",
+      "props": {
+        "text": {
+          "type": "string",
+          "description": "The text to display",
+          "required": true
+        },
+        "className": {
+          "type": "string",
+          "description": "Additional CSS classes to apply to the component",
+          "required": false
+        },
+        "textClassName": {
+          "type": "string",
+          "description": "Additional CSS classes to apply to the text",
+          "required": false
+        },
+        "baseDelay": {
+          "type": "number",
+          "description": "The base delay for the animation",
+          "default": "0.05",
+          "required": false
+        },
+        "horizontalDirection": {
+          "type": "\"towards-ends\" | \"towards-center\"",
+          "description": "Horizontal direction (default: towards-ends)",
+          "default": "towards-ends",
+          "required": false
+        },
+        "duration": {
+          "type": "number",
+          "description": "The duration of the animation",
+          "default": "0.4",
+          "required": false
+        },
+        "isHovered": {
+          "type": "boolean",
+          "description": "Whether the text is hovered",
+          "required": false
+        },
+        "setIsHovered": {
+          "type": "(isHovered: boolean) => void",
+          "description": "Set the hover state",
+          "required": false
+        }
+      }
+    }
+  ],
+  "ttp-inline-dropdown": [
+    {
+      "componentName": "TtpInlineDropdown",
+      "props": {
+        "open": {
+          "type": "boolean",
+          "description": "Whether the dropdown is open",
+          "default": "false",
+          "required": false
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "description": "The dropdown items to render",
+          "required": true
+        },
+        "className": {
+          "type": "string",
+          "description": "Additional CSS classes to apply to the container",
+          "required": false
+        },
+        "defaultItemId": {
+          "type": "string",
+          "description": "The ID of the item to show as the default trigger",
+          "required": false
+        },
+        "mode": {
+          "type": "\"icon\" | \"both\"",
+          "description": "Display mode for the trigger button. Default: \"icon\"",
+          "default": "icon",
+          "required": false
+        },
+        "interactionType": {
+          "type": "\"hover\" | \"click\"",
+          "description": "Interaction type to open the dropdown. Default: \"hover\"",
+          "default": "hover",
+          "required": false
+        },
+        "align": {
+          "type": "\"left\" | \"right\"",
+          "description": "Alignment of the dropdown and icon position. Default: \"left\"",
+          "default": "left",
+          "required": false
+        },
+        "containerPadding": {
+          "type": "number",
+          "description": "Padding around the dropdown container in pixels. Default: 4",
+          "default": "4",
+          "required": false
+        },
+        "containerGap": {
+          "type": "number",
+          "description": "Gap between dropdown items in pixels. Default: 4",
+          "default": "4",
+          "required": false
+        },
+        "closeOnSelect": {
+          "type": "boolean",
+          "description": "Auto-close dropdown after item selection. Default: true for click mode, false for hover",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "description": "Callback fired when dropdown open state changes",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "description": "Disable the entire dropdown",
+          "default": "false",
+          "required": false
+        },
+        "ariaLabel": {
+          "type": "string",
+          "description": "Accessible label for the trigger button",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "TtpInlineDropdownItem",
+      "props": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the item",
+          "required": true
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "description": "The content of the item (typically Icon and Label components)",
+          "required": true
+        },
+        "onClick": {
+          "type": "() => void",
+          "description": "Click handler for the item",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "description": "Disable the item",
+          "default": "false",
+          "required": false
+        },
+        "isDefault": {
+          "type": "boolean",
+          "description": "Internal prop to mark if this is the default item",
+          "required": false
+        },
+        "inDropdown": {
+          "type": "boolean",
+          "description": "Internal prop to indicate if item is rendered in the dropdown",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "TtpInlineDropdownItemIcon",
+      "props": {
+        "children": {
+          "type": "React.ReactNode",
+          "description": "The icon component to render",
+          "required": true
+        }
+      }
+    },
+    {
+      "componentName": "TtpInlineDropdownItemLabel",
+      "props": {
+        "children": {
+          "type": "React.ReactNode",
+          "description": "The text label to display",
+          "required": true
+        }
+      }
+    }
+  ],
+  "ttp-image-peek-table": [
+    {
+      "componentName": "LandoNorrisTable",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        }
+      }
+    },
+    {
+      "componentName": "LandoNorrisTableHeader",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        }
+      }
+    },
+    {
+      "componentName": "LandoNorrisTableBody",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        }
+      }
+    },
+    {
+      "componentName": "LandoNorrisTableRow",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        },
+        "onClick": {
+          "type": "() => void",
+          "required": false
+        },
+        "imageUrl": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "LandoNorrisTableCell",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        }
+      }
+    },
+    {
+      "componentName": "LandoNorrisTableHead",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        }
+      }
+    },
+    {
+      "componentName": "LandoNorrisTableFooter",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        }
+      }
+    },
+    {
+      "componentName": "LandoNorrisTableCaption",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        }
+      }
+    }
+  ],
+  "ttp-cursor-comet": [
+    {
+      "componentName": "TtpCursorComet",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "rowAndColCount": {
+          "type": "number",
+          "default": "30",
+          "required": false
+        },
+        "cometRadius": {
+          "type": "number",
+          "default": "4",
+          "required": false
+        },
+        "trailFadeSpeed": {
+          "type": "number",
+          "default": "0.03",
+          "required": false
+        },
+        "radialOpacityFade": {
+          "type": "number",
+          "default": "0",
+          "required": false
+        },
+        "symbols": {
+          "type": "string[]",
+          "default": "[\"!\", \"@\", \"#\", \"$\", \"%\", \"^\", \"&\", \"*\", \"-\", \"+\", \";\", \"{\", \"}\"]",
+          "required": false
+        }
+      }
+    }
+  ],
+  "ttp-ticker-sidebar": [
+    {
+      "componentName": "TtpTickerSidebar",
+      "props": {
+        "children": {
+          "type": "React.ReactNode",
+          "description": "The sidebar content (sections, headers, items)",
+          "required": true
+        },
+        "className": {
+          "type": "string",
+          "description": "Additional CSS classes to apply to the sidebar container",
+          "required": false
+        },
+        "itemDividersLength": {
+          "type": "number",
+          "description": "Number of dividers to render between items within a section (default: 2)",
+          "default": "2",
+          "required": false
+        },
+        "sectionDividersLength": {
+          "type": "number",
+          "description": "Number of dividers to render between sections (default: 4)",
+          "default": "4",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "TtpTickerSidebarSectionDivider",
+      "props": {
+        "className": {
+          "type": "string",
+          "description": "Additional CSS classes to apply to the divider",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "TtpTickerSidebarSection",
+      "props": {
+        "children": {
+          "type": "React.ReactNode",
+          "description": "The section content (headers and items)",
+          "required": true
+        },
+        "className": {
+          "type": "string",
+          "description": "Additional CSS classes to apply to the section container",
+          "required": false
+        },
+        "isLast": {
+          "type": "boolean",
+          "description": "Whether this is the last section (prevents rendering trailing dividers)",
+          "default": "false",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "TtpTickerSidebarSectionHeader",
+      "props": {
+        "children": {
+          "type": "React.ReactNode",
+          "description": "The header text/content",
+          "required": true
+        },
+        "className": {
+          "type": "string",
+          "description": "Additional CSS classes to apply to the header",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "TtpTickerSidebarItem",
+      "props": {
+        "children": {
+          "type": "React.ReactNode",
+          "description": "The item label/text",
+          "required": true
+        },
+        "href": {
+          "type": "string",
+          "description": "The link destination",
+          "required": true
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this item is currently active/selected",
+          "default": "false",
+          "required": false
+        },
+        "className": {
+          "type": "string",
+          "description": "Additional CSS classes to apply to the item container",
+          "required": false
+        },
+        "textClassName": {
+          "type": "string",
+          "description": "Additional CSS classes to apply to the text/label",
+          "required": false
+        },
+        "isLast": {
+          "type": "boolean",
+          "description": "Whether this is the last item (prevents rendering trailing dividers)",
+          "default": "false",
+          "required": false
+        }
+      }
+    }
+  ],
+  "ttp-text-scramble": [
+    {
+      "componentName": "TextScramble",
+      "props": {
+        "text": {
+          "type": "string",
+          "required": true
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "charClassName": {
+          "type": "string",
+          "required": false
+        },
+        "duration": {
+          "type": "number",
+          "default": "2000",
+          "required": false
+        },
+        "scrambleSpeed": {
+          "type": "number",
+          "default": "50",
+          "required": false
+        },
+        "trigger": {
+          "type": "boolean",
+          "default": "true",
+          "required": false
+        },
+        "onComplete": {
+          "type": "() => void",
+          "required": false
+        }
+      }
+    }
+  ],
+  "ttp-layered-nav": [
+    {
+      "componentName": "LayeredNav",
+      "props": {
+        "menuItems": {
+          "type": "import(\"/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-layered-nav\").MenuItem[]",
+          "description": "Array of menu items with color and text",
+          "default": "[\n    { color: \"#8E9067\", text: \"Home\", href: \"#\" },\n    { color: \"#BE5B2A\", text: \"About\", href: \"#\" },\n    { color: \"#828D94\", text: \"Contact\", href: \"#\" },\n    { color: \"#D69A3F\", text: \"Services\", href: \"#\" },\n    { color: \"#B6A897\", text: \"Products\", href: \"#\" },\n  ]",
+          "required": false
+        },
+        "backgroundColor": {
+          "type": "string",
+          "description": "Background color of the menu overlay",
+          "default": "#1C1B19",
+          "required": false
+        },
+        "textColor": {
+          "type": "string",
+          "description": "Text color for header and trigger",
+          "default": "#B6A897",
+          "required": false
+        },
+        "brandText": {
+          "type": "string",
+          "description": "Brand text displayed in the header",
+          "default": "Layered Nav",
+          "required": false
+        },
+        "defaultOpen": {
+          "type": "boolean",
+          "description": "Whether the menu starts open",
+          "default": "false",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(isOpen: boolean) => void",
+          "description": "Callback fired when menu open state changes",
+          "required": false
+        },
+        "containerClassName": {
+          "type": "string",
+          "description": "Custom class name for the container",
+          "required": false
+        },
+        "openTriggerText": {
+          "type": "string",
+          "description": "Text for the open trigger button",
+          "default": "Menu",
+          "required": false
+        },
+        "closeTriggerText": {
+          "type": "string",
+          "description": "Text for the close trigger button",
+          "default": "Close",
+          "required": false
+        },
+        "showBrandHeader": {
+          "type": "boolean",
+          "description": "Whether to show the brand header",
+          "default": "true",
+          "required": false
+        },
+        "itemClassName": {
+          "type": "string",
+          "description": "Custom class name for the menu items",
+          "required": false
+        }
+      }
+    }
+  ],
+  "ttp-document-navigator": [
+    {
+      "componentName": "TtpDocumentNavigator",
+      "props": {
+        "className": {
+          "type": "string",
+          "description": "Additional CSS classes to apply to the container",
+          "required": false
+        },
+        "scrollContainerId": {
+          "type": "string",
+          "description": "The ID of the scroll container to use, defaults to \"body\"",
+          "required": false
+        }
+      }
+    }
+  ],
+  "ttp-command-palette": [
+    {
+      "componentName": "RaycastCommandMenu",
+      "props": {
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "showCloseButton": {
+          "type": "boolean",
+          "default": "false",
+          "required": false
+        },
+        "showOverlay": {
+          "type": "boolean",
+          "default": "false",
+          "required": false
+        },
+        "shortcut": {
+          "type": "string",
+          "default": "mod+k",
+          "required": false
+        },
+        "actionsShortcut": {
+          "type": "string",
+          "default": "mod+k",
+          "required": false
+        },
+        "title": {
+          "type": "string",
+          "default": "Command Menu",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "default": "Search for apps, commands, and actions",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "CommandPaletteInput",
+      "props": {
+        "placeholder": {
+          "type": "string",
+          "default": "Search for apps and commands...",
+          "required": false
+        },
+        "askAiLabel": {
+          "type": "string | false",
+          "default": "Ask AI",
+          "required": false
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "RaycastCommandMenuBanner",
+      "props": {
+        "icon": {
+          "type": "React.ReactNode",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "version": {
+          "type": "string",
+          "required": false
+        },
+        "action": {
+          "type": "{ label: string; onClick: () => void; }",
+          "required": true
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "CommandPaletteContent",
+      "props": {
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        },
+        "emptyText": {
+          "type": "string",
+          "default": "No results found.",
+          "required": false
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "CommandPaletteSection",
+      "props": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "children": {
+          "type": "React.ReactNode",
+          "required": true
+        },
+        "isLast": {
+          "type": "boolean",
+          "default": "false",
+          "required": false
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "CommandPaletteItem",
+      "props": {
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "icon": {
+          "type": "React.ReactNode",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "description": {
+          "type": "string",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "required": false
+        },
+        "onSelect": {
+          "type": "() => void",
+          "required": false
+        },
+        "actions": {
+          "type": "import(\"/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-command-palette\").RaycastAction[]",
+          "required": false
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "shortcut": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "RaycastCommandMenuActionsDropdown",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "itemClassName": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "componentName": "CommandPaletteFooter",
+      "props": {
+        "onBack": {
+          "type": "() => void",
+          "required": false
+        },
+        "secondaryActionLabel": {
+          "type": "string",
+          "default": "Actions",
+          "required": false
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        }
+      }
+    }
+  ],
+  "ttp-pixel-loader": [
+    {
+      "componentName": "PixelLoader",
+      "props": {
+        "rows": {
+          "type": "number",
+          "description": "The number of rows to display (default is 25)",
+          "default": "25",
+          "required": false
+        },
+        "columns": {
+          "type": "number",
+          "description": "The number of columns to display (default is 25)",
+          "default": "25",
+          "required": false
+        },
+        "duration": {
+          "type": "number",
+          "description": "The duration of the animation (default is 0.1 seconds)",
+          "default": "0",
+          "required": false
+        },
+        "delay": {
+          "type": "number",
+          "description": "The delay of the animation (default is 0.5 seconds)",
+          "default": "1",
+          "required": false
+        },
+        "randomness": {
+          "type": "number",
+          "description": "The amount of randomness to apply to the circumference (default is 0.3, which is ±15%)",
+          "default": "0.3",
+          "required": false
+        }
+      }
+    }
+  ],
+  "ttp-blur-focus-navigation": [
+    {
+      "componentName": "TtpBlurFocusNavigation",
+      "props": {
+        "children": {
+          "type": "React.ReactNode",
+          "description": "Navigation items as children",
+          "required": true
+        }
+      }
+    },
+    {
+      "componentName": "TtpBlurFocusNavigationItem",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "label": {
+          "type": "string",
+          "required": true
+        },
+        "href": {
+          "type": "string",
+          "required": true
+        },
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "image": {
+          "type": "string",
+          "required": true
+        }
+      }
+    }
+  ],
+  "ttp-word-shuffler": [
+    {
+      "componentName": "WordShuffler",
+      "props": {
+        "baseText": {
+          "type": "string",
+          "default": "ToTheProd",
+          "required": false
+        },
+        "words": {
+          "type": "string[]",
+          "default": "[\"Marketing\", \"SEO\", \"Analytics\", \"Content\"]",
+          "required": false
+        },
+        "interval": {
+          "type": "number",
+          "default": "1000",
+          "required": false
+        },
+        "letterSpacing": {
+          "type": "number",
+          "default": "10",
+          "required": false
+        },
+        "textClassName": {
+          "type": "string",
+          "required": false
+        }
+      }
+    }
+  ]
+}

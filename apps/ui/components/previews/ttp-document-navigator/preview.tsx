@@ -1,23 +1,10 @@
 "use client"
 
-import CornerPlusContainer from "@/components/internal/corner-plus-container"
-import PreviewHeading from "@/components/internal/preview-heading"
 import { TtpDocumentNavigator } from "@/components/ui/totheprod-ui/ttp-document-navigator"
 
 export const TtpDocumentNavigatorPreview = () => {
   return (
-    <div
-      className="no-preview-padding flex w-full flex-col items-center gap-8 py-8"
-      data-preview-padding="false"
-    >
-      <CornerPlusContainer>
-        <PreviewHeading
-          className="m-0 p-4"
-          description="Notion-style table of contents with collapsible sections and scroll tracking."
-          title="Document Navigator"
-        />
-      </CornerPlusContainer>
-
+    <div className="flex w-full flex-col items-center gap-8 py-8">
       <div className="prose dark:prose-invert pt-20 pb-[100vh]">
         <h1>How to Use the Document Navigator Component</h1>
 

@@ -1,5 +1,5 @@
-import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
+import { Slot as SlotPrimitive } from "radix-ui"
 import type * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -10,15 +10,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-foreground text-background dark:bg-primary dark:text-primary-foreground hover:bg-muted hover:text-foreground dark:hover:bg-foreground hover:dark:text-background",
+          "bg-foreground text-background dark:bg-primary dark:text-primary-foreground hover:bg-primary hover:text-background dark:hover:bg-foreground hover:dark:text-background",
         destructive:
           "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          "border border-dashed shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:hover:bg-muted/50",
+          "border border-dashed shadow-xs hover:border-border hover:bg-accent hover:text-accent-foreground",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
-          "text-muted-foreground hover:bg-muted hover:text-foreground dark:hover:bg-accent/50",
+          "text-muted-foreground hover:bg-muted hover:text-foreground dark:hover:bg-accent/50 border-0!",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
@@ -47,7 +47,7 @@ function Button({
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
   }) {
-  const Comp = asChild ? Slot : "button"
+  const Comp = asChild ? SlotPrimitive.Slot : "button"
 
   return (
     <Comp

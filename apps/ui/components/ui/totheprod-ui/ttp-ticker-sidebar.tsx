@@ -92,7 +92,7 @@ const TtpTickerSidebar = ({
       value={{ itemDividersLength, sectionDividersLength }}
     >
       <div className={cn("flex w-full min-w-max flex-col p-4", className)}>
-        <div className="flex w-max flex-col">{children}</div>
+        {children}
       </div>
     </TtpTickerSidebarContext.Provider>
   )

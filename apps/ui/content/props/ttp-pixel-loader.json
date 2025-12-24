@@ -1,0 +1,37 @@
+[
+  {
+    "componentName": "PixelLoader",
+    "props": {
+      "rows": {
+        "type": "number",
+        "description": "The number of rows to display (default is 25)",
+        "default": "25",
+        "required": false
+      },
+      "columns": {
+        "type": "number",
+        "description": "The number of columns to display (default is 25)",
+        "default": "25",
+        "required": false
+      },
+      "duration": {
+        "type": "number",
+        "description": "The duration of the animation (default is 0.1 seconds)",
+        "default": "0",
+        "required": false
+      },
+      "delay": {
+        "type": "number",
+        "description": "The delay of the animation (default is 0.5 seconds)",
+        "default": "1",
+        "required": false
+      },
+      "randomness": {
+        "type": "number",
+        "description": "The amount of randomness to apply to the circumference (default is 0.3, which is ±15%)",
+        "default": "0.3",
+        "required": false
+      }
+    }
+  }
+]

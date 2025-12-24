@@ -1,8 +1,8 @@
 "use client"
 
-// biome-ignore lint/performance/noNamespaceImport: Radix UI requires namespace import
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react"
+// biome-ignore lint/performance/noNamespaceImport: Radix UI requires namespace import
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui"
 import type * as React from "react"
 
 import { cn } from "@/lib/utils"

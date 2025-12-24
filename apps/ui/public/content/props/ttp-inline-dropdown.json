@@ -1,0 +1,135 @@
+[
+  {
+    "componentName": "TtpInlineDropdown",
+    "props": {
+      "open": {
+        "type": "boolean",
+        "description": "Whether the dropdown is open",
+        "default": "false",
+        "required": false
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "description": "The dropdown items to render",
+        "required": true
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS classes to apply to the container",
+        "required": false
+      },
+      "defaultItemId": {
+        "type": "string",
+        "description": "The ID of the item to show as the default trigger",
+        "required": false
+      },
+      "mode": {
+        "type": "\"icon\" | \"both\"",
+        "description": "Display mode for the trigger button. Default: \"icon\"",
+        "default": "icon",
+        "required": false
+      },
+      "interactionType": {
+        "type": "\"hover\" | \"click\"",
+        "description": "Interaction type to open the dropdown. Default: \"hover\"",
+        "default": "hover",
+        "required": false
+      },
+      "align": {
+        "type": "\"left\" | \"right\"",
+        "description": "Alignment of the dropdown and icon position. Default: \"left\"",
+        "default": "left",
+        "required": false
+      },
+      "containerPadding": {
+        "type": "number",
+        "description": "Padding around the dropdown container in pixels. Default: 4",
+        "default": "4",
+        "required": false
+      },
+      "containerGap": {
+        "type": "number",
+        "description": "Gap between dropdown items in pixels. Default: 4",
+        "default": "4",
+        "required": false
+      },
+      "closeOnSelect": {
+        "type": "boolean",
+        "description": "Auto-close dropdown after item selection. Default: true for click mode, false for hover",
+        "required": false
+      },
+      "onOpenChange": {
+        "type": "(open: boolean) => void",
+        "description": "Callback fired when dropdown open state changes",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disable the entire dropdown",
+        "default": "false",
+        "required": false
+      },
+      "ariaLabel": {
+        "type": "string",
+        "description": "Accessible label for the trigger button",
+        "required": false
+      }
+    }
+  },
+  {
+    "componentName": "TtpInlineDropdownItem",
+    "props": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the item",
+        "required": true
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "description": "The content of the item (typically Icon and Label components)",
+        "required": true
+      },
+      "onClick": {
+        "type": "() => void",
+        "description": "Click handler for the item",
+        "required": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disable the item",
+        "default": "false",
+        "required": false
+      },
+      "isDefault": {
+        "type": "boolean",
+        "description": "Internal prop to mark if this is the default item",
+        "required": false
+      },
+      "inDropdown": {
+        "type": "boolean",
+        "description": "Internal prop to indicate if item is rendered in the dropdown",
+        "required": false
+      }
+    }
+  },
+  {
+    "componentName": "TtpInlineDropdownItemIcon",
+    "props": {
+      "children": {
+        "type": "React.ReactNode",
+        "description": "The icon component to render",
+        "required": true
+      }
+    }
+  },
+  {
+    "componentName": "TtpInlineDropdownItemLabel",
+    "props": {
+      "children": {
+        "type": "React.ReactNode",
+        "description": "The text label to display",
+        "required": true
+      }
+    }
+  }
+]

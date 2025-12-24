@@ -1,0 +1,17 @@
+[
+  {
+    "componentName": "TtpDocumentNavigator",
+    "props": {
+      "className": {
+        "type": "string",
+        "description": "Additional CSS classes to apply to the container",
+        "required": false
+      },
+      "scrollContainerId": {
+        "type": "string",
+        "description": "The ID of the scroll container to use, defaults to \"body\"",
+        "required": false
+      }
+    }
+  }
+]

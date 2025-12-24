@@ -1,7 +1,5 @@
 "use client"
 
-import CornerPlusContainer from "@/components/internal/corner-plus-container"
-import PreviewHeading from "@/components/internal/preview-heading"
 import {
   LandoNorrisTable,
   LandoNorrisTableBody,
@@ -137,13 +135,6 @@ export const TtpImagePeekTablePreview = () => {
       className="flex h-full min-h-max w-full flex-col items-center"
       data-preview-padding="false"
     >
-      <CornerPlusContainer className="mt-4">
-        <PreviewHeading
-          className="m-0 p-4"
-          description="A beautiful table component with hover effects and clickable rows."
-          title="Lando Norris Table"
-        />
-      </CornerPlusContainer>
       <div className="flex w-full flex-1 items-center justify-center py-4">
         <LandoNorrisTable>
           <LandoNorrisTableHeader>

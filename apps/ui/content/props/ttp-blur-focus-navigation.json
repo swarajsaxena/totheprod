@@ -1,0 +1,37 @@
+[
+  {
+    "componentName": "TtpBlurFocusNavigation",
+    "props": {
+      "children": {
+        "type": "React.ReactNode",
+        "description": "Navigation items as children",
+        "required": true
+      }
+    }
+  },
+  {
+    "componentName": "TtpBlurFocusNavigationItem",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "label": {
+        "type": "string",
+        "required": true
+      },
+      "href": {
+        "type": "string",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "required": true
+      },
+      "image": {
+        "type": "string",
+        "required": true
+      }
+    }
+  }
+]

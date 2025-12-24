@@ -1,0 +1,38 @@
+[
+  {
+    "componentName": "TextScramble",
+    "props": {
+      "text": {
+        "type": "string",
+        "required": true
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "charClassName": {
+        "type": "string",
+        "required": false
+      },
+      "duration": {
+        "type": "number",
+        "default": "2000",
+        "required": false
+      },
+      "scrambleSpeed": {
+        "type": "number",
+        "default": "50",
+        "required": false
+      },
+      "trigger": {
+        "type": "boolean",
+        "default": "true",
+        "required": false
+      },
+      "onComplete": {
+        "type": "() => void",
+        "required": false
+      }
+    }
+  }
+]

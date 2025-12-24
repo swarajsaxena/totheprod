@@ -1,7 +1,6 @@
 "use client"
 
 import { usePathname, useSearchParams } from "next/navigation"
-import PreviewHeading from "@/components/internal/preview-heading"
 import {
   TtpTickerSidebar,
   TtpTickerSidebarItem,
@@ -56,7 +55,6 @@ export const TtpTickerSidebarPreview = () => {
 
   return (
     <div className="flex flex-col gap-4 pt-16">
-      <PreviewHeading title="Sidebar with Sections" />
       <TtpTickerSidebar className="max-w-xs p-10">
         {sections.map((section, sectionIndex) => (
           <TtpTickerSidebarSection
@@ -79,7 +77,6 @@ export const TtpTickerSidebarPreview = () => {
           </TtpTickerSidebarSection>
         ))}
       </TtpTickerSidebar>
-      <PreviewHeading title="Simple Sidebar" />
       <TtpTickerSidebar className="max-w-xs rounded-2xl bg-muted-foreground/5 p-10 shadow-xl">
         {items.map((item, index) => (
           <TtpTickerSidebarItem

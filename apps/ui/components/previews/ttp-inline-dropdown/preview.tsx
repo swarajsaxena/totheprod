@@ -9,8 +9,7 @@ import {
   SourceCodeIcon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import CornerPlusContainer from "@/components/internal/corner-plus-container"
-import PreviewHeading from "@/components/internal/preview-heading"
+import { toast } from "sonner"
 import {
   TtpInlineDropdown,
   TtpInlineDropdownItem,
@@ -41,37 +40,49 @@ const DropdownElement = ({
     interactionType={interactionType}
     mode={mode}
   >
-    <TtpInlineDropdownItem id="copy-code">
+    <TtpInlineDropdownItem
+      id="copy-code"
+      onClick={() => toast.success("Copy code")}
+    >
       <TtpInlineDropdownItemIcon>
         <HugeiconsIcon icon={Copy01Icon} />
       </TtpInlineDropdownItemIcon>
       <TtpInlineDropdownItemLabel>Copy Code</TtpInlineDropdownItemLabel>
     </TtpInlineDropdownItem>
-    <TtpInlineDropdownItem id="view-code">
+    <TtpInlineDropdownItem
+      id="view-code"
+      onClick={() => toast.success("View code")}
+    >
       <TtpInlineDropdownItemIcon>
         <HugeiconsIcon icon={SourceCodeIcon} />
       </TtpInlineDropdownItemIcon>
       <TtpInlineDropdownItemLabel>View Code</TtpInlineDropdownItemLabel>
     </TtpInlineDropdownItem>
-    <TtpInlineDropdownItem id="edit">
+    <TtpInlineDropdownItem id="edit" onClick={() => toast.success("Edit")}>
       <TtpInlineDropdownItemIcon>
         <HugeiconsIcon icon={PencilEdit01Icon} />
       </TtpInlineDropdownItemIcon>
       <TtpInlineDropdownItemLabel>Edit</TtpInlineDropdownItemLabel>
     </TtpInlineDropdownItem>
-    <TtpInlineDropdownItem id="download">
+    <TtpInlineDropdownItem
+      id="download"
+      onClick={() => toast.success("Download")}
+    >
       <TtpInlineDropdownItemIcon>
         <HugeiconsIcon icon={Download01Icon} />
       </TtpInlineDropdownItemIcon>
       <TtpInlineDropdownItemLabel>Download</TtpInlineDropdownItemLabel>
     </TtpInlineDropdownItem>
-    <TtpInlineDropdownItem id="share">
+    <TtpInlineDropdownItem id="share" onClick={() => toast.success("Share")}>
       <TtpInlineDropdownItemIcon>
         <HugeiconsIcon icon={Share01Icon} />
       </TtpInlineDropdownItemIcon>
       <TtpInlineDropdownItemLabel>Share</TtpInlineDropdownItemLabel>
     </TtpInlineDropdownItem>
-    <TtpInlineDropdownItem id="settings">
+    <TtpInlineDropdownItem
+      id="settings"
+      onClick={() => toast.success("Settings")}
+    >
       <TtpInlineDropdownItemIcon>
         <HugeiconsIcon icon={Settings01Icon} />
       </TtpInlineDropdownItemIcon>
@@ -177,13 +188,6 @@ export const TtpInlineDropdownPreview = () => {
       className="flex h-full w-full flex-col overflow-y-auto"
       data-preview-padding="false"
     >
-      <CornerPlusContainer className="mt-4">
-        <PreviewHeading
-          className="m-0 p-8 py-4"
-          description="A dropdown component that can be used to select an option from a list."
-          title="Inline Dropdown"
-        />
-      </CornerPlusContainer>
       <div className="grid grid-cols-2">
         {combinations.map(({ description, ...props }, index) => (
           <div

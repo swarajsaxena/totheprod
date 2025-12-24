@@ -256,7 +256,7 @@ export const components: ComponentMetadata[] = [
     installCommand:
       "npx shadcn@latest add https://ui.totheprod.com/r/ttp-word-shuffler.json",
     complexity: "moderate",
-    status: "stable",
+    status: "disabled",
     preview: TtpWordShufflerPreview,
     registryType: "registry:block",
   },
@@ -276,7 +276,7 @@ export const components: ComponentMetadata[] = [
     installCommand:
       "npx shadcn@latest add https://ui.totheprod.com/r/ttp-text-scramble.json",
     complexity: "moderate",
-    status: "stable",
+    status: "disabled",
     preview: TtpTextScramblePreview,
     registryType: "registry:block",
   },
@@ -380,7 +380,10 @@ export const getComponentById = (id: string): ComponentMetadata | undefined => {
 export const getComponentsByCategory = (
   categoryId: string
 ): ComponentMetadata[] => {
-  return components.filter((component) => component.category === categoryId)
+  return components.filter(
+    (component) =>
+      component.category === categoryId && component.status !== "disabled"
+  )
 }
 
 /**

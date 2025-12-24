@@ -1,6 +1,18 @@
 "use client"
 
+import {
+  CancelSquareIcon,
+  CheckmarkSquare02Icon,
+  HelpSquareIcon,
+} from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { useAtomValue } from "jotai"
+import { useEffect, useState } from "react"
+import {
+  ComponentDetailContainer,
+  ComponentHeading,
+  ComponentParagraph,
+} from "@/app/components/[id]/_components"
 import {
   Table,
   TableBody,
@@ -9,83 +21,169 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { loadComponentProps } from "@/lib/component-metadata/props-loader"
+import type {
+  ComponentPropsGroup,
+  PropDefinition,
+} from "@/lib/component-metadata/types"
 import { currentComponentAtom } from "@/store/atoms"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+
+const renderPropsTable = (props: Record<string, PropDefinition>) => {
+  const propsArray = Object.entries(props)
+
+  if (propsArray.length === 0) {
+    return null
+  }
+
+  return (
+    <ComponentDetailContainer>
+      <Table className="**:border-dashed">
+        <TableHeader>
+          <TableRow className="grid-cols-4 font-mono">
+            <TableHead>Prop</TableHead>
+            <TableHead>Type</TableHead>
+            <TableHead>Default</TableHead>
+            <TableHead className="w-20 text-center">Required</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {propsArray.map(([name, prop]) => (
+            <TableRow className="text-muted-foreground text-xs" key={name}>
+              <TableCell className="flex items-center gap-1 font-mono text-foreground/75">
+                {name}
+                {prop.description && (
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <HugeiconsIcon className="size-3" icon={HelpSquareIcon} />
+                    </TooltipTrigger>
+                    <TooltipContent>{prop.description}</TooltipContent>
+                  </Tooltip>
+                )}
+              </TableCell>
+              <TableCell className="font-mono text-xs">{prop.type}</TableCell>
+              <TableCell className="font-mono text-xs">
+                {prop.default || "-"}
+              </TableCell>
+              <TableCell className="flex items-end justify-center text-center">
+                {prop.required ? (
+                  <HugeiconsIcon
+                    className="size-4 text-green-500"
+                    icon={CheckmarkSquare02Icon}
+                  />
+                ) : (
+                  <HugeiconsIcon
+                    className="size-4 text-red-500"
+                    icon={CancelSquareIcon}
+                  />
+                )}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </ComponentDetailContainer>
+  )
+}
 
 export const ComponentPropsTable = () => {
   const component = useAtomValue(currentComponentAtom)
+  const [loadedProps, setLoadedProps] = useState<ComponentPropsGroup[] | null>(
+    null
+  )
+  const [isLoading, setIsLoading] = useState(false)
 
-  if (!component?.props || Object.keys(component.props).length === 0) {
+  // Load props from JSON if component metadata doesn't have props
+  useEffect(() => {
+    if (!component?.id) {
+      return
+    }
+
+    // If component already has props, don't load from JSON
+    if (component.props) {
+      setLoadedProps(null)
+      return
+    }
+
+    // Load props from JSON
+    setIsLoading(true)
+    loadComponentProps(component.id)
+      .then((props) => {
+        setLoadedProps(props)
+      })
+      .catch(() => {
+        setLoadedProps(null)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }, [component?.id, component?.props])
+
+  // Determine which props to use: metadata props or loaded JSON props
+  const propsToUse:
+    | ComponentPropsGroup[]
+    | Record<string, PropDefinition>
+    | null = component?.props || (loadedProps ? loadedProps : null)
+
+  if (!propsToUse) {
     return (
-      <div className="space-y-4">
-        <h2 className="font-semibold text-lg">Props</h2>
-        <p className="text-muted-foreground text-sm">
-          This component does not have documented props, or props documentation
-          is still being generated.
-        </p>
-        <div className="rounded-md border border-dashed p-4">
-          <p className="text-muted-foreground text-sm">
-            Run{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5">
-              bun run docs:generate
-            </code>{" "}
-            to auto-generate props documentation from TypeScript types.
-          </p>
-        </div>
-      </div>
+      <>
+        <ComponentHeading>Props</ComponentHeading>
+        {isLoading ? (
+          <ComponentParagraph>Loading props...</ComponentParagraph>
+        ) : (
+          <ComponentParagraph>
+            No props available for this component.
+          </ComponentParagraph>
+        )}
+      </>
     )
   }
 
-  const propsArray = Object.entries(component.props)
+  // Check if props is grouped (array) or flat (object)
+  const isGrouped = Array.isArray(propsToUse)
+  const hasProps = isGrouped
+    ? (propsToUse as ComponentPropsGroup[]).length > 0
+    : Object.keys(propsToUse as Record<string, PropDefinition>).length > 0
+
+  if (!hasProps) {
+    return (
+      <>
+        <ComponentHeading>Props</ComponentHeading>
+        <ComponentParagraph>
+          No props available for this component.
+        </ComponentParagraph>
+      </>
+    )
+  }
+
+  // Handle grouped props (array of ComponentPropsGroup)
+  if (isGrouped) {
+    const groupedProps = propsToUse as ComponentPropsGroup[]
+
+    return (
+      <>
+        <ComponentHeading>Props</ComponentHeading>
+        {groupedProps.map((group) => (
+          <>
+            <ComponentDetailContainer />
+            <ComponentHeading>{group.componentName}</ComponentHeading>
+            {renderPropsTable(group.props)}
+          </>
+        ))}
+        <ComponentDetailContainer className="p-6" />
+      </>
+    )
+  }
+
+  // Handle flat props (legacy format)
+  const flatProps = propsToUse as Record<string, PropDefinition>
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="mb-2 font-semibold text-lg">Props</h2>
-        <p className="text-muted-foreground text-sm">
-          Component properties and their types.
-        </p>
-      </div>
-
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Prop</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Default</TableHead>
-              <TableHead className="w-20 text-center">Required</TableHead>
-              <TableHead>Description</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {propsArray.map(([name, prop]) => (
-              <TableRow key={name}>
-                <TableCell className="font-mono text-sm">{name}</TableCell>
-                <TableCell className="font-mono text-muted-foreground text-xs">
-                  {prop.type}
-                </TableCell>
-                <TableCell className="font-mono text-xs">
-                  {prop.default || "-"}
-                </TableCell>
-                <TableCell className="text-center">
-                  {prop.required ? "✅" : "❌"}
-                </TableCell>
-                <TableCell className="text-muted-foreground text-sm">
-                  {prop.description || "-"}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
-
-      <div className="rounded-md border border-blue-500/20 bg-blue-500/10 p-4">
-        <p className="text-blue-900 text-sm dark:text-blue-100">
-          <strong>💡 Tip:</strong> Props are automatically extracted from
-          TypeScript definitions. Update the component file to see changes
-          reflected here.
-        </p>
-      </div>
-    </div>
+    <>
+      <ComponentHeading>Props</ComponentHeading>
+      {renderPropsTable(flatProps)}
+      <ComponentDetailContainer />
+    </>
   )
 }

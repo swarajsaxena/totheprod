@@ -1,8 +1,8 @@
 /** biome-ignore-all lint/complexity/noExcessiveCognitiveComplexity: its a dropdown */
 "use client"
 
-import type * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { AnimatePresence, motion } from "motion/react"
+import type { DropdownMenu as DropdownMenuPrimitive } from "radix-ui"
 import {
   Children,
   cloneElement,
@@ -42,6 +42,8 @@ export const useInlineDropdownContext = () => {
 }
 
 export type TtpInlineDropdownProps = {
+  /** Whether the dropdown is open */
+  open?: boolean
   /** The dropdown items to render */
   children: ReactNode
   /** Additional CSS classes to apply to the container */
@@ -106,6 +108,7 @@ type ItemElement<TId extends string = string> = ReactElement<{
  * </TtpInlineDropdown>
  */
 export const TtpInlineDropdown = ({
+  open = false,
   children,
   className,
   defaultItemId,
@@ -119,7 +122,7 @@ export const TtpInlineDropdown = ({
   disabled = false,
   ariaLabel,
 }: TtpInlineDropdownProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(open)
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null)
   const defaultItemRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLButtonElement>(null)
@@ -213,19 +216,35 @@ export const TtpInlineDropdown = ({
           }, 0)
         }
       } else if (interactionType === "click" && open) {
-        // Auto-focus first item when opening in click mode
+        // Auto-focus default item when opening in click mode
         setTimeout(() => {
-          const firstEnabledIndex = validItems.findIndex(
-            (item: ItemElement) => !(item.props.disabled as boolean | undefined)
-          )
-          if (firstEnabledIndex !== -1) {
-            setFocusedIndex(firstEnabledIndex)
-            getItemButton(firstEnabledIndex)?.focus()
+          // Check if default item is enabled, otherwise fall back to first enabled
+          const defaultItemDisabled = defaultItem?.props.disabled as
+            | boolean
+            | undefined
+          const targetIndex =
+            defaultItemDisabled === true
+              ? validItems.findIndex(
+                  (item: ItemElement) =>
+                    !(item.props.disabled as boolean | undefined)
+                )
+              : actualDefaultIndex
+
+          if (targetIndex !== -1) {
+            setFocusedIndex(targetIndex)
+            getItemButton(targetIndex)?.focus()
           }
         }, 100)
       }
     },
-    [interactionType, onOpenChange, validItems, getItemButton]
+    [
+      interactionType,
+      onOpenChange,
+      validItems,
+      getItemButton,
+      actualDefaultIndex,
+      defaultItem,
+    ]
   )
 
   // Calculate the top offset based on the default item's position
@@ -522,7 +541,7 @@ export const TtpInlineDropdown = ({
 }
 
 const itemBaseStyles =
-  "relative px-2 flex justify-start select-none items-center gap-2 rounded-lg border border-border bg-background text-sm outline-hidden transition-colors hover:bg-accent focus:bg-accent data-disabled:pointer-events-none data-inset:pl-8 data-disabled:opacity-50 data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none"
+  "relative px-2 flex justify-start select-none items-center gap-2 rounded-lg border border-border bg-background text-sm outline-hidden transition-colors focus:bg-accent data-disabled:pointer-events-none data-inset:pl-8 data-disabled:opacity-50 data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none"
 
 export type TtpInlineDropdownItemProps = React.ComponentProps<
   typeof DropdownMenuPrimitive.Item
@@ -559,13 +578,12 @@ export type TtpInlineDropdownItemProps = React.ComponentProps<
  * </TtpInlineDropdownItem>
  */
 export const TtpInlineDropdownItem = ({
-  id: _id,
+  id: _id, // Used by parent component via child.props.id
   children,
   onClick,
   disabled = false,
   isDefault,
   inDropdown,
-  ...props
 }: TtpInlineDropdownItemProps) => {
   const context = useInlineDropdownContext()
 
@@ -573,6 +591,14 @@ export const TtpInlineDropdownItem = ({
     if (disabled) {
       e.preventDefault()
       e.stopPropagation()
+      return
+    }
+
+    // If this is the default item used as trigger (not in dropdown), don't execute onClick
+    // Let the event bubble up to the trigger button's onClick handler to open the dropdown
+    if (isDefault && !inDropdown) {
+      // Don't stop propagation - let it bubble to trigger button
+      // Don't execute onClick - just let the trigger handle it
       return
     }
 
@@ -590,6 +616,12 @@ export const TtpInlineDropdownItem = ({
       return
     }
 
+    // If this is the default item used as trigger (not in dropdown), don't execute onClick
+    // The trigger button's keyboard handler will handle opening the dropdown
+    if (isDefault && !inDropdown) {
+      return
+    }
+
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault()
       onClick?.()
@@ -603,7 +635,7 @@ export const TtpInlineDropdownItem = ({
     onClick: handleClick,
     onKeyDown: handleKeyDown,
     role: inDropdown ? "menuitem" : undefined,
-    tabIndex: props.tabIndex,
+    tabIndex: 0,
   }
 
   // If this is the default item and not in dropdown, render icon only

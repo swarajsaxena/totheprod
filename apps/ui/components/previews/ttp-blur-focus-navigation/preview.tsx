@@ -1,7 +1,5 @@
 "use client"
 
-import CornerPlusContainer from "@/components/internal/corner-plus-container"
-import PreviewHeading from "@/components/internal/preview-heading"
 import {
   TtpBlurFocusNavigation,
   TtpBlurFocusNavigationItem,
@@ -13,13 +11,6 @@ export const TtpBlurFocusNavigationPreview = () => {
       className="flex h-full min-h-max w-full flex-col items-center"
       data-preview-padding="false"
     >
-      <CornerPlusContainer className="mt-4">
-        <PreviewHeading
-          className="m-0 p-4"
-          description="A beautiful navigation bar with blurred background effect, perfect for home pages."
-          title="Home Blurred Nav"
-        />
-      </CornerPlusContainer>
       <TtpBlurFocusNavigation>
         {[
           {

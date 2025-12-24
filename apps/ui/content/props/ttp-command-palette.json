@@ -1,0 +1,209 @@
+[
+  {
+    "componentName": "RaycastCommandMenu",
+    "props": {
+      "open": {
+        "type": "boolean",
+        "required": false
+      },
+      "onOpenChange": {
+        "type": "(open: boolean) => void",
+        "required": false
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "showCloseButton": {
+        "type": "boolean",
+        "default": "false",
+        "required": false
+      },
+      "showOverlay": {
+        "type": "boolean",
+        "default": "false",
+        "required": false
+      },
+      "shortcut": {
+        "type": "string",
+        "default": "mod+k",
+        "required": false
+      },
+      "actionsShortcut": {
+        "type": "string",
+        "default": "mod+k",
+        "required": false
+      },
+      "title": {
+        "type": "string",
+        "default": "Command Menu",
+        "required": false
+      },
+      "description": {
+        "type": "string",
+        "default": "Search for apps, commands, and actions",
+        "required": false
+      }
+    }
+  },
+  {
+    "componentName": "CommandPaletteInput",
+    "props": {
+      "placeholder": {
+        "type": "string",
+        "default": "Search for apps and commands...",
+        "required": false
+      },
+      "askAiLabel": {
+        "type": "string | false",
+        "default": "Ask AI",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  {
+    "componentName": "RaycastCommandMenuBanner",
+    "props": {
+      "icon": {
+        "type": "React.ReactNode",
+        "required": true
+      },
+      "title": {
+        "type": "string",
+        "required": true
+      },
+      "version": {
+        "type": "string",
+        "required": false
+      },
+      "action": {
+        "type": "{ label: string; onClick: () => void; }",
+        "required": true
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  {
+    "componentName": "CommandPaletteContent",
+    "props": {
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      },
+      "emptyText": {
+        "type": "string",
+        "default": "No results found.",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  {
+    "componentName": "CommandPaletteSection",
+    "props": {
+      "title": {
+        "type": "string",
+        "required": true
+      },
+      "children": {
+        "type": "React.ReactNode",
+        "required": true
+      },
+      "isLast": {
+        "type": "boolean",
+        "default": "false",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  {
+    "componentName": "CommandPaletteItem",
+    "props": {
+      "id": {
+        "type": "string",
+        "required": true
+      },
+      "icon": {
+        "type": "React.ReactNode",
+        "required": true
+      },
+      "title": {
+        "type": "string",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "required": false
+      },
+      "type": {
+        "type": "string",
+        "required": false
+      },
+      "onSelect": {
+        "type": "() => void",
+        "required": false
+      },
+      "actions": {
+        "type": "import(\"/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-command-palette\").RaycastAction[]",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "shortcut": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  {
+    "componentName": "RaycastCommandMenuActionsDropdown",
+    "props": {
+      "className": {
+        "type": "string",
+        "required": false
+      },
+      "itemClassName": {
+        "type": "string",
+        "required": false
+      }
+    }
+  },
+  {
+    "componentName": "CommandPaletteFooter",
+    "props": {
+      "onBack": {
+        "type": "() => void",
+        "required": false
+      },
+      "secondaryActionLabel": {
+        "type": "string",
+        "default": "Actions",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "required": false
+      }
+    }
+  }
+]

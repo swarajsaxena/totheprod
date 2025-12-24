@@ -6,13 +6,11 @@ import {
   GithubIcon,
   MoonIcon,
   NewTwitterIcon,
-  SidebarLeft01FreeIcons,
   Sun02Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { useAtom } from "jotai"
 import Image from "next/image"
-import { usePathname, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 import { contentMap } from "@/app/components/[id]/constants"
 import {
@@ -22,14 +20,10 @@ import {
   CommandPaletteItem,
   CommandPaletteSection,
 } from "@/components/ui/totheprod-ui/ttp-command-palette"
-import { sidebarOpenAtom } from "@/store/atoms"
 
 export const GlobalCommandMenu = () => {
   const router = useRouter()
   const { setTheme, theme } = useTheme()
-  const pathname = usePathname()
-  const [sidebarOpen, setSidebarOpen] = useAtom(sidebarOpenAtom)
-  const isComponentPage = pathname.startsWith("/components/")
 
   const handleSystemTheme = () => {
     setTheme("system")
@@ -75,18 +69,6 @@ export const GlobalCommandMenu = () => {
         placeholder="Search for commands..."
       />
       <CommandPaletteContent emptyText="No commands found.">
-        {isComponentPage && (
-          <CommandPaletteSection title="Navigation">
-            <CommandPaletteItem
-              description={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
-              icon={<HugeiconsIcon icon={SidebarLeft01FreeIcons} />}
-              id="toggle-sidebar"
-              onSelect={() => setSidebarOpen(!sidebarOpen)}
-              shortcut="mod+b"
-              title={sidebarOpen ? "Hide Sidebar" : "Show Sidebar"}
-            />
-          </CommandPaletteSection>
-        )}
         <CommandPaletteSection title="Theme">
           {themeItems.map((item) => (
             <CommandPaletteItem key={item.id} {...item} />
