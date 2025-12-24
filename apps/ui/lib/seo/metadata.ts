@@ -88,7 +88,7 @@ export const generateSiteMetadata = (): Metadata => {
 export const generateComponentMetadata = (
   component: ComponentMetadata
 ): Metadata => {
-  const title = `${component.title} - ${SITE_CONFIG.name}`
+  const title = `${component.title}`
   const description = component.description
   const url = `${SITE_CONFIG.url}/components/${component.id}`
   const ogImage = `${SITE_CONFIG.url}/api/og?id=${component.id}`
