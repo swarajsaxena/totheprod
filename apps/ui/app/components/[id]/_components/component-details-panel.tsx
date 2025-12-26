@@ -4,14 +4,17 @@ import {
   Tick01Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { useAtom, useAtomValue } from "jotai"
+import { useAtomValue } from "jotai"
+import { motion } from "motion/react"
 import { useState } from "react"
 import { ComponentPropsTable } from "@/components/internal/component-props-table"
 import { ThemeLogo } from "@/components/internal/theme-logo"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent } from "@/components/ui/sheet"
+import { useDetailsOpen } from "@/hooks/use-details-open"
+import { useMinWidth } from "@/hooks/use-min-width"
 import { cn } from "@/lib/utils"
-import { currentComponentAtom, detailsOpenAtom } from "@/store/atoms"
+import { currentComponentAtom } from "@/store/atoms"
 import { CodeViewer } from "./code-viewer"
 import { MultiFileCodeViewer } from "./multi-file-code-viewer"
 
@@ -44,7 +47,7 @@ export const ComponentHeading = ({
   children: React.ReactNode
   className?: string
 }) => (
-  <ComponentDetailContainer containerClassName="bg-muted dark:bg-muted/50">
+  <ComponentDetailContainer containerClassName="bg-muted dark:bg-muted/50 ">
     <h2
       className={cn(
         "px-4 py-2 font-mono! text-muted-foreground/70! text-xs!",
@@ -74,136 +77,164 @@ export const ComponentParagraph = ({
   </ComponentDetailContainer>
 )
 
-export const ComponentDetailsSheet = () => {
-  const [detailsOpen, setDetailsOpen] = useAtom(detailsOpenAtom)
+const ComponentDetailsContent = () => {
   const component = useAtomValue(currentComponentAtom)
   const [copied, setCopied] = useState(false)
+
+  return (
+    <>
+      <ComponentDetailContainer />
+      <ComponentDetailContainer className="flex flex-row items-center gap-2 p-4">
+        <ThemeLogo alt="Logo" className="h-6 w-6" layoutId="logo" />
+        <span className="font-bold font-heading text-xl tracking-wide">
+          ToTheProd
+        </span>
+      </ComponentDetailContainer>
+
+      <ComponentHeading>{component?.title}</ComponentHeading>
+      <ComponentParagraph>{component?.description}</ComponentParagraph>
+
+      <ComponentDetailContainer />
+
+      {component?.dependencies && component?.dependencies.length > 0 && (
+        <>
+          <ComponentHeading className="flex items-center gap-1">
+            Dependencies
+            <HugeiconsIcon
+              className="size-4 cursor-pointer"
+              icon={copied ? Tick01Icon : Copy02Icon}
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `npm install ${component?.dependencies?.join(", ")}`
+                )
+                setCopied(true)
+                setTimeout(() => setCopied(false), 2000)
+              }}
+            />
+          </ComponentHeading>
+          <ComponentParagraph className="flex p-0">
+            {component?.dependencies?.map((dependency) => (
+              <span
+                className="border-r border-dashed px-4 py-2 text-base"
+                key={dependency}
+              >
+                {dependency}
+              </span>
+            ))}
+          </ComponentParagraph>
+
+          <ComponentDetailContainer />
+        </>
+      )}
+
+      <CodeViewer
+        className="my-0"
+        code={
+          component?.installCommand ||
+          `npx shadcn@latest add https://ui.totheprod.com/r/${component?.id}.json`
+        }
+        filename="CLI Install Command"
+        language="bash"
+      />
+      <ComponentDetailContainer />
+
+      {component?.files && component.files.length > 0 && (
+        <>
+          <ComponentHeading>Source Files</ComponentHeading>
+          <MultiFileCodeViewer
+            componentId={component.id}
+            files={[
+              {
+                path: `components/previews/${component.id}/preview.tsx`,
+                type: "registry:component",
+                label: "preview.tsx",
+              },
+              ...component.files,
+            ]}
+          />
+          <ComponentDetailContainer />
+        </>
+      )}
+      <ComponentPropsTable />
+      {component?.instructions && (
+        <>
+          <ComponentHeading>How to Use</ComponentHeading>
+          <ComponentParagraph className="text-base text-muted-foreground">
+            {component.instructions}
+          </ComponentParagraph>
+          <ComponentDetailContainer />
+        </>
+      )}
+      {component?.inspirations && component.inspirations.length > 0 && (
+        <>
+          <ComponentHeading>Inspiration</ComponentHeading>
+          <ComponentDetailContainer className="flex flex-row flex-wrap">
+            {component.inspirations.map((inspiration, index) => (
+              <Button
+                asChild
+                className="w-max rounded-none border-0 border-border border-r border-dashed px-4 py-2 font-mono font-normal text-xs"
+                key={index}
+                variant="outline"
+              >
+                <a
+                  href={inspiration.href}
+                  rel="noopener noreferrer"
+                  target={inspiration.href ? "_blank" : undefined}
+                >
+                  {inspiration.label}
+                  <HugeiconsIcon icon={ArrowUpRight02Icon} />
+                </a>
+              </Button>
+            ))}
+          </ComponentDetailContainer>
+          <ComponentDetailContainer />
+        </>
+      )}
+      {component?.tags && component.tags.length > 0 && (
+        <>
+          <ComponentHeading>Tags</ComponentHeading>
+          <ComponentDetailContainer className="flex flex-row flex-wrap gap-0 border-t-0!">
+            {[...component.tags, ...component.tags].map((tag, index) => (
+              <span
+                className="w-max flex-1 text-nowrap border-t border-r border-dashed px-4 py-2 font-mono text-xs capitalize"
+                key={index}
+              >
+                {tag}
+              </span>
+            ))}
+          </ComponentDetailContainer>
+          <ComponentDetailContainer className="border-b!" />
+        </>
+      )}
+    </>
+  )
+}
+
+export const ComponentDetails = () => {
+  const [detailsOpen, setDetailsOpen] = useDetailsOpen()
+  const isNotMobile = useMinWidth("md")
+
+  if (isNotMobile) {
+    return (
+      <motion.div
+        animate={{
+          width: isNotMobile && detailsOpen ? "50%" : 0,
+          opacity: isNotMobile && detailsOpen ? 1 : 0,
+        }}
+        className="overflow-auto overflow-x-hidden border-l border-dashed"
+        initial={{ width: 0, opacity: 0 }}
+      >
+        <div className="w-max *:border-b *:border-dashed *:last:border-b-0">
+          <ComponentDetailsContent />
+        </div>
+      </motion.div>
+    )
+  }
+
   return (
     <Sheet onOpenChange={setDetailsOpen} open={detailsOpen}>
       <SheetContent className="w-full gap-0 *:border-b *:border-dashed sm:w-1/2 sm:max-w-[unset]">
-        <ComponentDetailContainer />
-        <ComponentDetailContainer className="flex flex-row items-center gap-2 p-4">
-          <ThemeLogo alt="Logo" className="h-6 w-6" layoutId="logo" />
-          <span className="font-bold font-heading text-xl tracking-wide">
-            ToTheProd
-          </span>
-        </ComponentDetailContainer>
-
-        <ComponentHeading>{component?.title}</ComponentHeading>
-        <ComponentParagraph>{component?.description}</ComponentParagraph>
-
-        <ComponentDetailContainer />
-
-        {component?.dependencies && component?.dependencies.length > 0 && (
-          <>
-            <ComponentHeading className="flex items-center gap-1">
-              Dependencies
-              <HugeiconsIcon
-                className="size-4 cursor-pointer"
-                icon={copied ? Tick01Icon : Copy02Icon}
-                onClick={() => {
-                  navigator.clipboard.writeText(
-                    `npm install ${component?.dependencies?.join(", ")}`
-                  )
-                  setCopied(true)
-                  setTimeout(() => setCopied(false), 2000)
-                }}
-              />
-            </ComponentHeading>
-            <ComponentParagraph className="flex p-0">
-              {component?.dependencies?.map((dependency) => (
-                <span
-                  className="border-r border-dashed px-4 py-2 text-base"
-                  key={dependency}
-                >
-                  {dependency}
-                </span>
-              ))}
-            </ComponentParagraph>
-
-            <ComponentDetailContainer />
-          </>
-        )}
-
-        <CodeViewer
-          className="my-0"
-          code={
-            component?.installCommand ||
-            `npx shadcn@latest add https://ui.totheprod.com/r/${component?.id}.json`
-          }
-          filename="CLI Install Command"
-          language="bash"
-        />
-        <ComponentDetailContainer />
-
-        {component?.files && component.files.length > 0 && (
-          <>
-            <ComponentHeading>Source Files</ComponentHeading>
-            <MultiFileCodeViewer
-              componentId={component.id}
-              files={[
-                {
-                  path: `components/previews/${component.id}/preview.tsx`,
-                  type: "registry:component",
-                  label: "preview.tsx",
-                },
-                ...component.files,
-              ]}
-            />
-            <ComponentDetailContainer />
-          </>
-        )}
-        <ComponentPropsTable />
-        {component?.instructions && (
-          <>
-            <ComponentHeading>How to Use</ComponentHeading>
-            <ComponentParagraph className="text-base text-muted-foreground">
-              {component.instructions}
-            </ComponentParagraph>
-            <ComponentDetailContainer />
-          </>
-        )}
-        {component?.inspirations && component.inspirations.length > 0 && (
-          <>
-            <ComponentHeading>Inspiration</ComponentHeading>
-            <ComponentDetailContainer className="flex flex-row flex-wrap">
-              {component.inspirations.map((inspiration, index) => (
-                <Button
-                  asChild
-                  className="w-max rounded-none border-0 border-border border-r border-dashed px-4 py-2 font-mono font-normal text-xs"
-                  key={index}
-                  variant="outline"
-                >
-                  <a
-                    href={inspiration.href}
-                    rel="noopener noreferrer"
-                    target={inspiration.href ? "_blank" : undefined}
-                  >
-                    {inspiration.label}
-                    <HugeiconsIcon icon={ArrowUpRight02Icon} />
-                  </a>
-                </Button>
-              ))}
-            </ComponentDetailContainer>
-            <ComponentDetailContainer />
-          </>
-        )}
-        {component?.tags && component.tags.length > 0 && (
-          <>
-            <ComponentHeading>Tags</ComponentHeading>
-            <ComponentDetailContainer className="flex flex-row flex-wrap gap-0 border-t-0!">
-              {[...component.tags, ...component.tags].map((tag, index) => (
-                <span
-                  className="w-max flex-1 text-nowrap border-t border-r border-dashed px-4 py-2 font-mono text-xs capitalize"
-                  key={index}
-                >
-                  {tag}
-                </span>
-              ))}
-            </ComponentDetailContainer>
-            <ComponentDetailContainer className="border-b!" />
-          </>
-        )}
+        <ComponentDetailsContent />
       </SheetContent>
     </Sheet>
   )

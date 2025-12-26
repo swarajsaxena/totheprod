@@ -1,15 +1,16 @@
 "use client"
 
+import { motion } from "motion/react"
 import type { ReactNode } from "react"
-import { ComponentDetailsSheet, ComponentPreviewContainer } from "./_components"
+import { ComponentDetails, ComponentPreviewContainer } from "./_components"
 
 const ComponentPageLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <div className="relative flex-1 overflow-hidden">
+      <motion.div className="flex-1 overflow-hidden">
         <ComponentPreviewContainer>{children}</ComponentPreviewContainer>
-      </div>
-      <ComponentDetailsSheet />
+      </motion.div>
+      <ComponentDetails />
     </>
   )
 }

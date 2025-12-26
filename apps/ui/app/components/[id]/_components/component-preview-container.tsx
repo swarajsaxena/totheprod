@@ -1,6 +1,5 @@
 import { Copy01Icon, ViewIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { useAtom } from "jotai"
 import { Code2Icon } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
@@ -17,8 +16,8 @@ import {
   TtpInlineDropdownItemIcon,
   TtpInlineDropdownItemLabel,
 } from "@/components/ui/totheprod-ui/ttp-inline-dropdown"
+import { useDetailsOpen } from "@/hooks/use-details-open"
 import { contentMap } from "@/lib/component-metadata"
-import { detailsOpenAtom } from "@/store/atoms"
 
 type ComponentPreviewContainerProps = {
   children: ReactNode
@@ -29,7 +28,7 @@ export const ComponentPreviewContainer = ({
 }: ComponentPreviewContainerProps) => {
   const params = useParams()
   const currentId = (params?.id as string) || ""
-  const [detailsOpen, setDetailsOpen] = useAtom(detailsOpenAtom)
+  const [detailsOpen, setDetailsOpen] = useDetailsOpen()
   const component = contentMap
     .find((item) => item.items.some((item) => item.id === currentId))
     ?.items.find((item) => item.id === currentId)

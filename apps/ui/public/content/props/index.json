@@ -563,9 +563,9 @@
           "description": "Additional CSS classes to apply to the container",
           "required": false
         },
-        "scrollContainerId": {
+        "containerId": {
           "type": "string",
-          "description": "The ID of the scroll container to use, defaults to \"body\"",
+          "description": "The ID of the scroll container to use, defaults to \"body\", also used to get all the headings for that container",
           "required": false
         }
       }

@@ -7,6 +7,7 @@ import { generateHomePageSchema } from "@/lib/seo/structured-data"
 import { CommandMenuProvider } from "@/providers/command-menu-provider"
 import { ThemeProvider } from "@/providers/theme-provider"
 import "./globals.css"
+import { GlobalShortcutsProvider } from "@/components/providers/global-shortcuts-provider"
 
 const archivo = localFont({
   src: [
@@ -46,14 +47,16 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Toaster />
-          <CommandMenuProvider>
-            <div
-              className={`relative flex h-screen max-h-screen flex-col overflow-scroll bg-muted p-2! text-foreground antialiased [&:has(.no-preview-padding)]:p-0! ${archivo.variable} ${clashDisplay.variable} font-archivo`}
-              id="body-scroll-container"
-            >
-              {children}
-            </div>
-          </CommandMenuProvider>
+          <GlobalShortcutsProvider>
+            <CommandMenuProvider>
+              <div
+                className={`relative flex h-screen max-h-screen flex-col overflow-scroll bg-muted p-2! text-foreground antialiased [&:has(.no-preview-padding)]:p-0! ${archivo.variable} ${clashDisplay.variable} font-archivo`}
+                id="body-scroll-container"
+              >
+                {children}
+              </div>
+            </CommandMenuProvider>
+          </GlobalShortcutsProvider>
         </ThemeProvider>
       </body>
     </html>

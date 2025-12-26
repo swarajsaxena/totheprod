@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils"
 type TtpDocumentNavigatorProps = {
   /** Additional CSS classes to apply to the container */
   className?: string
-  /** The ID of the scroll container to use, defaults to "body" */
-  scrollContainerId?: string
+  /** The ID of the scroll container to use, defaults to "body", also used to get all the headings for that container */
+  containerId?: string
 }
 
 const StyleMap = {
@@ -45,7 +45,7 @@ const getStyle = (heading: keyof typeof StyleMap) => {
 
 export const TtpDocumentNavigator = ({
   className,
-  scrollContainerId,
+  containerId: scrollContainerId,
 }: TtpDocumentNavigatorProps) => {
   const [headings, setHeadings] = useState<HTMLHeadingElement[]>([])
   const [isHovering, setisHovering] = useState(true)
@@ -106,8 +106,17 @@ export const TtpDocumentNavigator = ({
   }
 
   useEffect(() => {
+    // Get the container element to scope heading queries
+    const container = scrollContainerId
+      ? document.getElementById(scrollContainerId)
+      : document
+
+    if (!container) {
+      return
+    }
+
     const headingElements = Array.from(
-      document.querySelectorAll("h1, h2, h3, h4, h5, h6")
+      container.querySelectorAll("h1, h2, h3, h4, h5, h6")
     ) as HTMLHeadingElement[]
 
     // Ensure each heading has an ID for tracking
@@ -171,14 +180,14 @@ export const TtpDocumentNavigator = ({
       }
       observerRef.current?.disconnect()
     }
-  }, [])
+  }, [scrollContainerId])
 
   return headings.length > 0 ? (
     <motion.div
       className={cn(
-        "-translate-y-1/2 fixed top-1/2 right-4 flex h-max max-h-[75vh] w-max flex-col items-end overflow-y-auto shadow-none transition-all",
+        "-translate-y-1/2 absolute top-1/2 right-4 z-50 flex h-max max-h-[75vh] w-max flex-col items-end overflow-y-auto shadow-none transition-all",
         isHovering &&
-          "rounded-lg border border-border/25 bg-muted/50 py-2 pr-3 pl-3 shadow-xl",
+          "rounded-lg border border-border/25 bg-secondary py-2 pr-3 pl-3 shadow-xl",
         className
       )}
       onMouseLeave={() => setisHovering(false)}

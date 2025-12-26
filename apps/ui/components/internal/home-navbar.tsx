@@ -34,7 +34,7 @@ export const HomeNavbar = ({ componentsUrl }: HomeNavbarProps) => {
         </div>
         <div className="ml-auto flex items-center gap-4 font-archivo text-muted-foreground text-sm *:transition-all *:hover:text-foreground">
           <Link href={componentsUrl}>Components</Link>
-          <Link href={componentsUrl}>Changelog</Link>
+          {/* <Link href={componentsUrl}>Changelog</Link> */}
           <Link href="https://x.com/totheprod" target="_blank">
             <HugeiconsIcon className="size-4" icon={NewTwitterIcon} />
           </Link>
