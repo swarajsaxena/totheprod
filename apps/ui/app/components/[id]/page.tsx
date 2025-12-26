@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import type React from "react"
 import { StructuredData } from "@/components/internal/structured-data"
+import { loadComponentFiles } from "@/lib/registry/file-loader"
 import { generateComponentMetadata } from "@/lib/seo/metadata"
 import { generateComponentPageSchema } from "@/lib/seo/structured-data"
 import { ComponentProvider } from "./_components/component-provider"
@@ -52,13 +53,20 @@ const ComponentPage = async ({
     return <NotFoundComp />
   }
 
+  // Load files server-side with content
+  const filesWithContent = await loadComponentFiles(id)
+  const componentWithFiles = {
+    ...component,
+    files: filesWithContent.length > 0 ? filesWithContent : component.files,
+  }
+
   const PreviewComponent = component.preview
   const schemas = generateComponentPageSchema(component)
 
   return (
     <>
       <StructuredData data={schemas} />
-      <ComponentProvider componentData={component}>
+      <ComponentProvider componentData={componentWithFiles}>
         {PreviewComponent ? <PreviewComponent /> : null}
       </ComponentProvider>
     </>

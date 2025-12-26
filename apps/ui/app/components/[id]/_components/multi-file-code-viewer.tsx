@@ -17,17 +17,130 @@ type FileData = {
   path: string
   type: string
   label?: string
+  content?: string
 }
 
 type MultiFileCodeViewerProps = {
   files: FileData[]
-  componentId: string
 }
 
-export const MultiFileCodeViewer = ({
-  files,
-  componentId,
-}: MultiFileCodeViewerProps) => {
+// Initialize highlighter at module level for better performance
+const highlighterPromise = createHighlighter({
+  langs: ["typescript", "tsx", "javascript", "jsx", "bash"],
+  themes: [
+    {
+      name: "custom-theme",
+      type: "dark",
+      colors: {
+        "editor.background": "var(--background)",
+        "editor.foreground":
+          "color-mix(in srgb, var(--foreground) 60%, transparent)",
+      },
+      tokenColors: [
+        {
+          scope: ["comment", "punctuation.definition.comment"],
+          settings: {
+            foreground: "var(--muted-foreground)",
+            fontStyle: "italic",
+          },
+        },
+        {
+          scope: ["string", "string.quoted", "string.template"],
+          settings: {
+            foreground: "var(--primary)",
+          },
+        },
+        {
+          scope: [
+            "constant.numeric",
+            "constant.language",
+            "constant.character",
+          ],
+          settings: {
+            foreground:
+              "color-mix(in srgb, var(--foreground) 85%, transparent)",
+          },
+        },
+        {
+          scope: [
+            "keyword",
+            "keyword.control",
+            "keyword.operator",
+            "storage.type",
+            "storage.modifier",
+          ],
+          settings: {
+            foreground:
+              "color-mix(in srgb, var(--foreground) 70%, transparent)",
+            fontStyle: "italic",
+          },
+        },
+        {
+          scope: [
+            "entity.name.function",
+            "support.function",
+            "meta.function-call",
+          ],
+          settings: {
+            foreground:
+              "color-mix(in srgb, var(--foreground) 90%, transparent)",
+          },
+        },
+        {
+          scope: ["entity.name.type", "entity.name.class", "support.class"],
+          settings: {
+            foreground:
+              "color-mix(in srgb, var(--foreground) 80%, transparent)",
+          },
+        },
+        {
+          scope: ["variable", "variable.other", "variable.parameter"],
+          settings: {
+            foreground:
+              "color-mix(in srgb, var(--foreground) 95%, transparent)",
+          },
+        },
+        {
+          scope: ["punctuation", "meta.brace"],
+          settings: {
+            foreground:
+              "color-mix(in srgb, var(--foreground) 65%, transparent)",
+          },
+        },
+        {
+          scope: ["entity.name.tag", "meta.tag"],
+          settings: {
+            foreground:
+              "color-mix(in srgb, var(--foreground) 85%, transparent)",
+          },
+        },
+        {
+          scope: ["entity.other.attribute-name"],
+          settings: {
+            foreground:
+              "color-mix(in srgb, var(--foreground) 75%, transparent)",
+          },
+        },
+        {
+          scope: ["support.type.property-name"],
+          settings: {
+            foreground:
+              "color-mix(in srgb, var(--foreground) 80%, transparent)",
+          },
+        },
+        {
+          scope: ["constant.language.boolean", "constant.language.null"],
+          settings: {
+            foreground:
+              "color-mix(in srgb, var(--foreground) 85%, transparent)",
+          },
+        },
+      ],
+    },
+  ],
+})
+
+export const MultiFileCodeViewer = ({ files }: MultiFileCodeViewerProps) => {
   const [activeFileIndex, setActiveFileIndex] = useState(0)
   const [fileContents, setFileContents] = useState<Record<string, string>>({})
   const [highlightedCode, setHighlightedCode] = useState<string>("")
@@ -38,188 +151,24 @@ export const MultiFileCodeViewer = ({
   const activeFile = files[activeFileIndex]
   const activeContent = fileContents[activeFile?.path] || ""
 
-  const highlighter = createHighlighter({
-    langs: ["typescript", "tsx", "javascript", "jsx", "bash"],
-    themes: [
-      {
-        name: "custom-theme",
-        type: "dark",
-        colors: {
-          "editor.background": "var(--background)",
-          "editor.foreground":
-            "color-mix(in srgb, var(--foreground) 60%, transparent)",
-        },
-        tokenColors: [
-          {
-            scope: ["comment", "punctuation.definition.comment"],
-            settings: {
-              foreground: "var(--muted-foreground)",
-              fontStyle: "italic",
-            },
-          },
-          {
-            scope: ["string", "string.quoted", "string.template"],
-            settings: {
-              foreground: "var(--primary)",
-            },
-          },
-          {
-            scope: [
-              "constant.numeric",
-              "constant.language",
-              "constant.character",
-            ],
-            settings: {
-              foreground:
-                "color-mix(in srgb, var(--foreground) 85%, transparent)",
-            },
-          },
-          {
-            scope: [
-              "keyword",
-              "keyword.control",
-              "keyword.operator",
-              "storage.type",
-              "storage.modifier",
-            ],
-            settings: {
-              foreground:
-                "color-mix(in srgb, var(--foreground) 70%, transparent)",
-              fontStyle: "italic",
-            },
-          },
-          {
-            scope: [
-              "entity.name.function",
-              "support.function",
-              "meta.function-call",
-            ],
-            settings: {
-              foreground:
-                "color-mix(in srgb, var(--foreground) 90%, transparent)",
-            },
-          },
-          {
-            scope: ["entity.name.type", "entity.name.class", "support.class"],
-            settings: {
-              foreground:
-                "color-mix(in srgb, var(--foreground) 80%, transparent)",
-            },
-          },
-          {
-            scope: ["variable", "variable.other", "variable.parameter"],
-            settings: {
-              foreground:
-                "color-mix(in srgb, var(--foreground) 95%, transparent)",
-            },
-          },
-          {
-            scope: ["punctuation", "meta.brace"],
-            settings: {
-              foreground:
-                "color-mix(in srgb, var(--foreground) 65%, transparent)",
-            },
-          },
-          {
-            scope: ["entity.name.tag", "meta.tag"],
-            settings: {
-              foreground:
-                "color-mix(in srgb, var(--foreground) 85%, transparent)",
-            },
-          },
-          {
-            scope: ["entity.other.attribute-name"],
-            settings: {
-              foreground:
-                "color-mix(in srgb, var(--foreground) 75%, transparent)",
-            },
-          },
-          {
-            scope: ["support.type.property-name"],
-            settings: {
-              foreground:
-                "color-mix(in srgb, var(--foreground) 80%, transparent)",
-            },
-          },
-          {
-            scope: ["constant.language.boolean", "constant.language.null"],
-            settings: {
-              foreground:
-                "color-mix(in srgb, var(--foreground) 85%, transparent)",
-            },
-          },
-        ],
-      },
-    ],
-  })
-
-  // Load all file contents
+  // Load file contents from preloaded data
   useEffect(() => {
-    // biome-ignore lint: Loading files requires multiple async operations
-    const loadFiles = async () => {
-      if (files.length === 0) {
-        setIsLoading(false)
-        return
-      }
-
-      try {
-        // Fetch the component registry file
-        const response = await fetch(`/r/${componentId}.json`)
-        if (!response.ok) {
-          console.error(`Failed to load registry for ${componentId}`)
-          setIsLoading(false)
-          return
-        }
-
-        const registryData = await response.json()
-        const contents: Record<string, string> = {}
-
-        // Extract content for each file
-        for (const file of files) {
-          // First try to find in registry
-          const matchedFile = registryData.files?.find(
-            (f: { path: string; content?: string }) => f.path === file.path
-          )
-
-          if (matchedFile?.content) {
-            contents[file.path] = matchedFile.content
-          } else if (file.label === "preview.tsx") {
-            // If it's a preview file, use the API route
-            try {
-              const previewResponse = await fetch(
-                `/api/preview-source/${componentId}`
-              )
-              if (previewResponse.ok) {
-                const previewData = await previewResponse.json()
-                contents[file.path] = previewData.content
-              }
-            } catch (error) {
-              console.error("Failed to load preview file:", error)
-            }
-          } else {
-            // If not in registry, try to fetch as a source file
-            try {
-              const sourceResponse = await fetch(`/${file.path}`)
-              if (sourceResponse.ok) {
-                const sourceCode = await sourceResponse.text()
-                contents[file.path] = sourceCode
-              }
-            } catch (error) {
-              console.error(`Failed to load source file ${file.path}:`, error)
-            }
-          }
-        }
-
-        setFileContents(contents)
-      } catch (error) {
-        console.error("Failed to load files:", error)
-      }
-
+    if (files.length === 0) {
       setIsLoading(false)
+      return
     }
 
-    loadFiles()
-  }, [files, componentId])
+    const contents: Record<string, string> = {}
+
+    for (const file of files) {
+      if (file.content) {
+        contents[file.path] = file.content
+      }
+    }
+
+    setFileContents(contents)
+    setIsLoading(false)
+  }, [files])
 
   // Highlight active file
   useEffect(() => {
@@ -237,7 +186,8 @@ export const MultiFileCodeViewer = ({
       }
       const language = languageMap[extension] || "tsx"
 
-      const html = (await highlighter).codeToHtml(activeContent, {
+      const highlighter = await highlighterPromise
+      const html = highlighter.codeToHtml(activeContent, {
         lang: language,
         theme: "custom-theme",
       })
@@ -245,7 +195,7 @@ export const MultiFileCodeViewer = ({
     }
 
     highlightCode()
-  }, [activeContent, activeFile, highlighter])
+  }, [activeContent, activeFile])
 
   const handleCopy = () => {
     navigator.clipboard.writeText(activeContent)

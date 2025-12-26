@@ -141,17 +141,7 @@ const ComponentDetailsContent = () => {
       {component?.files && component.files.length > 0 && (
         <>
           <ComponentHeading>Source Files</ComponentHeading>
-          <MultiFileCodeViewer
-            componentId={component.id}
-            files={[
-              {
-                path: `components/previews/${component.id}/preview.tsx`,
-                type: "registry:component",
-                label: "preview.tsx",
-              },
-              ...component.files,
-            ]}
-          />
+          <MultiFileCodeViewer files={component.files} />
           <ComponentDetailContainer />
         </>
       )}
@@ -223,6 +213,7 @@ export const ComponentDetails = () => {
         }}
         className="overflow-auto overflow-x-hidden border-l border-dashed"
         initial={{ width: 0, opacity: 0 }}
+        style={{ minHeight: "100vh" }}
       >
         <div className="w-max *:border-b *:border-dashed *:last:border-b-0">
           <ComponentDetailsContent />

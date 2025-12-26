@@ -40,6 +40,7 @@ export type ComponentFile = {
   path: string
   type: "registry:component" | "registry:ui" | "registry:hook" | "registry:lib"
   target?: string
+  content?: string
 }
 
 /**
