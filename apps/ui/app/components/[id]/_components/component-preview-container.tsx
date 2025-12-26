@@ -1,9 +1,15 @@
-import { Copy01Icon, ViewIcon } from "@hugeicons/core-free-icons"
+import { Copy01Icon, RefreshIcon, ViewIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Code2Icon } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import type { ReactNode } from "react"
+import {
+  cloneElement,
+  isValidElement,
+  type ReactElement,
+  type ReactNode,
+  useState,
+} from "react"
 import { Button } from "@/components/ui/button"
 import {
   Tooltip,
@@ -29,9 +35,19 @@ export const ComponentPreviewContainer = ({
   const params = useParams()
   const currentId = (params?.id as string) || ""
   const [detailsOpen, setDetailsOpen] = useDetailsOpen()
+  const [refreshKey, setRefreshKey] = useState(0)
   const component = contentMap
     .find((item) => item.items.some((item) => item.id === currentId))
     ?.items.find((item) => item.id === currentId)
+
+  const handleRefresh = () => {
+    setRefreshKey((prev: number) => prev + 1)
+  }
+
+  const clonedChildren = isValidElement(children)
+    ? cloneElement(children as ReactElement, { key: refreshKey })
+    : children
+
   return (
     <div
       className="relative flex h-full max-h-screen flex-col items-center overflow-auto"
@@ -45,6 +61,16 @@ export const ComponentPreviewContainer = ({
           </p> */}
         </div>
         <div className="flex items-center gap-2 p-2">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button onClick={handleRefresh} size="icon" variant="outline">
+                <HugeiconsIcon className="size-4" icon={RefreshIcon} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent align="end">
+              <p>Refresh Component</p>
+            </TooltipContent>
+          </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button asChild size="icon" variant="outline">
@@ -65,6 +91,7 @@ export const ComponentPreviewContainer = ({
             <TtpInlineDropdownItem
               id="view-code"
               onClick={() => setDetailsOpen(!detailsOpen)}
+              shortcut="Meta + B"
             >
               <TtpInlineDropdownItemIcon>
                 <Code2Icon className="size-4" />
@@ -75,12 +102,14 @@ export const ComponentPreviewContainer = ({
               <TtpInlineDropdownItemIcon>
                 <HugeiconsIcon className="size-4" icon={Copy01Icon} />
               </TtpInlineDropdownItemIcon>
-              <TtpInlineDropdownItemLabel>Copy Code</TtpInlineDropdownItemLabel>
+              <TtpInlineDropdownItemLabel>
+                Install Command
+              </TtpInlineDropdownItemLabel>
             </TtpInlineDropdownItem>
           </TtpInlineDropdown>
         </div>
       </div>
-      {children}
+      {clonedChildren}
     </div>
   )
 }

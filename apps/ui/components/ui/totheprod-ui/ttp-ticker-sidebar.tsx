@@ -253,6 +253,7 @@ const TtpTickerSidebarItem = ({
       <motion.div
         animate={{ paddingRight: isHovered || isActive ? 0 : 16 }}
         className={cn("flex h-2 items-center", className)}
+        data-active={isActive}
         initial={{ paddingRight: 16 }}
         transition={{ duration: 0.3 }}
       >
@@ -279,10 +280,7 @@ const TtpTickerSidebarItem = ({
                   ? "var(--primary)"
                   : "var(--muted-foreground)",
             }}
-            className={cn(
-              "w-max font-medium text-muted-foreground text-sm",
-              textClassName
-            )}
+            className={cn("w-max font-medium text-sm", textClassName)}
             transition={{ duration: 0.3 }}
           >
             {children}

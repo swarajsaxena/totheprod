@@ -74,6 +74,7 @@ export const ComponentSidebar = () => {
                   isActive={currentId === item.id}
                   isLast={itemIndex === section.items.length - 1}
                   key={item.id}
+                  textClassName="[[data-active=false]_&]:text-muted-foreground/85!"
                 >
                   {item.title}
                 </TtpTickerSidebarItem>

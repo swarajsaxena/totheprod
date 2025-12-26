@@ -2,40 +2,44 @@
 
 import { useAtom } from "jotai"
 import { useParams } from "next/navigation"
-import { useCallback, useEffect, useMemo } from "react"
+import { useCallback, useEffect } from "react"
 import { locationAtom } from "@/store/atoms"
 
 export const useDetailsOpen = () => {
-  const [loc, setLoc] = useAtom(useMemo(() => locationAtom, []))
+  const [loc, setLoc] = useAtom(locationAtom)
   const currentId = useParams().id
 
   const detailsOpen = loc.searchParams?.get("documentation") === "true"
-  console.log("🚀 ~ useDetailsOpen ~ detailsOpen:", detailsOpen)
 
   const setDetailsOpen = useCallback(
     (value: boolean | ((prev: boolean) => boolean)) => {
-      const newValue = typeof value === "function" ? value(detailsOpen) : value
-      const newSearchParams = new URLSearchParams(loc.searchParams || "")
+      setLoc((prevLoc) => {
+        const currentOpen =
+          prevLoc.searchParams?.get("documentation") === "true"
+        const newValue =
+          typeof value === "function" ? value(currentOpen) : value
+        const newSearchParams = new URLSearchParams(prevLoc.searchParams || "")
 
-      if (newValue) {
-        newSearchParams.set("documentation", "true")
-      } else {
-        newSearchParams.delete("documentation")
-      }
+        if (newValue) {
+          newSearchParams.set("documentation", "true")
+        } else {
+          newSearchParams.delete("documentation")
+        }
 
-      setLoc({
-        ...loc,
-        searchParams: newSearchParams,
+        return {
+          ...prevLoc,
+          searchParams: newSearchParams,
+        }
       })
     },
-    [detailsOpen, loc.searchParams, loc, setLoc]
+    [setLoc]
   )
 
   useEffect(() => {
-    if (!currentId) {
+    if (!currentId && detailsOpen) {
       setDetailsOpen(false)
     }
-  }, [currentId, setDetailsOpen])
+  }, [currentId, detailsOpen, setDetailsOpen])
 
   return [detailsOpen, setDetailsOpen] as const
 }

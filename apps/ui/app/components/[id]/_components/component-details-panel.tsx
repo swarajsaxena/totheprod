@@ -1,5 +1,6 @@
 import {
   ArrowUpRight02Icon,
+  Cancel01FreeIcons,
   Copy02Icon,
   Tick01Icon,
 } from "@hugeicons/core-free-icons"
@@ -80,18 +81,25 @@ export const ComponentParagraph = ({
 const ComponentDetailsContent = () => {
   const component = useAtomValue(currentComponentAtom)
   const [copied, setCopied] = useState(false)
-
+  const [_, setDetailsOpen] = useDetailsOpen()
   return (
     <>
-      <ComponentDetailContainer />
       <ComponentDetailContainer className="flex flex-row items-center gap-2 p-4">
         <ThemeLogo alt="Logo" className="h-6 w-6" layoutId="logo" />
         <span className="font-bold font-heading text-xl tracking-wide">
-          ToTheProd
+          {component?.title}
         </span>
+        <Button
+          className="ml-auto hidden p-1 md:block"
+          onClick={() => setDetailsOpen(false)}
+          size="icon-sm"
+          variant="outline"
+        >
+          <HugeiconsIcon className="size-5" icon={Cancel01FreeIcons} />
+        </Button>
       </ComponentDetailContainer>
 
-      <ComponentHeading>{component?.title}</ComponentHeading>
+      {/* <ComponentHeading>{component?.title}</ComponentHeading> */}
       <ComponentParagraph>{component?.description}</ComponentParagraph>
 
       <ComponentDetailContainer />
@@ -215,7 +223,7 @@ export const ComponentDetails = () => {
         initial={{ width: 0, opacity: 0 }}
         style={{ minHeight: "100vh" }}
       >
-        <div className="w-max *:border-b *:border-dashed *:last:border-b-0">
+        <div className="max-w-full *:border-b *:border-dashed *:last:border-b-0">
           <ComponentDetailsContent />
         </div>
       </motion.div>
@@ -225,6 +233,7 @@ export const ComponentDetails = () => {
   return (
     <Sheet onOpenChange={setDetailsOpen} open={detailsOpen}>
       <SheetContent className="w-full gap-0 *:border-b *:border-dashed sm:w-1/2 sm:max-w-[unset]">
+        <ComponentDetailContainer />
         <ComponentDetailsContent />
       </SheetContent>
     </Sheet>

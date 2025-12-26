@@ -8,7 +8,7 @@ export const useGlobalShortcuts = () => {
 
   // shift+meta+d for toggling the details panel
   useHotkeys(
-    "shift+meta+d",
+    "meta+b",
     (event) => {
       event.preventDefault()
       setDetailsOpen((prev) => !prev)

@@ -20,6 +20,8 @@ import {
 } from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "../button"
+import { Kbd } from "../kbd"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip"
 
 type InlineDropdownContextType = {
   mode: "icon" | "both"
@@ -558,6 +560,8 @@ export type TtpInlineDropdownItemProps = React.ComponentProps<
   isDefault?: boolean
   /** Internal prop to indicate if item is rendered in the dropdown */
   inDropdown?: boolean
+  /** Text to display in the tooltip */
+  shortcut?: string
 }
 
 /**
@@ -584,6 +588,7 @@ export const TtpInlineDropdownItem = ({
   disabled = false,
   isDefault,
   inDropdown,
+  shortcut,
 }: TtpInlineDropdownItemProps) => {
   const context = useInlineDropdownContext()
 
@@ -636,6 +641,7 @@ export const TtpInlineDropdownItem = ({
     onKeyDown: handleKeyDown,
     role: inDropdown ? "menuitem" : undefined,
     tabIndex: 0,
+    "data-shortcut": shortcut,
   }
 
   // If this is the default item and not in dropdown, render icon only
@@ -657,7 +663,7 @@ export const TtpInlineDropdownItem = ({
     )
   }
 
-  return (
+  const item = (
     <Button
       {...itemProps}
       className={cn(
@@ -673,6 +679,21 @@ export const TtpInlineDropdownItem = ({
       {children}
     </Button>
   )
+
+  if (shortcut) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>{item}</TooltipTrigger>
+        <TooltipContent
+          className="px-2 py-0.5"
+          side={context.align === "left" ? "right" : "left"}
+        >
+          <Kbd className="p-0">{shortcut}</Kbd>
+        </TooltipContent>
+      </Tooltip>
+    )
+  }
+  return item
 }
 
 export type TtpInlineDropdownItemIconProps = {
