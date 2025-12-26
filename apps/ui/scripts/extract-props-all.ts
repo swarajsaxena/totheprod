@@ -114,7 +114,11 @@ const main = async () => {
 
         // Save individual JSON file
         const jsonPath = join(propsDir, `${componentId}.json`)
-        await writeFile(jsonPath, JSON.stringify(groups, null, 2), "utf-8")
+        await writeFile(
+          jsonPath,
+          `${JSON.stringify(groups, null, 2)}\n`,
+          "utf-8"
+        )
 
         // Add to all props map
         allPropsMap[componentId] = groups
@@ -142,7 +146,11 @@ const main = async () => {
 
     // Save all props in a single index file
     const indexPath = join(propsDir, "index.json")
-    await writeFile(indexPath, JSON.stringify(allPropsMap, null, 2), "utf-8")
+    await writeFile(
+      indexPath,
+      `${JSON.stringify(allPropsMap, null, 2)}\n`,
+      "utf-8"
+    )
     console.log(`📁 Saved all props index → ${indexPath}\n`)
 
     // Output summary

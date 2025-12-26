@@ -160,6 +160,11 @@
           "type": "boolean",
           "description": "Internal prop to indicate if item is rendered in the dropdown",
           "required": false
+        },
+        "shortcut": {
+          "type": "string",
+          "description": "Text to display in the tooltip",
+          "required": false
         }
       }
     },
