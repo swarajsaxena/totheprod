@@ -38,12 +38,12 @@ export const ComponentPreviewContainer = ({
       className="relative flex h-full max-h-screen flex-col items-center overflow-auto"
       id="preview-scroll-container"
     >
-      <div className="sticky top-0 z-50 flex w-full items-center justify-between gap-2 border-b border-dashed bg-background/50 backdrop-blur-md">
+      <div className="sticky top-0 z-50 flex w-full items-center justify-between gap-2 bg-background/50 backdrop-blur-md">
         <div className="px-3 py-2 text-muted-foreground text-sm">
           <h1 className="font-medium text-foreground">{component?.title}</h1>
-          <p className="text-muted-foreground text-xs">
+          {/* <p className="text-muted-foreground text-xs">
             {component?.description}
-          </p>
+          </p> */}
         </div>
         <div className="flex items-center gap-2 p-2">
           <Tooltip>

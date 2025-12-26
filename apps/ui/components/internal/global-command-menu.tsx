@@ -60,7 +60,7 @@ export const GlobalCommandMenu = () => {
 
   return (
     <CommandPaletteDialog
-      className="backdrop-blur-xl dark:bg-muted/75"
+      className=""
       description="Search for apps, commands, and actions"
       title="Command Menu"
     >

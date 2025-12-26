@@ -26,7 +26,7 @@ export const ComponentSidebar = () => {
   return (
     <aside
       aria-label="Component navigation sidebar"
-      className="flex h-full flex-col justify-center border-r border-dashed bg-sidebar-accent"
+      className="flex h-full flex-col justify-center border-r border-dashed bg-secondary"
     >
       <div className="flex w-full items-center justify-between gap-2 border-b border-dashed p-3 text-muted-foreground text-xs">
         <Link href="/">

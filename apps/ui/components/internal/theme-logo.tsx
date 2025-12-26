@@ -26,7 +26,7 @@ export const ThemeLogo = (props: ThemeLogoProps) => {
       xmlns="http://www.w3.org/2000/svg"
       // src={effectiveTheme !== "dark" ? "/logo-dark.svg" : "/logo-light.svg"}
       {...props}
-      className={cn("h-6 text-foreground dark:text-primary", props.className)}
+      className={cn("h-6 bg-muted text-foreground", props.className)}
     >
       <title>ToTheProd Logo</title>
       <path

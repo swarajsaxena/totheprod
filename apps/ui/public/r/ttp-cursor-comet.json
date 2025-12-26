@@ -4,10 +4,7 @@
   "type": "registry:block",
   "title": "Cursor Comet",
   "description": "A smooth trailing comet effect with gradient tail that follows cursor movement, using spring physics for natural motion and fading particles",
-  "dependencies": [
-    "motion",
-    "framer-motion"
-  ],
+  "dependencies": ["motion", "framer-motion"],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-cursor-comet.tsx",
@@ -17,12 +14,7 @@
   ],
   "meta": {
     "category": "cursor-and-hover-effects",
-    "tags": [
-      "cursor",
-      "trail",
-      "comet",
-      "effect"
-    ],
+    "tags": ["cursor", "trail", "comet", "effect"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-cursor-comet.json"
   }
 }

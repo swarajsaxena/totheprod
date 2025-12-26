@@ -46,7 +46,7 @@ export const ComponentCard = ({
           src={`/component-videos/${id.startsWith("ttp-") ? id.slice(4) : id}${mounted && theme === "dark" ? "-dark" : ""}.mov`}
         />
       </div>
-      <div className="absolute inset-0 flex flex-col items-start justify-end bg-linear-to-bl from-transparent via-background/75 to-background p-6 font-medium transition-all group-hover:opacity-50">
+      <div className="absolute inset-0 flex flex-col items-start justify-end bg-linear-to-bl from-transparent via-muted/75 to-muted p-6 font-medium transition-all group-hover:opacity-50 dark:via-muted/50 dark:to-muted/50">
         <p className="font-heading">{title}</p>
         {description && (
           <p className="max-w-3/4 text-muted-foreground text-xs">

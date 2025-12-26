@@ -322,7 +322,7 @@ export const CommandPaletteDialog = ({
   return (
     <CommandDialog
       className={cn(
-        "w-full rounded-2xl bg-background/50 backdrop-blur-md *:bg-transparent sm:max-w-3xl dark:bg-background/50",
+        "w-full rounded-2xl bg-background/80 backdrop-blur-md *:bg-transparent sm:max-w-3xl",
         className
       )}
       description={description}
@@ -612,7 +612,7 @@ export const CommandPaletteItem = ({
   return (
     <CommandItem
       className={cn(
-        "group mx-2 flex items-center justify-between gap-3 rounded-xl p-2! pl-2.5! text-foreground/70 data-[selected=true]:bg-muted-foreground/10! dark:data-[selected=true]:bg-background/40! [&_svg]:text-foreground/50! data-[selected=true]:[&_svg]:text-foreground!",
+        "group mx-2 flex items-center justify-between gap-3 rounded-xl p-2! pl-2.5! text-foreground/70 data-[selected=true]:bg-muted-foreground/10! [&_svg]:text-foreground/50! data-[selected=true]:[&_svg]:text-foreground!",
         className
       )}
       key={id}
@@ -626,7 +626,7 @@ export const CommandPaletteItem = ({
           {icon}
         </div>
         <div className="flex min-w-0 flex-1 items-center gap-1.5">
-          <span className="truncate font-medium">{title}</span>
+          <span className="w-max text-nowrap font-medium">{title}</span>
           {description && (
             <span className="truncate text-muted-foreground text-xs">
               {description}
@@ -641,7 +641,7 @@ export const CommandPaletteItem = ({
         <DropdownMenuShortcut className="flex items-center gap-1">
           {shortcut.split("+").map((key, keyIndex) => (
             <kbd
-              className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground dark:bg-muted"
+              className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground"
               key={keyIndex}
             >
               {key}
@@ -682,10 +682,7 @@ export const RaycastCommandMenuActionsDropdown = ({
     <DropdownMenuContent
       align="end"
       alignOffset={-8}
-      className={cn(
-        "w-80 rounded-2xl bg-muted/10 backdrop-blur-sm dark:bg-background/30",
-        className
-      )}
+      className={cn("w-80 rounded-2xl bg-muted/10 backdrop-blur-sm", className)}
       side="top"
       sideOffset={17}
     >
@@ -698,7 +695,7 @@ export const RaycastCommandMenuActionsDropdown = ({
       {actions.map((action) => (
         <DropdownMenuItem
           className={cn(
-            "group mx-0 flex cursor-pointer items-center justify-between gap-3 rounded-xl p-2! pl-2.5! text-foreground/70 hover:bg-muted-foreground/10! focus:bg-muted-foreground/10! dark:focus:bg-background/40! dark:hover:bg-background/40! [&_svg]:text-foreground/50! hover:[&_svg]:text-foreground!",
+            "group mx-0 flex cursor-pointer items-center justify-between gap-3 rounded-xl p-2! pl-2.5! text-foreground/70 hover:bg-muted-foreground/10! focus:bg-muted-foreground/10! [&_svg]:text-foreground/50! hover:[&_svg]:text-foreground!",
             itemClassName
           )}
           key={action.id}
@@ -714,7 +711,7 @@ export const RaycastCommandMenuActionsDropdown = ({
             <DropdownMenuShortcut className="flex items-center gap-1">
               {action.shortcut.map((key, keyIndex) => (
                 <kbd
-                  className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground dark:bg-muted"
+                  className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground"
                   key={keyIndex}
                 >
                   {key}
@@ -771,7 +768,7 @@ export const CommandPaletteFooter = ({
           onClick={handleBack}
           type="button"
         >
-          <kbd className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground dark:bg-muted">
+          <kbd className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground">
             Esc
           </kbd>
         </button>
@@ -792,7 +789,7 @@ export const CommandPaletteFooter = ({
                 <div className="flex items-center gap-1">
                   {displayShortcut.map((key, index) => (
                     <kbd
-                      className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground dark:bg-muted"
+                      className="pointer-events-none inline-flex select-none items-center justify-center rounded border bg-muted/50 px-1 py-0.5 font-fira font-medium text-[10px] text-muted-foreground"
                       key={index}
                     >
                       {key}

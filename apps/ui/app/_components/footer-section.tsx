@@ -13,8 +13,8 @@ export const Footer = () => {
         <CornerPlus variant="leftTop" />
         <CornerPlus variant="rightTop" />
         <div className="absolute inset-0 z-0 flex h-full w-full select-none items-center justify-between overflow-hidden">
-          <ThemeLogo className="-translate-x-1/5 aspect-square h-full scale-125 opacity-20 dark:opacity-10" />
-          <ThemeLogo className="aspect-square h-full translate-x-1/5 rotate-180 scale-125 opacity-20 dark:opacity-10" />
+          <ThemeLogo className="-translate-x-1/5 aspect-square h-full scale-125 opacity-20" />
+          <ThemeLogo className="aspect-square h-full translate-x-1/5 rotate-180 scale-125 opacity-20" />
         </div>
         <div className="z-1 flex items-center gap-4 font-archivo text-muted-foreground text-sm *:transition-all *:hover:text-foreground">
           <Link href={componentsUrl}>Components</Link>

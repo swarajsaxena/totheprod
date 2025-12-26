@@ -4,9 +4,7 @@
   "type": "registry:block",
   "title": "Horizontal Text Reveal",
   "description": "A scroll-triggered text reveal that gradually unveils content as users scroll horizontally, with character-by-character fade and blur transitions",
-  "dependencies": [
-    "motion"
-  ],
+  "dependencies": ["motion"],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-horizontal-text-reveal.tsx",
@@ -16,12 +14,7 @@
   ],
   "meta": {
     "category": "text-animations",
-    "tags": [
-      "scroll",
-      "text",
-      "reveal",
-      "horizontal"
-    ],
+    "tags": ["scroll", "text", "reveal", "horizontal"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-horizontal-text-reveal.json"
   }
 }

@@ -48,7 +48,7 @@ export default function RootLayout({
           <Toaster />
           <CommandMenuProvider>
             <div
-              className={`relative flex h-screen max-h-screen flex-col overflow-scroll bg-muted p-2! text-foreground antialiased dark:bg-background [&:has(.no-preview-padding)]:p-0! ${archivo.variable} ${clashDisplay.variable} font-archivo`}
+              className={`relative flex h-screen max-h-screen flex-col overflow-scroll bg-muted p-2! text-foreground antialiased [&:has(.no-preview-padding)]:p-0! ${archivo.variable} ${clashDisplay.variable} font-archivo`}
               id="body-scroll-container"
             >
               {children}
