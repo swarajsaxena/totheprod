@@ -4,7 +4,9 @@
   "type": "registry:block",
   "title": "Document Navigator",
   "description": "A hierarchical table of contents with smooth scroll tracking, expandable/collapsible sections, and automatic active state detection",
-  "dependencies": ["motion"],
+  "dependencies": [
+    "motion"
+  ],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-document-navigator.tsx",

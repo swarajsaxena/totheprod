@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "bun run generate:registry-only",
     "build": "next build",
     "start": "next start",
     "lint": "biome lint .",

@@ -4,7 +4,10 @@
   "type": "registry:block",
   "title": "Command Palette",
   "description": "A keyboard-first command menu with fuzzy search, grouped actions, keyboard shortcuts display, and smooth transitions between command lists",
-  "dependencies": ["react-hotkeys-hook", "cmdk"],
+  "dependencies": [
+    "react-hotkeys-hook",
+    "cmdk"
+  ],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-command-palette.tsx",
@@ -14,7 +17,13 @@
   ],
   "meta": {
     "category": "navigation-and-menus",
-    "tags": ["command", "menu", "keyboard", "search", "palette"],
+    "tags": [
+      "command",
+      "menu",
+      "keyboard",
+      "search",
+      "palette"
+    ],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-command-palette.json"
   }
 }
