@@ -1,7 +1,7 @@
 /** biome-ignore-all lint/a11y/noNoninteractiveElementInteractions: Mouse tracking is for decorative animation effect */
 "use client"
 
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 

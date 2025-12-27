@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  type MotionValue,
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion"
+import { type MotionValue, motion, useScroll, useTransform } from "motion/react"
 import { useEffect, useRef } from "react"
 
 const items = [

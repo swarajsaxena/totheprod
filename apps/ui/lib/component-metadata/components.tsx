@@ -86,7 +86,7 @@ export const components: ComponentMetadata[] = [
       "Trigger with Cmd+K. Type to search commands. Use arrow keys to navigate. Press Enter to execute. Supports nested command groups and breadcrumb navigation.",
     category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["command", "menu", "keyboard", "search", "palette"],
-    dependencies: ["motion", "cmdk"],
+    dependencies: ["react-hotkeys-hook", "cmdk"],
     files: [
       {
         path: "components/ui/totheprod-ui/ttp-command-palette.tsx",
@@ -174,7 +174,7 @@ export const components: ComponentMetadata[] = [
       "Click menu items to open nested layers. Each layer stacks with scale and position transforms. Use back button or swipe to return to previous layers.",
     category: categories.NAVIGATION_AND_MENUS.id,
     tags: ["navigation", "drawer", "layered", "multi-level"],
-    dependencies: ["motion", "vaul"],
+    dependencies: ["motion"],
     files: [
       {
         path: "components/ui/totheprod-ui/ttp-layered-nav.tsx",
@@ -388,7 +388,7 @@ export const components: ComponentMetadata[] = [
       "Pass array of slides. Navigation arrows or drag to scroll. Center slide scales up and has full opacity, while side slides scale down with reduced opacity.",
     category: categories.SCROLL_INTERACTIONS.id,
     tags: ["carousel", "3d", "perspective", "scroll"],
-    dependencies: ["embla-carousel-react"],
+    dependencies: ["motion"],
     files: [
       {
         path: "components/ui/totheprod-ui/ttp-perspective-carousel.tsx",
