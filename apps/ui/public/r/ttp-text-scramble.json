@@ -13,12 +13,7 @@
   ],
   "meta": {
     "category": "text-animations",
-    "tags": [
-      "text",
-      "animation",
-      "scramble",
-      "reveal"
-    ],
+    "tags": ["text", "animation", "scramble", "reveal"],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-text-scramble.json"
   }
 }

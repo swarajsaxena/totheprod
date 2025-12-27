@@ -54,4 +54,7 @@ try {
   process.exit(1)
 }
 
+// Cleanup duplicate registry files
+runScript("cleanup-registry.ts", "Cleaning up duplicate registry files")
+
 console.log("\n✨ All generation completed successfully!")

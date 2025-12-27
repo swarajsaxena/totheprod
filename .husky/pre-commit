@@ -1,16 +1,27 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 
 echo "⚙️  Generating component props..."
-cd apps/ui && bun run extract:props:all
+cd apps/ui && bun run extract:props:all > /dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo "❌ Props generation failed. Please check the components and try again."
   exit 1
 fi
-cd ../..
 
 echo "📦 Staging generated props files..."
-git add apps/ui/content/props/*.json
-git add apps/ui/public/content/props/*.json
+git add content/props/*.json
+git add public/content/props/*.json
 
-echo "✅ Props generated and staged!"
+echo "📦 Generating registry..."
+bun run generate:all > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "❌ Registry generation failed. Please check the components and try again."
+  cd ../..
+  exit 1
+fi
+
+echo "📦 Staging generated registry files..."
+git add public/r/*.json
+
+cd ../..
+
+echo "✅ Props and registry generated and staged!"

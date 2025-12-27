@@ -18,7 +18,8 @@
       "!**/.next",
       "!**/dist",
       "!**/build",
-      "!**/.turbo"
+      "!**/.turbo",
+      "!**/public/r/*.json"
     ]
   },
   "formatter": {

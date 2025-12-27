@@ -55,5 +55,8 @@ try {
   process.exit(1)
 }
 
+// Cleanup duplicate registry files
+runScript("cleanup-registry.ts", "Cleaning up duplicate registry files")
+
 console.log("\n✨ Registry generation completed successfully!")
 console.log("ℹ️  Note: Documentation is only generated in pre-commit hooks")

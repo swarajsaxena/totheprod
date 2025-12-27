@@ -166,7 +166,7 @@ export const generateRegistry = (
  * Write registry to file
  */
 export const writeRegistry = (registry: Registry, outputPath: string): void => {
-  const content = JSON.stringify(registry, null, 2)
+  const content = `${JSON.stringify(registry, null, 2)}\n`
   fs.writeFileSync(outputPath, content, "utf-8")
 }
 
@@ -186,8 +186,8 @@ export const buildRegistry = (
   writeRegistry(registry, config.outputPath)
   console.log(`📝 Written to: ${config.outputPath}`)
 
-  // Also copy to public folder (for web access)
-  const publicPath = path.join("public", config.outputPath)
-  writeRegistry(registry, publicPath)
-  console.log(`📝 Copied to: ${publicPath}`)
+  // Also copy to public folder (for web access to full registry)
+  const publicRegistryPath = path.join("public", config.outputPath)
+  writeRegistry(registry, publicRegistryPath)
+  console.log(`📝 Copied to: ${publicRegistryPath}`)
 }
