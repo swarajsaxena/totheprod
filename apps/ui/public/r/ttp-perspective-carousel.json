@@ -4,7 +4,9 @@
   "type": "registry:block",
   "title": "Perspective Carousel",
   "description": "A 3D carousel with perspective transforms that scales and rotates slides based on their position, creating depth with center-focused layout",
-  "dependencies": ["embla-carousel-react"],
+  "dependencies": [
+    "embla-carousel-react"
+  ],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-perspective-carousel.tsx",
@@ -14,7 +16,12 @@
   ],
   "meta": {
     "category": "scroll-interactions",
-    "tags": ["carousel", "3d", "perspective", "scroll"],
+    "tags": [
+      "carousel",
+      "3d",
+      "perspective",
+      "scroll"
+    ],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-perspective-carousel.json"
   }
 }

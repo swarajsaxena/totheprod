@@ -4,7 +4,10 @@
   "type": "registry:block",
   "title": "Pixel Loader",
   "description": "A cinematic page transition that pixelates and dissolves in a grid pattern, revealing content with staggered timing for a retro-futuristic effect",
-  "dependencies": ["motion", "framer-motion"],
+  "dependencies": [
+    "motion",
+    "framer-motion"
+  ],
   "files": [
     {
       "path": "components/ui/totheprod-ui/ttp-pixel-loader.tsx",
@@ -14,7 +17,12 @@
   ],
   "meta": {
     "category": "page-transitions-and-loaders",
-    "tags": ["loader", "transition", "pixel", "animation"],
+    "tags": [
+      "loader",
+      "transition",
+      "pixel",
+      "animation"
+    ],
     "installCommand": "npx shadcn@latest add https://ui.totheprod.com/r/ttp-pixel-loader.json"
   }
 }
