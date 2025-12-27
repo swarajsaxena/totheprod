@@ -3,45 +3,9 @@ import { join } from "node:path"
 import type { ComponentFile } from "@/lib/component-metadata"
 
 /**
- * Load preview file content from the filesystem
+ * Load file content from the filesystem
  */
-const loadPreviewFile = async (componentId: string): Promise<string | null> => {
-  const possiblePaths = [
-    // Active location: components/previews directory
-    join(
-      process.cwd(),
-      "apps/ui/components/previews",
-      componentId,
-      "preview.tsx"
-    ),
-    join(process.cwd(), "components/previews", componentId, "preview.tsx"),
-  ]
-
-  for (const filePath of possiblePaths) {
-    try {
-      const content = await readFile(filePath, "utf-8")
-      return content
-    } catch {
-      // Try next path
-    }
-  }
-
-  return null
-}
-
-/**
- * Load file content from the filesystem based on file path
- */
-const loadFileContent = async (
-  filePath: string,
-  componentId: string
-): Promise<string | null> => {
-  // If it's a preview file, use the preview loader
-  if (filePath.includes("preview.tsx") || filePath.includes("preview")) {
-    return loadPreviewFile(componentId)
-  }
-
-  // Try to load from the filesystem
+const loadFileContent = async (filePath: string): Promise<string | null> => {
   const possiblePaths = [
     join(process.cwd(), "apps/ui", filePath),
     join(process.cwd(), filePath),
@@ -78,9 +42,9 @@ export const loadComponentFiles = async (
         target?: string
       }>
     }
+
     try {
       const registryContent = await readFile(registryPath, "utf-8")
-      // The registry file is a single RegistryItem, not a full Registry
       componentItem = JSON.parse(registryContent) as {
         name: string
         files?: Array<{
@@ -119,7 +83,7 @@ export const loadComponentFiles = async (
           }
 
           // Otherwise, load from filesystem
-          const content = await loadFileContent(file.path, componentId)
+          const content = await loadFileContent(file.path)
 
           return {
             path: file.path,
@@ -131,25 +95,37 @@ export const loadComponentFiles = async (
       )
     )
 
-    // Add preview file if it exists and isn't already in the list
-    const hasPreview = filesWithContent.some((file: ComponentFile) =>
-      file.path.includes("preview.tsx")
-    )
-
-    if (!hasPreview) {
-      const previewContent = await loadPreviewFile(componentId)
-      if (previewContent) {
-        filesWithContent.unshift({
-          path: `components/previews/${componentId}/preview.tsx`,
-          type: "registry:component",
-          content: previewContent,
-        } as ComponentFile)
-      }
-    }
-
     return filesWithContent
   } catch (error) {
     console.error(`Failed to load files for component ${componentId}:`, error)
     return []
   }
+}
+
+/**
+ * Load preview file content for a component
+ */
+export const loadPreviewFile = async (
+  componentId: string
+): Promise<string | null> => {
+  const possiblePaths = [
+    join(
+      process.cwd(),
+      "apps/ui/components/previews",
+      componentId,
+      "preview.tsx"
+    ),
+    join(process.cwd(), "components/previews", componentId, "preview.tsx"),
+  ]
+
+  for (const filePath of possiblePaths) {
+    try {
+      const content = await readFile(filePath, "utf-8")
+      return content
+    } catch {
+      // Try next path
+    }
+  }
+
+  return null
 }

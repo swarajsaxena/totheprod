@@ -8,8 +8,8 @@ import {
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { useEffect, useState } from "react"
-import { createHighlighter } from "shiki"
 import { Button } from "@/components/ui/button"
+import { getLanguageFromPath, highlightCode } from "@/lib/syntax-highlighting"
 import { cn } from "@/lib/utils"
 import { ComponentDetailContainer } from "./component-details-panel"
 
@@ -23,122 +23,6 @@ type FileData = {
 type MultiFileCodeViewerProps = {
   files: FileData[]
 }
-
-// Initialize highlighter at module level for better performance
-const highlighterPromise = createHighlighter({
-  langs: ["typescript", "tsx", "javascript", "jsx", "bash"],
-  themes: [
-    {
-      name: "custom-theme",
-      type: "dark",
-      colors: {
-        "editor.background": "var(--background)",
-        "editor.foreground":
-          "color-mix(in srgb, var(--foreground) 60%, transparent)",
-      },
-      tokenColors: [
-        {
-          scope: ["comment", "punctuation.definition.comment"],
-          settings: {
-            foreground: "var(--muted-foreground)",
-            fontStyle: "italic",
-          },
-        },
-        {
-          scope: ["string", "string.quoted", "string.template"],
-          settings: {
-            foreground: "var(--primary)",
-          },
-        },
-        {
-          scope: [
-            "constant.numeric",
-            "constant.language",
-            "constant.character",
-          ],
-          settings: {
-            foreground:
-              "color-mix(in srgb, var(--foreground) 85%, transparent)",
-          },
-        },
-        {
-          scope: [
-            "keyword",
-            "keyword.control",
-            "keyword.operator",
-            "storage.type",
-            "storage.modifier",
-          ],
-          settings: {
-            foreground:
-              "color-mix(in srgb, var(--foreground) 70%, transparent)",
-            fontStyle: "italic",
-          },
-        },
-        {
-          scope: [
-            "entity.name.function",
-            "support.function",
-            "meta.function-call",
-          ],
-          settings: {
-            foreground:
-              "color-mix(in srgb, var(--foreground) 90%, transparent)",
-          },
-        },
-        {
-          scope: ["entity.name.type", "entity.name.class", "support.class"],
-          settings: {
-            foreground:
-              "color-mix(in srgb, var(--foreground) 80%, transparent)",
-          },
-        },
-        {
-          scope: ["variable", "variable.other", "variable.parameter"],
-          settings: {
-            foreground:
-              "color-mix(in srgb, var(--foreground) 95%, transparent)",
-          },
-        },
-        {
-          scope: ["punctuation", "meta.brace"],
-          settings: {
-            foreground:
-              "color-mix(in srgb, var(--foreground) 65%, transparent)",
-          },
-        },
-        {
-          scope: ["entity.name.tag", "meta.tag"],
-          settings: {
-            foreground:
-              "color-mix(in srgb, var(--foreground) 85%, transparent)",
-          },
-        },
-        {
-          scope: ["entity.other.attribute-name"],
-          settings: {
-            foreground:
-              "color-mix(in srgb, var(--foreground) 75%, transparent)",
-          },
-        },
-        {
-          scope: ["support.type.property-name"],
-          settings: {
-            foreground:
-              "color-mix(in srgb, var(--foreground) 80%, transparent)",
-          },
-        },
-        {
-          scope: ["constant.language.boolean", "constant.language.null"],
-          settings: {
-            foreground:
-              "color-mix(in srgb, var(--foreground) 85%, transparent)",
-          },
-        },
-      ],
-    },
-  ],
-})
 
 export const MultiFileCodeViewer = ({ files }: MultiFileCodeViewerProps) => {
   const [activeFileIndex, setActiveFileIndex] = useState(0)
@@ -172,29 +56,17 @@ export const MultiFileCodeViewer = ({ files }: MultiFileCodeViewerProps) => {
 
   // Highlight active file
   useEffect(() => {
-    const highlightCode = async () => {
+    const highlight = async () => {
       if (!activeContent) {
         return
       }
 
-      const extension = activeFile.path.split(".").pop() || "tsx"
-      const languageMap: Record<string, string> = {
-        tsx: "tsx",
-        ts: "typescript",
-        jsx: "jsx",
-        js: "javascript",
-      }
-      const language = languageMap[extension] || "tsx"
-
-      const highlighter = await highlighterPromise
-      const html = highlighter.codeToHtml(activeContent, {
-        lang: language,
-        theme: "custom-theme",
-      })
+      const language = getLanguageFromPath(activeFile.path)
+      const html = await highlightCode(activeContent, language)
       setHighlightedCode(html)
     }
 
-    highlightCode()
+    highlight()
   }, [activeContent, activeFile])
 
   const handleCopy = () => {

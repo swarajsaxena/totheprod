@@ -1,6 +1,15 @@
 import type { ComponentType, ReactNode } from "react"
 
 /**
+ * Preview file configuration
+ * Controls which files are displayed in the component details panel
+ */
+export type PreviewConfig = {
+  showPreviewFile?: boolean // Default: true - include preview.tsx in file list
+  customFiles?: string[] // Optional: show ONLY these files (overrides registry)
+}
+
+/**
  * Component complexity level
  */
 export type ComponentComplexity = "simple" | "moderate" | "advanced"
