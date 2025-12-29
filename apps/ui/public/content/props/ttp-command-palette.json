@@ -162,7 +162,7 @@
         "required": false
       },
       "actions": {
-        "type": "import(\"/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-command-palette\").RaycastAction[]",
+        "type": "RaycastAction[]",
         "required": false
       },
       "className": {

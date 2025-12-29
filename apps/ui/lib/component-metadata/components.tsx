@@ -8,6 +8,7 @@ import { TtpInlineDropdownPreview } from "@/components/previews/ttp-inline-dropd
 import { TtpLayeredNavPreview } from "@/components/previews/ttp-layered-nav/preview"
 import { TtpPerspectiveCarousel } from "@/components/previews/ttp-perspective-carousel/preview"
 import { TtpPixelLoaderPreview } from "@/components/previews/ttp-pixel-loader/preview"
+import { TtpSubscriptionCalendarPreview } from "@/components/previews/ttp-subscription-calendar/preview"
 import { TtpTextScramblePreview } from "@/components/previews/ttp-text-scramble/preview"
 import { TtpTickerSidebarPreview } from "@/components/previews/ttp-ticker-sidebar/preview"
 import { TtpWavyTextPreview } from "@/components/previews/ttp-wavy-text/preview"
@@ -129,6 +130,39 @@ export const components: ComponentMetadata[] = [
     status: "stable",
     preview: TtpImagePeekTablePreview,
     registryType: "registry:block",
+  },
+  {
+    id: "ttp-subscription-calendar",
+    category: categories.DATA_DISPLAY.id,
+    title: "Subscription Calendar",
+    description:
+      "A calendar component that displays subscription details and allows users to manage their subscriptions",
+    instructions:
+      "Pass an array of subscriptions with dates, prices, and intervals. Click on days with subscriptions to view details in a modal. Use arrow buttons to navigate months. Customize colors, currency, and rendering through props.",
+    tags: ["calendar", "subscriptions", "management"],
+    dependencies: ["motion", "date-fns"],
+    files: [
+      {
+        path: "components/ui/totheprod-ui/ttp-subscription-calendar.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "hooks/totheprod-ui/use-click-outside.ts",
+        type: "registry:hook",
+      },
+    ],
+    complexity: "moderate",
+    status: "stable",
+    preview: TtpSubscriptionCalendarPreview,
+    registryType: "registry:block",
+    installCommand:
+      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-subscription-calendar.json",
+    inspirations: [
+      {
+        label: "Substack",
+        href: "https://substack.com",
+      },
+    ],
   },
 
   // Navigation & Menus

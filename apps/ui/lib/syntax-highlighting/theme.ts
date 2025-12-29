@@ -45,7 +45,7 @@ export const customTheme = {
     {
       scope: ["entity.name.function", "support.function", "meta.function-call"],
       settings: {
-        foreground: "color-mix(in srgb, var(--foreground) 90%, transparent)",
+        foreground: "color-mix(in srgb, var(--primary) 90%, transparent)",
       },
     },
     {

@@ -494,7 +494,7 @@
       "componentName": "LayeredNav",
       "props": {
         "menuItems": {
-          "type": "import(\"/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-layered-nav\").MenuItem[]",
+          "type": "MenuItem[]",
           "description": "Array of menu items with color and text",
           "default": "[\n    { color: \"#8E9067\", text: \"Home\", href: \"#\" },\n    { color: \"#BE5B2A\", text: \"About\", href: \"#\" },\n    { color: \"#828D94\", text: \"Contact\", href: \"#\" },\n    { color: \"#D69A3F\", text: \"Services\", href: \"#\" },\n    { color: \"#B6A897\", text: \"Products\", href: \"#\" },\n  ]",
           "required": false
@@ -571,6 +571,67 @@
         "containerId": {
           "type": "string",
           "description": "The ID of the scroll container to use, defaults to \"body\", also used to get all the headings for that container",
+          "required": false
+        }
+      }
+    }
+  ],
+  "ttp-subscription-calendar": [
+    {
+      "componentName": "TtpSubscriptionCalendar",
+      "props": {
+        "subscriptions": {
+          "type": "TSubscription[]",
+          "required": true
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency symbol or code to display (default: \"Rs\")",
+          "default": "Rs",
+          "required": false
+        },
+        "className": {
+          "type": "string",
+          "description": "Custom class name for the calendar container",
+          "required": false
+        },
+        "cellClassName": {
+          "type": "string",
+          "description": "Custom class name for individual day cells",
+          "required": false
+        },
+        "modalClassName": {
+          "type": "string",
+          "description": "Custom class name for the modal",
+          "required": false
+        },
+        "showMonthTotal": {
+          "type": "boolean",
+          "description": "Show/hide the month total (default: true)",
+          "default": "true",
+          "required": false
+        },
+        "showIndicators": {
+          "type": "boolean",
+          "description": "Show/hide the subscription type indicators (default: true)",
+          "default": "true",
+          "required": false
+        },
+        "colors": {
+          "type": "{ monthly?: string | undefined; yearly?: string | undefined; both?: string | undefined; }",
+          "description": "Custom colors for subscription types",
+          "default": "DEFAULT_COLORS",
+          "required": false
+        },
+        "animationConfig": {
+          "type": "{ stiffness?: number | undefined; damping?: number | undefined; }",
+          "description": "Animation configuration",
+          "default": "{ stiffness: 300, damping: 30 }",
+          "required": false
+        },
+        "renderSubscriptionItem": {
+          "type": "(subscription: TSubscription) => React.ReactNode",
+          "description": "Custom render function for subscription items in modal",
           "required": false
         }
       }
@@ -740,7 +801,7 @@
           "required": false
         },
         "actions": {
-          "type": "import(\"/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-command-palette\").RaycastAction[]",
+          "type": "RaycastAction[]",
           "required": false
         },
         "className": {

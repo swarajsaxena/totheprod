@@ -47,7 +47,15 @@ type ComponentInfo = {
 }
 
 const getTypeString = (type: Type): string => {
-  const text = type.getText()
+  let text = type.getText()
+  console.log("🚀 ~ getTypeString ~ text:", text)
+
+  // Clean up import() patterns - extract just the type name
+  // Matches: import("/path/to/file").TypeName or import("/path/to/file").TypeName[]
+  const importPattern = /import\(".*?"\)\.([A-Za-z_$][A-Za-z0-9_$]*)(\[\])?/g
+  text = text.replace(importPattern, (_match, typeName, arraySuffix) => {
+    return `${typeName}${arraySuffix || ""}`
+  })
 
   // Clean up common patterns
   return text.replace(/\s+/g, " ").trim()

@@ -3,7 +3,7 @@
     "componentName": "LayeredNav",
     "props": {
       "menuItems": {
-        "type": "import(\"/Users/swarajsaxena/github/totheprod/www/apps/ui/components/ui/totheprod-ui/ttp-layered-nav\").MenuItem[]",
+        "type": "MenuItem[]",
         "description": "Array of menu items with color and text",
         "default": "[\n    { color: \"#8E9067\", text: \"Home\", href: \"#\" },\n    { color: \"#BE5B2A\", text: \"About\", href: \"#\" },\n    { color: \"#828D94\", text: \"Contact\", href: \"#\" },\n    { color: \"#D69A3F\", text: \"Services\", href: \"#\" },\n    { color: \"#B6A897\", text: \"Products\", href: \"#\" },\n  ]",
         "required": false

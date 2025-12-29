@@ -145,7 +145,7 @@ export const MultiFileCodeViewer = ({ files }: MultiFileCodeViewerProps) => {
             )}
             {!isLoading && highlightedCode && (
               <div
-                className="[&>pre]:wrap-break-word [&>pre]:m-0 [&>pre]:whitespace-pre-wrap [&>pre]:border-0 [&>pre]:bg-transparent! [&>pre]:p-4 [&>pre]:pr-12 [&>pre]:font-mono [&>pre]:text-sm [&>pre]:leading-normal"
+                className="[&>pre]:wrap-break-word [&>pre]:m-0 [&>pre]:overflow-x-auto [&>pre]:whitespace-pre [&>pre]:border-0 [&>pre]:bg-transparent! [&>pre]:p-4 [&>pre]:pr-12 [&>pre]:font-mono [&>pre]:text-sm [&>pre]:leading-normal [&_span.line:empty]:h-[1.2em] [&_span.line]:block"
                 // biome-ignore lint/security/noDangerouslySetInnerHtml: safe
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
               />
@@ -166,9 +166,9 @@ export const MultiFileCodeViewer = ({ files }: MultiFileCodeViewerProps) => {
 
           {/* Expand/Collapse Button */}
           {!isLoading && highlightedCode && (
-            <div className="flex items-center justify-center border-t border-dashed py-2">
+            <div className="sticky bottom-[18px] flex items-center justify-center border-t border-dashed bg-background/50 py-2 backdrop-blur-[2px]">
               <Button
-                className="mx-auto rounded-md px-3 py-1 text-foreground/50"
+                className="mx-auto rounded-md bg-background px-3 py-1 text-foreground/50"
                 onClick={() => setIsExpanded(!isExpanded)}
                 variant="outline"
               >

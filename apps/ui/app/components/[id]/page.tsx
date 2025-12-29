@@ -133,12 +133,15 @@ const ComponentPage = async ({
   // Apply preview config to determine final file list
   const finalFiles = await applyPreviewConfig(id, registryFiles, previewConfig)
 
+  const PreviewComponent = component.preview
+
+  // Exclude preview from component data to avoid passing functions to Client Components
   const componentWithFiles = {
     ...component,
+    preview: undefined, // Remove the preview function
     files: finalFiles.length > 0 ? finalFiles : component.files,
   }
 
-  const PreviewComponent = component.preview
   const schemas = generateComponentPageSchema(component)
 
   return (

@@ -9,7 +9,7 @@
 import { mkdir, readdir, writeFile } from "node:fs/promises"
 import { join } from "node:path"
 import type { ComponentPropsGroup } from "../lib/component-metadata/types"
-import { extractProps } from "./extract-props.ts"
+import { extractProps } from "./extract-props"
 
 const getComponentIdFromFilename = (filename: string): string | null => {
   // Extract component ID from filename (e.g., ttp-wavy-text.tsx -> ttp-wavy-text)
@@ -154,9 +154,9 @@ const main = async () => {
     console.log(`📁 Saved all props index → ${indexPath}\n`)
 
     // Output summary
-    console.log("\n" + "=".repeat(80))
+    console.log(`\n${"=".repeat(80)}`)
     console.log("📋 PROPS EXTRACTION SUMMARY")
-    console.log("=".repeat(80) + "\n")
+    console.log(`${"=".repeat(80)}\n`)
 
     const successful = results.filter((r) => !r.error && r.props)
     const failed = results.filter((r) => r.error || !r.props)
@@ -168,7 +168,7 @@ const main = async () => {
     if (successful.length > 0) {
       console.log("=".repeat(80))
       console.log("📝 COPY THE FOLLOWING INTO YOUR COMPONENT METADATA")
-      console.log("=".repeat(80) + "\n")
+      console.log(`${"=".repeat(80)}\n`)
 
       for (const result of successful) {
         console.log(result.props)
@@ -177,9 +177,9 @@ const main = async () => {
     }
 
     if (failed.length > 0) {
-      console.log("=".repeat(80))
+      console.log(`${"=".repeat(80)}`)
       console.log("⚠️  COMPONENTS WITH ERRORS")
-      console.log("=".repeat(80) + "\n")
+      console.log(`${"=".repeat(80)}\n`)
 
       for (const result of failed) {
         console.log(`${result.componentId}: ${result.error || "No props"}`)

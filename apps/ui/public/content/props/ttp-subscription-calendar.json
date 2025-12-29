@@ -1,0 +1,61 @@
+[
+  {
+    "componentName": "TtpSubscriptionCalendar",
+    "props": {
+      "subscriptions": {
+        "type": "TSubscription[]",
+        "required": true
+      },
+      "currency": {
+        "type": "string",
+        "description": "Currency symbol or code to display (default: \"Rs\")",
+        "default": "Rs",
+        "required": false
+      },
+      "className": {
+        "type": "string",
+        "description": "Custom class name for the calendar container",
+        "required": false
+      },
+      "cellClassName": {
+        "type": "string",
+        "description": "Custom class name for individual day cells",
+        "required": false
+      },
+      "modalClassName": {
+        "type": "string",
+        "description": "Custom class name for the modal",
+        "required": false
+      },
+      "showMonthTotal": {
+        "type": "boolean",
+        "description": "Show/hide the month total (default: true)",
+        "default": "true",
+        "required": false
+      },
+      "showIndicators": {
+        "type": "boolean",
+        "description": "Show/hide the subscription type indicators (default: true)",
+        "default": "true",
+        "required": false
+      },
+      "colors": {
+        "type": "{ monthly?: string | undefined; yearly?: string | undefined; both?: string | undefined; }",
+        "description": "Custom colors for subscription types",
+        "default": "DEFAULT_COLORS",
+        "required": false
+      },
+      "animationConfig": {
+        "type": "{ stiffness?: number | undefined; damping?: number | undefined; }",
+        "description": "Animation configuration",
+        "default": "{ stiffness: 300, damping: 30 }",
+        "required": false
+      },
+      "renderSubscriptionItem": {
+        "type": "(subscription: TSubscription) => React.ReactNode",
+        "description": "Custom render function for subscription items in modal",
+        "required": false
+      }
+    }
+  }
+]
