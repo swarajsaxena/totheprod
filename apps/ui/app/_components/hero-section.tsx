@@ -11,10 +11,10 @@ export const HeroSection = () => {
   return (
     <div className="flex flex-col items-center px-4">
       <div className="sticky top-8 flex w-full max-w-6xl flex-1 flex-col items-center justify-between gap-1 border-x border-dashed py-[15vh]">
-        <div className="flex h-max flex-wrap gap-3 px-4 pb-4 font-semibold! text-9xl leading-none">
+        <div className="flex h-max flex-wrap gap-3 pb-4 font-semibold! text-5xl leading-none md:px-4 md:text-9xl">
           Components that Ship and not just look good.
         </div>
-        <div className="flex w-full gap-2 p-4">
+        <div className="flex w-full flex-col gap-2 md:flex-row md:p-4">
           <CtaCopyButton text="npx shadcn add ui.totheprod.dev/ttp-command-palette" />
           <Link
             className="flex-1"

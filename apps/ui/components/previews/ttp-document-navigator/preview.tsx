@@ -4,7 +4,10 @@ import { TtpDocumentNavigator } from "@/components/ui/totheprod-ui/ttp-document-
 
 export const TtpDocumentNavigatorPreview = () => {
   return (
-    <div className="w-full flex-1 items-center gap-8 overflow-auto px-4 py-8">
+    <div
+      className="w-full flex-1 items-center gap-8 overflow-auto px-4 py-8"
+      id="scroll-container"
+    >
       <div className="prose dark:prose-invert mx-auto w-full max-w-3xl pt-20 pb-[50vh]">
         <h1>How to Use the Document Navigator Component</h1>
 
@@ -107,7 +110,7 @@ export const TtpDocumentNavigatorPreview = () => {
           dark variant classes.
         </p>
       </div>
-      <TtpDocumentNavigator containerId="preview-scroll-container" />
+      <TtpDocumentNavigator containerId="scroll-container" />
     </div>
   )
 }

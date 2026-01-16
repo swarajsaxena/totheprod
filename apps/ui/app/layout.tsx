@@ -7,7 +7,15 @@ import { generateHomePageSchema } from "@/lib/seo/structured-data"
 import { CommandMenuProvider } from "@/providers/command-menu-provider"
 import { ThemeProvider } from "@/providers/theme-provider"
 import "./globals.css"
+import { Instrument_Serif } from "next/font/google"
 import { GlobalShortcutsProvider } from "@/components/providers/global-shortcuts-provider"
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-instrument-serif",
+  display: "swap",
+})
 
 const archivo = localFont({
   src: [
@@ -50,7 +58,7 @@ export default function RootLayout({
           <GlobalShortcutsProvider>
             <CommandMenuProvider>
               <div
-                className={`relative flex h-screen max-h-screen flex-col overflow-scroll bg-muted p-2! text-foreground antialiased [&:has(.no-preview-padding)]:p-0! ${archivo.variable} ${clashDisplay.variable} font-archivo`}
+                className={`relative flex h-screen max-h-screen flex-col overflow-scroll bg-muted text-foreground antialiased md:p-2! [&:has(.no-preview-padding)]:p-0! ${archivo.variable} ${clashDisplay.variable} ${instrumentSerif.variable} font-archivo`}
                 id="body-scroll-container"
               >
                 {children}

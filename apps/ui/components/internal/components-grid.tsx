@@ -37,7 +37,7 @@ export const ComponentsGrid = ({ contentMap }: ComponentsGridProps) => {
             </div>
           </div>
           <div className="relative flex w-full flex-col gap-4 border-b border-dashed px-4">
-            <div className="mx-auto grid w-full max-w-6xl grid-cols-3">
+            <div className="mx-auto grid w-full max-w-6xl grid-cols-1 md:grid-cols-3">
               {item.items.map((component) => (
                 <ComponentCard
                   description={component.description}
@@ -48,7 +48,7 @@ export const ComponentsGrid = ({ contentMap }: ComponentsGridProps) => {
               ))}
               {item.items.length % 3 !== 0 && (
                 <div
-                  className="relative grid w-full place-content-center border-x border-dashed font-medium text-muted-foreground text-sm"
+                  className="relative hidden w-full place-content-center border-x border-dashed font-medium text-muted-foreground text-sm md:grid"
                   style={{
                     gridColumn: item.items.length % 3 === 1 ? "span 2" : "auto",
                   }}

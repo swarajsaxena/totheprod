@@ -25,7 +25,9 @@ export const Footer = () => {
             <HugeiconsIcon className="size-4" icon={GithubIcon} />
           </Link>
         </div>
-        <div className="font-bold text-4xl">ToTheProd</div>
+        <div className="font-bold font-instrument-serif text-4xl italic tracking-wider">
+          ToTheProd
+        </div>
       </div>
     </div>
   )

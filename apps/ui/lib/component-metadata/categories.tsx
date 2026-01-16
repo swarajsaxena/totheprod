@@ -1,6 +1,5 @@
 import {
   BlockGameIcon,
-  CursorMagicSelection02Icon,
   File02Icon,
   Navigation04Icon,
   TextFontIcon,
@@ -36,14 +35,14 @@ const categoriesData = {
     icon: <HugeiconsIcon className="size-4" icon={File02Icon} />,
     description: "Page load effects and transition animations",
   },
-  CURSOR_AND_HOVER_EFFECTS: {
-    id: "cursor-and-hover-effects",
-    section: "Cursor & Hover Effects",
-    icon: (
-      <HugeiconsIcon className="size-4" icon={CursorMagicSelection02Icon} />
-    ),
-    description: "Interactive cursor trails and hover animations",
-  },
+  // CURSOR_AND_HOVER_EFFECTS: {
+  //   id: "cursor-and-hover-effects",
+  //   section: "Cursor & Hover Effects",
+  //   icon: (
+  //     <HugeiconsIcon className="size-4" icon={CursorMagicSelection02Icon} />
+  //   ),
+  //   description: "Interactive cursor trails and hover animations",
+  // },
   SCROLL_INTERACTIONS: {
     id: "scroll-interactions",
     section: "Scroll Interactions",

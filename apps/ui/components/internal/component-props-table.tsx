@@ -167,7 +167,10 @@ export const ComponentPropsTable = () => {
         {groupedProps.map((group) => (
           <>
             {/* <ComponentDetailContainer /> */}
-            <ComponentHeading className="text-foreground!">
+            <ComponentHeading
+              className="text-foreground!"
+              key={group.componentName}
+            >
               {group.componentName}
             </ComponentHeading>
             {renderPropsTable(group.props)}

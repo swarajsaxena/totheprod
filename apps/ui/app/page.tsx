@@ -10,7 +10,7 @@ import { contentMap } from "./components/[id]/constants"
 export default function Home() {
   return (
     <LenisProvider wrapperId="body-scroll-container">
-      <main className="flex flex-col items-stretch rounded-xl border border-dashed bg-background dark:bg-secondary">
+      <main className="flex flex-col items-stretch rounded-xl border border-dashed bg-background">
         <HomeNavbar
           componentsUrl={`/components/${contentMap[0].items[0].id}`}
         />

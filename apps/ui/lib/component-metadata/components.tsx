@@ -1,6 +1,5 @@
 import { TtpBlurFocusNavigationPreview } from "@/components/previews/ttp-blur-focus-navigation/preview"
 import { TtpCommandPalettePreview } from "@/components/previews/ttp-command-palette/preview"
-import { TtpCursorCometPreview } from "@/components/previews/ttp-cursor-comet/preview"
 import { TtpDocumentNavigatorPreview } from "@/components/previews/ttp-document-navigator/preview"
 import { TtpHorizontalTextRevealPreview } from "@/components/previews/ttp-horizontal-text-reveal/preview"
 import { TtpImagePeekTablePreview } from "@/components/previews/ttp-image-peek-table/preview"
@@ -365,29 +364,29 @@ export const components: ComponentMetadata[] = [
     registryType: "registry:block",
   },
   // Cursor & Hover Effects
-  {
-    id: ComponentId.CURSOR_COMET,
-    title: "Cursor Comet",
-    description:
-      "A smooth trailing comet effect with gradient tail that follows cursor movement, using spring physics for natural motion and fading particles",
-    instructions:
-      "Wrap interactive areas with component. Cursor automatically spawns trailing particles with gradient fade. Customize comet color, length, and spring physics through props.",
-    category: categories.CURSOR_AND_HOVER_EFFECTS.id,
-    tags: ["cursor", "trail", "comet", "effect"],
-    dependencies: ["motion"],
-    files: [
-      {
-        path: "components/ui/totheprod-ui/ttp-cursor-comet.tsx",
-        type: "registry:component",
-      },
-    ],
-    installCommand:
-      "npx shadcn@latest add https://ui.totheprod.com/r/ttp-cursor-comet.json",
-    complexity: "advanced",
-    status: "stable",
-    preview: TtpCursorCometPreview,
-    registryType: "registry:block",
-  },
+  // {
+  //   id: ComponentId.CURSOR_COMET,
+  //   title: "Cursor Comet",
+  //   description:
+  //     "A smooth trailing comet effect with gradient tail that follows cursor movement, using spring physics for natural motion and fading particles",
+  //   instructions:
+  //     "Wrap interactive areas with component. Cursor automatically spawns trailing particles with gradient fade. Customize comet color, length, and spring physics through props.",
+  //   category: categories.CURSOR_AND_HOVER_EFFECTS.id,
+  //   tags: ["cursor", "trail", "comet", "effect"],
+  //   dependencies: ["motion"],
+  //   files: [
+  //     {
+  //       path: "components/ui/totheprod-ui/ttp-cursor-comet.tsx",
+  //       type: "registry:component",
+  //     },
+  //   ],
+  //   installCommand:
+  //     "npx shadcn@latest add https://ui.totheprod.com/r/ttp-cursor-comet.json",
+  //   complexity: "advanced",
+  //   preview: TtpCursorCometPreview,
+  //   registryType: "registry:block",
+  //   status: "disabled",
+  // },
 
   // Scroll Interactions
   {

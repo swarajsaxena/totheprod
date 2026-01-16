@@ -58,6 +58,7 @@ export const TtpDocumentNavigator = ({
     const targetHeading = document.getElementById(headingId)
 
     if (!targetHeading) {
+      console.warn(`Target heading with id "${headingId}" not found`)
       return
     }
 
@@ -65,41 +66,42 @@ export const TtpDocumentNavigator = ({
 
     if (scrollContainerId) {
       const scrollContainer = document.getElementById(scrollContainerId)
-      if (scrollContainer?.contains(targetHeading)) {
-        // Calculate absolute positions to get consistent relative position
-        // This avoids viewport-relative calculations that change with scroll
-        const getAbsoluteTop = (el: HTMLElement) => {
-          let top = 0
-          let current = el as HTMLElement | null
-          while (current) {
-            top += current.offsetTop
-            current = current.offsetParent as HTMLElement | null
-          }
-          return top
-        }
 
-        const elementAbsoluteTop = getAbsoluteTop(targetHeading)
-        const containerAbsoluteTop = getAbsoluteTop(scrollContainer)
-        const relativeTop = elementAbsoluteTop - containerAbsoluteTop
+      if (!scrollContainer) {
+        console.warn(
+          `Scroll container with id "${scrollContainerId}" not found`
+        )
+        return
+      }
 
-        const scrollPosition = relativeTop - offset
+      if (scrollContainer.contains(targetHeading)) {
+        // Get the position of the target relative to the container
+        const containerRect = scrollContainer.getBoundingClientRect()
+        const targetRect = targetHeading.getBoundingClientRect()
+
+        // Calculate the relative position
+        const relativeTop =
+          targetRect.top - containerRect.top + scrollContainer.scrollTop
+
+        const scrollPosition = Math.max(0, relativeTop - offset)
 
         scrollContainer.scrollTo({
-          top: Math.max(0, scrollPosition), // Ensure non-negative
+          top: scrollPosition,
           behavior: "smooth",
         })
+      } else {
+        console.warn(
+          `Target heading "${headingId}" not found inside container "${scrollContainerId}"`
+        )
       }
     } else {
-      // Calculate absolute position relative to document
-      let absoluteTop = 0
-      let element = targetHeading as HTMLElement | null
-      while (element) {
-        absoluteTop += element.offsetTop
-        element = element.offsetParent as HTMLElement | null
-      }
+      // Use scrollIntoView for simpler, more reliable scrolling
+      const yOffset = -offset
+      const y =
+        targetHeading.getBoundingClientRect().top + window.scrollY + yOffset
 
       window.scrollTo({
-        top: absoluteTop - offset,
+        top: y,
         behavior: "smooth",
       })
     }
@@ -198,8 +200,8 @@ export const TtpDocumentNavigator = ({
           <button
             aria-label={`Scroll to ${heading.textContent}`}
             className={cn(
-              "group flex w-full cursor-default items-stretch justify-between outline-none!",
-              isHovering && "pointer-events-auto cursor-pointer"
+              "group flex w-full cursor-pointer items-stretch justify-between outline-none!",
+              isHovering && "pointer-events-auto"
             )}
             key={heading.id}
             onClick={() => handleScrollToHeading(heading)}

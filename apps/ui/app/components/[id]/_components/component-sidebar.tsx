@@ -8,15 +8,10 @@ import { useParams } from "next/navigation"
 import { contentMap } from "@/app/components/[id]/constants"
 import { Button } from "@/components/ui/button"
 import { useTtpCommandPaletteState } from "@/components/ui/totheprod-ui/ttp-command-palette"
-import {
-  TtpTickerSidebar,
-  TtpTickerSidebarItem,
-  TtpTickerSidebarSection,
-  TtpTickerSidebarSectionHeader,
-} from "@/components/ui/totheprod-ui/ttp-ticker-sidebar"
 import { useDetailsOpen } from "@/hooks/use-details-open"
 import { useMinWidth } from "@/hooks/use-min-width"
 import { ThemeLogo } from "../../../../components/internal/theme-logo"
+import { ComponentSidebarContent } from "./component-sidebar-content"
 
 export const ComponentSidebar = () => {
   const isMobile = useMinWidth("md")
@@ -32,7 +27,7 @@ export const ComponentSidebar = () => {
     <motion.aside
       animate={{ width: isMobile && detailsOpen ? 0 : "auto" }}
       aria-label="Component navigation sidebar"
-      className="flex h-full flex-col justify-center overflow-hidden border-r border-dashed bg-secondary"
+      className="hidden h-full flex-col justify-center overflow-hidden border-r border-dashed bg-secondary md:flex"
       initial={{ width: "auto" }}
     >
       <div className="flex w-full items-center justify-between gap-2 border-b border-dashed p-3 text-muted-foreground text-xs">
@@ -48,40 +43,7 @@ export const ComponentSidebar = () => {
         </Button>
       </div>
 
-      <TtpTickerSidebar
-        className="mb-auto flex max-h-full w-full flex-1 flex-col overflow-y-auto p-0"
-        sectionDividersLength={0}
-      >
-        {contentMap.map((section, sectionIndex) => (
-          <TtpTickerSidebarSection
-            className="group relative border-t border-dashed px-4 py-4 first:border-t-0 last:border-b"
-            isLast={sectionIndex === contentMap.length - 1}
-            key={section.section}
-          >
-            {/* <CornerPlus variant="rightTop" />
-              <CornerPlus
-                className="hidden group-last:block"
-                variant="rightBottom"
-              /> */}
-            <TtpTickerSidebarSectionHeader>
-              {section.section}
-            </TtpTickerSidebarSectionHeader>
-            {section.items
-              .sort((a, b) => a.title.localeCompare(b.title))
-              .map((item, itemIndex) => (
-                <TtpTickerSidebarItem
-                  href={`/components/${item.id}`}
-                  isActive={currentId === item.id}
-                  isLast={itemIndex === section.items.length - 1}
-                  key={item.id}
-                  textClassName="[[data-active=false]_&]:text-muted-foreground/85!"
-                >
-                  {item.title}
-                </TtpTickerSidebarItem>
-              ))}
-          </TtpTickerSidebarSection>
-        ))}
-      </TtpTickerSidebar>
+      <ComponentSidebarContent contentMap={contentMap} currentId={currentId} />
     </motion.aside>
   )
 }

@@ -43,10 +43,12 @@ export const ComponentCard = ({
           controls={false}
           loop
           muted
-          src={`/component-videos/${id.startsWith("ttp-") ? id.slice(4) : id}${mounted && theme === "dark" ? "-dark" : ""}.mov`}
+          playsInline
+          preload="metadata"
+          src={`/component-videos/${id}${mounted && theme === "dark" ? "-dark" : ""}.webm`}
         />
       </div>
-      <div className="absolute inset-0 flex flex-col items-start justify-end bg-linear-to-bl from-transparent via-muted/75 to-muted p-6 font-medium transition-all group-hover:opacity-50 dark:via-muted/50 dark:to-muted/50">
+      <div className="absolute inset-0 flex flex-col items-start justify-end bg-linear-to-bl from-transparent via-muted/75 to-muted p-6 font-medium transition-all group-hover:opacity-50">
         <p className="font-heading">{title}</p>
         {description && (
           <p className="max-w-3/4 text-muted-foreground text-xs">

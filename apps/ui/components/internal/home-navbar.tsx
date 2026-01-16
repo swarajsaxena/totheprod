@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  GithubIcon,
-  NewTwitterIcon,
-  Search01FreeIcons,
-} from "@hugeicons/core-free-icons"
+import { NewTwitterIcon, Search01FreeIcons } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
@@ -24,11 +20,11 @@ export const HomeNavbar = ({ componentsUrl }: HomeNavbarProps) => {
   }
 
   return (
-    <div className="-top-2 sticky z-10 w-full rounded-t-xl border-b border-dashed bg-background/70 px-4 backdrop-blur-md dark:bg-secondary/70">
+    <div className="-top-2 sticky z-10 w-full rounded-t-xl border-b border-dashed bg-background/70 px-4 backdrop-blur-md">
       <div className="relative mx-auto flex w-full max-w-6xl items-center gap-2 border-x border-dashed p-4">
         <div className="flex items-center gap-2">
           <ThemeLogo alt="Logo" className="h-6 w-6" layoutId="logo" />
-          <span className="font-bold font-heading text-xl tracking-wide">
+          <span className="font-bold font-instrument-serif text-2xl italic tracking-wider">
             ToTheProd
           </span>
         </div>
@@ -37,9 +33,6 @@ export const HomeNavbar = ({ componentsUrl }: HomeNavbarProps) => {
           {/* <Link href={componentsUrl}>Changelog</Link> */}
           <Link href="https://x.com/totheprod" target="_blank">
             <HugeiconsIcon className="size-4" icon={NewTwitterIcon} />
-          </Link>
-          <Link href="https://github.com/ToTheProd/ui" target="_blank">
-            <HugeiconsIcon className="size-4" icon={GithubIcon} />
           </Link>
           <ThemeToggle className="size-max bg-transparent! p-0" />
           <button

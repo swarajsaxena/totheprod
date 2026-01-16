@@ -36,7 +36,7 @@ const StickyCard = ({
       style={{ perspective: "1000px" }}
     >
       <motion.div
-        className="relative flex h-[90vh] w-full flex-col items-center justify-center overflow-hidden rounded-3xl text-center font-bold text-6xl text-white shadow-2xl will-change-transform"
+        className="relative flex h-[50vh] w-full flex-col items-center justify-center overflow-hidden rounded-3xl font-bold text-white shadow-2xl will-change-transform md:h-[80vh]"
         style={{
           scale,
           rotateX,
@@ -46,7 +46,9 @@ const StickyCard = ({
           top,
         }}
       >
-        <span className="absolute top-8 left-8">{text}</span>
+        <span className="absolute top-8 left-8 text-left text-4xl md:text-6xl">
+          {text}
+        </span>
         <span className="absolute right-8 bottom-8 text-[25vw] opacity-25">
           {i + 1}
         </span>
